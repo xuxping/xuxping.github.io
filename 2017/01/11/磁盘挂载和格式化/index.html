@@ -1,4 +1,114 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="blog of xuxiaoping"><title>磁盘挂载和格式化 | 许小平</title><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/5.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">磁盘挂载和格式化</h1><a id="logo" href="/.">许小平</a><p class="description">一点一滴积累</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">磁盘挂载和格式化</h1><div class="post-meta">Jan 11, 2017<span> | </span><span class="category"><a href="/categories/Linux/">Linux</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><a data-thread-key="2017/01/11/磁盘挂载和格式化/" href="/2017/01/11/磁盘挂载和格式化/#comments" class="ds-thread-count"></a><div class="post-content"><h1 id="&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#xFF0C;&#x683C;&#x5F0F;&#x5316;"><a href="#&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#xFF0C;&#x683C;&#x5F0F;&#x5316;" class="headerlink" title="&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#xFF0C;&#x683C;&#x5F0F;&#x5316;"></a>&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#xFF0C;&#x683C;&#x5F0F;&#x5316;</h1><p>#linux<br>&#x5728;CentOS&#x4E2D;&#xFF0C;&#x6302;&#x8F7D;&#x6570;&#x636E;&#x76D8; /dev/sdb /dev/sdc, &#x5206;&#x533A;&#x5E76;&#x683C;&#x5F0F;&#x5316;xfs&#x6587;&#x4EF6;&#x7CFB;&#x7EDF; &#x3002;&#x6302;&#x8F7D;&#x70B9;&#x4E3A; /mnt/data1 /mnt/data2</p>
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>磁盘挂载和格式化 | 许小平</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="许小平">
+    
+
+    
+    <meta name="description" content="&amp;#x78C1;&amp;#x76D8;&amp;#x6302;&amp;#x8F7D;&amp;#xFF0C;&amp;#x683C;&amp;#x5F0F;&amp;#x5316;#linux&amp;#x5728;CentOS&amp;#x4E2D;&amp;#xFF0C;&amp;#x6302;&amp;#x8F7D;&amp;#x6570;&amp;#x636E;&amp;#x76D8; /dev/sdb /dev/sdc, &amp;#x5206;&amp;#x533A;&amp;#x5E76;&amp;#x683C;&amp;#x5F0F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="磁盘挂载和格式化">
+<meta property="og:url" content="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/index.html">
+<meta property="og:site_name" content="许小平">
+<meta property="og:description" content="&amp;#x78C1;&amp;#x76D8;&amp;#x6302;&amp;#x8F7D;&amp;#xFF0C;&amp;#x683C;&amp;#x5F0F;&amp;#x5316;#linux&amp;#x5728;CentOS&amp;#x4E2D;&amp;#xFF0C;&amp;#x6302;&amp;#x8F7D;&amp;#x6570;&amp;#x636E;&amp;#x76D8; /dev/sdb /dev/sdc, &amp;#x5206;&amp;#x533A;&amp;#x5E76;&amp;#x683C;&amp;#x5F0F;">
+<meta property="og:image" content="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/D03BA556-9555-4453-9A14-8A7BB934D652.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/ECB81F96-3E4C-4D56-A27A-3B6AF810EBE6.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/4F984DB4-D46E-46C0-B171-FAE101A29D6E.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/E50B7B62-E559-4AA8-BDEA-D1778BFE3E1D.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/A01E89ED-6CB0-4D85-9166-B3D81F1F11F7.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/60096557-BCAD-4505-AA07-706E936E1E48.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/EEE87E20-1EB3-4682-A6E3-8DBA5DDBF676.png">
+<meta property="og:updated_time" content="2017-01-11T13:11:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="磁盘挂载和格式化">
+<meta name="twitter:description" content="&amp;#x78C1;&amp;#x76D8;&amp;#x6302;&amp;#x8F7D;&amp;#xFF0C;&amp;#x683C;&amp;#x5F0F;&amp;#x5316;#linux&amp;#x5728;CentOS&amp;#x4E2D;&amp;#xFF0C;&amp;#x6302;&amp;#x8F7D;&amp;#x6570;&amp;#x636E;&amp;#x76D8; /dev/sdb /dev/sdc, &amp;#x5206;&amp;#x533A;&amp;#x5E76;&amp;#x683C;&amp;#x5F0F;">
+<meta name="twitter:image" content="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/D03BA556-9555-4453-9A14-8A7BB934D652.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="许小平" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="许小平" title="许小平"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="许小平">许小平</a></h1>
+				<h2 class="blog-motto">一点一滴积累</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:xuxping.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/01/11/磁盘挂载和格式化/" title="磁盘挂载和格式化" itemprop="url">磁盘挂载和格式化</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="许小平" target="_blank" itemprop="author">许小平</a>
+		
+  <p class="article-time">
+    <time datetime="2017-01-10T16:00:00.000Z" itemprop="datePublished"> 发表于 2017-01-11</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#磁盘挂载，格式化"><span class="toc-number">1.</span> <span class="toc-text">磁盘挂载，格式化</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#xFF0C;&#x683C;&#x5F0F;&#x5316;"><a href="#&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#xFF0C;&#x683C;&#x5F0F;&#x5316;" class="headerlink" title="&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#xFF0C;&#x683C;&#x5F0F;&#x5316;"></a>&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#xFF0C;&#x683C;&#x5F0F;&#x5316;</h1><p>#linux<br>&#x5728;CentOS&#x4E2D;&#xFF0C;&#x6302;&#x8F7D;&#x6570;&#x636E;&#x76D8; /dev/sdb /dev/sdc, &#x5206;&#x533A;&#x5E76;&#x683C;&#x5F0F;&#x5316;xfs&#x6587;&#x4EF6;&#x7CFB;&#x7EDF; &#x3002;&#x6302;&#x8F7D;&#x70B9;&#x4E3A; /mnt/data1 /mnt/data2</p>
 <p>&#x5173;&#x952E;&#x6B65;&#x9AA4;&#xFF1A;<br>vmware&#x8BBE;&#x7F6E;&#xFF0C;&#x6DFB;&#x52A0;&#x4E24;&#x5757;&#x786C;&#x76D8;<br><img src="/2017/01/11/&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#x548C;&#x683C;&#x5F0F;&#x5316;/D03BA556-9555-4453-9A14-8A7BB934D652.png" alt=""><br><img src="/2017/01/11/&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#x548C;&#x683C;&#x5F0F;&#x5316;/ECB81F96-3E4C-4D56-A27A-3B6AF810EBE6.png" alt=""><br><img src="/2017/01/11/&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#x548C;&#x683C;&#x5F0F;&#x5316;/4F984DB4-D46E-46C0-B171-FAE101A29D6E.png" alt=""><br>&#x5176;&#x4ED6;&#x7684;&#x6309;&#x7167;&#x9ED8;&#x8BA4;&#x7684;&#x8BBE;&#x7F6E;</p>
 <p>&#x67E5;&#x770B;&#x5206;&#x533A;&#x4FE1;&#x606F; &#xFF1A;<br><img src="/2017/01/11/&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#x548C;&#x683C;&#x5F0F;&#x5316;/E50B7B62-E559-4AA8-BDEA-D1778BFE3E1D.png" alt=""><br>&#x683C;&#x5F0F;&#x5316;/dev/sdc &#xFF1A;<br><img src="/2017/01/11/&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#x548C;&#x683C;&#x5F0F;&#x5316;/A01E89ED-6CB0-4D85-9166-B3D81F1F11F7.png" alt=""><br>&#x5C06;/dev/sdc&#x6302;&#x8F7D;&#x5230;/mnt/data2</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir <span class="regexp">/mnt/</span>data2</div><div class="line">mount <span class="regexp">/dev/</span>sdc <span class="regexp">/mnt/</span>data2</div></pre></td></tr></table></figure>
@@ -7,13 +117,505 @@
 <p>&#x8BBE;&#x7F6E;&#x5F00;&#x673A;&#x81EA;&#x52A8;&#x6302;&#x8F7D;&#xFF0C;&#x5426;&#x5219;&#x53EA;&#x662F;&#x4E34;&#x65F6;&#x751F;&#x6548;&#xFF0C;&#x91CD;&#x542F;&#x4E4B;&#x540E;&#x5C31;&#x6CA1;&#x6709;&#x4E86;&#xFF1A;</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim <span class="regexp">/etc/</span>fstab</div></pre></td></tr></table></figure>
 <p><img src="/2017/01/11/&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#x548C;&#x683C;&#x5F0F;&#x5316;/EEE87E20-1EB3-4682-A6E3-8DBA5DDBF676.png" alt=""><br>&#x91CD;&#x542F;&#x4E4B;&#x540E;&#xFF0C;df -h&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x78C1;&#x76D8;&#x88AB;&#x6302;&#x8F7D;&#x6210;&#x529F;</p>
-</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/" data-id="cixvfsygx0023se9kbq05y6ch" class="article-share-link">分享到</a><div class="tags"><a href="/tags/tips/">tips</a></div><div class="post-nav"><a href="/2017/01/11/2016总结/" class="pre">2016总结</a><a href="/2017/01/08/脑电波数据采集/" class="next">脑电波数据采集</a></div><div data-thread-key="2017/01/11/磁盘挂载和格式化/" data-title="磁盘挂载和格式化" data-url="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/" class="ds-share flat"><div class="ds-share-inline"><ul class="ds-share-icons-16"><li data-toggle="ds-share-icons-more"><a href="javascript:void(0);" class="ds-more">分享到：</a></li><li><a href="javascript:void(0);" data-service="weibo" class="ds-weibo">微博</a></li><li><a href="javascript:void(0);" data-service="qzone" class="ds-qzone">QQ空间</a></li><li><a href="javascript:void(0);" data-service="qqt" class="ds-qqt">腾讯微博</a></li><li><a href="javascript:void(0);" data-service="wechat" class="ds-wechat">微信</a></li></ul><div class="ds-share-icons-more"></div></div></div><div data-thread-key="2017/01/11/磁盘挂载和格式化/" data-title="磁盘挂载和格式化" data-url="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/" data-author-key="1" class="ds-thread"></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://xuxping.github.io"/></form></div><div class="widget"><form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="https://xuxping.github.io"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/project/">project</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人思考/">个人思考</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/亚马逊棋/">亚马逊棋</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大前端/">大前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/个人思考/" style="font-size: 15px;">个人思考</a> <a href="/tags/Nginx/" style="font-size: 15px;">Nginx</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/laravel/" style="font-size: 15px;">laravel</a> <a href="/tags/服务器/" style="font-size: 15px;">服务器</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/node/" style="font-size: 15px;">node</a> <a href="/tags/tools/" style="font-size: 15px;">tools</a> <a href="/tags/sass/" style="font-size: 15px;">sass</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/vue/" style="font-size: 15px;">vue</a> <a href="/tags/亚马逊棋/" style="font-size: 15px;">亚马逊棋</a> <a href="/tags/外包/" style="font-size: 15px;">外包</a> <a href="/tags/tips/" style="font-size: 15px;">tips</a> <a href="/tags/网站部署/" style="font-size: 15px;">网站部署</a> <a href="/tags/脑电波/" style="font-size: 15px;">脑电波</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/01/13/mongo-use-1/">mongodb使用汇总(一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/11/2016总结/">2016总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/11/磁盘挂载和格式化/">磁盘挂载和格式化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/08/脑电波数据采集/">脑电波数据采集</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/08/外包项目总结/">一个小外包项目的总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/05/summary-use-of-git/">git使用汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/nmp的权限和selinux/">nmp的权限问题分析和selinux</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/项目进一步研究内容/">项目进一步研究内容</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/亚马逊的评估函数研究/">亚马逊的评估函数研究</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/亚马逊棋采用的搜索策略/">亚马逊棋采用的搜索策略</a></li></ul></div><div class="widget"><div class="comments-title"><i class="fa fa-comment-o"> 最近评论</i></div><div data-num-items="5" data-show-avatars="0" data-show-time="1" data-show-admin="0" data-excerpt-length="32" data-show-title="1" class="ds-recent-comments"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">许小平.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script>var duoshuoQuery = {short_name:'xuxping'};
-(function() {
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/tips/">tips</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/" data-title="磁盘挂载和格式化 | 许小平" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/01/11/2016总结/" title="2016总结">
+  <strong>上一篇：</strong><br/>
+  <span>
+  2016总结</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/01/08/外包项目总结/"  title="一个小外包项目的总结">
+ <strong>下一篇：</strong><br/> 
+ <span>一个小外包项目的总结
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/01/11/磁盘挂载和格式化/" data-title="磁盘挂载和格式化" data-url="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#磁盘挂载，格式化"><span class="toc-number">1.</span> <span class="toc-text">磁盘挂载，格式化</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Nginx/" title="Nginx">Nginx<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/javascript/" title="javascript">javascript<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/php/" title="php">php<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/project/" title="project">project<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tools/" title="tools">tools<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/个人思考/" title="个人思考">个人思考<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/亚马逊棋/" title="亚马逊棋">亚马逊棋<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/大前端/" title="大前端">大前端<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/服务器/" title="服务器">服务器<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/亚马逊棋/" title="亚马逊棋">亚马逊棋<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/个人思考/" title="个人思考">个人思考<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Nginx/" title="Nginx">Nginx<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/laravel/" title="laravel">laravel<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/服务器/" title="服务器">服务器<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/tools/" title="tools">tools<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mongodb/" title="mongodb">mongodb<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/node/" title="node">node<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sass/" title="sass">sass<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vue/" title="vue">vue<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/脑电波/" title="脑电波">脑电波<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/外包/" title="外包">外包<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/tips/" title="tips">tips<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/网站部署/" title="网站部署">网站部署<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+<div class="doubanshow">
+<p class="asidetitle">豆瓣秀</p>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/145014142/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
+</div>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> stay foolish stay hungry <br/>
+			This is my blog,xuxiaoping</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/145014142" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+		<a href="mailto:18811708041@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="许小平">许小平</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"xuxping"};
+  (function() {
     var ds = document.createElement('script');
     ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.src = '//static.duoshuo.com/embed.js';
     ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0]
-        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
 })();
-</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
