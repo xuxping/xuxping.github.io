@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="tips," />
+  <meta name="keywords" content="tornado," />
 
 
 
@@ -84,24 +84,22 @@
 
 
 
-<meta name="description" content="&amp;#x78C1;&amp;#x76D8;&amp;#x6302;&amp;#x8F7D;&amp;#xFF0C;&amp;#x683C;&amp;#x5F0F;&amp;#x5316;#linux&amp;#x5728;CentOS&amp;#x4E2D;&amp;#xFF0C;&amp;#x6302;&amp;#x8F7D;&amp;#x6570;&amp;#x636E;&amp;#x76D8; /dev/sdb /dev/sdc, &amp;#x5206;&amp;#x533A;&amp;#x5E76;&amp;#x683C;&amp;#x5F0F;">
+<meta name="description" content="&amp;#x80CC;&amp;#x666F;&amp;#x4ECB;&amp;#x7ECD;&amp;#x9700;&amp;#x8981;&amp;#x6BCF;&amp;#x5206;&amp;#x949F;&amp;#x4ECE;tushare&amp;#x7684;&amp;#x63A5;&amp;#x53E3;&amp;#x4E2D;&amp;#x83B7;&amp;#x53D6;&amp;#x5B9E;&amp;#x65F6;&amp;#x6570;&amp;#x636E;&amp;#xFF0C;&amp;#x7136;&amp;#x540E;&amp;#x5BF9;&amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="磁盘挂载和格式化">
-<meta property="og:url" content="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/index.html">
+<meta property="og:title" content="tornado 实时服务架构设计">
+<meta property="og:url" content="https://xuxping.github.io/2017/03/01/tornado实时服务架构设计/index.html">
 <meta property="og:site_name" content="燕十">
-<meta property="og:description" content="&amp;#x78C1;&amp;#x76D8;&amp;#x6302;&amp;#x8F7D;&amp;#xFF0C;&amp;#x683C;&amp;#x5F0F;&amp;#x5316;#linux&amp;#x5728;CentOS&amp;#x4E2D;&amp;#xFF0C;&amp;#x6302;&amp;#x8F7D;&amp;#x6570;&amp;#x636E;&amp;#x76D8; /dev/sdb /dev/sdc, &amp;#x5206;&amp;#x533A;&amp;#x5E76;&amp;#x683C;&amp;#x5F0F;">
-<meta property="og:image" content="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/D03BA556-9555-4453-9A14-8A7BB934D652.png">
-<meta property="og:image" content="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/ECB81F96-3E4C-4D56-A27A-3B6AF810EBE6.png">
-<meta property="og:image" content="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/4F984DB4-D46E-46C0-B171-FAE101A29D6E.png">
-<meta property="og:image" content="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/E50B7B62-E559-4AA8-BDEA-D1778BFE3E1D.png">
-<meta property="og:image" content="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/A01E89ED-6CB0-4D85-9166-B3D81F1F11F7.png">
-<meta property="og:image" content="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/60096557-BCAD-4505-AA07-706E936E1E48.png">
-<meta property="og:image" content="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/EEE87E20-1EB3-4682-A6E3-8DBA5DDBF676.png">
-<meta property="og:updated_time" content="2017-03-11T14:04:09.000Z">
+<meta property="og:description" content="&amp;#x80CC;&amp;#x666F;&amp;#x4ECB;&amp;#x7ECD;&amp;#x9700;&amp;#x8981;&amp;#x6BCF;&amp;#x5206;&amp;#x949F;&amp;#x4ECE;tushare&amp;#x7684;&amp;#x63A5;&amp;#x53E3;&amp;#x4E2D;&amp;#x83B7;&amp;#x53D6;&amp;#x5B9E;&amp;#x65F6;&amp;#x6570;&amp;#x636E;&amp;#xFF0C;&amp;#x7136;&amp;#x540E;&amp;#x5BF9;&amp;">
+<meta property="og:image" content="https://xuxping.github.io/2017/03/01/tornado实时服务架构设计/D8C38EDB-E727-4008-8D39-BBE3579D1AA0.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/03/01/tornado实时服务架构设计/9DEF2DDB-2E5A-46C7-BB03-15BA9D757008.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/03/01/tornado实时服务架构设计/D3381CFE-3B44-443E-8E1E-AC6460638443.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/03/01/tornado实时服务架构设计/BB457B09-5973-4883-BC2B-C023594855FC.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/03/01/tornado实时服务架构设计/8C0D6A50-E33C-4B72-B532-DB51D1EB7A56.png">
+<meta property="og:updated_time" content="2017-03-14T01:48:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="磁盘挂载和格式化">
-<meta name="twitter:description" content="&amp;#x78C1;&amp;#x76D8;&amp;#x6302;&amp;#x8F7D;&amp;#xFF0C;&amp;#x683C;&amp;#x5F0F;&amp;#x5316;#linux&amp;#x5728;CentOS&amp;#x4E2D;&amp;#xFF0C;&amp;#x6302;&amp;#x8F7D;&amp;#x6570;&amp;#x636E;&amp;#x76D8; /dev/sdb /dev/sdc, &amp;#x5206;&amp;#x533A;&amp;#x5E76;&amp;#x683C;&amp;#x5F0F;">
-<meta name="twitter:image" content="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/D03BA556-9555-4453-9A14-8A7BB934D652.png">
+<meta name="twitter:title" content="tornado 实时服务架构设计">
+<meta name="twitter:description" content="&amp;#x80CC;&amp;#x666F;&amp;#x4ECB;&amp;#x7ECD;&amp;#x9700;&amp;#x8981;&amp;#x6BCF;&amp;#x5206;&amp;#x949F;&amp;#x4ECE;tushare&amp;#x7684;&amp;#x63A5;&amp;#x53E3;&amp;#x4E2D;&amp;#x83B7;&amp;#x53D6;&amp;#x5B9E;&amp;#x65F6;&amp;#x6570;&amp;#x636E;&amp;#xFF0C;&amp;#x7136;&amp;#x540E;&amp;#x5BF9;&amp;">
+<meta name="twitter:image" content="https://xuxping.github.io/2017/03/01/tornado实时服务架构设计/D8C38EDB-E727-4008-8D39-BBE3579D1AA0.png">
 
 
 
@@ -129,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/"/>
+  <link rel="canonical" href="https://xuxping.github.io/2017/03/01/tornado实时服务架构设计/"/>
 
 
 
 
 
-  <title> 磁盘挂载和格式化 | 燕十 </title>
+  <title> tornado 实时服务架构设计 | 燕十 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -301,7 +299,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/">
+  <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/03/01/tornado实时服务架构设计/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="燕十">
@@ -325,7 +323,7 @@
             
             
               
-                磁盘挂载和格式化
+                tornado 实时服务架构设计
               
             
           </h2>
@@ -340,8 +338,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-11T00:00:00+08:00">
-                2017-01-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-01T00:00:00+08:00">
+                2017-03-01
               </time>
             
 
@@ -363,8 +361,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/架构设计/" itemprop="url" rel="index">
+                    <span itemprop="name">架构设计</span>
                   </a>
                 </span>
 
@@ -381,8 +379,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/01/11/磁盘挂载和格式化/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/11/磁盘挂载和格式化/" itemprop="commentCount"></span>
+                <a href="/2017/03/01/tornado实时服务架构设计/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/01/tornado实时服务架构设计/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -408,15 +406,17 @@
       
 
       
-        <h1 id="&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#xFF0C;&#x683C;&#x5F0F;&#x5316;"><a href="#&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#xFF0C;&#x683C;&#x5F0F;&#x5316;" class="headerlink" title="&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#xFF0C;&#x683C;&#x5F0F;&#x5316;"></a>&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#xFF0C;&#x683C;&#x5F0F;&#x5316;</h1><p>#linux<br>&#x5728;CentOS&#x4E2D;&#xFF0C;&#x6302;&#x8F7D;&#x6570;&#x636E;&#x76D8; /dev/sdb /dev/sdc, &#x5206;&#x533A;&#x5E76;&#x683C;&#x5F0F;&#x5316;xfs&#x6587;&#x4EF6;&#x7CFB;&#x7EDF; &#x3002;&#x6302;&#x8F7D;&#x70B9;&#x4E3A; /mnt/data1 /mnt/data2<br><a id="more"></a><br>&#x5173;&#x952E;&#x6B65;&#x9AA4;&#xFF1A;<br>vmware&#x8BBE;&#x7F6E;&#xFF0C;&#x6DFB;&#x52A0;&#x4E24;&#x5757;&#x786C;&#x76D8;<br><img src="/2017/01/11/&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#x548C;&#x683C;&#x5F0F;&#x5316;/D03BA556-9555-4453-9A14-8A7BB934D652.png" alt=""><br><img src="/2017/01/11/&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#x548C;&#x683C;&#x5F0F;&#x5316;/ECB81F96-3E4C-4D56-A27A-3B6AF810EBE6.png" alt=""><br><img src="/2017/01/11/&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#x548C;&#x683C;&#x5F0F;&#x5316;/4F984DB4-D46E-46C0-B171-FAE101A29D6E.png" alt=""><br>&#x5176;&#x4ED6;&#x7684;&#x6309;&#x7167;&#x9ED8;&#x8BA4;&#x7684;&#x8BBE;&#x7F6E;</p>
-<p>&#x67E5;&#x770B;&#x5206;&#x533A;&#x4FE1;&#x606F; &#xFF1A;<br><img src="/2017/01/11/&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#x548C;&#x683C;&#x5F0F;&#x5316;/E50B7B62-E559-4AA8-BDEA-D1778BFE3E1D.png" alt=""><br>&#x683C;&#x5F0F;&#x5316;/dev/sdc &#xFF1A;<br><img src="/2017/01/11/&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#x548C;&#x683C;&#x5F0F;&#x5316;/A01E89ED-6CB0-4D85-9166-B3D81F1F11F7.png" alt=""><br>&#x5C06;/dev/sdc&#x6302;&#x8F7D;&#x5230;/mnt/data2</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir <span class="regexp">/mnt/</span>data2</div><div class="line">mount <span class="regexp">/dev/</span>sdc <span class="regexp">/mnt/</span>data2</div></pre></td></tr></table></figure>
-<p>&#x67E5;&#x770B;&#x78C1;&#x76D8;&#x4FE1;&#x606F;<code>df -h</code>&#xFF0C;&#x6302;&#x8F7D;&#x6210;&#x529F;&#xFF01;   </p>
-<p><img src="/2017/01/11/&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#x548C;&#x683C;&#x5F0F;&#x5316;/60096557-BCAD-4505-AA07-706E936E1E48.png" alt=""></p>
-<p>&#x8BBE;&#x7F6E;&#x5F00;&#x673A;&#x81EA;&#x52A8;&#x6302;&#x8F7D;&#xFF0C;&#x5426;&#x5219;&#x53EA;&#x662F;&#x4E34;&#x65F6;&#x751F;&#x6548;&#xFF0C;&#x91CD;&#x542F;&#x4E4B;&#x540E;&#x5C31;&#x6CA1;&#x6709;&#x4E86;&#xFF1A;</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim <span class="regexp">/etc/</span>fstab</div></pre></td></tr></table></figure>
-<p><img src="/2017/01/11/&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#x548C;&#x683C;&#x5F0F;&#x5316;/EEE87E20-1EB3-4682-A6E3-8DBA5DDBF676.png" alt=""><br>&#x91CD;&#x542F;&#x4E4B;&#x540E;&#xFF0C;df -h&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x78C1;&#x76D8;&#x88AB;&#x6302;&#x8F7D;&#x6210;&#x529F;</p>
-
+        <h2 id="&#x80CC;&#x666F;&#x4ECB;&#x7ECD;"><a href="#&#x80CC;&#x666F;&#x4ECB;&#x7ECD;" class="headerlink" title="&#x80CC;&#x666F;&#x4ECB;&#x7ECD;"></a>&#x80CC;&#x666F;&#x4ECB;&#x7ECD;</h2><p>&#x9700;&#x8981;&#x6BCF;&#x5206;&#x949F;&#x4ECE;tushare&#x7684;&#x63A5;&#x53E3;&#x4E2D;&#x83B7;&#x53D6;&#x5B9E;&#x65F6;&#x6570;&#x636E;&#xFF0C;&#x7136;&#x540E;&#x5BF9;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x5904;&#x7406;&#x540E;&#xFF0C;&#x4FDD;&#x5B58;&#x6570;&#x636E;&#x548C;&#x5BF9;&#x5916;&#x63D0;&#x4F9B;api&#xFF0C;api&#x7684;&#x8C03;&#x7528;&#x6B21;&#x6570;&#x548C;&#x9891;&#x7387;&#x975E;&#x5E38;&#x9AD8;&#xFF0C;&#x9884;&#x4F30;3w/s&#xFF0C;&#x8981;&#x6C42;&#x7684;&#x5E76;&#x53D1;&#x6027;&#x80FD;&#x9AD8;&#xFF0C;&#x54CD;&#x5E94;&#x901F;&#x5EA6;&#x5FEB;&#xFF0C;&#x53CA;&#x65F6;&#x8FD4;&#x56DE;&#x3002;<br><a id="more"></a></p>
+<h2 id="tornado&#x4ECB;&#x7ECD;"><a href="#tornado&#x4ECB;&#x7ECD;" class="headerlink" title="tornado&#x4ECB;&#x7ECD;"></a>tornado&#x4ECB;&#x7ECD;</h2><p>tornado &#x548C;&#x73B0;&#x5728;&#x7684;&#x4E3B;&#x6D41; Web &#x670D;&#x52A1;&#x5668;&#x6846;&#x67B6;&#xFF08;&#x5305;&#x62EC;&#x5927;&#x591A;&#x6570; Python &#x7684;&#x6846;&#x67B6;&#xFF09;&#x6709;&#x7740;&#x660E;&#x663E;&#x7684;&#x533A;&#x522B;&#xFF1A;&#x5B83;&#x662F;&#x975E;&#x963B;&#x585E;&#x5F0F;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x800C;&#x4E14;&#x901F;&#x5EA6;&#x76F8;&#x5F53;&#x5FEB;&#x3002;&#x5F97;&#x5229;&#x4E8E;&#x5176;&#x975E;&#x963B;&#x585E;&#x7684;&#x65B9;&#x5F0F;&#x548C;&#x5BF9; epoll &#x7684;&#x8FD0;&#x7528;&#xFF0C;tornado &#x6BCF;&#x79D2;&#x53EF;&#x4EE5;&#x5904;&#x7406;&#x6570;&#x4EE5;&#x5343;&#x8BA1;&#x7684;&#x8FDE;&#x63A5;&#xFF0C;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x5BF9;&#x4E8E;&#x5B9E;&#x65F6; Web &#x670D;&#x52A1;&#x6765;&#x8BF4;&#xFF0C;tornado &#x662F;&#x4E00;&#x4E2A;&#x7406;&#x60F3;&#x7684; Web &#x6846;&#x67B6;&#x3002;&#x5E76;&#x4E14;tornado&#x5185;&#x7F6E;&#x4E86;&#x4E00;&#x4E2A;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5F00;&#x53D1;&#x6548;&#x7387;&#x9AD8;&#x3002;&#x867D;&#x7136;tornado&#x5B9E;&#x73B0;&#x4E86;&#x975E;&#x963B;&#x585E;&#x7684;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#xFF0C;&#x4F46;&#x662F;&#x5176;&#x4ECD;&#x7136;&#x662F;&#x5355;&#x7EBF;&#x7A0B;&#xFF0C;&#x5728;&#x505A;&#x8017;&#x65F6;&#x7684;CURD&#x4EFB;&#x52A1;&#xFF0C;&#x4ECD;&#x7136;&#x4F1A;&#x963B;&#x585E;&#x8FDB;&#x7A0B;&#xFF0C;&#x5BFC;&#x81F4;&#x5916;&#x90E8;&#x8BBF;&#x95EE;&#x53D8;&#x6162;&#x3002;&#x56E0;&#x6B64;&#x5982;&#x4F55;&#x8BBE;&#x8BA1;&#x4E00;&#x4E2A;&#x5408;&#x7406;&#x67B6;&#x6784;&#x6765;&#x652F;&#x6491;3w/s</p>
+<h2 id="&#x67B6;&#x6784;&#x7684;&#x8BBE;&#x8BA1;"><a href="#&#x67B6;&#x6784;&#x7684;&#x8BBE;&#x8BA1;" class="headerlink" title="&#x67B6;&#x6784;&#x7684;&#x8BBE;&#x8BA1;"></a>&#x67B6;&#x6784;&#x7684;&#x8BBE;&#x8BA1;</h2><p>&#x8981;&#x652F;&#x6491;&#x5982;&#x6B64;&#x9AD8;&#x7684;&#x5E76;&#x53D1;&#x91CF;&#xFF0C;&#x4E00;&#x4E2A;tornado&#x80AF;&#x5B9A;&#x4E0D;&#x884C;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x591A;&#x4E2A;torando&#xFF0C;&#x7136;&#x540E;&#x7528;nginx&#x505A;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x652F;&#x6491;&#x9AD8;&#x5E76;&#x53D1;&#x3002;<br><img src="/2017/03/01/tornado&#x5B9E;&#x65F6;&#x670D;&#x52A1;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;/D8C38EDB-E727-4008-8D39-BBE3579D1AA0.png" alt=""></p>
+<p>&#x5177;&#x4F53;&#x6BCF;&#x4E2A;tornado&#x7684;&#x8BBE;&#x8BA1;&#x5C31;&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x6848;&#xFF0C;&#x4E0B;&#x9762;&#x5206;&#x522B;&#x5BF9;&#x6BD4;&#x4E24;&#x79CD;&#x65B9;&#x6848;&#x7684;&#x4F18;&#x52A3;&#x70B9;</p>
+<h3 id="&#x65B9;&#x6848;&#x4E00;"><a href="#&#x65B9;&#x6848;&#x4E00;" class="headerlink" title="&#x65B9;&#x6848;&#x4E00;"></a>&#x65B9;&#x6848;&#x4E00;</h3><p>&#x5728;tornado&#x8FD0;&#x884C;&#x4E00;&#x4E2A;&#x5B9A;&#x65F6;&#x4EFB;&#x52A1;&#xFF0C;&#x7136;&#x540E;&#x6BCF;&#x5206;&#x949F;&#x53D6;&#x6570;&#x636E;&#xFF0C;&#x5148;&#x66F4;&#x65B0;&#x5185;&#x5B58;&#xFF0C;&#x7136;&#x540E;&#x5199;&#x5165;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x6700;&#x540E;&#x5199;&#x5165;mongo&#x3002;<br><img src="/2017/03/01/tornado&#x5B9E;&#x65F6;&#x670D;&#x52A1;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;/9DEF2DDB-2E5A-46C7-BB03-15BA9D757008.png" alt=""></p>
+<p>&#x7ECF;&#x8FC7;&#x7EDF;&#x8BA1;&#xFF0C;tushare&#x5B9E;&#x65F6;&#x6570;&#x636E;&#x91C7;&#x96C6;&#x8017;&#x65F6;&#x5206;&#x5E03;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="/2017/03/01/tornado&#x5B9E;&#x65F6;&#x670D;&#x52A1;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;/D3381CFE-3B44-443E-8E1E-AC6460638443.png" alt=""><br>&#x6700;&#x9AD8;&#x4F4D;28s,&#x5E73;&#x5747;&#x503C;&#x4E3A;9s&#x3002;&#x90A3;&#x4E48;&#x95EE;&#x9898;&#x6765;&#x4E86;&#xFF0C;tornado&#x5728;&#x6267;&#x884C;&#x8BE5;&#x4EFB;&#x52A1;&#x65F6;&#x4F1A;&#x963B;&#x585E;&#x7EBF;&#x7A0B;&#xFF0C;&#x5982;&#x679C;&#x540E;&#x53F0;&#x6B63;&#x5728;&#x8FDB;&#x884C;&#x8BF7;&#x6C42;&#x4EFB;&#x52A1;&#x65F6;&#xFF0C;&#x6B64;&#x65F6;&#x6765;&#x4E86;api&#x8BF7;&#x6C42;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x8BF7;&#x6C42;&#x5C31;&#x4F1A;&#x88AB;&#x522E;&#x8D77;&#xFF0C;&#x76F4;&#x5230;&#x4E0A;&#x9762;&#x7684;&#x4EFB;&#x52A1;&#x8FD0;&#x884C;&#x5B8C;&#x540E;&#x624D;&#x4F1A;&#x5904;&#x7406;&#xFF0C;</p>
+<h3 id="&#x65B9;&#x6848;&#x4E8C;"><a href="#&#x65B9;&#x6848;&#x4E8C;" class="headerlink" title="&#x65B9;&#x6848;&#x4E8C;"></a>&#x65B9;&#x6848;&#x4E8C;</h3><p>&#x6211;&#x4EEC;&#x8BA9;&#x91C7;&#x96C6;&#x8FDB;&#x7A0B;&#x5B9A;&#x65F6;&#x53D6;&#x91C7;&#x96C6;&#x6570;&#x636E;&#xFF0C;&#x7136;&#x540E;&#x5904;&#x7406;&#x597D;&#x4E86;&#xFF0C;&#x63A8;&#x9001;&#x7ED9;tornado&#xFF0C;&#x8FD9;&#x6837;tornado&#x53EA;&#x7BA1;&#x5BF9;&#x5916;&#x63D0;&#x4F9B;&#x6570;&#x636E;&#xFF0C;&#x800C;&#x4E0D;&#x7BA1;&#x53D6;&#x83B7;&#x53D6;&#x6570;&#x636E;&#xFF0C;&#x8BA9;tornado&#x4E13;&#x6CE8;&#x4E8E;&#x5E72;&#x81EA;&#x5DF1;&#x64C5;&#x957F;&#x7684;&#x4E8B;&#x60C5;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x8D77;&#x4E00;&#x4E2A;&#x540E;&#x53F0;&#x8FDB;&#x7A0B;&#xFF0C;&#x6BCF;10&#x5206;&#x949F;&#x53EF;&#x4EE5;&#x5C06;&#x91C7;&#x96C6;&#x5230;&#x7684;&#x6570;&#x636E;&#x5BFC;&#x5165;&#x5230;mongo&#x4E2D;&#x3002;&#x8FD9;&#x79CD;&#x8BBE;&#x8BA1;&#x8BA9;&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x90FD;&#x53EA;&#x4E13;&#x6CE8;&#x4E8E;&#x5E72;&#x4E00;&#x4EF6;&#x4E8B;&#x3002;</p>
+<p><img src="/2017/03/01/tornado&#x5B9E;&#x65F6;&#x670D;&#x52A1;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;/BB457B09-5973-4883-BC2B-C023594855FC.png" alt=""></p>
+<h3 id="&#x5F02;&#x5E38;&#x5904;&#x7406;"><a href="#&#x5F02;&#x5E38;&#x5904;&#x7406;" class="headerlink" title="&#x5F02;&#x5E38;&#x5904;&#x7406;"></a>&#x5F02;&#x5E38;&#x5904;&#x7406;</h3><p><img src="/2017/03/01/tornado&#x5B9E;&#x65F6;&#x670D;&#x52A1;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;/8C0D6A50-E33C-4B72-B532-DB51D1EB7A56.png" alt=""></p>
+<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2>
       
     </div>
 
@@ -460,7 +460,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/tips/" rel="tag"># tips</a>
+            <a href="/tags/tornado/" rel="tag"># tornado</a>
           
         </div>
       
@@ -469,8 +469,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/08/外包项目总结/" rel="next" title="一个小外包项目的总结">
-                <i class="fa fa-chevron-left"></i> 一个小外包项目的总结
+              <a href="/2017/01/13/mongo-use-1/" rel="next" title="mongodb使用汇总(一）">
+                <i class="fa fa-chevron-left"></i> mongodb使用汇总(一）
               </a>
             
           </div>
@@ -479,8 +479,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/01/11/2016总结/" rel="prev" title="2016总结">
-                2016总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/07/hadoop-install/" rel="prev" title="hadoop集群安装">
+                hadoop集群安装 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -510,8 +510,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/01/11/磁盘挂载和格式化/"
-           data-title="磁盘挂载和格式化" data-url="https://xuxping.github.io/2017/01/11/磁盘挂载和格式化/">
+      <div class="ds-thread" data-thread-key="2017/03/01/tornado实时服务架构设计/"
+           data-title="tornado 实时服务架构设计" data-url="https://xuxping.github.io/2017/03/01/tornado实时服务架构设计/">
       </div>
     
   </div>
@@ -611,7 +611,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#磁盘挂载，格式化"><span class="nav-number">1.</span> <span class="nav-text">磁盘挂载，格式化</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景介绍"><span class="nav-number">1.</span> <span class="nav-text">背景介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tornado介绍"><span class="nav-number">2.</span> <span class="nav-text">tornado介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构的设计"><span class="nav-number">3.</span> <span class="nav-text">架构的设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方案一"><span class="nav-number">3.1.</span> <span class="nav-text">方案一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案二"><span class="nav-number">3.2.</span> <span class="nav-text">方案二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常处理"><span class="nav-number">3.3.</span> <span class="nav-text">异常处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
