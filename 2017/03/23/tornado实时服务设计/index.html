@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="blog of xuxiaoping" />
+  <meta name="keywords" content="tornado," />
 
 
 
@@ -84,16 +84,22 @@
 
 
 
-<meta name="description" content="firewalld(firewall daemon)&amp;#x662F;&amp;#x65B0;&amp;#x4E00; Linux &amp;#x4EE3;&amp;#x9632;&amp;#x706B;&amp;#x5899;&amp;#x5DE5;&amp;#x5177;&amp;#xFF0C;&amp;#x5B83;&amp;#x63D0;&amp;#x4F9B;&amp;#x4E86;&amp;#x652F;&amp;#x6301;&amp;#x7F51;&amp;#x7EDC; / &amp;#x9632;&amp;#x706B;&amp;#x5">
+<meta name="description" content="&amp;#x80CC;&amp;#x666F;&amp;#x4ECB;&amp;#x7ECD;&amp;#x8FD9;&amp;#x662F;&amp;#x5728;&amp;#x516C;&amp;#x53F8;&amp;#x8BAD;&amp;#x7EC3;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x5C0F;&amp;#x9879;&amp;#x76EE;&amp;#x3002;&amp;#x6BCF;&amp;#x5206;&amp;#x949F;&amp;#x9700;&amp;#x8981;&amp;#x4ECE;tushare&amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="firewalld使用总结">
-<meta property="og:url" content="https://xuxping.github.io/2016/09/28/firewall使用总结/index.html">
+<meta property="og:title" content="tornado 实时服务架构设计">
+<meta property="og:url" content="https://xuxping.github.io/2017/03/23/tornado实时服务设计/index.html">
 <meta property="og:site_name" content="燕十">
-<meta property="og:description" content="firewalld(firewall daemon)&amp;#x662F;&amp;#x65B0;&amp;#x4E00; Linux &amp;#x4EE3;&amp;#x9632;&amp;#x706B;&amp;#x5899;&amp;#x5DE5;&amp;#x5177;&amp;#xFF0C;&amp;#x5B83;&amp;#x63D0;&amp;#x4F9B;&amp;#x4E86;&amp;#x652F;&amp;#x6301;&amp;#x7F51;&amp;#x7EDC; / &amp;#x9632;&amp;#x706B;&amp;#x5">
-<meta property="og:updated_time" content="2016-12-10T09:54:36.000Z">
+<meta property="og:description" content="&amp;#x80CC;&amp;#x666F;&amp;#x4ECB;&amp;#x7ECD;&amp;#x8FD9;&amp;#x662F;&amp;#x5728;&amp;#x516C;&amp;#x53F8;&amp;#x8BAD;&amp;#x7EC3;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x5C0F;&amp;#x9879;&amp;#x76EE;&amp;#x3002;&amp;#x6BCF;&amp;#x5206;&amp;#x949F;&amp;#x9700;&amp;#x8981;&amp;#x4ECE;tushare&amp;">
+<meta property="og:image" content="https://xuxping.github.io/2017/03/23/tornado实时服务设计/D8C38EDB-E727-4008-8D39-BBE3579D1AA0.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/03/23/tornado实时服务设计/9DEF2DDB-2E5A-46C7-BB03-15BA9D757008.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/03/23/tornado实时服务设计/D3381CFE-3B44-443E-8E1E-AC6460638443.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/03/23/tornado实时服务设计/BB457B09-5973-4883-BC2B-C023594855FC.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/03/23/tornado实时服务设计/8C0D6A50-E33C-4B72-B532-DB51D1EB7A56.png">
+<meta property="og:updated_time" content="2017-03-24T15:07:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="firewalld使用总结">
-<meta name="twitter:description" content="firewalld(firewall daemon)&amp;#x662F;&amp;#x65B0;&amp;#x4E00; Linux &amp;#x4EE3;&amp;#x9632;&amp;#x706B;&amp;#x5899;&amp;#x5DE5;&amp;#x5177;&amp;#xFF0C;&amp;#x5B83;&amp;#x63D0;&amp;#x4F9B;&amp;#x4E86;&amp;#x652F;&amp;#x6301;&amp;#x7F51;&amp;#x7EDC; / &amp;#x9632;&amp;#x706B;&amp;#x5">
+<meta name="twitter:title" content="tornado 实时服务架构设计">
+<meta name="twitter:description" content="&amp;#x80CC;&amp;#x666F;&amp;#x4ECB;&amp;#x7ECD;&amp;#x8FD9;&amp;#x662F;&amp;#x5728;&amp;#x516C;&amp;#x53F8;&amp;#x8BAD;&amp;#x7EC3;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x5C0F;&amp;#x9879;&amp;#x76EE;&amp;#x3002;&amp;#x6BCF;&amp;#x5206;&amp;#x949F;&amp;#x9700;&amp;#x8981;&amp;#x4ECE;tushare&amp;">
+<meta name="twitter:image" content="https://xuxping.github.io/2017/03/23/tornado实时服务设计/D8C38EDB-E727-4008-8D39-BBE3579D1AA0.png">
 
 
 
@@ -121,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="https://xuxping.github.io/2016/09/28/firewall使用总结/"/>
+  <link rel="canonical" href="https://xuxping.github.io/2017/03/23/tornado实时服务设计/"/>
 
 
 
 
 
-  <title> firewalld使用总结 | 燕十 </title>
+  <title> tornado 实时服务架构设计 | 燕十 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -293,7 +299,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2016/09/28/firewall使用总结/">
+  <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/03/23/tornado实时服务设计/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="燕十">
@@ -317,7 +323,7 @@
             
             
               
-                firewalld使用总结
+                tornado 实时服务架构设计
               
             
           </h2>
@@ -332,8 +338,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-28T14:11:41+08:00">
-                2016-09-28
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-23T00:00:00+08:00">
+                2017-03-23
               </time>
             
 
@@ -355,8 +361,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/架构设计/" itemprop="url" rel="index">
+                    <span itemprop="name">架构设计</span>
                   </a>
                 </span>
 
@@ -373,8 +379,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/09/28/firewall使用总结/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/28/firewall使用总结/" itemprop="commentCount"></span>
+                <a href="/2017/03/23/tornado实时服务设计/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/23/tornado实时服务设计/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -400,27 +406,23 @@
       
 
       
-        <p>firewalld(firewall daemon)&#x662F;&#x65B0;&#x4E00; Linux &#x4EE3;&#x9632;&#x706B;&#x5899;&#x5DE5;&#x5177;&#xFF0C;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x652F;&#x6301;&#x7F51;&#x7EDC; / &#x9632;&#x706B;&#x5899;&#x533A;&#x57DF; (zone) &#x5B9A;&#x4E49;&#x7F51;&#x7EDC;&#x94FE;&#x63A5;&#x4EE5;&#x53CA;&#x63A5;&#x53E3;&#x5B89;&#x5168;&#x7B49;&#x7EA7;&#x7684;&#x52A8;&#x6001;&#x9632;&#x706B;&#x5899;&#x7BA1;&#x7406;&#x5DE5;&#x5177;,&#x5E76;&#x4E14;&#x62E5;&#x6709;&#x8FD0;&#x884C;&#x65F6;&#x914D;&#x7F6E;&#x548C;&#x6C38;&#x4E45;&#x914D;&#x7F6E;&#x9009;&#x9879;&#x3002;&#x5B83;&#x4E5F;&#x652F;&#x6301;&#x5141;&#x8BB8;&#x670D;&#x52A1;&#x6216;&#x8005;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x76F4;&#x63A5;&#x6DFB;&#x52A0;&#x9632;&#x706B;&#x5899;&#x89C4;&#x5219;&#x7684;&#x63A5;&#x53E3;&#x3002;</p>
-<p>Firewall &#x80FD;&#x5C06;&#x4E0D;&#x540C;&#x7684;&#x7F51;&#x7EDC;&#x8FDE;&#x63A5;&#x5F52;&#x7C7B;&#x5230;&#x4E0D;&#x540C;&#x7684;&#x4FE1;&#x4EFB;&#x7EA7;&#x522B;&#xFF0C;Zone(&#x57DF;)&#x4F9B;&#x4E86;&#x4EE5;&#x4E0B;&#x51E0;&#x4E2A;&#x7EA7;&#x522B;:</p>
-<blockquote>
-<p>drop(&#x4E22;&#x5F03;)&#xFF1A; &#x4EFB;&#x4F55;&#x63A5;&#x6536;&#x7684;&#x7F51;&#x7EDC;&#x6570;&#x636E;&#x5305;&#x90FD;&#x88AB;&#x4E22;&#x5F03;&#xFF0C;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x56DE;&#x590D;&#x3002;&#x4EC5;&#x80FD;&#x6709;&#x53D1;&#x9001;&#x51FA;&#x53BB;&#x7684;&#x7F51;&#x7EDC;&#x8FDE;&#x63A5;</p>
-<p>block(&#x9650;&#x5236;)&#xFF1A; &#x62D2;&#x7EDD;&#x6240;&#x6709;&#x5916;&#x90E8;&#x53D1;&#x8D77;&#x7684;&#x8FDE;&#x63A5;&#xFF0C;&#x5141;&#x8BB8;&#x5185;&#x90E8;&#x53D1;&#x8D77;&#x7684;&#x8FDE;&#x63A5;<br>public(&#x516C;&#x5171;): &#x5728;&#x516C;&#x5171;&#x533A;&#x57DF;&#x5185;&#x4F7F;&#x7528;&#xFF0C;&#x4E0D;&#x80FD;&#x76F8;&#x4FE1;&#x7F51;&#x7EDC;&#x5185;&#x7684;&#x5176;&#x4ED6;&#x8BA1;&#x7B97;&#x673A;&#x4E0D;&#x4F1A;&#x5BF9;&#x60A8;&#x7684;&#x8BA1;&#x7B97;&#x673A;&#x9020;&#x6210;&#x5371;&#x5BB3;&#xFF0C;&#x53EA;&#x80FD;&#x63A5;&#x6536;&#x7ECF;&#x8FC7;&#x9009;&#x53D6;&#x7684;&#x8FDE;&#x63A5;&#x3002;</p>
-<p>external(&#x5916;&#x90E8;): &#x7279;&#x522B;&#x662F;&#x4E3A;&#x8DEF;&#x7531;&#x5668;&#x542F;&#x7528;&#x4E86;&#x4F2A;&#x88C5;&#x529F;&#x80FD;&#x7684;&#x5916;&#x90E8;&#x7F51;&#x3002;&#x60A8;&#x4E0D;&#x80FD;&#x4FE1;&#x4EFB;&#x6765;&#x81EA;&#x7F51;&#x7EDC;&#x7684;&#x5176;&#x4ED6;&#x8BA1;&#x7B97;&#xFF0C;&#x4E0D;&#x80FD;&#x76F8;&#x4FE1;&#x5B83;&#x4EEC;&#x4E0D;&#x4F1A;&#x5BF9;&#x60A8;&#x7684;&#x8BA1;&#x7B97;&#x673A;&#x9020;&#x6210;&#x5371;&#x5BB3;&#xFF0C;&#x53EA;&#x80FD;&#x63A5;&#x6536;&#x7ECF;&#x8FC7;&#x9009;&#x62E9;&#x7684;&#x8FDE;&#x63A5;&#x3002;</p>
-<p>dmz(&#x975E;&#x519B;&#x4E8B;&#x533A;)&#xFF1A; &#x7528;&#x4E8E;&#x60A8;&#x7684;&#x975E;&#x519B;&#x4E8B;&#x533A;&#x5185;&#x7684;&#x7535;&#x8111;&#xFF0C;&#x6B64;&#x533A;&#x57DF;&#x5185;&#x53EF;&#x516C;&#x5F00;&#x8BBF;&#x95EE;&#xFF0C;&#x53EF;&#x4EE5;&#x6709;&#x9650;&#x5730;&#x8FDB;&#x5165;&#x60A8;&#x7684;&#x5185;&#x90E8;&#x7F51;&#x7EDC;&#xFF0C;&#x4EC5;&#x4EC5;&#x63A5;&#x6536;&#x7ECF;&#x8FC7;&#x9009;&#x62E9;&#x7684;&#x8FDE;&#x63A5;&#x3002;</p>
-<p>work(&#x5DE5;&#x4F5C;&#x533A;)&#xFF1A; &#x7528;&#x4E8E;&#x5DE5;&#x4F5C;&#x533A;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x57FA;&#x672C;&#x76F8;&#x4FE1;&#x7F51;&#x7EDC;&#x5185;&#x7684;&#x5176;&#x4ED6;&#x7535;&#x8111;&#x4E0D;&#x4F1A;&#x5371;&#x5BB3;&#x60A8;&#x7684;&#x7535;&#x8111;&#x3002;&#x4EC5;&#x4EC5;&#x63A5;&#x6536;&#x7ECF;&#x8FC7;&#x9009;&#x62E9;&#x7684;&#x8FDE;&#x63A5;&#x3002;</p>
-<p>home(&#x5BB6;&#x5EAD;)&#xFF1A;&#x7528;&#x4E8E;&#x5BB6;&#x5EAD;&#x7F51;&#x7EDC;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x57FA;&#x672C;&#x4FE1;&#x4EFB;&#x7F51;&#x7EDC;&#x5185;&#x7684;&#x5176;&#x4ED6;&#x8BA1;&#x7B97;&#x673A;&#x4E0D;&#x4F1A;&#x5371;&#x5BB3;&#x60A8;&#x7684;&#x8BA1;&#x7B97;&#x673A;&#x3002;&#x4EC5;&#x4EC5;&#x63A5;&#x6536;&#x7ECF;&#x8FC7;&#x9009;&#x62E9;&#x7684;&#x8FDE;&#x63A5;&#x3002;</p>
-<p>internal(&#x5185;&#x90E8;)&#xFF1A;&#x7528;&#x4E8E;&#x5185;&#x90E8;&#x7F51;&#x7EDC;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x57FA;&#x672C;&#x4E0A;&#x4FE1;&#x4EFB;&#x7F51;&#x7EDC;&#x5185;&#x7684;&#x5176;&#x4ED6;&#x8BA1;&#x7B97;&#x673A;&#x4E0D;&#x4F1A;&#x5A01;&#x80C1;&#x60A8;&#x7684;&#x8BA1;&#x7B97;&#x673A;&#x3002;&#x4EC5;&#x4EC5;&#x63A5;&#x53D7;&#x7ECF;&#x8FC7;&#x9009;&#x62E9;&#x7684;&#x8FDE;&#x63A5;&#x3002;</p>
-<p>trusted(&#x4FE1;&#x4EFB;): &#x53EF;&#x63A5;&#x53D7;&#x6240;&#x6709;&#x7684;&#x7F51;&#x7EDC;&#x8FDE;&#x63A5;&#x3002;</p>
-</blockquote>
-<h3 id="&#x670D;&#x52A1;&#x7BA1;&#x7406;&#x547D;&#x4EE4;"><a href="#&#x670D;&#x52A1;&#x7BA1;&#x7406;&#x547D;&#x4EE4;" class="headerlink" title="&#x670D;&#x52A1;&#x7BA1;&#x7406;&#x547D;&#x4EE4;"></a>&#x670D;&#x52A1;&#x7BA1;&#x7406;&#x547D;&#x4EE4;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">systemctl start firewalld         &#x542F;&#x52A8;,</div><div class="line">systemctl <span class="built_in">enable</span> firewalld        &#x5F00;&#x673A;&#x542F;&#x52A8;</div><div class="line">systemctl stop firewalld          &#x5173;&#x95ED;</div><div class="line">systemctl restart firewalld          &#x91CD;&#x542F;</div><div class="line">systemctl <span class="built_in">disable</span> firewalld       &#x53D6;&#x6D88;&#x5F00;&#x673A;&#x542F;&#x52A8;</div><div class="line">systemctl status firewalld  &#x67E5;&#x770B;&#x8FD0;&#x884C;&#x72B6;&#x6001;</div></pre></td></tr></table></figure>
-<h3 id="&#x5E38;&#x7528;&#x72B6;&#x6001;&#x547D;&#x4EE4;"><a href="#&#x5E38;&#x7528;&#x72B6;&#x6001;&#x547D;&#x4EE4;" class="headerlink" title="&#x5E38;&#x7528;&#x72B6;&#x6001;&#x547D;&#x4EE4;"></a>&#x5E38;&#x7528;&#x72B6;&#x6001;&#x547D;&#x4EE4;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --state &#x67E5;&#x770B;&#x8FD0;&#x884C;&#x72B6;&#x6001;</div><div class="line">firewall-cmd --get-actvie-zones &#x67E5;&#x770B;&#x5DF2;&#x88AB;&#x6FC0;&#x6D3B;&#x7684; Zone &#x4FE1;&#x606F;</div><div class="line">firewall-cmd --get-zone-of-interface=eth0 &#x67E5;&#x770B;&#x6307;&#x5B9A;&#x63A5;&#x53E3;&#x7684; Zone &#x4FE1;&#x606F;</div><div class="line">firewall-cmd --zone=public --list-interfaces&#x67E5;&#x770B;&#x6307;&#x5B9A;&#x7EA7;&#x522B;&#x7684;&#x63A5;&#x53E3;</div><div class="line">firewall-cmd --zone=public --list-all &#x67E5;&#x770B;&#x6307;&#x5B9A;&#x7EA7;&#x522B;&#x7684;&#x5F00;&#x653E;&#x7684;&#x63A5;&#x53E3;</div><div class="line">firewall-cmd --get-service &#x67E5;&#x770B;&#x6240;&#x6709;&#x7EA7;&#x522B;&#x88AB;&#x5141;&#x8BB8;&#x7684;&#x4FE1;&#x606F;</div><div class="line">firewall-cmd --get-service --permanent &#x67E5;&#x770B;&#x91CD;&#x542F;&#x540E;&#x6240;&#x6709; Zones &#x7EA7;&#x522B;&#x4E2D;&#x88AB;&#x5141;&#x8BB8;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x5373;&#x6C38;&#x4E45;&#x653E;&#x884C;&#x7684;&#x670D;&#x52A1;</div><div class="line">cat /etc/services &#x67E5;&#x770B;&#x6240;&#x6709;&#x5F00;&#x653E;&#x7684;&#x63A5;&#x53E3;</div></pre></td></tr></table></figure>
-<h3 id="&#x7BA1;&#x7406;&#x89C4;&#x5219;"><a href="#&#x7BA1;&#x7406;&#x89C4;&#x5219;" class="headerlink" title="&#x7BA1;&#x7406;&#x89C4;&#x5219;"></a>&#x7BA1;&#x7406;&#x89C4;&#x5219;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --panic-on           &#x4E22;&#x5F03;</div><div class="line">firewall-cmd --panic-off          &#x53D6;&#x6D88;&#x4E22;&#x5F03;</div><div class="line">firewall-cmd --query-panic        &#x67E5;&#x770B;&#x4E22;&#x5F03;&#x72B6;&#x6001;</div><div class="line">firewall-cmd --reload             &#x66F4;&#x65B0;&#x89C4;&#x5219;&#xFF0C;&#x4E0D;&#x91CD;&#x542F;&#x670D;&#x52A1;</div><div class="line">firewall-cmd --complete-reload    &#x66F4;&#x65B0;&#x89C4;&#x5219;&#xFF0C;&#x91CD;&#x542F;&#x670D;&#x52A1;</div><div class="line"></div><div class="line">&#x6DFB;&#x52A0;&#x67D0;&#x63A5;&#x53E3;&#x81F3;&#x67D0;&#x4FE1;&#x4EFB;&#x7B49;&#x7EA7;&#xFF0C;&#x8B6C;&#x5982;&#x6DFB;&#x52A0; eth0 &#x81F3; public&#xFF0C;&#x518D;&#x6C38;&#x4E45;&#x751F;&#x6548;</div><div class="line">irewall-cmd --zone=public --add-interface=eth0 --permanent</div><div class="line">&#x8BBE;&#x7F6E; public &#x4E3A;&#x9ED8;&#x8BA4;&#x7684;&#x4FE1;&#x4EFB;&#x7EA7;&#x522B;</div><div class="line"> firewall-cmd --set-default-zone=public</div></pre></td></tr></table></figure>
-<h3 id="&#x7AEF;&#x53E3;&#x7BA1;&#x7406;"><a href="#&#x7AEF;&#x53E3;&#x7BA1;&#x7406;" class="headerlink" title="&#x7AEF;&#x53E3;&#x7BA1;&#x7406;"></a>&#x7AEF;&#x53E3;&#x7BA1;&#x7406;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#x5217;&#x51FA; public &#x7EA7;&#x522B;&#x7684;&#x88AB;&#x5141;&#x8BB8;&#x7684;&#x8FDB;&#x5165;&#x7AEF;&#x53E3;</div><div class="line">firewall-cmd --zome=public --list-ports</div><div class="line">&#x6DFB;&#x52A0;8080&#x7AEF;&#x53E3;&#x5230;public&#x7EA7;&#x522B;(&#x5E26; --permanent&#x4E3A;&#x6C38;&#x4E45;&#x751F;&#x6548;)</div><div class="line">firewall-cmd --zone=public --add-port=8080/tcp [ --permanent]</div><div class="line">&#x6DFB;&#x52A0;&#x89C4;&#x5219;&#x4E4B;&#x540E;&#x9700;&#x8981;&#x66F4;&#x65B0;&#x89C4;&#x5219;&#xFF0C;&#x4E0D;&#x91CD;&#x542F;&#x670D;&#x52A1;</div></pre></td></tr></table></figure>
-<h3 id="&#x7BA1;&#x7406;&#x670D;&#x52A1;"><a href="#&#x7BA1;&#x7406;&#x670D;&#x52A1;" class="headerlink" title="&#x7BA1;&#x7406;&#x670D;&#x52A1;"></a>&#x7BA1;&#x7406;&#x670D;&#x52A1;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#x6DFB;&#x52A0; smtp &#x670D;&#x52A1;&#x81F3; work Zone</div><div class="line">firewall-cmd --zone=work --add-service=smtp</div><div class="line">&#x79FB;&#x9664; work zone &#x4E2D;&#x7684; smtp &#x670D;&#x52A1;</div><div class="line">firewall-cmd --zone=work --remove-service=smtp</div></pre></td></tr></table></figure>
-<h3 id="&#x914D;&#x7F6E;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;&#xFF0C;&#xFF08;20&#x2013;-gt-3573&#xFF09;"><a href="#&#x914D;&#x7F6E;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;&#xFF0C;&#xFF08;20&#x2013;-gt-3573&#xFF09;" class="headerlink" title="&#x914D;&#x7F6E;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;&#xFF0C;&#xFF08;20&#x2013;&gt;3573&#xFF09;"></a>&#x914D;&#x7F6E;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;&#xFF0C;&#xFF08;20&#x2013;&gt;3573&#xFF09;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#x8981;&#x6253;&#x5F00;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x5148;</div><div class="line">firewall-cmd --zone=external --add-masquerade</div><div class="line"></div><div class="line">&#x7136;&#x540E;&#x8F6C;&#x53D1; tcp 22 &#x7AEF;&#x53E3;&#x81F3; 3753</div><div class="line">firewall-cmd --zone=external --add-forward-port=port=22:proto=tcp:toport=3753</div><div class="line"></div><div class="line">&#x8F6C;&#x53D1; 22 &#x7AEF;&#x53E3;&#x6570;&#x636E;&#x81F3;&#x53E6;&#x4E00;&#x4E2A; ip &#x7684;&#x76F8;&#x540C;&#x7AEF;&#x53E3;&#x4E0A;</div><div class="line">firewall-cmd --zone=external --add-forward-port=port=22:proto=tcp:toaddr=192.168.1.100</div><div class="line"></div><div class="line">&#x8F6C;&#x53D1; 22 &#x7AEF;&#x53E3;&#x6570;&#x636E;&#x81F3;&#x53E6;&#x4E00; ip &#x7684; 2055 &#x7AEF;&#x53E3;&#x4E0A;</div><div class="line">firewall-cmd --zone=external --add-forward-port=port=22:proto=tcp:toport=2055:toaddr=192.168.1.100</div></pre></td></tr></table></figure>
-<h2 id="&#x53C2;&#x8003;&#x8D44;&#x6599;"><a href="#&#x53C2;&#x8003;&#x8D44;&#x6599;" class="headerlink" title="&#x53C2;&#x8003;&#x8D44;&#x6599;"></a>&#x53C2;&#x8003;&#x8D44;&#x6599;</h2><blockquote>
-<p><a href="https://fedoraproject.org/wiki/FirewallD/zh-cn#.E4.BD.BF.E7.94.A8_FirewallD_.E6.9E.84.E5.BB.BA.E5.8A.A8.E6.80.81.E9.98.B2.E7.81.AB.E5.A2.99" target="_blank" rel="external">https://fedoraproject.org/wiki/FirewallD/zh-cn#.E4.BD.BF.E7.94.A8_FirewallD_.E6.9E.84.E5.BB.BA.E5.8A.A8.E6.80.81.E9.98.B2.E7.81.AB.E5.A2.99</a></p>
-</blockquote>
+        <h2 id="&#x80CC;&#x666F;&#x4ECB;&#x7ECD;"><a href="#&#x80CC;&#x666F;&#x4ECB;&#x7ECD;" class="headerlink" title="&#x80CC;&#x666F;&#x4ECB;&#x7ECD;"></a>&#x80CC;&#x666F;&#x4ECB;&#x7ECD;</h2><p>&#x8FD9;&#x662F;&#x5728;&#x516C;&#x53F8;&#x8BAD;&#x7EC3;&#x7684;&#x4E00;&#x4E2A;&#x5C0F;&#x9879;&#x76EE;&#x3002;<br>&#x6BCF;&#x5206;&#x949F;&#x9700;&#x8981;&#x4ECE;tushare&#x7684;&#x63A5;&#x53E3;&#x4E2D;&#x83B7;&#x53D6;&#x5230;&#x5B9E;&#x65F6;&#x7684;&#x80A1;&#x4EF7;&#x6570;&#x636E;&#xFF0C;&#x5B58;&#x50A8;&#x5230;&#x6587;&#x4EF6;&#x4E2D;&#x548C;mongodb&#x4E2D;&#xFF0C;&#x7136;&#x540E;&#x5BF9;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x5904;&#x7406;&#xFF0C;&#x5305;&#x62EC;&#x6570;&#x636E;&#x68C0;&#x67E5;&#xFF0C;&#x5206;&#x949F;&#x7EBF;&#x7684;&#x8865;&#x9F50;&#x7B49;&#x3002;&#x7ECF;&#x8FC7;&#x4EE5;&#x4E0A;&#x7684;&#x5904;&#x7406;&#x540E;&#xFF0C;&#x7A0B;&#x5E8F;&#x9700;&#x8981;&#x5BF9;&#x5916;&#x63D0;&#x4F9B;API&#xFF0C;&#x5171;web&#xFF0C;app&#x7B49;&#x7EC8;&#x7AEF;&#x4F7F;&#x7528;&#x3002;</p>
+<p>&#x80A1;&#x4EF7;&#x6570;&#x636E;&#x6BCF;&#x5206;&#x949F;&#x90FD;&#x5728;&#x6539;&#x53D8;&#xFF0C;api&#x7684;&#x8C03;&#x7528;&#x6B21;&#x6570;&#x548C;&#x9891;&#x7387;&#x975E;&#x5E38;&#x9AD8;&#xFF0C;&#x56E0;&#x6B64;&#x670D;&#x52A1;&#x67B6;&#x6784;&#x5728;&#x8BBE;&#x8BA1;&#x7684;&#x65F6;&#x5019;&#x9700;&#x8981;&#x6EE1;&#x8DB3;&#x4EE5;&#x4E0B;&#x51E0;&#x70B9;&#xFF1A;</p>
+<p>1&#x3001;&#x5BB9;&#x9519;&#x6027;&#x80FD;&#x597D;&#xFF1A;<br>&#x81F3;&#x5C11;&#x8981;&#x4FDD;&#x8BC1;&#x5728;&#x5F00;&#x76D8;&#x9636;&#x6BB5;&#x4E0D;&#x51FA;&#x95EE;&#x9898;&#xFF0C;&#x7531;&#x4E8E;tushare&#x7684;&#x63A5;&#x53E3;&#x53EF;&#x80FD;&#x8FD4;&#x56DE;&#x4E0D;&#x4E86;&#x6570;&#x636E;&#x6216;&#x7740;&#x8BF7;&#x6C42;&#x8FD4;&#x56DE;&#x8D85;&#x65F6;&#x7B49;&#xFF0C;&#x9700;&#x8981;&#x53CA;&#x65F6;&#x7684;&#x5BF9;&#x80A1;&#x7968;&#x7684;&#x5206;&#x949F;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x8865;&#x5168;&#xFF0C;&#x5982;&#x7B2C;&#x4E00;&#x5206;&#x949F;&#x83B7;&#x53D6;&#x5230;&#x4E00;&#x6761;&#x6570;&#x636E;&#xFF0C;&#x7136;&#x540E;&#x7B2C;5&#x5206;&#x949F;&#x624D;&#x6765;&#x7B2C;&#x4E8C;&#x6761;&#x6570;&#x636E;&#xFF0C;&#x90A3;&#x4E48;&#x4E2D;&#x95F4;&#x7684;&#x4E09;&#x5206;&#x949F;&#x90FD;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x8865;&#x9F50;&#x3002;<br>&#x5047;&#x8BBE;&#x670D;&#x52A1;&#x4E00;&#x65E6;&#x6302;&#x6389;&#x4E86;&#xFF0C;&#x4E5F;&#x8981;&#x6C42;&#x670D;&#x52A1;&#x91CD;&#x542F;&#x4E4B;&#x540E;&#x80FD;&#x591F;&#x53CA;&#x65F6;&#x7684;&#x6062;&#x590D;&#x6570;&#x636E;&#xFF0C;&#x7EE7;&#x7EED;&#x5BF9;&#x5916;&#x63D0;&#x4F9B;&#x6570;&#x636E;&#x3002;</p>
+<p>2&#x3001;&#x5B9E;&#x65F6;&#x54CD;&#x5E94;&#x8BF7;&#x6C42;&#xFF1A;<br>&#x5E94;&#x7528;&#x6BCF;&#x5206;&#x949F;&#x90FD;&#x8981;&#x5411;api&#x8BF7;&#x6C42;&#x6570;&#x636E;&#xFF0C;&#x5982;&#x679C;&#x8BF7;&#x6C42;&#x88AB;&#x963B;&#x585E;&#x4E86;&#xFF0C;&#x5C31;&#x4F1A;&#x5F71;&#x54CD;&#x540E;&#x7EED;&#x7684;&#x8BF7;&#x6C42;&#x8FDB;&#x6765;&#x3002;&#x56E0;&#x6B64;&#x8981;&#x6C42;api&#x80FD;&#x591F;&#x5B9E;&#x65F6;&#x54CD;&#x5E94;&#xFF0C;&#x4E0D;&#x963B;&#x585E;IO&#xFF0C;&#x5E76;&#x53D1;&#x9AD8;&#xFF0C;&#x5047;&#x8BBE;&#x5E76;&#x53D1;&#x6570;&#x8FBE;&#x5230;3w/s&#x3002;</p>
+<p>&#x73B0;&#x9636;&#x6BB5;&#x7684;&#x8BBE;&#x8BA1;&#x5148;&#x6EE1;&#x8DB3;&#x4EE5;&#x4E0A;&#x4E24;&#x70B9;&#x5373;&#x53EF;&#xFF0C;&#x540E;&#x7EED;&#x5728;&#x4E0D;&#x65AD;&#x7684;&#x6539;&#x8FDB;&#x3002;&#x6839;&#x636E;&#x4E0A;&#x9762;&#x7684;&#x5206;&#x6790;&#xFF0C;&#x8003;&#x8651;&#x5230;&#x6700;&#x8FD1;&#x5728;&#x5B66;&#x4E60;python&#xFF0C;&#x6211;&#x9009;&#x62E9;&#x4E86;tornado&#x3002;</p>
+<h2 id="tornado&#x4ECB;&#x7ECD;"><a href="#tornado&#x4ECB;&#x7ECD;" class="headerlink" title="tornado&#x4ECB;&#x7ECD;"></a>tornado&#x4ECB;&#x7ECD;</h2><p>tornado&#x548C;&#x73B0;&#x5728;&#x7684;&#x4E3B;&#x6D41; Web &#x670D;&#x52A1;&#x5668;&#x6846;&#x67B6;&#xFF08;&#x5305;&#x62EC;&#x5927;&#x591A;&#x6570; Python &#x7684;&#x6846;&#x67B6;&#xFF09;&#x6709;&#x7740;&#x660E;&#x663E;&#x7684;&#x533A;&#x522B;&#xFF1A;&#x5B83;&#x662F;&#x975E;&#x963B;&#x585E;&#x5F0F;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x800C;&#x4E14;&#x901F;&#x5EA6;&#x76F8;&#x5F53;&#x5FEB;&#x3002;&#x5F97;&#x5229;&#x4E8E;&#x5176;&#x975E;&#x963B;&#x585E;&#x7684;&#x65B9;&#x5F0F;&#x548C;&#x5BF9; epoll &#x7684;&#x8FD0;&#x7528;&#xFF0C;tornado &#x6BCF;&#x79D2;&#x53EF;&#x4EE5;&#x5904;&#x7406;&#x6570;&#x4EE5;&#x5343;&#x8BA1;&#x7684;&#x8FDE;&#x63A5;&#xFF0C;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x5BF9;&#x4E8E;&#x5B9E;&#x65F6; Web &#x670D;&#x52A1;&#x6765;&#x8BF4;&#xFF0C;tornado &#x662F;&#x4E00;&#x4E2A;&#x7406;&#x60F3;&#x7684; Web &#x6846;&#x67B6;&#x3002;&#x5E76;&#x4E14;tornado&#x5185;&#x7F6E;&#x4E86;&#x4E00;&#x4E2A;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5F00;&#x53D1;&#x6548;&#x7387;&#x9AD8;&#x3002;&#x867D;&#x7136;tornado&#x5B9E;&#x73B0;&#x4E86;&#x975E;&#x963B;&#x585E;&#x7684;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#xFF0C;&#x4F46;&#x662F;&#x5176;&#x4ECD;&#x7136;&#x662F;&#x5355;&#x7EBF;&#x7A0B;&#xFF0C;&#x5728;&#x505A;&#x8017;&#x65F6;&#x7684;CURD&#x4EFB;&#x52A1;&#xFF0C;&#x4ECD;&#x7136;&#x4F1A;&#x963B;&#x585E;&#x8FDB;&#x7A0B;&#xFF0C;&#x5BFC;&#x81F4;&#x5916;&#x90E8;&#x8BBF;&#x95EE;&#x53D8;&#x6162;&#x3002;</p>
+<h2 id="&#x67B6;&#x6784;&#x7684;&#x8BBE;&#x8BA1;"><a href="#&#x67B6;&#x6784;&#x7684;&#x8BBE;&#x8BA1;" class="headerlink" title="&#x67B6;&#x6784;&#x7684;&#x8BBE;&#x8BA1;"></a>&#x67B6;&#x6784;&#x7684;&#x8BBE;&#x8BA1;</h2><p>&#x4ECE;&#x6574;&#x4F53;&#x4E0A;&#x6765;&#x770B;&#xFF0C;&#x8981;&#x652F;&#x6491;&#x5982;&#x6B64;&#x9AD8;&#x7684;&#x5E76;&#x53D1;&#x91CF;&#xFF0C;&#x4E00;&#x4E2A;tornado&#x80AF;&#x5B9A;&#x4E0D;&#x884C;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x591A;&#x4E2A;torando&#xFF0C;&#x518D;&#x52A0;&#x4E0A;&#x7528;nginx&#x505A;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x652F;&#x6491;&#x9AD8;&#x5E76;&#x53D1;&#x3002;<br><img src="/2017/03/23/tornado&#x5B9E;&#x65F6;&#x670D;&#x52A1;&#x8BBE;&#x8BA1;/D8C38EDB-E727-4008-8D39-BBE3579D1AA0.png" alt=""></p>
+<p>&#x5177;&#x4F53;&#x6BCF;&#x4E2A;tornado&#x7684;&#x8BBE;&#x8BA1;&#x5C31;&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x6848;&#x3002;</p>
+<h3 id="&#x65B9;&#x6848;&#x4E00;"><a href="#&#x65B9;&#x6848;&#x4E00;" class="headerlink" title="&#x65B9;&#x6848;&#x4E00;"></a>&#x65B9;&#x6848;&#x4E00;</h3><p>&#x5728;tornado&#x8FD0;&#x884C;&#x4E00;&#x4E2A;&#x5B9A;&#x65F6;&#x4EFB;&#x52A1;&#xFF0C;&#x7136;&#x540E;&#x6BCF;&#x5206;&#x949F;&#x53D6;&#x6570;&#x636E;&#xFF0C;&#x5148;&#x66F4;&#x65B0;&#x5185;&#x5B58;&#xFF0C;&#x7136;&#x540E;&#x5199;&#x5165;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x6700;&#x540E;&#x5199;&#x5165;mongo&#x3002;<br><img src="/2017/03/23/tornado&#x5B9E;&#x65F6;&#x670D;&#x52A1;&#x8BBE;&#x8BA1;/9DEF2DDB-2E5A-46C7-BB03-15BA9D757008.png" alt=""></p>
+<p>&#x6309;&#x7167;&#x8FD9;&#x79CD;&#x8BBE;&#x8BA1;&#x65B9;&#x6848;&#xFF0C;&#x4E00;&#x4E2A;tornado&#x5E72;&#x4E86;&#x6240;&#x6709;&#x7684;&#x4E8B;&#xFF0C;&#x6570;&#x636E;&#x91C7;&#x96C6;&#xFF0C;&#x6570;&#x636E;&#x5B58;&#x50A8;&#xFF0C;&#x6570;&#x636E;&#x66F4;&#x65B0;&#xFF0C;&#x5BF9;&#x5916;&#x63D0;&#x4F9B;api &#x3002;&#x5148;&#x6765;&#x770B;&#x4E0B;Tushare&#x5B9E;&#x65F6;&#x6570;&#x636E;&#x91C7;&#x96C6;&#x8017;&#x65F6;&#x7EDF;&#x8BA1;&#x3002;<br><img src="/2017/03/23/tornado&#x5B9E;&#x65F6;&#x670D;&#x52A1;&#x8BBE;&#x8BA1;/D3381CFE-3B44-443E-8E1E-AC6460638443.png" alt=""><br>&#x4ECE;&#x56FE;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF1A;&#x6700;&#x9AD8;28s,&#x5E73;&#x5747;&#x503C;&#x4E3A;9s&#x3002;</p>
+<p>tornado&#x5728;&#x6267;&#x884C;&#x8BE5;&#x4EFB;&#x52A1;&#x65F6;&#x4F1A;&#x963B;&#x585E;&#x7EBF;&#x7A0B;&#xFF0C;&#x5982;&#x679C;&#x540E;&#x53F0;&#x6B63;&#x5728;&#x8FDB;&#x884C;&#x8BF7;&#x6C42;&#x4EFB;&#x52A1;&#x65F6;&#xFF0C;&#x6B64;&#x65F6;&#x6765;&#x4E86;api&#x8BF7;&#x6C42;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x8BF7;&#x6C42;&#x5C31;&#x4F1A;&#x88AB;&#x6302;&#x8D77;&#xFF0C;&#x76F4;&#x5230;&#x540E;&#x53F0;&#x7684;&#x6570;&#x636E;&#x91C7;&#x96C6;&#x5904;&#x7406;&#x5B8C;&#x6BD5;&#x540E;&#x624D;&#x4F1A;&#x5BF9;api&#x8BF7;&#x6C42;&#x5904;&#x7406;&#x3002;</p>
+<h3 id="&#x65B9;&#x6848;&#x4E8C;"><a href="#&#x65B9;&#x6848;&#x4E8C;" class="headerlink" title="&#x65B9;&#x6848;&#x4E8C;"></a>&#x65B9;&#x6848;&#x4E8C;</h3><p>&#x6211;&#x4EEC;&#x8BA9;&#x91C7;&#x96C6;&#x8FDB;&#x7A0B;&#x5B9A;&#x65F6;&#x53D6;&#x91C7;&#x96C6;&#x6570;&#x636E;&#xFF0C;&#x7136;&#x540E;&#x5904;&#x7406;&#x597D;&#x4E86;&#xFF0C;&#x63A8;&#x9001;&#x7ED9;tornado&#xFF0C;&#x8FD9;&#x6837;tornado&#x53EA;&#x7BA1;&#x5BF9;&#x5916;&#x63D0;&#x4F9B;&#x6570;&#x636E;&#xFF0C;&#x800C;&#x4E0D;&#x7BA1;&#x53D6;&#x83B7;&#x53D6;&#x6570;&#x636E;&#xFF0C;&#x8BA9;tornado&#x4E13;&#x6CE8;&#x4E8E;&#x5E72;&#x81EA;&#x5DF1;&#x64C5;&#x957F;&#x7684;&#x4E8B;&#x60C5;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x8D77;&#x4E00;&#x4E2A;&#x540E;&#x53F0;&#x8FDB;&#x7A0B;&#xFF0C;&#x6BCF;10&#x5206;&#x949F;&#x53EF;&#x4EE5;&#x5C06;&#x91C7;&#x96C6;&#x5230;&#x7684;&#x6570;&#x636E;&#x5BFC;&#x5165;&#x5230;mongo&#x4E2D;&#x3002;&#x8FD9;&#x79CD;&#x8BBE;&#x8BA1;&#x8BA9;&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x90FD;&#x53EA;&#x4E13;&#x6CE8;&#x4E8E;&#x5E72;&#x4E00;&#x4EF6;&#x4E8B;&#x3002;</p>
+<p><img src="/2017/03/23/tornado&#x5B9E;&#x65F6;&#x670D;&#x52A1;&#x8BBE;&#x8BA1;/BB457B09-5973-4883-BC2B-C023594855FC.png" alt=""></p>
+<h3 id="&#x5F02;&#x5E38;&#x5904;&#x7406;"><a href="#&#x5F02;&#x5E38;&#x5904;&#x7406;" class="headerlink" title="&#x5F02;&#x5E38;&#x5904;&#x7406;"></a>&#x5F02;&#x5E38;&#x5904;&#x7406;</h3><p>&#x6574;&#x4E2A;&#x8BBE;&#x8BA1;&#x4E2D;&#xFF0C;&#x7A0B;&#x5E8F;&#x968F;&#x65F6;&#x53EF;&#x80FD;&#x4F1A;&#x51FA;&#x95EE;&#x9898;&#xFF0C;&#x8981;&#x4FDD;&#x8BC1;&#x8FD0;&#x884C;&#x7A33;&#x5B9A;&#xFF0C;&#x5F02;&#x5E38;&#x5904;&#x7406;&#x90E8;&#x5206;&#x662F;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x7684;&#x4E00;&#x5757;&#x3002;&#x4E3B;&#x8981;&#x6709;&#x4EE5;&#x4E0B;&#x51E0;&#x70B9;&#xFF1A;<br>1&#x3001;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#xFF1A;&#x6BCF;&#x5206;&#x949F;&#x4ECE;tushare&#x83B7;&#x53D6;&#x80A1;&#x4EF7;&#x6570;&#x636E;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x9047;&#x5230;&#x8BF7;&#x6C42;&#x8D85;&#x65F6;&#xFF0C;&#x6570;&#x636E;&#x9519;&#x8BEF;&#x7B49;&#x5F02;&#x5E38;&#x3002;&#x91C7;&#x53D6;&#x7684;&#x89E3;&#x51B3;&#x63AA;&#x65BD;&#x4E3B;&#x8981;&#x6709;&#x8D85;&#x65F6;&#x91CD;&#x8BD5;&#xFF0C;&#x6570;&#x636E;&#x8865;&#x9F50;&#x63AA;&#x65BD;<br>2&#x3001; &#x6587;&#x4EF6;&#x3001;&#x6570;&#x636E;&#x5E93;&#x5199;&#x5165;&#x5F02;&#x5E38;&#xFF1A;&#x9047;&#x5230;&#x6587;&#x4EF6;&#xFF0C;&#x6570;&#x636E;&#x5E93;&#x5199;&#x5165;&#x5F02;&#x5E38;&#x65F6;&#xFF0C;&#x8981;&#x4FDD;&#x8BC1;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x6210;&#x529F;&#xFF0C;&#x5E94;&#x8BE5;&#x4FDD;&#x5B58;&#x91CD;&#x8BD5;&#x51E0;&#x6B21;&#x548C;&#x9519;&#x8BEF;&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;&#x7B49;&#xFF0C;&#x65B9;&#x4FBF;&#x540E;&#x7EED;&#x5BF9;&#x9519;&#x8BEF;&#x7684;&#x5904;&#x7406;<br>3&#x3001; &#x670D;&#x52A1;&#x91CD;&#x542F;&#xFF1A;&#x540E;&#x53F0;&#x68C0;&#x6D4B;&#x5230;&#x670D;&#x52A1;&#x6302;&#x6389;&#x4E4B;&#x540E;&#xFF0C;&#x81EA;&#x52A8;&#x91CD;&#x542F;&#x670D;&#x52A1;&#xFF0C;&#x5148;&#x4ECE;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x52A0;&#x8F7D;&#x6570;&#x636E;&#xFF0C;&#x5904;&#x7406;&#x540E;&#x4FDD;&#x5B58;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x4ECE;&#x6570;&#x636E;&#x5E93;&#x52A0;&#x8F7D;&#x5931;&#x8D25;&#xFF0C;&#x5728;&#x4ECE;&#x6587;&#x4EF6;&#x4E2D;&#x8BFB;&#x53D6;&#x6570;&#x636E;&#xFF0C;&#x4FDD;&#x8BC1;&#x670D;&#x52A1;&#x7684;&#x53EF;&#x7528;&#x6027;<br><img src="/2017/03/23/tornado&#x5B9E;&#x65F6;&#x670D;&#x52A1;&#x8BBE;&#x8BA1;/8C0D6A50-E33C-4B72-B532-DB51D1EB7A56.png" alt=""></p>
+<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>&#x901A;&#x8FC7;&#x8FD9;&#x4E2A;&#x5C0F;&#x9879;&#x76EE;&#x7684;&#x7EC3;&#x4E60;&#xFF0C;&#x6211;&#x5BF9;&#x6846;&#x67B6;&#x7684;&#x9009;&#x62E9;&#xFF0C;&#x65B9;&#x6848;&#x7684;&#x8BBE;&#x8BA1;&#xFF0C;&#x6570;&#x636E;&#x7684;&#x83B7;&#x53D6;&#xFF0C;&#x5B58;&#x50A8;&#xFF0C;&#x5904;&#x7406;&#x548C;&#x5BF9;&#x5916;&#x63D0;&#x4F9B;api&#x90FD;&#x6709;&#x4E86;&#x66F4;&#x52A0;&#x6DF1;&#x5165;&#x7684;&#x4E86;&#x89E3;&#x3002;</p>
+<p>&#x6846;&#x67B6;&#x7684;&#x9009;&#x62E9;&#x8981;&#x7D27;&#x8D34;&#x4E1A;&#x52A1;&#x7684;&#x9700;&#x8981;&#xFF0C;&#x80FD;&#x591F;&#x89E3;&#x51B3;&#x5B9E;&#x9645;&#x7684;&#x95EE;&#x9898;&#x3002;&#x9996;&#x5148;&#x8981;&#x4ED4;&#x7EC6;&#x7684;&#x5206;&#x6790;&#x4E1A;&#x52A1;&#x7684;&#x9700;&#x6C42;&#x662F;&#x4EC0;&#x4E48;&#xFF0C;&#x5B58;&#x5728;&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x8981;&#x8FBE;&#x5230;&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x76EE;&#x6807;&#xFF0C;&#x901A;&#x8FC7;&#x5BF9;&#x95EE;&#x9898;&#x7684;&#x5206;&#x6790;&#xFF0C;&#x6211;&#x4EEC;&#x624D;&#x80FD;&#x6E05;&#x695A;&#x9700;&#x8981;&#x4EC0;&#x4E48;&#x3002;&#x7136;&#x540E;&#x8C03;&#x7814;&#x5206;&#x6790;&#x6709;&#x54EA;&#x4E9B;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x6846;&#x67B6;&#xFF0C;&#x6BCF;&#x79CD;&#x6846;&#x67B6;&#x7684;&#x7279;&#x70B9;&#x662F;&#x4EC0;&#x4E48;&#xFF0C;&#x7F3A;&#x70B9;&#x662F;&#x4EC0;&#x4E48;&#xFF0C;&#x80FD;&#x5426;&#x89E3;&#x51B3;&#x73B0;&#x9636;&#x6BB5;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x5B66;&#x4E60;&#x6210;&#x672C;&#x9AD8;&#x4F4E;&#x3002;&#x901A;&#x8FC7;&#x8FD9;&#x4E9B;&#x5206;&#x6790;&#xFF0C;&#x624D;&#x80FD;&#x9009;&#x62E9;&#x9002;&#x5408;&#x7684;&#x6846;&#x67B6;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x4E4B;&#x524D;&#x5728;&#x5199;&#x7A0B;&#x5E8F;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5927;&#x591A;&#x6570;&#x90FD;&#x4E0D;&#x4F1A;&#x53BB;&#x5904;&#x7406;&#x5F02;&#x5E38;&#xFF0C;&#x8BA4;&#x4E3A;&#x7A0B;&#x5E8F;&#x4F1A;&#x4E00;&#x76F4;&#x6309;&#x7167;&#x8FD9;&#x4E2A;&#x903B;&#x8F91;&#x6B63;&#x786E;&#x7684;&#x8FD0;&#x884C;&#x4E0B;&#x53BB;&#xFF0C;&#x73B0;&#x5728;&#x8BA4;&#x8BC6;&#x5230;&#xFF0C;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x7684;&#x6BCF;&#x4E2A;&#x9636;&#x6BB5;&#x90FD;&#x9700;&#x8981;&#x5145;&#x5206;&#x7684;&#x8003;&#x8651;&#x5230;&#x5F02;&#x5E38;&#x7684;&#x5904;&#x7406;&#xFF0C;&#x624D;&#x80FD;&#x4FDD;&#x8BC1;&#x7A0B;&#x5E8F;&#x80FD;&#x591F;&#x7A33;&#x5B9A;&#x7684;&#x8FD0;&#x884C;&#x3002;</p>
 
       
     </div>
@@ -463,13 +465,19 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/tornado/" rel="tag"># tornado</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/28/composer简单使用/" rel="next" title="composer简单使用">
-                <i class="fa fa-chevron-left"></i> composer简单使用
+              <a href="/2017/03/19/思考比搜索能更快的解决问题/" rel="next" title="思考比搜索能更快的解决问题">
+                <i class="fa fa-chevron-left"></i> 思考比搜索能更快的解决问题
               </a>
             
           </div>
@@ -477,10 +485,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/28/nginx配置虚拟多站点/" rel="prev" title="nginx配置虚拟多站点">
-                nginx配置虚拟多站点 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -509,8 +513,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/28/firewall使用总结/"
-           data-title="firewalld使用总结" data-url="https://xuxping.github.io/2016/09/28/firewall使用总结/">
+      <div class="ds-thread" data-thread-key="2017/03/23/tornado实时服务设计/"
+           data-title="tornado 实时服务架构设计" data-url="https://xuxping.github.io/2017/03/23/tornado实时服务设计/">
       </div>
     
   </div>
@@ -610,7 +614,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务管理命令"><span class="nav-number">1.</span> <span class="nav-text">服务管理命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用状态命令"><span class="nav-number">2.</span> <span class="nav-text">常用状态命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管理规则"><span class="nav-number">3.</span> <span class="nav-text">管理规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#端口管理"><span class="nav-number">4.</span> <span class="nav-text">端口管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管理服务"><span class="nav-number">5.</span> <span class="nav-text">管理服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置端口转发，（20–-gt-3573）"><span class="nav-number">6.</span> <span class="nav-text">配置端口转发，（20–>3573）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number"></span> <span class="nav-text">参考资料</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景介绍"><span class="nav-number">1.</span> <span class="nav-text">背景介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tornado介绍"><span class="nav-number">2.</span> <span class="nav-text">tornado介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构的设计"><span class="nav-number">3.</span> <span class="nav-text">架构的设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方案一"><span class="nav-number">3.1.</span> <span class="nav-text">方案一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案二"><span class="nav-number">3.2.</span> <span class="nav-text">方案二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常处理"><span class="nav-number">3.3.</span> <span class="nav-text">异常处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>

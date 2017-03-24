@@ -108,7 +108,7 @@
 <meta property="og:image" content="https://xuxping.github.io/2017/01/13/mongo-use-1/4D2CD8F6-375E-4A20-A4E0-A45AF57C50AB.png">
 <meta property="og:image" content="https://xuxping.github.io/2017/01/13/mongo-use-1/E8C8EC41-D09E-4240-9E55-0B7C1AACCE7C.png">
 <meta property="og:image" content="https://xuxping.github.io/2017/01/13/mongo-use-1/8C1586E9-4D05-49D6-9085-BFF2C04EA7F4.png">
-<meta property="og:updated_time" content="2017-01-21T16:45:40.000Z">
+<meta property="og:updated_time" content="2017-03-21T06:47:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mongodb使用汇总(一）">
 <meta name="twitter:description" content="mongo&amp;#x5B89;&amp;#x88C5;CentOS7&amp;#x5B89;&amp;#x88C5;mongdb&amp;#xFF1A;https://docs.mongodb.com/master/tutorial/install-mongodb-on-red-hat/
@@ -422,7 +422,7 @@
       
 
       
-        <h1 id="mongo&#x5B89;&#x88C5;"><a href="#mongo&#x5B89;&#x88C5;" class="headerlink" title="mongo&#x5B89;&#x88C5;"></a>mongo&#x5B89;&#x88C5;</h1><p>CentOS7&#x5B89;&#x88C5;mongdb&#xFF1A;<br><a href="https://docs.mongodb.com/master/tutorial/install-mongodb-on-red-hat/" target="_blank" rel="external">https://docs.mongodb.com/master/tutorial/install-mongodb-on-red-hat/</a></p>
+        <h2 id="mongo&#x5B89;&#x88C5;"><a href="#mongo&#x5B89;&#x88C5;" class="headerlink" title="mongo&#x5B89;&#x88C5;"></a>mongo&#x5B89;&#x88C5;</h2><p>CentOS7&#x5B89;&#x88C5;mongdb&#xFF1A;<br><a href="https://docs.mongodb.com/master/tutorial/install-mongodb-on-red-hat/" target="_blank" rel="external">https://docs.mongodb.com/master/tutorial/install-mongodb-on-red-hat/</a></p>
 <p>&#x603B;&#x5171;&#x8BD5;&#x8FC7;3&#x79CD;&#x65B9;&#x6CD5;  </p>
 <ol>
 <li>&#x5B98;&#x65B9;&#x955C;&#x50CF;&#x6E90;&#xFF0C;&#x7F51;&#x901F;&#x592A;&#x6162;&#xFF0C;&#x4E0B;&#x8F7D;&#x4E0D;&#x4E0B;&#x6765;  </li>
@@ -444,7 +444,7 @@
 <p>&#x67E5;&#x770B;mongoldb&#x662F;&#x5426;&#x542F;&#x52A8;    </p>
 <figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#x67E5;&#x770B;&#x8FDB;&#x7A0B;</div><div class="line">ps -ef<span class="string">| grep mongo</span></div><div class="line"><span class="comment">//&#x67E5;&#x770B;&#x7ED1;&#x5B9A;&#x7684;&#x7AEF;&#x53E3;</span></div><div class="line">netstat -tulnp <span class="string">| grep mongo</span></div></pre></td></tr></table></figure>
 <p>&#x8FDB;&#x5165;mongo shell<br><img src="/2017/01/13/mongo-use-1/202EBDF3-E1C4-46ED-BEFD-86FB8AEE07E5.png" alt=""></p>
-<h1 id="mongo&#x6743;&#x9650;&#x8BBE;&#x7F6E;"><a href="#mongo&#x6743;&#x9650;&#x8BBE;&#x7F6E;" class="headerlink" title="mongo&#x6743;&#x9650;&#x8BBE;&#x7F6E;"></a>mongo&#x6743;&#x9650;&#x8BBE;&#x7F6E;</h1><p>mongodb&#x9ED8;&#x8BA4;&#x662F;&#x6CA1;&#x6709;&#x8FDB;&#x884C;&#x8D26;&#x6237;&#x8BBE;&#x7F6E;&#x7684;&#xFF0C;&#x6700;&#x8FD1;&#x51FA;&#x73B0;&#x4E86;&#x5F88;&#x591A;mongodb&#x7531;&#x4E8E;&#x6CA1;&#x6709;&#x8BBE;&#x7F6E;&#x5BC6;&#x7801;&#x4E4B;&#x7C7B;&#x7684;&#x88AB;&#x653B;&#x7834;,&#x56E0;&#x6B64;&#x9700;&#x8981;&#x5BF9;mongo&#x8FDB;&#x884C;&#x5B89;&#x5168;&#x7684;&#x8BBE;&#x7F6E;  .</p>
+<h2 id="mongo&#x6743;&#x9650;&#x8BBE;&#x7F6E;"><a href="#mongo&#x6743;&#x9650;&#x8BBE;&#x7F6E;" class="headerlink" title="mongo&#x6743;&#x9650;&#x8BBE;&#x7F6E;"></a>mongo&#x6743;&#x9650;&#x8BBE;&#x7F6E;</h2><p>mongodb&#x9ED8;&#x8BA4;&#x662F;&#x6CA1;&#x6709;&#x8FDB;&#x884C;&#x8D26;&#x6237;&#x8BBE;&#x7F6E;&#x7684;&#xFF0C;&#x6700;&#x8FD1;&#x51FA;&#x73B0;&#x4E86;&#x5F88;&#x591A;mongodb&#x7531;&#x4E8E;&#x6CA1;&#x6709;&#x8BBE;&#x7F6E;&#x5BC6;&#x7801;&#x4E4B;&#x7C7B;&#x7684;&#x88AB;&#x653B;&#x7834;,&#x56E0;&#x6B64;&#x9700;&#x8981;&#x5BF9;mongo&#x8FDB;&#x884C;&#x5B89;&#x5168;&#x7684;&#x8BBE;&#x7F6E;  .</p>
 <p>&#x6CA1;&#x6709;&#x8FDB;&#x884C;&#x4EFB;&#x4F55;&#x5B89;&#x5168;&#x8BBE;&#x7F6E;&#x4E4B;&#x524D;&#xFF0C;&#x767B;&#x5F55;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x51FA;&#x73B0;&#x5927;&#x91CF;&#x7684;warning<br><img src="/2017/01/13/mongo-use-1/3F6267A7-EA60-407B-938B-C056C106C458.png" alt=""></p>
 <p>&#x5B89;&#x88C5;&#x8BBE;&#x7F6E;&#x5305;&#x62EC;&#xFF1A;    </p>
 <h3 id="1&#x3001;&#x521B;&#x5EFA;&#x7528;&#x6237;&#x7BA1;&#x7406;&#x5458;-&#x8D85;&#x7EA7;&#x8D26;&#x6237;"><a href="#1&#x3001;&#x521B;&#x5EFA;&#x7528;&#x6237;&#x7BA1;&#x7406;&#x5458;-&#x8D85;&#x7EA7;&#x8D26;&#x6237;" class="headerlink" title="1&#x3001;&#x521B;&#x5EFA;&#x7528;&#x6237;&#x7BA1;&#x7406;&#x5458;(&#x8D85;&#x7EA7;&#x8D26;&#x6237;)"></a>1&#x3001;&#x521B;&#x5EFA;&#x7528;&#x6237;&#x7BA1;&#x7406;&#x5458;(&#x8D85;&#x7EA7;&#x8D26;&#x6237;)</h3><p>&#x7B2C;&#x4E00;&#x4E2A;&#x7528;&#x6237;&#x8BBE;&#x7F6E;&#x6210;&#x8D85;&#x7EA7;&#x7528;&#x6237;&#xFF0C;&#x53EF;&#x7528;&#x4E8E;&#x7BA1;&#x7406;&#x5176;&#x4ED6;&#x7528;&#x6237;  </p>
@@ -467,7 +467,7 @@
 <blockquote>
 <p> <a href="http://blog.csdn.net/u013066244/article/details/53874216" target="_blank" rel="external">mongodb&#x7528;&#x6237;&#x6743;&#x9650;&#x7BA1;&#x7406;&#x914D;&#x7F6E; </a><br><a href="https://docs.mongodb.com/master/tutorial/enable-authentication/" target="_blank" rel="external">Enable Auth &#x2014; MongoDB Manual 3.4</a>    </p>
 </blockquote>
-<h1 id="mongo&#x5DE5;&#x5177;&#x4F7F;&#x7528;"><a href="#mongo&#x5DE5;&#x5177;&#x4F7F;&#x7528;" class="headerlink" title="mongo&#x5DE5;&#x5177;&#x4F7F;&#x7528;"></a>mongo&#x5DE5;&#x5177;&#x4F7F;&#x7528;</h1><p>Robomongo:mongoldb&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x7BA1;&#x7406;&#x5DE5;&#x5177;&#xFF0C;&#x8FD9;&#x91CC;&#x4F7F;&#x7528;&#x7684;&#x662F;mac&#x7248;&#x672C;</p>
+<h2 id="mongo&#x5DE5;&#x5177;&#x4F7F;&#x7528;"><a href="#mongo&#x5DE5;&#x5177;&#x4F7F;&#x7528;" class="headerlink" title="mongo&#x5DE5;&#x5177;&#x4F7F;&#x7528;"></a>mongo&#x5DE5;&#x5177;&#x4F7F;&#x7528;</h2><p>Robomongo:mongoldb&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x7BA1;&#x7406;&#x5DE5;&#x5177;&#xFF0C;&#x8FD9;&#x91CC;&#x4F7F;&#x7528;&#x7684;&#x662F;mac&#x7248;&#x672C;</p>
 <p>&#x8FDE;&#x63A5;&#x8BBE;&#x7F6E;&#x6B65;&#x9AA4;&#xFF1A;<br>&#x7531;&#x4E8E;&#x662F;&#x8FDC;&#x7A0B;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x5148;&#x8BBE;&#x7F6E;&#x597D;ssh&#xFF0C;&#x8BA9;mongo&#x767B;&#x5F55;&#x5230;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#xFF0C;&#x7136;&#x540E;&#x5728;&#x8FDB;&#x884C;&#x8BBE;&#x7F6E;<br><img src="/2017/01/13/mongo-use-1/64EC03D5-AD31-4325-BCA9-57EB18670455.png" alt=""></p>
 <p>&#x8BBE;&#x7F6E;mongo&#x8FDE;&#x63A5;&#x7684;&#x5730;&#x5740;&#x548C;&#x7AEF;&#x53E3;<br><img src="/2017/01/13/mongo-use-1/5E1F6262-0210-4EF0-ABCB-0F00D0E27423.png" alt=""></p>
 <p>&#x8FDE;&#x63A5;&#x6D4B;&#x8BD5;&#x4E00;&#x4E0B;<br><img src="/2017/01/13/mongo-use-1/4D2CD8F6-375E-4A20-A4E0-A45AF57C50AB.png" alt=""></p>
@@ -536,8 +536,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/01/tornado实时服务架构设计/" rel="prev" title="tornado 实时服务架构设计">
-                tornado 实时服务架构设计 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/07/hadoop-install/" rel="prev" title="hadoop集群安装">
+                hadoop集群安装 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -615,7 +615,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -668,7 +668,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mongo安装"><span class="nav-number">1.</span> <span class="nav-text">mongo安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、创建文件-etc-yum-repos-d-mongodb-org-3-4-repo"><span class="nav-number">1.0.1.</span> <span class="nav-text">1、创建文件/etc/yum.repos.d/mongodb-org-3.4.repo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、rpm包安装"><span class="nav-number">1.0.2.</span> <span class="nav-text">2、rpm包安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、安装rpm包，包直接有依赖，需要安装顺序安装"><span class="nav-number">1.0.3.</span> <span class="nav-text">3、安装rpm包，包直接有依赖，需要安装顺序安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、修改mongol配置"><span class="nav-number">1.0.4.</span> <span class="nav-text">4、修改mongol配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mongo权限设置"><span class="nav-number">2.</span> <span class="nav-text">mongo权限设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、创建用户管理员-超级账户"><span class="nav-number">2.0.1.</span> <span class="nav-text">1、创建用户管理员(超级账户)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、端口和ip设置，修改mongo的默认端口，有27017—-gt-xxxxx，然后增加一个绑定指定的ip，使可以进行远程的访问"><span class="nav-number">2.0.2.</span> <span class="nav-text">2、端口和ip设置，修改mongo的默认端口，有27017—>xxxxx，然后增加一个绑定指定的ip，使可以进行远程的访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、启权限验证"><span class="nav-number">2.0.3.</span> <span class="nav-text">3、启权限验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、设置验证"><span class="nav-number">2.0.4.</span> <span class="nav-text">4、设置验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、使用账户和密码登录"><span class="nav-number">2.0.5.</span> <span class="nav-text">5、使用账户和密码登录</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mongo工具使用"><span class="nav-number">3.</span> <span class="nav-text">mongo工具使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mongo安装"><span class="nav-number">1.</span> <span class="nav-text">mongo安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、创建文件-etc-yum-repos-d-mongodb-org-3-4-repo"><span class="nav-number">1.1.</span> <span class="nav-text">1、创建文件/etc/yum.repos.d/mongodb-org-3.4.repo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、rpm包安装"><span class="nav-number">1.2.</span> <span class="nav-text">2、rpm包安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、安装rpm包，包直接有依赖，需要安装顺序安装"><span class="nav-number">1.3.</span> <span class="nav-text">3、安装rpm包，包直接有依赖，需要安装顺序安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、修改mongol配置"><span class="nav-number">1.4.</span> <span class="nav-text">4、修改mongol配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mongo权限设置"><span class="nav-number">2.</span> <span class="nav-text">mongo权限设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、创建用户管理员-超级账户"><span class="nav-number">2.1.</span> <span class="nav-text">1、创建用户管理员(超级账户)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、端口和ip设置，修改mongo的默认端口，有27017—-gt-xxxxx，然后增加一个绑定指定的ip，使可以进行远程的访问"><span class="nav-number">2.2.</span> <span class="nav-text">2、端口和ip设置，修改mongo的默认端口，有27017—>xxxxx，然后增加一个绑定指定的ip，使可以进行远程的访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、启权限验证"><span class="nav-number">2.3.</span> <span class="nav-text">3、启权限验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、设置验证"><span class="nav-number">2.4.</span> <span class="nav-text">4、设置验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、使用账户和密码登录"><span class="nav-number">2.5.</span> <span class="nav-text">5、使用账户和密码登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mongo工具使用"><span class="nav-number">3.</span> <span class="nav-text">mongo工具使用</span></a></li></ol></div>
             
 
           </div>
