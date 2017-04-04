@@ -1,0 +1,941 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="hadoop," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x5B89;&amp;#x88C5;&amp;#x5B8C;hadoop&amp;#x96C6;&amp;#x7FA4;&amp;#x540E;&amp;#xFF0C;&amp;#x9700;&amp;#x8981;&amp;#x5BF9;&amp;#x6574;&amp;#x4E2A;&amp;#x96C6;&amp;#x7FA4;&amp;#x8FDB;&amp;#x884C;&amp;#x68C0;&amp;#x6D4B;&amp;#x6765;&amp;#x8BC4;&amp;#x4EF7;&amp;#x5B89;&amp;#x88C5;&amp;#x662F;&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop集群检查">
+<meta property="og:url" content="https://xuxping.github.io/2017/04/04/Hadoop集群检查/index.html">
+<meta property="og:site_name" content="燕十">
+<meta property="og:description" content="&amp;#x5B89;&amp;#x88C5;&amp;#x5B8C;hadoop&amp;#x96C6;&amp;#x7FA4;&amp;#x540E;&amp;#xFF0C;&amp;#x9700;&amp;#x8981;&amp;#x5BF9;&amp;#x6574;&amp;#x4E2A;&amp;#x96C6;&amp;#x7FA4;&amp;#x8FDB;&amp;#x884C;&amp;#x68C0;&amp;#x6D4B;&amp;#x6765;&amp;#x8BC4;&amp;#x4EF7;&amp;#x5B89;&amp;#x88C5;&amp;#x662F;&amp;#">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/04/Hadoop集群检查/5BE8CB4B-D5F7-4CF5-A83D-C6AF0860C17E.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/04/Hadoop集群检查/t1.PNG">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/04/Hadoop集群检查/9EF82965-2908-4DA8-952F-CA5253352529.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/04/Hadoop集群检查/E1A9B0FB-1C7D-4FB1-80C8-51A2E5A90F17.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/04/Hadoop集群检查/A4B0414A-367E-47D6-8F68-C4C10802D010.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/04/Hadoop集群检查/052369DC-FC8A-486F-A61A-BB358CC52784.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/04/Hadoop集群检查/F4BBEA6F-06F7-4850-9849-317E716A4F16.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/04/Hadoop集群检查/7.PNG">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/04/Hadoop集群检查/F74771D5-9E90-4297-84BA-E292DE0EA1AA.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/04/Hadoop集群检查/A467BE49-DBB5-4B7F-A0A8-E67EFA4BABF6.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/04/Hadoop集群检查/E7F7DD2A-76C2-4D00-9BBD-871C1C9D73E3.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/04/Hadoop集群检查/142C09C9-ED1D-4802-841E-CF5877046793.png">
+<meta property="og:updated_time" content="2017-04-04T14:56:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hadoop集群检查">
+<meta name="twitter:description" content="&amp;#x5B89;&amp;#x88C5;&amp;#x5B8C;hadoop&amp;#x96C6;&amp;#x7FA4;&amp;#x540E;&amp;#xFF0C;&amp;#x9700;&amp;#x8981;&amp;#x5BF9;&amp;#x6574;&amp;#x4E2A;&amp;#x96C6;&amp;#x7FA4;&amp;#x8FDB;&amp;#x884C;&amp;#x68C0;&amp;#x6D4B;&amp;#x6765;&amp;#x8BC4;&amp;#x4EF7;&amp;#x5B89;&amp;#x88C5;&amp;#x662F;&amp;#">
+<meta name="twitter:image" content="https://xuxping.github.io/2017/04/04/Hadoop集群检查/5BE8CB4B-D5F7-4CF5-A83D-C6AF0860C17E.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'xuxping',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xuxping.github.io/2017/04/04/Hadoop集群检查/"/>
+
+
+
+
+
+  <title> Hadoop集群检查 | 燕十 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?63e9869095b914a79374d0c0eea48145";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">燕十</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <h1 class="site-subtitle" itemprop="description">一点一滴积累</h1>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/04/04/Hadoop集群检查/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="燕十">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="燕十">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="燕十" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Hadoop集群检查
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-04T23:00:00+08:00">
+                2017-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/04/Hadoop集群检查/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/04/Hadoop集群检查/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x5B89;&#x88C5;&#x5B8C;hadoop&#x96C6;&#x7FA4;&#x540E;&#xFF0C;&#x9700;&#x8981;&#x5BF9;&#x6574;&#x4E2A;&#x96C6;&#x7FA4;&#x8FDB;&#x884C;&#x68C0;&#x6D4B;&#x6765;&#x8BC4;&#x4EF7;&#x5B89;&#x88C5;&#x662F;&#x5426;&#x6210;&#x529F;&#xFF0C;&#x4E3B;&#x8981;&#x4ECE;&#x4EE5;&#x4E0B;&#x51E0;&#x4E2A;&#x65B9;&#x9762;&#x6765;&#x68C0;&#x6D4B;&#x3002;</p>
+<h3 id="1&#x3001;&#x6240;&#x6709;&#x7684;&#x8FDB;&#x7A0B;&#x662F;&#x5426;&#x90FD;&#x5DF2;&#x7ECF;&#x542F;&#x52A8;"><a href="#1&#x3001;&#x6240;&#x6709;&#x7684;&#x8FDB;&#x7A0B;&#x662F;&#x5426;&#x90FD;&#x5DF2;&#x7ECF;&#x542F;&#x52A8;" class="headerlink" title="1&#x3001;&#x6240;&#x6709;&#x7684;&#x8FDB;&#x7A0B;&#x662F;&#x5426;&#x90FD;&#x5DF2;&#x7ECF;&#x542F;&#x52A8;"></a>1&#x3001;&#x6240;&#x6709;&#x7684;&#x8FDB;&#x7A0B;&#x662F;&#x5426;&#x90FD;&#x5DF2;&#x7ECF;&#x542F;&#x52A8;</h3><p>&#x4F7F;&#x7528;jps&#x547D;&#x4EE4;&#x67E5;&#x770B;&#x76F8;&#x5173;&#x7684;&#x8FDB;&#x7A0B;&#x662F;&#x5426;&#x542F;&#x52A8;&#xFF0C;&#x4E3B;&#x8981;&#x7684;&#x68C0;&#x6D4B;&#x7684;&#x662F;namenode&#xFF0C;&#x548C;resourcemanager&#x4E0A;&#x7684;&#x8FDB;&#x7A0B;&#x662F;&#x5426;&#x542F;&#x52A8;<br><img src="/2017/04/04/Hadoop&#x96C6;&#x7FA4;&#x68C0;&#x67E5;/5BE8CB4B-D5F7-4CF5-A83D-C6AF0860C17E.png" alt=""><br><a id="more"></a></p>
+<h3 id="2&#x3001;webui&#x9875;&#x9762;&#x67E5;&#x770B;"><a href="#2&#x3001;webui&#x9875;&#x9762;&#x67E5;&#x770B;" class="headerlink" title="2&#x3001;webui&#x9875;&#x9762;&#x67E5;&#x770B;"></a>2&#x3001;webui&#x9875;&#x9762;&#x67E5;&#x770B;</h3><p>Hadoop&#x63D0;&#x4F9B;&#x4E86;&#x96C6;&#x7FA4;&#x4FE1;&#x606F;&#x53EF;&#x89C6;&#x5316;web&#x9875;&#x9762;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;namenode&#x7684;50070&#x7AEF;&#x53E3;&#x67E5;&#x770B;&#x5230;&#x96C6;&#x7FA4;&#x4FE1;&#x606F;&#xFF0C;&#x9700;&#x5BF9;&#x4E24;&#x4E2A;namenode&#xFF0C;&#x4E00;&#x4E2A;active &#x6A21;&#x5F0F;&#xFF0C;&#x4E00;&#x4E2A;standby&#x6A21;&#x5F0F;<br><img src="/2017/04/04/Hadoop&#x96C6;&#x7FA4;&#x68C0;&#x67E5;/t1.PNG" alt=""></p>
+<h3 id="3&#x3001;&#x67E5;&#x770B;resource-manage&#x7684;&#x72B6;&#x6001;"><a href="#3&#x3001;&#x67E5;&#x770B;resource-manage&#x7684;&#x72B6;&#x6001;" class="headerlink" title="3&#x3001;&#x67E5;&#x770B;resource manage&#x7684;&#x72B6;&#x6001;"></a>3&#x3001;&#x67E5;&#x770B;resource manage&#x7684;&#x72B6;&#x6001;</h3><p>&#x53EF;&#x4EE5;&#x5728;&#x90E8;&#x7F72;&#x4E86;resorcemanager &#x7684;&#x8282;&#x70B9;&#x4E0A;&#x7684;8088&#x7AEF;&#x53E3;&#x67E5;&#x770B;resorcemanager&#x7684;&#x4FE1;&#x606F;&#x3002;<br>&#x4E5F;&#x53EF;&#x4EE5;&#x7528;&#x547D;&#x4EE4;&#x884C;&#x67E5;&#x770B;<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">yarn rmadmin -getServiceState rm1</div><div class="line">standy</div><div class="line">yarn rmadmin -getServiceState rm2</div><div class="line"><span class="keyword">Active</span></div></pre></td></tr></table></figure></p>
+<p><img src="/2017/04/04/Hadoop&#x96C6;&#x7FA4;&#x68C0;&#x67E5;/9EF82965-2908-4DA8-952F-CA5253352529.png" alt=""><br>kill&#x6389;ResourceManager(active)&#xFF0C;&#x518D;&#x6B21;&#x67E5;&#x770B;&#x72B6;&#x6001;</p>
+<h3 id="4&#x3001;&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;"><a href="#4&#x3001;&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;" class="headerlink" title="4&#x3001;&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;"></a>4&#x3001;&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;</h3><p>&#x4E0A;&#x9762;&#x51E0;&#x4E2A;&#x6B65;&#x9AA4;&#x662F;&#x68C0;&#x6D4B;hadoop&#x96C6;&#x7FA4;&#x662F;&#x5426;&#x6B63;&#x5E38;&#x7684;&#x542F;&#x52A8;&#xFF0C;&#x800C;&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#x662F;&#x67E5;&#x770B;hadoop&#x96C6;&#x7FA4;&#x80FD;&#x5426;&#x6B63;&#x5E38;&#x5DE5;&#x4F5C;&#x3002;hadoop&#x81EA;&#x5E26;&#x4E86;&#x4E00;&#x4E9B;&#x4F8B;&#x5B50;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x6D4B;&#x8BD5;&#x96C6;&#x7FA4;&#xFF0C;&#x5728;&#x6D4B;&#x8BD5;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x9700;&#x89C2;&#x5BDF;&#x96C6;&#x7FA4;&#x662F;&#x5426;&#x6709;&#x9519;&#x8BEF;&#x4EA7;&#x751F;&#x3002;</p>
+<h4 id="PI&#x4F8B;&#x5B50;&#x68C0;&#x67E5;"><a href="#PI&#x4F8B;&#x5B50;&#x68C0;&#x67E5;" class="headerlink" title="PI&#x4F8B;&#x5B50;&#x68C0;&#x67E5;"></a>PI&#x4F8B;&#x5B50;&#x68C0;&#x67E5;</h4><p>&#x4F7F;&#x7528;hadoop&#x81EA;&#x5E26;pi&#x4F8B;&#x5B50;&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x8D44;&#x6E90;&#x5BC6;&#x96C6;&#x578B;&#x8BA1;&#x7B97;&#x4EFB;&#x52A1;&#x3002;<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~<span class="regexp">/hadoop/</span>bin<span class="regexp">/hadoop jar ~/</span>hadoop<span class="regexp">/share/</span>hadoop<span class="regexp">/mapreduce/</span>hadoop-mapreduce-examples-<span class="number">2.7</span>.<span class="number">3</span>.jar pi <span class="number">10</span> <span class="number">100</span></div></pre></td></tr></table></figure></p>
+<p><img src="/2017/04/04/Hadoop&#x96C6;&#x7FA4;&#x68C0;&#x67E5;/E1A9B0FB-1C7D-4FB1-80C8-51A2E5A90F17.png" alt=""><br><img src="/2017/04/04/Hadoop&#x96C6;&#x7FA4;&#x68C0;&#x67E5;/A4B0414A-367E-47D6-8F68-C4C10802D010.png" alt=""></p>
+<h4 id="wordcount&#x4F8B;&#x5B50;&#x68C0;&#x67E5;"><a href="#wordcount&#x4F8B;&#x5B50;&#x68C0;&#x67E5;" class="headerlink" title="wordcount&#x4F8B;&#x5B50;&#x68C0;&#x67E5;"></a>wordcount&#x4F8B;&#x5B50;&#x68C0;&#x67E5;</h4><p>wordcount&#x6700;&#x80FD;&#x591F;&#x4F53;&#x73B0;&#x51FA;MapReduce&#x601D;&#x60F3;<br>&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x6D4B;&#x8BD5;&#x548C;&#x4F7F;&#x7528;hadoop&#x7684;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x6D4B;&#x8BD5;<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir <span class="selector-tag">input</span></div><div class="line">&#x521B;&#x5EFA;&#x4E00;&#x4E9B;&#x6587;&#x4EF6;&#xFF0C;&#x968F;&#x4FBF;&#x8F93;&#x5165;&#x4E00;&#x4E9B;&#x5B57;&#x7B26;&#x4E32;</div><div class="line">hadoop fs -put ~/wordcount/file*<span class="selector-class">.txt</span> <span class="selector-tag">input</span></div><div class="line">hadoop jar ~/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-<span class="number">2.7</span>.<span class="number">3</span><span class="selector-class">.jar</span> wordcount <span class="selector-tag">input</span> output</div><div class="line">hadoop fs -ls output</div><div class="line">hadoop fs -cat output/part-r-<span class="number">00000</span></div></pre></td></tr></table></figure></p>
+<p><img src="/2017/04/04/Hadoop&#x96C6;&#x7FA4;&#x68C0;&#x67E5;/052369DC-FC8A-486F-A61A-BB358CC52784.png" alt=""><br><a href="http://www.cnblogs.com/xia520pi/archive/2012/05/16/2504205.html" target="_blank" rel="external">Hadoop&#x96C6;&#x7FA4;&#xFF08;&#x7B2C;6&#x671F;&#xFF09;_WordCount&#x8FD0;&#x884C;&#x8BE6;&#x89E3; - &#x867E;&#x76AE; - &#x535A;&#x5BA2;&#x56ED;</a></p>
+<h4 id="&#x5173;&#x95ED;&#x4E00;&#x4E2A;&#x8282;&#x70B9;"><a href="#&#x5173;&#x95ED;&#x4E00;&#x4E2A;&#x8282;&#x70B9;" class="headerlink" title="&#x5173;&#x95ED;&#x4E00;&#x4E2A;&#x8282;&#x70B9;"></a>&#x5173;&#x95ED;&#x4E00;&#x4E2A;&#x8282;&#x70B9;</h4><p>&#x5728;&#x8FD0;&#x884C;&#x4E00;&#x4E2A;&#x4EFB;&#x52A1;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5173;&#x95ED;&#x4E00;&#x4E2A;datanode&#x8282;&#x70B9;&#xFF0C;&#x770B;&#x4EFB;&#x52A1;&#x7684;&#x6700;&#x7EC8;&#x7ED3;&#x679C;&#x662F;&#x5426;&#x6B63;&#x786E;&#x3002;&#x8FD9;&#x662F;&#x68C0;&#x6D4B;&#x96C6;&#x7FA4;&#x7684;&#x5BB9;&#x9519;&#x6027;&#x3002;<br>&#x5728;&#x8DD1;&#x4EFB;&#x52A1;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF1A;&#x4F1A;&#x51FA;&#x73B0;&#x8BE5;&#x673A;&#x5668;&#x65E0;&#x6CD5;&#x8FDE;&#x63A5;<br><img src="/2017/04/04/Hadoop&#x96C6;&#x7FA4;&#x68C0;&#x67E5;/F4BBEA6F-06F7-4850-9849-317E716A4F16.png" alt=""><br>&#x5927;&#x6982;10&#x5206;&#x949F;&#x540E;&#x9875;&#x9762;&#x4E0A;&#x663E;&#x793A;dead<br><img src="/2017/04/04/Hadoop&#x96C6;&#x7FA4;&#x68C0;&#x67E5;/7.PNG" alt=""><br>&#x8BF4;&#x660E;&#x96C6;&#x7FA4;&#x80FD;&#x591F;&#x6B63;&#x5E38;&#x68C0;&#x6D4B;&#x5B9E;&#x6548;&#x7684;&#x8282;&#x70B9;&#xFF0C;&#x67E5;&#x770B;&#x6700;&#x7EC8;&#x7684;&#x8282;&#x70B9;&#x53D1;&#x73B0;&#x8FD0;&#x7B97;&#x7ED3;&#x679C;&#x4E0E;&#x6CA1;&#x6709;&#x5173;&#x95ED;&#x8282;&#x70B9;&#x65F6;&#x7684;&#x7ED3;&#x679C;&#x4E00;&#x6837;&#xFF0C;&#x5219;&#x8BF4;&#x660E;&#x96C6;&#x7FA4;&#x7684;&#x5BB9;&#x9519;&#x6027;&#x6CA1;&#x6709;&#x95EE;&#x9898;<br><a href="http://www.cnblogs.com/xd502djj/p/4645298.html" target="_blank" rel="external">hadoop&#x5165;&#x95E8;&#x4E4B;&#x8BBE;&#x7F6E;datanode&#x7684;&#x5FC3;&#x8DF3;&#x65F6;&#x95F4;&#x7684;&#x65B9;&#x6CD5; - &#x8304;&#x5B50;_2008 - &#x535A;&#x5BA2;&#x56ED;</a></p>
+<h3 id="5&#x3001;namenode&#x9AD8;&#x53EF;&#x7528;&#x6D4B;&#x8BD5;"><a href="#5&#x3001;namenode&#x9AD8;&#x53EF;&#x7528;&#x6D4B;&#x8BD5;" class="headerlink" title="5&#x3001;namenode&#x9AD8;&#x53EF;&#x7528;&#x6D4B;&#x8BD5;"></a>5&#x3001;namenode&#x9AD8;&#x53EF;&#x7528;&#x6D4B;&#x8BD5;</h3><p>&#x5728;active&#x6240;&#x5728;&#x7684;namenode&#x8282;&#x70B9;&#xFF0C;&#x6740;&#x6389;&#x76F8;&#x5E94;&#x7684;namenode&#x8FDB;&#x7A0B;<br><img src="/2017/04/04/Hadoop&#x96C6;&#x7FA4;&#x68C0;&#x67E5;/F74771D5-9E90-4297-84BA-E292DE0EA1AA.png" alt=""><br>master1&#x6302;&#x6389;&#x4E4B;&#x540E;&#xFF0C;master2&#x53D8;&#x6210;active<br><img src="/2017/04/04/Hadoop&#x96C6;&#x7FA4;&#x68C0;&#x67E5;/A467BE49-DBB5-4B7F-A0A8-E67EFA4BABF6.png" alt=""></p>
+<p>&#x7136;&#x540E;&#x5BF9;kill&#x6389;&#x7684;NN&#x8FDB;&#x884C;&#x91CD;&#x542F;&#x4E4B;&#x540E;&#xFF0C;&#x5176;&#x53D8;&#x6210;&#x4E86;standby&#x6A21;&#x5F0F;<br><img src="/2017/04/04/Hadoop&#x96C6;&#x7FA4;&#x68C0;&#x67E5;/E7F7DD2A-76C2-4D00-9BBD-871C1C9D73E3.png" alt=""></p>
+<h3 id="6&#x3001;&#x65E5;&#x5FD7;&#x5206;&#x6790;"><a href="#6&#x3001;&#x65E5;&#x5FD7;&#x5206;&#x6790;" class="headerlink" title="6&#x3001;&#x65E5;&#x5FD7;&#x5206;&#x6790;"></a>6&#x3001;&#x65E5;&#x5FD7;&#x5206;&#x6790;</h3><p>&#x5982;&#x679C;&#x4EE5;&#x4E0A;&#x51E0;&#x6B65;&#x4EA7;&#x751F;&#x95EE;&#x9898;&#xFF0C;&#x5219;&#x5E94;&#x8BE5;&#x7EE7;&#x7EED;&#x53BB;&#x5206;&#x6790;&#x65E5;&#x5FD7;&#x4FE1;&#x606F;&#xFF0C;&#x627E;&#x5230;&#x9519;&#x8BEF;&#x7684;&#x539F;&#x56E0;&#x3002;<br>&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x653E;&#x5728;logs&#x4E0B;<br><img src="/2017/04/04/Hadoop&#x96C6;&#x7FA4;&#x68C0;&#x67E5;/142C09C9-ED1D-4802-841E-CF5877046793.png" alt=""></p>
+<p>&#x901A;&#x8FC7;&#x4EE5;&#x4E0A;&#x51E0;&#x6B65;&#x7684;&#x68C0;&#x6D4B;&#xFF0C;&#x5927;&#x81F4;&#x80FD;&#x591F;&#x786E;&#x8BA4;&#x6574;&#x4E2A;&#x96C6;&#x7FA4;&#x80FD;&#x591F;&#x6B63;&#x5E38;&#x7684;&#x8FD0;&#x884C;&#x3002;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="燕十 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.jpg" alt="燕十 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hadoop/" rel="tag"># hadoop</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/04/hadoop集群搭建过程问题汇总/" rel="next" title="hadoop集群搭建过程问题汇总">
+                <i class="fa fa-chevron-left"></i> hadoop集群搭建过程问题汇总
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/04/Hadoop集群检查/"
+           data-title="Hadoop集群检查" data-url="https://xuxping.github.io/2017/04/04/Hadoop集群检查/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="燕十" />
+          <p class="site-author-name" itemprop="name">燕十</p>
+          <p class="site-description motion-element" itemprop="description">blog of xiaoping</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/bae0010d3ad7" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-jianshu"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、所有的进程是否都已经启动"><span class="nav-number">1.</span> <span class="nav-text">1、所有的进程是否都已经启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、webui页面查看"><span class="nav-number">2.</span> <span class="nav-text">2、webui页面查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、查看resource-manage的状态"><span class="nav-number">3.</span> <span class="nav-text">3、查看resource manage的状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、运行测试用例"><span class="nav-number">4.</span> <span class="nav-text">4、运行测试用例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PI例子检查"><span class="nav-number">4.1.</span> <span class="nav-text">PI例子检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#wordcount例子检查"><span class="nav-number">4.2.</span> <span class="nav-text">wordcount例子检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关闭一个节点"><span class="nav-number">4.3.</span> <span class="nav-text">关闭一个节点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、namenode高可用测试"><span class="nav-number">5.</span> <span class="nav-text">5、namenode高可用测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、日志分析"><span class="nav-number">6.</span> <span class="nav-text">6、日志分析</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">燕十</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xuxping"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
