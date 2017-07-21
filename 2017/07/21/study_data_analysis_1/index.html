@@ -1,0 +1,1058 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="blog of xuxiaoping" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x5DE5;&amp;#x4F5C;&amp;#x4E4B;&amp;#x4F59;&amp;#xFF0C;&amp;#x5F00;&amp;#x59CB;&amp;#x5B66;&amp;#x4E60;&amp;#x300A;&amp;#x5229;&amp;#x7528;Python&amp;#x8FDB;&amp;#x884C;&amp;#x6570;&amp;#x636E;&amp;#x5206;&amp;#x6790;&amp;#x300B;&amp;#x8FD9;&amp;#x672C;&amp;#x4E66;&amp;#xFF0C;&amp;#x5F00;&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据分析学习(一)">
+<meta property="og:url" content="https://xuxping.github.io/2017/07/21/study_data_analysis_1/index.html">
+<meta property="og:site_name" content="燕十">
+<meta property="og:description" content="&amp;#x5DE5;&amp;#x4F5C;&amp;#x4E4B;&amp;#x4F59;&amp;#xFF0C;&amp;#x5F00;&amp;#x59CB;&amp;#x5B66;&amp;#x4E60;&amp;#x300A;&amp;#x5229;&amp;#x7528;Python&amp;#x8FDB;&amp;#x884C;&amp;#x6570;&amp;#x636E;&amp;#x5206;&amp;#x6790;&amp;#x300B;&amp;#x8FD9;&amp;#x672C;&amp;#x4E66;&amp;#xFF0C;&amp;#x5F00;&amp;#">
+<meta property="og:image" content="https://xuxping.github.io/2017/07/21/study_data_analysis_1/4D8C2656-7578-44A2-9C50-B7043615F840.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/07/21/study_data_analysis_1/58F8BEEF-B7FC-4307-B4DB-DCF6DB23B085.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/07/21/study_data_analysis_1/output_8_1.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/07/21/study_data_analysis_1/94393AAC-BED3-4711-A009-95F35D99BF8A.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/07/21/study_data_analysis_1/3CD4068C-5F32-4F0B-8092-F82E802DE3DF.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/07/21/study_data_analysis_1/output_23_1.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/07/21/study_data_analysis_1/output_26_1.png">
+<meta property="og:updated_time" content="2017-07-21T16:04:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据分析学习(一)">
+<meta name="twitter:description" content="&amp;#x5DE5;&amp;#x4F5C;&amp;#x4E4B;&amp;#x4F59;&amp;#xFF0C;&amp;#x5F00;&amp;#x59CB;&amp;#x5B66;&amp;#x4E60;&amp;#x300A;&amp;#x5229;&amp;#x7528;Python&amp;#x8FDB;&amp;#x884C;&amp;#x6570;&amp;#x636E;&amp;#x5206;&amp;#x6790;&amp;#x300B;&amp;#x8FD9;&amp;#x672C;&amp;#x4E66;&amp;#xFF0C;&amp;#x5F00;&amp;#">
+<meta name="twitter:image" content="https://xuxping.github.io/2017/07/21/study_data_analysis_1/4D8C2656-7578-44A2-9C50-B7043615F840.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xuxping.github.io/2017/07/21/study_data_analysis_1/"/>
+
+
+
+
+
+  <title> 数据分析学习(一) | 燕十 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?63e9869095b914a79374d0c0eea48145";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">燕十</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <h1 class="site-subtitle" itemprop="description">一点一滴积累</h1>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/07/21/study_data_analysis_1/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="燕十">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="燕十">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="燕十" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                数据分析学习(一)
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-21T23:43:20+08:00">
+                2017-07-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据分析学习/" itemprop="url" rel="index">
+                    <span itemprop="name">数据分析学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/07/21/study_data_analysis_1/" class="leancloud_visitors" data-flag-title="数据分析学习(一)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x5DE5;&#x4F5C;&#x4E4B;&#x4F59;&#xFF0C;&#x5F00;&#x59CB;&#x5B66;&#x4E60;&#x300A;&#x5229;&#x7528;Python&#x8FDB;&#x884C;&#x6570;&#x636E;&#x5206;&#x6790;&#x300B;&#x8FD9;&#x672C;&#x4E66;&#xFF0C;&#x5F00;&#x59CB;&#x51C6;&#x5907;&#x5C06;&#x91C7;&#x96C6;&#x5230;&#x7684;&#x623F;&#x5C4B;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x7EDF;&#x8BA1;&#xFF0C;&#x6316;&#x70B9;&#x6709;&#x7528;&#x6216;&#x8005;&#x597D;&#x5B8C;&#x7684;&#x6570;&#x636E;&#x51FA;&#x6765;&#x3002;<br>&#x5148;&#x62FF;&#x8FD9;&#x672C;&#x4E66;&#x4E2D;&#x7684;1880-2010&#x5E74;&#x95F4;&#x5168;&#x7F8E;&#x5A74;&#x513F;&#x59D3;&#x540D;&#x7684;&#x4E00;&#x90E8;&#x5206;&#x6765;&#x7EC3;&#x7EC3;&#x624B;&#xFF0C;&#x719F;&#x6089;&#x4E0B;IPython&#x548C;Jupyter Notebook&#x8FD9;&#x4E2A;&#x9AD8;&#x7EA7;&#x8D27;&#x3002;<br><a id="more"></a></p>
+<h2 id="&#x4E00;&#xFF1A;&#x6574;&#x5408;&#x6570;&#x636E;"><a href="#&#x4E00;&#xFF1A;&#x6574;&#x5408;&#x6570;&#x636E;" class="headerlink" title="&#x4E00;&#xFF1A;&#x6574;&#x5408;&#x6570;&#x636E;"></a>&#x4E00;&#xFF1A;&#x6574;&#x5408;&#x6570;&#x636E;</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line">pieces = []</div><div class="line">years = range(<span class="number">1880</span>,<span class="number">2011</span>)</div><div class="line">columns=[<span class="string">&apos;name&apos;</span>,<span class="string">&apos;sex&apos;</span>,<span class="string">&apos;births&apos;</span>]</div><div class="line">opath = <span class="string">&quot;/Users/xuxp/learn-env/pydata-book-master/ch02/names&quot;</span></div><div class="line"><span class="keyword">for</span> year <span class="keyword">in</span> years:</div><div class="line">    path = <span class="string">&quot;%s/yob%d.txt&quot;</span> % (opath,year)</div><div class="line">    frame = pd.read_csv(path,names=columns)</div><div class="line">    frame[<span class="string">&apos;year&apos;</span>] = year</div><div class="line">    pieces.append(frame)</div><div class="line"></div><div class="line"><span class="comment"># &#x5C06;&#x6240;&#x6709;&#x7684;&#x6570;&#x636E;&#x6574;&#x5408;&#x5230;&#x5355;&#x4E2A;DataFrame&#x4E2D;</span></div><div class="line">names = pd.concat(pieces,ignore_index=<span class="keyword">True</span>)</div><div class="line">    </div><div class="line">names.head()</div></pre></td></tr></table></figure>
+<p><img src="/2017/07/21/study_data_analysis_1/4D8C2656-7578-44A2-9C50-B7043615F840.png" alt=""></p>
+<p>&#x4F7F;&#x7528;groupby&#x6216;pivot_table&#x5728;year&#x548C;sex&#x7EA7;&#x522B;&#x4E0A;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x805A;&#x5408;</p>
+<h2 id="&#x4E8C;&#xFF1A;&#x6309;&#x6027;&#x522B;&#x548C;&#x5E74;&#x5EA6;&#x7EDF;&#x8BA1;&#x603B;&#x51FA;&#x751F;&#x6570;"><a href="#&#x4E8C;&#xFF1A;&#x6309;&#x6027;&#x522B;&#x548C;&#x5E74;&#x5EA6;&#x7EDF;&#x8BA1;&#x603B;&#x51FA;&#x751F;&#x6570;" class="headerlink" title="&#x4E8C;&#xFF1A;&#x6309;&#x6027;&#x522B;&#x548C;&#x5E74;&#x5EA6;&#x7EDF;&#x8BA1;&#x603B;&#x51FA;&#x751F;&#x6570;"></a>&#x4E8C;&#xFF1A;&#x6309;&#x6027;&#x522B;&#x548C;&#x5E74;&#x5EA6;&#x7EDF;&#x8BA1;&#x603B;&#x51FA;&#x751F;&#x6570;</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">total_births = names.pivot_table(<span class="string">&apos;births&apos;</span>,index=<span class="string">&apos;year&apos;</span>,columns=<span class="string">&apos;sex&apos;</span>,aggfunc=sum)</div><div class="line">total_births.tail()</div></pre></td></tr></table></figure>
+<p><img src="/2017/07/21/study_data_analysis_1/58F8BEEF-B7FC-4307-B4DB-DCF6DB23B085.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">%matplotlib inline</div><div class="line">total_births.plot(title=<span class="string">&apos;Total births by sex and year&apos;</span>)</div></pre></td></tr></table></figure>
+<p><img src="/2017/07/21/study_data_analysis_1/output_8_1.png" alt=""></p>
+<p>&#x63D2;&#x5165;prop&#x5217;&#xFF0C;&#x7528;&#x4E8E;&#x5B58;&#x653E;&#x6307;&#x5B9A;&#x540D;&#x5B57;&#x7684;&#x5A74;&#x513F;&#x6570;&#x76F8;&#x5BF9;&#x4E8E;&#x603B;&#x51FA;&#x751F;&#x6570;&#x7684;&#x6BD4;&#x4F8B;&#xFF0C;prop&#x4E3A;0.02&#x8868;&#x793A;100&#x4E2A;&#x4EBA;&#x6709;&#x4E24;&#x4E2A;&#x4EBA;&#x53D6;&#x4E86;&#x8FD9;&#x4E2A;&#x540D;&#x5B57;<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_prop</span><span class="params">(group)</span>:</span></div><div class="line">    births = group.births.astype(float)</div><div class="line">    group[<span class="string">&apos;prop&apos;</span>] = births/births.sum()</div><div class="line">    <span class="keyword">return</span> group</div><div class="line"></div><div class="line">names = names.groupby([<span class="string">&apos;year&apos;</span>,<span class="string">&apos;sex&apos;</span>]).apply(add_prop)</div><div class="line">names.head()</div></pre></td></tr></table></figure></p>
+<p><img src="/2017/07/21/study_data_analysis_1/94393AAC-BED3-4711-A009-95F35D99BF8A.png" alt=""></p>
+<p>&#x68C0;&#x67E5;&#x6240;&#x6709;&#x5206;&#x7EC4;&#x7684;prop&#x503C;&#x603B;&#x548C;&#x662F;&#x5426;&#x4E3A;1<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line">np.allclose(names.groupby([<span class="string">&apos;year&apos;</span>,<span class="string">&apos;sex&apos;</span>]).prop.sum(),<span class="number">1</span>)</div></pre></td></tr></table></figure></p>
+<pre><code>True
+</code></pre><h2 id="&#x4E09;&#x3001;&#x524D;1000&#x4E2A;&#x540D;&#x5B57;"><a href="#&#x4E09;&#x3001;&#x524D;1000&#x4E2A;&#x540D;&#x5B57;" class="headerlink" title="&#x4E09;&#x3001;&#x524D;1000&#x4E2A;&#x540D;&#x5B57;"></a>&#x4E09;&#x3001;&#x524D;1000&#x4E2A;&#x540D;&#x5B57;</h2><p>&#x53D6;&#x51FA;&#x6570;&#x636E;&#x7684;&#x5B50;&#x96C6;&#xFF0C;&#x6BCF;&#x5BF9;sex/year&#x7EC4;&#x5408;&#x7684;&#x524D;1000&#x4E2A;&#x540D;&#x5B57;<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_top1000</span><span class="params">(group)</span>:</span></div><div class="line">    <span class="keyword">return</span> group.sort_values(by=<span class="string">&quot;births&quot;</span>,ascending=<span class="keyword">False</span>)[:<span class="number">1000</span>]</div><div class="line">grouped = names.groupby([<span class="string">&apos;year&apos;</span>,<span class="string">&apos;sex&apos;</span>])</div><div class="line">top1000 = grouped.apply(get_top1000)</div><div class="line">top1000.head()</div></pre></td></tr></table></figure></p>
+<p><img src="/2017/07/21/study_data_analysis_1/3CD4068C-5F32-4F0B-8092-F82E802DE3DF.png" alt=""></p>
+<h2 id="&#x56DB;&#x3001;&#x5206;&#x6790;&#x547D;&#x540D;&#x8D8B;&#x52BF;"><a href="#&#x56DB;&#x3001;&#x5206;&#x6790;&#x547D;&#x540D;&#x8D8B;&#x52BF;" class="headerlink" title="&#x56DB;&#x3001;&#x5206;&#x6790;&#x547D;&#x540D;&#x8D8B;&#x52BF;"></a>&#x56DB;&#x3001;&#x5206;&#x6790;&#x547D;&#x540D;&#x8D8B;&#x52BF;</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">boys = top1000[top1000.sex == <span class="string">&apos;M&apos;</span>]</div><div class="line">girls = top1000[top1000.sex == <span class="string">&apos;F&apos;</span>]</div><div class="line">total_births = top1000.pivot_table(<span class="string">&apos;births&apos;</span>,index=<span class="string">&apos;year&apos;</span>,columns=<span class="string">&apos;name&apos;</span>,aggfunc=sum)</div><div class="line">subset = total_births[[<span class="string">&apos;Minnie&apos;</span>,<span class="string">&apos;Harry&apos;</span>]]</div><div class="line">subset.plot(subplots=<span class="keyword">True</span>,figsize=(<span class="number">12</span>,<span class="number">10</span>),grid=<span class="keyword">False</span>,title=<span class="string">&quot;Number og births per year&quot;</span>)</div></pre></td></tr></table></figure>
+<p><img src="/2017/07/21/study_data_analysis_1/output_23_1.png" alt=""></p>
+<h2 id="&#x4E94;&#x3001;&#x8BC4;&#x4F30;&#x547D;&#x540D;&#x591A;&#x6837;&#x6027;&#x7684;&#x589E;&#x957F;"><a href="#&#x4E94;&#x3001;&#x8BC4;&#x4F30;&#x547D;&#x540D;&#x591A;&#x6837;&#x6027;&#x7684;&#x589E;&#x957F;" class="headerlink" title="&#x4E94;&#x3001;&#x8BC4;&#x4F30;&#x547D;&#x540D;&#x591A;&#x6837;&#x6027;&#x7684;&#x589E;&#x957F;"></a>&#x4E94;&#x3001;&#x8BC4;&#x4F30;&#x547D;&#x540D;&#x591A;&#x6837;&#x6027;&#x7684;&#x589E;&#x957F;</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">table = top1000.pivot_table(<span class="string">&apos;prop&apos;</span>,index=<span class="string">&apos;year&apos;</span>,columns=<span class="string">&apos;sex&apos;</span>,aggfunc=sum)</div><div class="line">table.plot(title=<span class="string">&apos;Sum of table1000.prop by year and sex&apos;</span>,yticks=np.linspace(<span class="number">0</span>,<span class="number">1.2</span>,<span class="number">13</span>),xticks=range(<span class="number">1880</span>,<span class="number">2020</span>,<span class="number">10</span>))</div></pre></td></tr></table></figure>
+<p><img src="/2017/07/21/study_data_analysis_1/output_26_1.png" alt=""></p>
+<h2 id="&#x4E2A;&#x4EBA;&#x603B;&#x7ED3;"><a href="#&#x4E2A;&#x4EBA;&#x603B;&#x7ED3;" class="headerlink" title="&#x4E2A;&#x4EBA;&#x603B;&#x7ED3;"></a>&#x4E2A;&#x4EBA;&#x603B;&#x7ED3;</h2><p>&#x6781;&#x5176;&#x4F69;&#x670D;&#x56FD;&#x5916;&#x7684;&#x4E00;&#x4E9B;&#x5927;&#x795E;&#x80FD;&#x591F;&#x505A;&#x51FA;&#x8FD9;&#x4E48;&#x597D;&#x7684;&#x4E1C;&#x897F;&#xFF0C;&#x7528;&#x7740;&#x5341;&#x5206;&#x7684;&#x8212;&#x670D;&#xFF0C;&#x7231;&#x4E0D;&#x91CA;&#x624B;&#x3002;<br>&#x5B89;&#x88C5;&#x597D;anaconda&#x540E;&#xFF0C;&#x6211;&#x5F00;&#x59CB;&#x5B66;&#x4E60;&#x6570;&#x636E;&#x5206;&#x6790;&#x5904;&#x7406;&#x7684;&#x57FA;&#x7840;&#x77E5;&#x8BC6;&#xFF0C;&#x4E0D;&#x80FD;&#x653E;&#x5F03;&#x5B66;&#x4E60;&#x3002;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="燕十 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.jpg" alt="燕十 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/15/Nginx空主机名设置/" rel="next" title="Nginx空主机名设置">
+                <i class="fa fa-chevron-left"></i> Nginx空主机名设置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTM1MC81OTE4"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="燕十" />
+          <p class="site-author-name" itemprop="name">燕十</p>
+          <p class="site-description motion-element" itemprop="description">没有现在的苟且，哪有诗和远方</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/bae0010d3ad7" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-jianshu"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://aolong.me/" title="李英豪" target="_blank">李英豪</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一：整合数据"><span class="nav-number">1.</span> <span class="nav-text">一：整合数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二：按性别和年度统计总出生数"><span class="nav-number">2.</span> <span class="nav-text">二：按性别和年度统计总出生数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、前1000个名字"><span class="nav-number">3.</span> <span class="nav-text">三、前1000个名字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、分析命名趋势"><span class="nav-number">4.</span> <span class="nav-text">四、分析命名趋势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、评估命名多样性的增长"><span class="nav-number">5.</span> <span class="nav-text">五、评估命名多样性的增长</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#个人总结"><span class="nav-number">6.</span> <span class="nav-text">个人总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">燕十</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("nS56sCOObSDXpwL7elK0Mrzy-gzGzoHsz", "oibCqinbWpGdjKRGRkLj2gMR");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
