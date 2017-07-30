@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="个人思考," />
+  <meta name="keywords" content="HBase," />
 
 
 
@@ -84,20 +84,20 @@
 
 
 
-<meta name="description" content="2017&amp;#x5E74;&amp;#x4ECE;2&amp;#x6708;&amp;#x5230;4&amp;#x6708;&amp;#x5E95;&amp;#x5DF2;&amp;#x7ECF;&amp;#x8FC7;&amp;#x53BB;&amp;#x4E86;&amp;#x4E09;&amp;#x4E2A;&amp;#x6708;&amp;#xFF0C;&amp;#x56DE;&amp;#x9996;&amp;#x8FC7;&amp;#x53BB;&amp;#xFF0C;&amp;#x603B;&amp;#x7ED3;&amp;#x7ECF;&amp;#x9A8C;&amp;#">
+<meta name="description" content="HBase&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x9AD8;&amp;#x53EF;&amp;#x9760;&amp;#xFF0C;&amp;#x9AD8;&amp;#x53EF;&amp;#x7528;&amp;#xFF0C;&amp;#x9AD8;&amp;#x6027;&amp;#x80FD;&amp;#xFF0C;&amp;#x9762;&amp;#x5411;&amp;#x5217;&amp;#xFF0C;&amp;#x53EF;&amp;#x4F38;&amp;#x7F29;&amp;#xFF0C;&amp;#x652F;&amp;#x">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2017年2-4月阶段总结">
-<meta property="og:url" content="https://xuxping.github.io/2017/04/29/2017年2-4月阶段总结/index.html">
+<meta property="og:title" content="（一）HBase的特性和架构">
+<meta property="og:url" content="https://xuxping.github.io/2017/07/24/HBase的特性和架构/index.html">
 <meta property="og:site_name" content="燕十">
-<meta property="og:description" content="2017&amp;#x5E74;&amp;#x4ECE;2&amp;#x6708;&amp;#x5230;4&amp;#x6708;&amp;#x5E95;&amp;#x5DF2;&amp;#x7ECF;&amp;#x8FC7;&amp;#x53BB;&amp;#x4E86;&amp;#x4E09;&amp;#x4E2A;&amp;#x6708;&amp;#xFF0C;&amp;#x56DE;&amp;#x9996;&amp;#x8FC7;&amp;#x53BB;&amp;#xFF0C;&amp;#x603B;&amp;#x7ED3;&amp;#x7ECF;&amp;#x9A8C;&amp;#">
-<meta property="og:image" content="https://xuxping.github.io/2017/04/29/2017年2-4月阶段总结/F343BCEB-B87F-4E7F-A587-7899A44F5646.png">
-<meta property="og:image" content="https://xuxping.github.io/2017/04/29/2017年2-4月阶段总结/37684305-E228-4DA6-A3FD-F0F93D18D11A.png">
-<meta property="og:image" content="https://xuxping.github.io/2017/04/29/2017年2-4月阶段总结/0E135FBE-FC58-4711-8088-8FE1D66B9CC0.png">
-<meta property="og:updated_time" content="2017-04-29T13:22:57.000Z">
+<meta property="og:description" content="HBase&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x9AD8;&amp;#x53EF;&amp;#x9760;&amp;#xFF0C;&amp;#x9AD8;&amp;#x53EF;&amp;#x7528;&amp;#xFF0C;&amp;#x9AD8;&amp;#x6027;&amp;#x80FD;&amp;#xFF0C;&amp;#x9762;&amp;#x5411;&amp;#x5217;&amp;#xFF0C;&amp;#x53EF;&amp;#x4F38;&amp;#x7F29;&amp;#xFF0C;&amp;#x652F;&amp;#x">
+<meta property="og:image" content="https://xuxping.github.io/2017/07/24/HBase的特性和架构/05D08657-F0DE-4F50-BD4E-1A9974ECA6E2.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/07/24/HBase的特性和架构/7642DB65-0A3C-4153-96E5-C2C214B3A899.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/07/24/HBase的特性和架构/BC4DFD66-8999-4D7A-8611-BE9112C9170D.png">
+<meta property="og:updated_time" content="2017-07-30T13:51:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2017年2-4月阶段总结">
-<meta name="twitter:description" content="2017&amp;#x5E74;&amp;#x4ECE;2&amp;#x6708;&amp;#x5230;4&amp;#x6708;&amp;#x5E95;&amp;#x5DF2;&amp;#x7ECF;&amp;#x8FC7;&amp;#x53BB;&amp;#x4E86;&amp;#x4E09;&amp;#x4E2A;&amp;#x6708;&amp;#xFF0C;&amp;#x56DE;&amp;#x9996;&amp;#x8FC7;&amp;#x53BB;&amp;#xFF0C;&amp;#x603B;&amp;#x7ED3;&amp;#x7ECF;&amp;#x9A8C;&amp;#">
-<meta name="twitter:image" content="https://xuxping.github.io/2017/04/29/2017年2-4月阶段总结/F343BCEB-B87F-4E7F-A587-7899A44F5646.png">
+<meta name="twitter:title" content="（一）HBase的特性和架构">
+<meta name="twitter:description" content="HBase&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x9AD8;&amp;#x53EF;&amp;#x9760;&amp;#xFF0C;&amp;#x9AD8;&amp;#x53EF;&amp;#x7528;&amp;#xFF0C;&amp;#x9AD8;&amp;#x6027;&amp;#x80FD;&amp;#xFF0C;&amp;#x9762;&amp;#x5411;&amp;#x5217;&amp;#xFF0C;&amp;#x53EF;&amp;#x4F38;&amp;#x7F29;&amp;#xFF0C;&amp;#x652F;&amp;#x">
+<meta name="twitter:image" content="https://xuxping.github.io/2017/07/24/HBase的特性和架构/05D08657-F0DE-4F50-BD4E-1A9974ECA6E2.png">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="https://xuxping.github.io/2017/04/29/2017年2-4月阶段总结/"/>
+  <link rel="canonical" href="https://xuxping.github.io/2017/07/24/HBase的特性和架构/"/>
 
 
 
 
 
-  <title> 2017年2-4月阶段总结 | 燕十 </title>
+  <title> （一）HBase的特性和架构 | 燕十 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -307,7 +307,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/04/29/2017年2-4月阶段总结/">
+  <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/07/24/HBase的特性和架构/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="燕十">
@@ -331,7 +331,7 @@
             
             
               
-                2017年2-4月阶段总结
+                （一）HBase的特性和架构
               
             
           </h2>
@@ -346,8 +346,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-29T21:12:29+08:00">
-                2017-04-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-24T15:20:00+08:00">
+                2017-07-24
               </time>
             
 
@@ -369,8 +369,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/阶段总结/" itemprop="url" rel="index">
-                    <span itemprop="name">阶段总结</span>
+                  <a href="/categories/入坑HBase系列文章/" itemprop="url" rel="index">
+                    <span itemprop="name">入坑HBase系列文章</span>
                   </a>
                 </span>
 
@@ -388,7 +388,7 @@
 
           
           
-             <span id="/2017/04/29/2017年2-4月阶段总结/" class="leancloud_visitors" data-flag-title="2017年2-4月阶段总结">
+             <span id="/2017/07/24/HBase的特性和架构/" class="leancloud_visitors" data-flag-title="（一）HBase的特性和架构">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -415,20 +415,15 @@
       
 
       
-        <p>2017&#x5E74;&#x4ECE;2&#x6708;&#x5230;4&#x6708;&#x5E95;&#x5DF2;&#x7ECF;&#x8FC7;&#x53BB;&#x4E86;&#x4E09;&#x4E2A;&#x6708;&#xFF0C;&#x56DE;&#x9996;&#x8FC7;&#x53BB;&#xFF0C;&#x603B;&#x7ED3;&#x7ECF;&#x9A8C;&#xFF0C;&#x5C55;&#x671B;&#x672A;&#x6765;&#x3002;&#x672C;&#x6587;&#x5C06;&#x4ECE;&#x4EE5;&#x4E0B;&#x51E0;&#x4E2A;&#x65B9;&#x9762;&#x5BF9;&#x8FC7;&#x53BB;&#x7684;&#x4E09;&#x4E2A;&#x6708;&#x505A;&#x4E2A;&#x603B;&#x7ED3;&#x3002;<br><a id="more"></a></p>
-<h2 id="&#x6280;&#x672F;&#x7684;&#x589E;&#x957F;"><a href="#&#x6280;&#x672F;&#x7684;&#x589E;&#x957F;" class="headerlink" title="&#x6280;&#x672F;&#x7684;&#x589E;&#x957F;"></a>&#x6280;&#x672F;&#x7684;&#x589E;&#x957F;</h2><p>&#x5728;&#x77ED;&#x77ED;&#x7684;&#x4E09;&#x4E2A;&#x6708;&#xFF0C;&#x5F80;&#x5927;&#x8111;&#x4E2D;&#x585E;&#x5165;&#x4E86;&#x5927;&#x91CF;&#x65B0;&#x6280;&#x672F;&#xFF0C;&#x65B0;&#x77E5;&#x8BC6;&#x3002;&#x6D89;&#x53CA;python&#x3001;Tornado&#x3001;mongodb&#x3001;&#x8FD0;&#x7EF4;&#x5DE5;&#x5177;(expect&#xFF0C;shell&#xFF0C;fabric)&#xFF0C;hadoop&#x3001;hbase&#x3001;hive&#x3001;zookeeper&#x3001;ycsb&#x3001;ganglia&#x7B49;&#x3002;&#x603B;&#x7ED3;&#x8D77;&#x6765;&#x53EF;&#x4EE5;&#x5206;&#x4E3A;&#x4E24;&#x4E2A;&#x9636;&#x6BB5;&#xFF1A;python&#x901F;&#x6210;&#xFF0C;hadoop&#x751F;&#x6001;&#x521D;&#x6B65;&#x63A5;&#x89E6;&#x3002;&#x4E0B;&#x9762;&#x5C31;&#x4ECE;&#x8FD9;&#x4E2A;&#x4E24;&#x4E2A;&#x9636;&#x6BB5;&#x8FDB;&#x884C;&#x603B;&#x7ED3;&#x3002;</p>
-<h3 id="Python&#x901F;&#x6210;"><a href="#Python&#x901F;&#x6210;" class="headerlink" title="Python&#x901F;&#x6210;"></a>Python&#x901F;&#x6210;</h3><p>&#x901A;&#x8FC7;&#x5C0F;&#x9879;&#x76EE;&#x9A71;&#x52A8;&#x7684;&#x5F62;&#x5F0F;&#xFF0C;&#x5FEB;&#x901F;&#x7684;&#x4ECE;Python&#x5C0F;&#x767D;&#x5230;&#x80FD;&#x719F;&#x7EC3;&#x7684;&#x4F7F;&#x7528;Python&#x5FEB;&#x901F;&#x7684;&#x89E3;&#x51B3;&#x5404;&#x79CD;&#x95EE;&#x9898;&#x3002;&#x4E3B;&#x8981;&#x53C8;&#x5206;&#x4E3A;&#x4E86;&#x4E24;&#x4E2A;&#x65B9;&#x9762;&#x3002;<br>1&#x3001;&#x4ECE;&#x80A1;&#x7968;&#x6570;&#x636E;&#x7684;&#x91C7;&#x96C6;&#x2014;&#x2014;&gt;k&#x7EBF;&#x7684;&#x5408;&#x6210;&#x2014;&#x2014;&gt;&#x6570;&#x636E;&#x7684;&#x5B58;&#x50A8;&#x2014;&#x2014;&gt;&#x5BF9;&#x5916;&#x63D0;&#x4F9B;api<br><img src="/2017/04/29/2017&#x5E74;2-4&#x6708;&#x9636;&#x6BB5;&#x603B;&#x7ED3;/F343BCEB-B87F-4E7F-A587-7899A44F5646.png" alt=""><br>&#x4ECE;tushare&#x4E2D;&#x91C7;&#x96C6;&#x80A1;&#x7968;&#x7684;tick&#x6570;&#x636E;&#xFF0C;&#x7136;&#x540E;&#x5B9E;&#x65F6;&#x7684;&#x5408;&#x6210;&#x5206;&#x949F;&#x7EBF;&#xFF0C;&#x5B58;&#x50A8;&#x5230;&#x6587;&#x4EF6;&#x548C;mongo&#x4E2D;&#xFF0C;&#x6700;&#x540E;&#x5229;&#x7528;tornado&#x642D;&#x5EFA;&#x5B9E;&#x65F6;&#x670D;&#x52A1;&#x63A5;&#x53E3; <a href="http://xuxping.com/2017/03/23/tornado%E5%AE%9E%E6%97%B6%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1/" target="_blank" rel="external">tornado &#x5B9E;&#x65F6;&#x670D;&#x52A1;&#x67B6;&#x6784;&#x8BBE;&#x8BA1; | &#x71D5;&#x5341;</a> &#xFF0C;&#x5BF9;&#x5916;&#x63D0;&#x4F9B;&#x80A1;&#x7968;&#x5B9E;&#x65F6;&#x7684;&#x5206;&#x949F;&#x6570;&#x636E;&#x3002;&#x4E00;&#x73AF;&#x6263;&#x4E00;&#x73AF;&#x7684;&#xFF0C;&#x5C31;&#x5DEE;&#x6CA1;&#x6709;&#x4F7F;&#x7528;vue&#x5199;&#x4E2A;&#x524D;&#x7AEF;&#x628A;&#x6570;&#x636E;&#x5C55;&#x793A;&#x51FA;&#x6765;&#x3002;<br>&#x4ECE;&#x719F;&#x6089;Python&#x7684;&#x57FA;&#x672C;&#x8BED;&#x6CD5;&#xFF0C;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF0C;&#x7F51;&#x7EDC;&#x91C7;&#x96C6;&#xFF0C;&#x5F02;&#x5E38;&#x5904;&#x7406;&#xFF0C;&#x6570;&#x636E;&#x5E93;&#x64CD;&#x4F5C;&#xFF0C;&#x591A;&#x7EBF;&#x7A0B;&#xFF0C;&#x591A;&#x8FDB;&#x7A0B;&#xFF0C;&#x7C7B;&#xFF0C;&#x5230;&#x4F7F;&#x7528;Python&#x6846;&#x67B6;tornado&#xFF0C;&#x4E00;&#x5E94;&#x4FF1;&#x5168;&#x3002;&#x4E00;&#x6B65;&#x4E00;&#x4E2A;&#x5751;&#xFF0C;&#x624E;&#x624E;&#x5B9E;&#x5B9E;&#x7684;&#x5165;&#x4E86;Python&#x7684;&#x95E8;&#x3002;</p>
-<p>2&#x3001;&#x623F;&#x5C4B;&#x6570;&#x636E;&#x91C7;&#x96C6;&#x2014;&gt;&#x6570;&#x636E;&#x6E05;&#x6D17;&#x2014;&gt;&#x6A21;&#x578B;&#x8BAD;&#x7EC3;<br><img src="/2017/04/29/2017&#x5E74;2-4&#x6708;&#x9636;&#x6BB5;&#x603B;&#x7ED3;/37684305-E228-4DA6-A3FD-F0F93D18D11A.png" alt=""><br>&#x8FD9;&#x662F;&#x6211;&#x7684;&#x6BD5;&#x4E1A;&#x8BBE;&#x8BA1;&#xFF0C;&#x5168;&#x7A0B;&#x91C7;&#x7528;Python&#xFF0C;&#x4ECE;&#x5404;&#x5927;&#x79DF;&#x623F;&#x7F51;&#x7AD9;&#x4E0A;&#x91C7;&#x96C6;&#x623F;&#x5C4B;&#x6570;&#x636E;&#xFF0C;&#x5230;&#x5B9E;&#x65F6;&#x5165;&#x5E93;&#xFF0C;&#x6570;&#x636E;&#x6E05;&#x6D17;&#xFF0C;&#x5230;&#x4F7F;&#x7528;Scikit-learn&#x5EFA;&#x6A21;&#x3002;&#x9010;&#x6B65;&#x719F;&#x6089;&#x4E86;&#x722C;&#x866B;&#x7684;&#x7F16;&#x5199;&#xFF0C;&#x9875;&#x9762;&#x6570;&#x636E;&#x7684;&#x89E3;&#x6790;&#xFF0C;&#x7F51;&#x7EDC;&#x5F02;&#x5E38;&#x65B9;&#x9762;&#x7684;&#x5904;&#x7406;&#xFF0C;&#x6570;&#x636E;&#x65B9;&#x9762;&#x7684;&#x5904;&#x7406;&#xFF0C;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x5E93;&#x7684;&#x4F7F;&#x7528;&#x3002;</p>
-<p>&#x81F3;&#x6B64;&#xFF0C;&#x901A;&#x8FC7;&#x4E24;&#x6761;&#x7EBF;&#xFF0C;&#x6211;&#x53EF;&#x4EE5;&#x8BF4;&#x5BF9;Python&#x8FD8;&#x662F;&#x719F;&#x6089;&#x7684;&#xFF0C;&#x9AD8;&#x7EA7;&#x6280;&#x5DE7;&#x4E0D;&#x4F1A;&#xFF0C;&#x4F4E;&#x7EA7;&#x7684;&#x96BE;&#x4E0D;&#x5012;&#x3002;</p>
-<h3 id="hadoop&#x751F;&#x6001;&#x521D;&#x6B65;&#x63A5;&#x89E6;"><a href="#hadoop&#x751F;&#x6001;&#x521D;&#x6B65;&#x63A5;&#x89E6;" class="headerlink" title="hadoop&#x751F;&#x6001;&#x521D;&#x6B65;&#x63A5;&#x89E6;"></a>hadoop&#x751F;&#x6001;&#x521D;&#x6B65;&#x63A5;&#x89E6;</h3><p>&#x4E09;&#x6708;&#x4EFD;&#x5F00;&#x59CB;&#x5165;&#x5751;hadoop&#x76F8;&#x5173;&#x65B9;&#x9762;&#x7684;&#x751F;&#x6001;&#xFF0C;&#x81F3;&#x6B64;&#x5DF2;&#x7ECF;&#x5165;&#x5751;2&#x4E2A;&#x6708;&#xFF0C;&#x4ECE;&#x6DF1;&#x9677;&#x6CBC;&#x6CFD;&#x5230;&#x6EE1;&#x6EE1;&#x722C;&#x51FA;&#x3002;&#x4E5F;&#x5206;&#x4E3A;&#x4E24;&#x4E2A;&#x65B9;&#x9762;&#x5427;</p>
-<p>1&#x3001;&#x865A;&#x62DF;&#x673A;&#x2014;&#x2014;&gt;&#x7EBF;&#x4E0A;&#x5B89;&#x88C5;&#x6D4B;&#x8BD5;&#x2014;-&gt;hive<br>&#x4E3A;&#x4E86;&#x642D;&#x5EFA;&#x516C;&#x53F8;&#x7684;&#x6B63;&#x5F0F;&#x7EBF;&#x4E0A;&#x7684;hadoop&#x96C6;&#x7FA4;&#xFF0C;&#x73B0;&#x5728;&#x865A;&#x62DF;&#x673A;&#x4E2D;&#x642D;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x6D4B;&#x8BD5;&#x7248;&#x672C;&#xFF0C;&#x719F;&#x6089;&#x6574;&#x4E2A;&#x642D;&#x5EFA;&#x7684;&#x8FC7;&#x7A0B;&#x3002;&#x7136;&#x540E;&#x642D;&#x5EFA;&#x4E86;&#x7EBF;&#x4E0A;&#x7684;hadoop&#x96C6;&#x7FA4;&#xFF0C;&#x4E2D;&#x95F4;&#x89E3;&#x51B3;&#x4E86;&#x5F88;&#x591A;&#x5B9E;&#x9645;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x5E76;&#x5BF9;hadoop&#x96C6;&#x7FA4;&#x505A;&#x4E86;&#x57FA;&#x672C;&#x7684;&#x6027;&#x80FD;&#x6D4B;&#x8BD5;&#xFF0C;&#x7D2F;&#x8BA1;&#x4EA7;&#x51FA;6&#x7BC7;&#x6280;&#x672F;&#x603B;&#x7ED3;&#x6587;&#x6863;&#x3002;&#x5728;&#x6B64;&#x8FC7;&#x7A0B;&#x4E2D;&#x5B66;&#x4E60;&#x4F7F;&#x7528;&#x8FD0;&#x7EF4;&#x5DE5;&#x5177;(expect&#xFF0C;shell&#xFF0C;fabric)&#x6765;&#x5BF9;hadoop&#x96C6;&#x7FA4;&#x8FDB;&#x884C;&#x81EA;&#x52A8;&#x90E8;&#x7F72;&#xFF0C;&#x7BA1;&#x7406;&#x7B49;&#xFF0C;&#x8FD8;&#x6CA1;&#x6709;&#x597D;&#x597D;&#x7684;&#x603B;&#x7ED3;&#x4E00;&#x4E0B;&#x3002;<br>&#x968F;&#x540E;&#x53C8;&#x662F;&#x6298;&#x817E;&#x4E86;&#x4E00;&#x5468;&#x7684;Hive&#xFF0C;&#x5C06;&#x80A1;&#x7968;&#x7684;&#x5386;&#x53F2;&#x6570;&#x636E;&#x5BFC;&#x5165;hive&#xFF0C;&#x505A;&#x4E00;&#x4E9B;&#x6D4B;&#x8BD5;&#xFF0C;&#x4F7F;&#x7528;Python&#x8FDE;&#x63A5;Hive&#xFF0C;hive&#x5206;&#x533A;&#xFF0C;&#x67E5;&#x8BE2;&#x6027;&#x80FD;&#x4F18;&#x5316;&#x3002;</p>
-<p>2&#x3001;Hbase<br>&#x4ECE;Hbase&#x7684;&#x6027;&#x80FD;&#x5F00;&#x59CB;&#xFF0C;&#x5229;&#x7528;&#x5FAE;&#x535A;&#x7684;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x6027;&#x80FD;&#x65B9;&#x9762;&#x7684;&#x6D4B;&#x8BD5;&#xFF0C;&#x9010;&#x6E10;&#x7684;&#x9047;&#x5230;&#x4E86;&#x4F7F;&#x7528;python&#x5199;&#x5165;Hbase&#x7684;timeout&#x95EE;&#x9898;&#xFF08;&#x89C1; <a href="http://xuxping.com/2017/04/29/python%E5%86%99%E5%85%A5hbase%E8%B6%85%E6%97%B6%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90/" target="_blank" rel="external">python&#x5199;&#x5165;Hbase&#x8D85;&#x65F6;&#x95EE;&#x9898;&#x5206;&#x6790; | &#x71D5;&#x5341;</a>&#xFF09; &#xFF0C;Hbase&#x7684;&#x70ED;&#x70B9;&#x95EE;&#x9898;&#xFF0C;&#x6027;&#x80FD;&#x7684;&#x4F18;&#x5316;&#x3002;&#x4E2D;&#x95F4;&#x4E0A;&#x4E86;YCSB&#x538B;&#x6D4B;&#x5DE5;&#x5177;&#xFF0C;ganglia&#x6027;&#x80FD;&#x76D1;&#x63A7;&#x5DE5;&#x5177;&#x3002;&#x9010;&#x6E10;&#x4E86;&#x89E3;Hbase&#x7684;&#x7279;&#x70B9;&#xFF0C;&#x5982;&#x4F55;&#x53BB;&#x4F18;&#x5316;&#xFF0C;&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;&#x3002;Hbase&#x5C31;&#x662F;&#x6211;&#x8FD9;&#x6BB5;&#x65F6;&#x95F4;&#x6700;&#x96BE;&#x5543;&#x7684;&#x9AA8;&#x5934;&#x3002;</p>
-<p>&#x6211;&#x753B;&#x4E2A;&#x56FE;&#xFF0C;&#x6765;&#x5F52;&#x7EB3;&#x603B;&#x7ED3;&#x4E00;&#x4E0B;&#x3002;<br><img src="/2017/04/29/2017&#x5E74;2-4&#x6708;&#x9636;&#x6BB5;&#x603B;&#x7ED3;/0E135FBE-FC58-4711-8088-8FE1D66B9CC0.png" alt=""><br>&#x6211;&#x53EA;&#x60F3;&#x8BF4;&#xFF0C;&#x4E00;&#x4E2A;&#x4EBA;&#x5543;&#x7740;hadoop&#x751F;&#x6001;&#x91CC;&#x8FD9;&#x4E9B;&#x8783;&#x87F9;&#xFF0C;&#x8D8A;&#x6765;&#x8D8A;&#x6709;&#x70B9;&#x5473;&#x9053;&#x4E86;&#xFF0C;&#x5C3D;&#x7BA1;&#x524D;&#x9762;&#x5751;&#x65E0;&#x6570;&#xFF0C;&#x8BE5;&#x8DF3;&#x7684;&#x8FD8;&#x662F;&#x5F97;&#x8DF3;&#x3002;</p>
-<h2 id="&#x9636;&#x6BB5;&#x603B;&#x7ED3;"><a href="#&#x9636;&#x6BB5;&#x603B;&#x7ED3;" class="headerlink" title="&#x9636;&#x6BB5;&#x603B;&#x7ED3;"></a>&#x9636;&#x6BB5;&#x603B;&#x7ED3;</h2><p>&#x603B;&#x7ED3;&#x5B8C;&#x4E3B;&#x8981;&#x7684;&#x90E8;&#x5206;&#x2014;&#x2014;&#x6280;&#x672F;&#x7684;&#x589E;&#x957F;&#xFF0C;&#x6765;&#x6982;&#x8981;&#x603B;&#x7ED3;&#x4E00;&#x4E0B;&#x5176;&#x5B83;&#x65B9;&#x9762;&#x7684;&#x60C5;&#x51B5;&#x3002;<br>1&#x3001;&#x7D2F;&#x8BA1;&#x8F93;&#x51FA;&#x6280;&#x672F;&#x603B;&#x7ED3;&#x6587;&#x6863;10&#x7BC7;&#x5DE6;&#x53F3;&#xFF0C;&#x5199;&#x6587;&#x6863;&#x7684;&#x80FD;&#x529B;&#x5927;&#x5E45;&#x63D0;&#x5347;<br>2&#x3001;&#x5BF9;&#x95EE;&#x9898;&#x7684;&#x5206;&#x6790;&#xFF0C;&#x601D;&#x8003;&#x8FC7;&#x7A0B;&#x9010;&#x6E10;&#x6DF1;&#x5165;<br>3&#x3001;&#x5B8C;&#x5168;&#x65E0;&#x5E08;&#x81EA;&#x5B66;&#x5165;&#x95E8;hadoop<br>4&#x3001;&#x7F16;&#x7A0B;&#x88C5;&#x5907;&#xFF1A;&#x7535;&#x8111;&#x652F;&#x67B6;&#xFF0C;&#x9632;&#x84DD;&#x5149;&#x773C;&#x955C;&#xFF0C;&#x673A;&#x68B0;&#x952E;&#x76D8;&#x90FD;&#xFF0C;&#x773C;&#x90E8;&#x6309;&#x6469;&#x4EEA;&#x90FD;&#x914D;&#x9F50;&#x4E86;&#x3002;</p>
-<p>&#x8BF4;&#x4E86;&#x8FD9;&#x4E48;&#x591A;&#x597D;&#x7684;&#xFF0C;&#x4E5F;&#x5FC5;&#x7136;&#x6709;&#x5F88;&#x591A;&#x4E0D;&#x8DB3;&#x4E4B;&#x5904;&#xFF0C;&#x5217;&#x4E3E;&#x4E09;&#x9879;&#x4E3B;&#x8981;&#x7684;&#xFF1A;<br>1&#x3001;&#x4E0D;&#x80FD;&#x51C6;&#x786E;&#x7684;&#x6293;&#x4F4F;&#x95EE;&#x9898;&#x7684;&#x8981;&#x5BB3;&#xFF0C;&#x5BFC;&#x81F4;&#x8D70;&#x5F88;&#x591A;&#x7684;&#x5F2F;&#x8DEF;&#xFF0C;&#x8017;&#x8D39;&#x5F88;&#x591A;&#x7684;&#x65F6;&#x95F4;&#x3002;&#x5982;&#x89E3;&#x51B3;Hbase&#x7684;&#x8D85;&#x65F6;&#x95EE;&#x9898;.<br>2&#x3001;&#x6709;&#x4E9B;&#x5173;&#x952E;&#x70B9;&#x6CA1;&#x6709;&#x53CA;&#x65F6;&#x8BB0;&#x5F55;&#xFF0C;&#x603B;&#x7ED3;&#x6CA1;&#x5230;&#x4F4D;&#xFF0C;&#x5BFC;&#x81F4;&#x4E8C;&#x72AF;&#x3002;<br>3&#x3001;&#x8EAB;&#x4F53;&#x7D20;&#x8D28;&#x6709;&#x70B9;&#x4E0B;&#x964D;&#xFF0C;&#x5929;&#x5929;&#x5BF9;&#x7740;&#x7535;&#x8111;&#xFF0C;&#x5934;&#x6709;&#x70B9;&#x8499;&#x903C;</p>
-<h2 id="&#x4E0B;&#x4E2A;&#x9636;&#x6BB5;&#x7684;&#x89C4;&#x5212;"><a href="#&#x4E0B;&#x4E2A;&#x9636;&#x6BB5;&#x7684;&#x89C4;&#x5212;" class="headerlink" title="&#x4E0B;&#x4E2A;&#x9636;&#x6BB5;&#x7684;&#x89C4;&#x5212;"></a>&#x4E0B;&#x4E2A;&#x9636;&#x6BB5;&#x7684;&#x89C4;&#x5212;</h2><p>&#x4E3A;&#x672A;&#x6765;3&#x4E2A;&#x6708;(5&#x6708;&#x5230;7&#x6708;&#x5E95;)&#x505A;&#x4E9B;&#x89C4;&#x5212;<br>1&#x3001;&#x89E3;&#x51B3;&#x9010;&#x6B65;&#x89E3;&#x51B3;&#x4E00;&#x4E0B;&#x4E24;&#x4E2A;&#x95EE;&#x9898;<br>    &#x5982;&#x4F55;&#x80FD;&#x591F;&#x5199;&#x6210;pythonic&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x8131;&#x79BB;&#x4F4E;&#x7EA7;&#x7684;python&#x5F00;&#x53D1;&#x8005;&#xFF1F;<br>    &#x5982;&#x4F55;&#x4ECE;&#x6E90;&#x7801;&#x4E0A;&#x5B9A;&#x4F4D;&#x95EE;&#x9898;&#x7684;&#x539F;&#x56E0;&#xFF1F;<br>2&#x3001;hbase&#x7CBE;&#x901A;&#x8BA1;&#x5212;&#xFF0C;&#x9010;&#x6E10;&#x9605;&#x8BFB;Hbase&#x7684;&#x6E90;&#x7801;&#xFF0C;&#x4E0D;&#x53EA;&#x662F;&#x505C;&#x7559;&#x5728;&#x4E86;&#x89E3;&#x7684;&#x5C42;&#x9762;&#x4E0A;&#xFF0C;&#x8981;&#x6DF1;&#x5165;<br>3&#x3001;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x57FA;&#x7840;&#x8BA1;&#x5212;&#xFF1A;&#x5229;&#x7528;&#x4E1A;&#x4F59;&#x65F6;&#x95F4;&#xFF0C;&#x5B66;&#x597D;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7684;&#x57FA;&#x7840;&#x77E5;&#x8BC6;&#xFF0C;&#x4E3B;&#x8981;&#x662F;&#x5543;&#x897F;&#x74DC;&#x4E66;<br>4&#x3001;&#x79DF;&#x623F;&#x6570;&#x636E;&#x91C7;&#x96C6;&#x8BA1;&#x5212;&#xFF1A;&#x4E0D;&#x65AD;&#x91C7;&#x96C6;&#x5404;&#x5927;&#x79DF;&#x623F;&#x7F51;&#x7AD9;&#x7684;&#x623F;&#x6E90;&#x6570;&#x636E;&#xFF0C;&#x7528;&#x6765;&#x627E;&#x623F;&#x548C;&#x5C1D;&#x8BD5;&#x5404;&#x79CD;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7B97;&#x6CD5;</p>
-<p>&#x603B;&#x8BF4;&#x8BA1;&#x5212;&#x8D76;&#x4E0D;&#x4E0A;&#x53D8;&#x5316;&#xFF0C;&#x4F46;&#x662F;&#x524D;&#x671F;&#x8BA1;&#x5212;&#x80FD;&#x786E;&#x5B9A;&#x672A;&#x6765;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x5185;&#x5927;&#x4F53;&#x7684;&#x4E00;&#x4E2A;&#x65B9;&#x5411;&#x3002;</p>
-<p>PS&#xFF1A;&#x6B22;&#x8FCE;&#x60F3;&#x505A;&#x79DF;&#x623F;&#x6570;&#x636E;&#x7814;&#x7A76;&#x65B9;&#x9762;&#x7684;&#x540C;&#x5B66;&#x52A0;&#x5165;&#xFF0C;&#x4E3B;&#x8981;&#x5DE5;&#x4F5C;&#x6709;&#xFF1A;<br>1&#x3001;&#x722C;&#x53D6;&#x81EA;&#x5982;&#xFF0C;5i5j&#xFF0C;58&#xFF0C;&#x5B89;&#x5C45;&#x5BA2;&#xFF0C;&#x8611;&#x83C7;&#x79DF;&#x623F;&#x7B49;&#x623F;&#x6E90;&#x7684;&#x6570;&#x636E;<br>2&#x3001;&#x6570;&#x636E;&#x6574;&#x5408;&#x9884;&#x5904;&#x7406;&#xFF0C;&#x683C;&#x5F0F;&#x5316;&#x3002;<br>3&#x3001;&#x5229;&#x7528;&#x5404;&#x79CD;&#x6A21;&#x578B;&#x5BF9;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x5EFA;&#x6A21;&#x5206;&#x6790;&#x3002;<br>4&#x3001;&#x6570;&#x636E;&#x524D;&#x7AEF;&#x5C55;&#x793A;(&#x539F;&#x578B;&#x56FE;&#x89C1;&#x4E0A;&#x9762;)<br>&#x9879;&#x76EE;&#x76EE;&#x6807;&#x662F;&#x80FD;&#x591F;&#x89E3;&#x51B3;&#x4E24;&#x4E2A;&#x95EE;&#x9898;&#xFF1A;<br>1&#x3001;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x6F5C;&#x5728;&#x7684;&#x5236;&#x5B9A;&#x79DF;&#x623F;&#x4EF7;&#x683C;&#x7684;&#x4E00;&#x4E2A;&#x89C4;&#x5219;<br>2&#x3001;&#x66F4;&#x52A0;&#x5FEB;&#x901F;&#x7684;&#x627E;&#x5230;&#x6700;&#x4F18;&#x8D28;&#x7684;&#x623F;&#x6E90;<br>&#x6709;&#x610F;&#x5411;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8054;&#x7CFB;&#x6211;&#xFF1A;&#x5FAE;&#x4FE1;mindaxuxiaoping</p>
+        <p>HBase&#x662F;&#x4E00;&#x4E2A;&#x9AD8;&#x53EF;&#x9760;&#xFF0C;&#x9AD8;&#x53EF;&#x7528;&#xFF0C;&#x9AD8;&#x6027;&#x80FD;&#xFF0C;&#x9762;&#x5411;&#x5217;&#xFF0C;&#x53EF;&#x4F38;&#x7F29;&#xFF0C;&#x652F;&#x6301;&#x6D77;&#x91CF;&#x7684;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x7684;&#x5206;&#x5E03;&#x5F0F;&#x6570;&#x636E;&#x5E93;&#x3002;&#x672C;&#x6587;&#x4E3B;&#x8981;&#x5B66;&#x4E60;&#x4E00;&#x4E0B;HBase&#x7684;&#x4E3B;&#x8981;&#x7279;&#x6027;&#x548C;HBase&#x67B6;&#x6784;&#x3002;</p>
+<h2 id="HBase&#x7279;&#x6027;"><a href="#HBase&#x7279;&#x6027;" class="headerlink" title="HBase&#x7279;&#x6027;"></a>HBase&#x7279;&#x6027;</h2><p>1&#x3001;&#x6D77;&#x91CF;&#x5B58;&#x50A8;&#xFF1A;&#x5355;&#x8868;&#x53EF;&#x4EE5;&#x5B58;&#x50A8;&#x767E;&#x4EBF;&#x7EA7;&#x522B;&#x7684;&#x91CF;&#x7EA7;&#xFF0C;&#x4E0D;&#x7528;&#x62C5;&#x5FC3;&#x8BFB;&#x53D6;&#x7684;&#x6027;&#x80FD;&#x4E0B;&#x964D;&#x3002;<br>2&#x3001;&#x9762;&#x5411;&#x5217;&#xFF1A;&#x6570;&#x636E;&#x5728;&#x8868;&#x4E2D;&#x662F;&#x6309;&#x67D0;&#x5217;&#x7684;&#x6570;&#x636E;&#x805A;&#x96C6;&#x5B58;&#x50A8;&#xFF0C;&#x6570;&#x636E;&#x5373;&#x7D22;&#x5F15;&#xFF0C;&#x53EA;&#x8BBF;&#x95EE;&#x67E5;&#x8BE2;&#x6D89;&#x53CA;&#x7684;&#x5217;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x5927;&#x91CF;&#x964D;&#x4F4E;&#x7CFB;&#x7EDF;&#x7684;I/O<br>3&#x3001;&#x7A00;&#x758F;&#x6027;&#xFF1A;&#x4F20;&#x7EDF;&#x884C;&#x6570;&#x5B58;&#x50A8;&#x7684;&#x6570;&#x636E;&#x5B58;&#x5728;&#x5927;&#x91CF;NULL&#x7684;&#x5217;&#xFF0C;&#x9700;&#x8981;&#x5360;&#x7528;&#x5B58;&#x50A8;&#x7A7A;&#x95F4;&#xFF0C;&#x9020;&#x6210;&#x5B58;&#x50A8;&#x7A7A;&#x95F4;&#x7684;&#x6D6A;&#x8D39;&#xFF0C;&#x800C;HBase&#x4E3A;&#x7A7A;&#x7684;&#x5217;&#x5E76;&#x4E0D;&#x5360;&#x7528;&#x7A7A;&#x95F4;&#xFF0C;&#x56E0;&#x6B64;&#x8868;&#x53EF;&#x4EE5;&#x8BBE;&#x8BA1;&#x7684;&#x5F88;&#x7A00;&#x758F;<br>4&#x3001;&#x6269;&#x5C55;&#x6027;&#xFF1A;HBase&#x5E95;&#x5C42;&#x57FA;&#x4E8E;HDFS&#xFF0C;&#x652F;&#x6301;&#x6269;&#x5C55;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x968F;&#x65F6;&#x6DFB;&#x52A0;&#x6216;&#x8005;&#x51CF;&#x5C11;&#x8282;&#x70B9;&#x3002;<br>5&#x3001;&#x9AD8;&#x53EF;&#x9760;&#xFF1A;&#x57FA;&#x4E8E;zookeeper&#x7684;&#x534F;&#x8C03;&#x670D;&#x52A1;&#xFF0C;&#x80FD;&#x591F;&#x4FDD;&#x8BC1;&#x670D;&#x52A1;&#x7684;&#x9AD8;&#x53EF;&#x7528;&#x884C;&#x3002;HBase&#x4F7F;&#x7528;WAL&#x548C;replication&#x673A;&#x5236;&#xFF0C;&#x524D;&#x8005;&#x4FDD;&#x8BC1;&#x6570;&#x636E;&#x5199;&#x5165;&#x65F6;&#x4E0D;&#x4F1A;&#x56E0;&#x4E3A;&#x96C6;&#x7FA4;&#x5F02;&#x5E38;&#x800C;&#x5BFC;&#x81F4;&#x5199;&#x5165;&#x6570;&#x636E;&#x7684;&#x4E22;&#x5931;&#xFF0C;&#x540E;&#x8005;&#x4FDD;&#x8BC1;&#x96C6;&#x7FA4;&#x51FA;&#x73B0;&#x4E25;&#x91CD;&#x95EE;&#x9898;&#x65F6;&#xFF0C;&#x6570;&#x636E;&#x4E0D;&#x4F1A;&#x53D1;&#x751F;&#x4E22;&#x5931;&#x548C;&#x635F;&#x574F;&#x3002;<br>6&#x3001;&#x9AD8;&#x6027;&#x80FD;&#xFF1A;&#x5E95;&#x5C42;&#x7684;LSM&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF0C;&#x4F7F;&#x5F97;HBase&#x5177;&#x5907;&#x975E;&#x5E38;&#x9AD8;&#x7684;&#x5199;&#x5165;&#x6027;&#x80FD;&#x3002;RowKey&#x6709;&#x5E8F;&#x6392;&#x5217;&#x3001;&#x4E3B;&#x952E;&#x7D22;&#x5F15;&#x548C;&#x7F13;&#x5B58;&#x673A;&#x5236;&#x4F7F;&#x5F97;HBase&#x5177;&#x5907;&#x4E00;&#x5B9A;&#x7684;&#x968F;&#x673A;&#x8BFB;&#x5199;&#x6027;&#x80FD;&#x3002;</p>
+<h2 id="HBase&#x67B6;&#x6784;"><a href="#HBase&#x67B6;&#x6784;" class="headerlink" title="HBase&#x67B6;&#x6784;"></a>HBase&#x67B6;&#x6784;</h2><p>HBase&#x91C7;&#x7528;Master/Slave&#x67B6;&#x6784;&#x642D;&#x5EFA;&#x96C6;&#x7FA4;&#xFF0C;&#x5B83;&#x96B6;&#x5C5E;&#x4E8E;Hadoop&#x751F;&#x6001;&#x7CFB;&#x7EDF;&#xFF0C;&#x7531;&#x4EE5;&#x4E0B;&#x7C7B;&#x578B;&#x8282;&#x70B9;&#x7EC4;&#x6210;&#xFF1A;HMaster&#x8282;&#x70B9;&#x3001;HRegionServer&#x8282;&#x70B9;&#x3001;ZooKeeper&#xFF0C;&#x64CD;&#x4F5C;HBase&#x7684;client&#x6A21;&#x5757;&#xFF0C;&#x800C;&#x5728;&#x5E95;&#x5C42;&#xFF0C;&#x5B83;&#x5C06;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x4E8E;HDFS&#x4E2D;&#xFF0C;&#x56E0;&#x800C;&#x6D89;&#x53CA;&#x5230;HDFS&#x7684;NameNode&#x3001;DataNode&#x7B49;&#x3002;&#x603B;&#x4F53;&#x7ED3;&#x6784;&#x5982;&#x4E0B;&#xFF1A;<br><img src="/2017/07/24/HBase&#x7684;&#x7279;&#x6027;&#x548C;&#x67B6;&#x6784;/05D08657-F0DE-4F50-BD4E-1A9974ECA6E2.png" alt=""></p>
+<h3 id="&#x5BA2;&#x6237;&#x7AEF;client"><a href="#&#x5BA2;&#x6237;&#x7AEF;client" class="headerlink" title="&#x5BA2;&#x6237;&#x7AEF;client"></a>&#x5BA2;&#x6237;&#x7AEF;client</h3><p>&#x7528;&#x6237;&#x4E3B;&#x8981;&#x901A;&#x8FC7;client&#x64CD;&#x4F5C;HBase&#xFF0C;&#x4E3B;&#x8981;&#x5305;&#x62EC;&#x4E24;&#x4E2A;&#x90E8;&#x5206;&#xFF1A;<br>1&#x3001;&#x7BA1;&#x7406;&#x64CD;&#x4F5C;&#xFF0C;client&#x4E0E;HMaster&#x901A;&#x4FE1;&#xFF0C;&#x8D1F;&#x8D23;&#x4E00;&#x4E0B;&#x96C6;&#x7FA4;&#x7684;&#x7BA1;&#x7406;&#xFF0C;&#x5982;&#x8868;&#x7684;&#x521B;&#x5EFA;&#x548C;&#x7EF4;&#x62A4;&#x7B49;<br>2&#x3001;CURD&#x64CD;&#x4F5C;&#xFF0C;client&#x4E0E;HRegionServer&#x901A;&#x4FE1;&#xFF0C;&#x8D1F;&#x8D23;&#x6570;&#x636E;&#x8BFB;&#x5199;&#x7C7B;&#x7684;&#x64CD;&#x4F5C;&#x3002;<br>&#x9664;HBase Client API&#x5916;&#xFF0C;Thrift&#x3001;Rest&#x7B49;&#x4E5F;&#x53EF;&#x4EE5;&#x7B97;&#x4F5C;client&#x3002;client&#x652F;&#x6301;Java/Python&#x7B49;&#x8BED;&#x8A00;</p>
+<h3 id="HMaster"><a href="#HMaster" class="headerlink" title="HMaster"></a>HMaster</h3><p>HMaster&#x4E3B;&#x8981;&#x8D1F;&#x8D23;Table&#x548C;RegionServer&#x7684;&#x64CD;&#x4F5C;&#xFF1A;<br>1&#x3001;&#x7BA1;&#x7406;&#x7528;&#x6237;&#x5BF9;Table&#x7684;CURD&#x64CD;&#x4F5C;<br>2&#x3001;&#x7BA1;&#x7406;HRegionServer<br>3&#x3001;&#x8C03;&#x6574;Region&#x5206;&#x5E03;&#xFF0C;&#x65B0;Region&#x7684;&#x5206;&#x914D;&#xFF0C;&#x5B95;&#x673A;&#x540E;Region&#x7684;&#x8FC1;&#x79FB;</p>
+<h3 id="ZooKeeper&#x96C6;&#x7FA4;"><a href="#ZooKeeper&#x96C6;&#x7FA4;" class="headerlink" title="ZooKeeper&#x96C6;&#x7FA4;"></a>ZooKeeper&#x96C6;&#x7FA4;</h3><p>ZooKeeper&#x4E3B;&#x8981;&#x8D1F;&#x8D23;HMaster&#x7684;&#x9009;&#x4E3E;&#xFF0C;&#x5B58;&#x50A8;HBase&#x7684;&#x5143;&#x6570;&#x636E;&#x7C7B;&#x578B;&#xFF0C;&#x76D1;&#x63A7;RegionServer&#x548C;&#x5B58;&#x653E;Region&#x7684;&#x5730;&#x5740;&#xFF0C;&#x4FBF;&#x4E8E;Client&#x5FEB;&#x901F;&#x83B7;&#x53D6;Region&#x5730;&#x5740;&#x3002;</p>
+<h3 id="HRegionServer"><a href="#HRegionServer" class="headerlink" title="HRegionServer"></a>HRegionServer</h3><p>HRegionServer &#x662F;HBase&#x6700;&#x91CD;&#x8981;&#x7684;&#x90E8;&#x5206;&#x3002;HRegionServer&#x4E3B;&#x8981;&#x8D1F;&#x8D23;&#x54CD;&#x5E94;&#x7528;&#x6237;&#x7684;I/O&#x8BF7;&#x6C42;&#xFF0C;&#x5BF9;Table&#x7684;CURD&#x64CD;&#x4F5C;&#x3002;HRegionServer&#x5185;&#x90E8;&#x7BA1;&#x7406;&#x4E86;&#x591A;&#x4E2A;Region&#xFF0C;&#x6BCF;&#x4E2A;Region&#x662F;&#x7531;HLog&#x548C;&#x591A;&#x4E2A;HStore&#x7EC4;&#x6210;&#x7684;&#xFF0C;&#x5BF9;&#x5E94;&#x7740;Table&#x4E2D;&#x7684;&#x4E00;&#x4E2A;Region&#x3002;&#x67B6;&#x6784;&#x5982;&#x5982;&#x4E0B;&#xFF1A;<br><img src="/2017/07/24/HBase&#x7684;&#x7279;&#x6027;&#x548C;&#x67B6;&#x6784;/7642DB65-0A3C-4153-96E5-C2C214B3A899.png" alt=""></p>
+<p>HStore&#x662F;HBase&#x5B58;&#x50A8;&#x7684;&#x6838;&#x5FC3;&#xFF0C;&#x6BCF;&#x4E2A;HStore&#x5BF9;&#x5E94;Table&#x4E2D;&#x7684;&#x4E00;&#x4E2A;Column Family&#x7684;&#x5B58;&#x50A8;&#xFF0C;&#x7531;&#x4E24;&#x90E8;&#x5206;&#x7EC4;&#x6210;&#xFF1A;MemStore&#x548C;StoreFile&#x3002;MemStore&#x662F;&#x4E00;&#x4E2A;&#x5199;&#x7F13;&#x51B2;&#x533A;&#xFF0C;&#x7528;&#x6237;&#x5199;&#x5165;&#x7684;&#x6570;&#x636E;&#x9996;&#x5148;&#x4F1A;&#x88AB;&#x653E;&#x5165;MemStore&#x4E2D;&#xFF0C;&#x5F53;MemStore&#x6EE1;&#x4E86;&#x5C31;&#x4F1A;flush&#x6210;&#x4E00;&#x4E2A;StoreFile&#x3002;&#x8FBE;&#x5230;&#x4E00;&#x5B9A;&#x6570;&#x91CF;&#x7684;StoreFile&#x540E;&#xFF0C;&#x4F1A;&#x89E6;&#x53D1;compact&#x64CD;&#x4F5C;&#xFF0C;&#x5C06;&#x591A;&#x4E2A;StoreFile&#x5408;&#x5E76;&#x6210;&#x4E00;&#x4E2A;&#x66F4;&#x5927;&#x7684;StoreFile&#xFF0C;&#x5728;&#x5408;&#x5E76;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x4F1A;&#x8FDB;&#x884C;&#x7248;&#x672C;&#x7684;&#x5408;&#x5E76;&#x548C;&#x6570;&#x636E;&#x7684;&#x5220;&#x9664;&#x3002;&#x5F53;&#x5355;&#x4E2A;StoreFile&#x5927;&#x5230;&#x4E00;&#x4E2A;&#x9608;&#x503C;&#x65F6;(&#x8DDF;Region&#x7684;maxSize&#x76F8;&#x5173;)&#xFF0C;&#x5C31;&#x4F1A;&#x8FDB;&#x884C;split&#x64CD;&#x4F5C;&#x3002;&#x5C06;Region&#x5206;&#x88C2;&#x6210;&#x4E24;&#x4E2A;Region&#xFF0C;&#x7236;&#x7684;Region&#x4F1A;&#x4E0B;&#x7EBF;&#xFF0C;&#x65B0;&#x5206;&#x88C2;&#x7684;&#x4E24;&#x4E2A;Region&#x4F1A;&#x88AB;HMaster&#x5206;&#x914D;&#x5230;&#x76F8;&#x5E94;&#x7684;HRegionServer&#x4E0A;&#x3002;compact&#x548C;split&#x793A;&#x610F;&#x56FE;&#xFF1A;<br><img src="/2017/07/24/HBase&#x7684;&#x7279;&#x6027;&#x548C;&#x67B6;&#x6784;/BC4DFD66-8999-4D7A-8611-BE9112C9170D.png" alt=""></p>
+<p>HLog&#x662F;&#x4E00;&#x4E2A;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#xFF0C;&#x5728;&#x6BCF;&#x6B21;&#x6570;&#x636E;&#x5199;&#x5165;MemStore&#x7684;&#x540C;&#x65F6;&#xFF0C;&#x4E5F;&#x4F1A;&#x5199;&#x4E00;&#x4EFD;&#x6570;&#x636E;&#x5230;HLog&#x6587;&#x4EF6;&#x4E2D;&#x3002;HMaster&#x901A;&#x8FC7;Zookeeper&#x611F;&#x77E5;&#x5230;HRegionServer&#x5B95;&#x673A;&#x65F6;&#xFF0C;&#x4F1A;&#x9996;&#x5148;&#x5904;&#x7406;&#x9057;&#x7559;&#x7684;HLog&#x6587;&#x4EF6;&#xFF0C;&#x5C06;&#x4E0D;&#x540C;&#x7684;Region&#x7684;Log&#x6570;&#x636E;&#x8FDB;&#x884C;&#x62C6;&#x5206;&#xFF0C;&#x5206;&#x522B;&#x653E;&#x5230;&#x5BF9;&#x5E94;&#x7684;Region&#x4E2D;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x5C06;&#x5931;&#x6548;&#x7684;Region&#x91CD;&#x65B0;&#x5206;&#x914D;&#x3002;&#x5F53;HRegionServer&#x83B7;&#x53D6;&#x5230;&#x5931;&#x6548;&#x7684;Region&#x65F6;&#xFF0C;&#x9996;&#x5148;&#x4F1A;&#x5904;&#x7406;HLog&#x6587;&#x4EF6;&#xFF0C;&#x5C06;HLog&#x4E2D;&#x7684;&#x6570;&#x636E;&#x56DE;&#x653E;&#x5230;MemStore&#x4E2D;&#xFF0C;&#x7136;&#x540E;flush&#x5230;StoreFile&#xFF0C;&#x5B8C;&#x6210;&#x6570;&#x636E;&#x6062;&#x590D;&#x3002;</p>
 
       
     </div>
@@ -473,7 +468,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/个人思考/" rel="tag"># 个人思考</a>
+            <a href="/tags/HBase/" rel="tag"># HBase</a>
           
         </div>
       
@@ -482,8 +477,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/29/ganglia导致的centos异常记录/" rel="next" title="ganglia导致的centos异常记录">
-                <i class="fa fa-chevron-left"></i> ganglia导致的centos异常记录
+              <a href="/2017/07/21/study_data_analysis_1/" rel="next" title="数据分析学习(一)">
+                <i class="fa fa-chevron-left"></i> 数据分析学习(一)
               </a>
             
           </div>
@@ -492,8 +487,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/05/17/爬虫入门总结/" rel="prev" title="爬虫入门总结">
-                爬虫入门总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/30/HBase集群启动流程/" rel="prev" title="（三）HBase集群启动流程分析">
+                （三）HBase集群启动流程分析 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -644,7 +639,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#技术的增长"><span class="nav-number">1.</span> <span class="nav-text">技术的增长</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Python速成"><span class="nav-number">1.1.</span> <span class="nav-text">Python速成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hadoop生态初步接触"><span class="nav-number">1.2.</span> <span class="nav-text">hadoop生态初步接触</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阶段总结"><span class="nav-number">2.</span> <span class="nav-text">阶段总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下个阶段的规划"><span class="nav-number">3.</span> <span class="nav-text">下个阶段的规划</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase特性"><span class="nav-number">1.</span> <span class="nav-text">HBase特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase架构"><span class="nav-number">2.</span> <span class="nav-text">HBase架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端client"><span class="nav-number">2.1.</span> <span class="nav-text">客户端client</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HMaster"><span class="nav-number">2.2.</span> <span class="nav-text">HMaster</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZooKeeper集群"><span class="nav-number">2.3.</span> <span class="nav-text">ZooKeeper集群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HRegionServer"><span class="nav-number">2.4.</span> <span class="nav-text">HRegionServer</span></a></li></ol></li></ol></div>
             
 
           </div>
