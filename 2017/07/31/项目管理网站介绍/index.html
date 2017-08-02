@@ -1,0 +1,1056 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="blog of xuxiaoping" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x8FD9;&amp;#x4E2A;&amp;#x9879;&amp;#x76EE;&amp;#x662F;&amp;#x5927;&amp;#x5B66;&amp;#x91CC;&amp;#x505A;&amp;#x7684;&amp;#x6700;&amp;#x540E;&amp;#x4E00;&amp;#x4E2A;&amp;#x5173;&amp;#x4E8E;PHP&amp;#x7684;&amp;#x9879;&amp;#x76EE;&amp;#x4E86;&amp;#xFF0C;&amp;#x73B0;&amp;#x5728;&amp;#x9664;&amp;#x4E">
+<meta property="og:type" content="article">
+<meta property="og:title" content="项目管理网站介绍">
+<meta property="og:url" content="https://xuxping.github.io/2017/07/31/项目管理网站介绍/index.html">
+<meta property="og:site_name" content="燕十">
+<meta property="og:description" content="&amp;#x8FD9;&amp;#x4E2A;&amp;#x9879;&amp;#x76EE;&amp;#x662F;&amp;#x5927;&amp;#x5B66;&amp;#x91CC;&amp;#x505A;&amp;#x7684;&amp;#x6700;&amp;#x540E;&amp;#x4E00;&amp;#x4E2A;&amp;#x5173;&amp;#x4E8E;PHP&amp;#x7684;&amp;#x9879;&amp;#x76EE;&amp;#x4E86;&amp;#xFF0C;&amp;#x73B0;&amp;#x5728;&amp;#x9664;&amp;#x4E">
+<meta property="og:image" content="https://xuxping.github.io/2017/07/31/项目管理网站介绍/E94611A7-13F7-49D6-AFA2-077B64056932.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/07/31/项目管理网站介绍/EFF12675-6D8A-4E42-9B96-C11C8A5F7B8D.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/07/31/项目管理网站介绍/24D65B12-474A-4D3F-B970-912E42202693.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/07/31/项目管理网站介绍/D605054E-1B3A-40C6-A69A-838C0FBE97D4.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/07/31/项目管理网站介绍/6E3BE9DF-52C2-497E-BEA5-1935E5F07E18.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/07/31/项目管理网站介绍/F06A89B5-1837-4A7C-9A20-5C4891E995FB.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/07/31/项目管理网站介绍/01D8F791-CBDB-47D1-B0A9-6127BE5370F6.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/07/31/项目管理网站介绍/CDBECB1C-24B1-4BE0-8B04-7B99211A5D87.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/07/31/项目管理网站介绍/39345D1B-2767-4965-8FF6-4079472CC905.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/07/31/项目管理网站介绍/79982ACB-B4BB-4C81-8F2B-EBCCD5D36DF7.png">
+<meta property="og:updated_time" content="2017-08-02T06:28:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="项目管理网站介绍">
+<meta name="twitter:description" content="&amp;#x8FD9;&amp;#x4E2A;&amp;#x9879;&amp;#x76EE;&amp;#x662F;&amp;#x5927;&amp;#x5B66;&amp;#x91CC;&amp;#x505A;&amp;#x7684;&amp;#x6700;&amp;#x540E;&amp;#x4E00;&amp;#x4E2A;&amp;#x5173;&amp;#x4E8E;PHP&amp;#x7684;&amp;#x9879;&amp;#x76EE;&amp;#x4E86;&amp;#xFF0C;&amp;#x73B0;&amp;#x5728;&amp;#x9664;&amp;#x4E">
+<meta name="twitter:image" content="https://xuxping.github.io/2017/07/31/项目管理网站介绍/E94611A7-13F7-49D6-AFA2-077B64056932.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xuxping.github.io/2017/07/31/项目管理网站介绍/"/>
+
+
+
+
+
+  <title> 项目管理网站介绍 | 燕十 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?63e9869095b914a79374d0c0eea48145";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">燕十</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <h1 class="site-subtitle" itemprop="description">一点一滴积累</h1>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/07/31/项目管理网站介绍/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="燕十">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="燕十">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="燕十" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                项目管理网站介绍
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-31T00:00:00+08:00">
+                2017-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/project/" itemprop="url" rel="index">
+                    <span itemprop="name">project</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/07/31/项目管理网站介绍/" class="leancloud_visitors" data-flag-title="项目管理网站介绍">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x8FD9;&#x4E2A;&#x9879;&#x76EE;&#x662F;&#x5927;&#x5B66;&#x91CC;&#x505A;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5173;&#x4E8E;PHP&#x7684;&#x9879;&#x76EE;&#x4E86;&#xFF0C;&#x73B0;&#x5728;&#x9664;&#x4E86;&#x5076;&#x5C14;&#x7EF4;&#x62A4;&#x4E0B;&#x5728;&#x516C;&#x53F8;&#x5F00;&#x53D1;&#x7684;PHP&#x7F51;&#x7AD9;,&#x57FA;&#x672C;&#x4E0A;&#x90FD;&#x4E0D;&#x4F7F;&#x7528;PHP&#x4E86;&#x3002;&#x6700;&#x8FD1;&#x6E05;&#x7406;&#x7535;&#x8111;&#x7A7A;&#x95F4;&#xFF0C;&#x53C8;&#x6316;&#x51FA;&#x4E86;&#x8FD9;&#x4E2A;&#x9879;&#x76EE;&#x3002;&#x4E3A;&#x4E86;&#x8868;&#x793A;&#x6211;&#x505A;&#x8FC7;&#xFF0C;&#x73B0;&#x5728;&#x53C8;&#x62FF;&#x51FA;&#x4E86;&#x6574;&#x7406;&#x4E00;&#x4E0B;&#xFF0C;&#x603B;&#x7ED3;&#x4E00;&#x4E0B;&#x628A;&#x3002;</p>
+<h2 id="&#x6280;&#x672F;&#x6846;&#x67B6;"><a href="#&#x6280;&#x672F;&#x6846;&#x67B6;" class="headerlink" title="&#x6280;&#x672F;&#x6846;&#x67B6;"></a>&#x6280;&#x672F;&#x6846;&#x67B6;</h2><p>&#x6574;&#x4E2A;&#x7F51;&#x7AD9;&#x91C7;&#x7528;&#x4E86;thinkphp5&#x6846;&#x67B6;&#xFF0C;Vue&#x7684;&#x524D;&#x7AEF;&#x6846;&#x67B6;element-u&#xFF0C;mongo&#x4EE5;&#x53CA;PHP&#x7684;excel&#x5305;phpexcle&#x505A;&#x51FA;&#x6765;&#xFF0C;&#x529F;&#x80FD;&#x5F88;&#x5C11;&#xFF0C;&#x8017;&#x7684;&#x65F6;&#x95F4;&#x4E5F;&#x4E0D;&#x591A;&#x3002;&#x7EC6;&#x8BF4;&#x7684;&#x8BDD;&#x5C31;&#x662F;&#x57FA;&#x4E8E;Vue&#x5168;&#x5BB6;&#x6876;(vue-router,vue-resource,vuex)&#x7B49;&#x5F00;&#x53D1;&#x7684;SPA&#x5E94;&#x7528;&#x3002;&#x6211;&#x4E5F;&#x662F;&#x8DDF;&#x4E0A;&#x4E86;&#x524D;&#x7AEF;&#x53D1;&#x5C55;&#x8D8B;&#x52BF;&#x7684;&#xFF0C;&#x5BF9;Vue&#x7684;&#x4F7F;&#x7528;&#x8FD8;&#x662F;&#x5F88;&#x719F;&#x6089;&#xFF0C;&#x6BD5;&#x7ADF;&#x4E4B;&#x524D;&#x4E00;&#x76F4;&#x5728;&#x4F7F;&#x7528;Vue&#x6A21;&#x4EFF;&#x80A1;&#x7968;&#x8F6F;&#x4EF6;&#x505A;K&#x7EBF;&#x56FE;&#x3002;</p>
+<p>&#x4E4B;&#x524D;&#x4E00;&#x76F4;&#x505A;PHP&#x5F00;&#x53D1;&#xFF0C;&#x505A;web&#x5F00;&#x53D1;&#xFF0C;&#x81EA;2017&#x5E74;&#x6765;&#x8F6C;&#x5165;&#x5230;Python&#x5F00;&#x53D1;&#xFF0C;&#x505A;&#x6570;&#x636E;&#x5904;&#x7406;&#x540E;&#xFF0C;&#x57FA;&#x672C;&#x4E0A;&#x6CA1;&#x6709;&#x7528;&#x8FC7;PHP&#x4E86;&#xFF0C;&#x8FD9;&#x4E2A;&#x9879;&#x76EE;&#x91C7;&#x7528;&#x7684;&#x6280;&#x672F;&#x76F8;&#x5F53;&#x4E8E;&#x5BF9;&#x4E4B;&#x524D;&#x81EA;&#x5DF1;&#x7684;&#x6280;&#x672F;&#x6808;&#x505A;&#x4E00;&#x4E2A;&#x603B;&#x7ED3;&#x3002;</p>
+<h2 id="&#x529F;&#x80FD;&#x6982;&#x89C8;"><a href="#&#x529F;&#x80FD;&#x6982;&#x89C8;" class="headerlink" title="&#x529F;&#x80FD;&#x6982;&#x89C8;"></a>&#x529F;&#x80FD;&#x6982;&#x89C8;</h2><p>&#x8BE5;&#x7CFB;&#x7EDF;&#x4E3B;&#x8981;&#x662F;&#x7528;&#x6765;&#x7BA1;&#x7406;&#x9879;&#x76EE;&#x7684;&#xFF0C;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#xFF0C;&#x7F16;&#x8F91;&#xFF0C;&#x4FEE;&#x6539;&#x3001;&#x5BFC;&#x5165;&#x9879;&#x76EE;&#x7684;&#x5F88;&#x591A;&#x5C5E;&#x6027;&#xFF0C;&#x63D0;&#x4F9B;&#x524D;&#x7AEF;&#x7684;&#x8868;&#x683C;&#x5C55;&#x793A;&#xFF0C;&#x5E76;&#x4E14;&#x5B58;&#x5165;&#x5230;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#xFF0C;&#x63D0;&#x4F9B;&#x9879;&#x76EE;&#x7684;&#x6A21;&#x7CCA;&#x67E5;&#x8BE2;&#x529F;&#x80FD;&#x3002;&#x6709;&#x70B9;&#x7C7B;&#x4F3C;&#x5C06;&#x90E8;&#x5206;excle&#x7684;&#x529F;&#x80FD;&#x642C;&#x5230;&#x4E86;Web&#x754C;&#x9762;&#x4E2D;&#x3002;<br><img src="/2017/07/31/&#x9879;&#x76EE;&#x7BA1;&#x7406;&#x7F51;&#x7AD9;&#x4ECB;&#x7ECD;/E94611A7-13F7-49D6-AFA2-077B64056932.png" alt=""><br>&#x5DE6;&#x4FA7;&#x7684;&#x83DC;&#x5355;&#x680F;&#x5217;&#x51FA;&#x4E86;&#x4E3B;&#x8981;&#x529F;&#x80FD;&#xFF1A;<br>1&#x3001;&#x9879;&#x76EE;&#x7BA1;&#x7406;&#xFF1A;&#x9879;&#x76EE;&#x65B0;&#x5EFA;&#x3001;excle&#x5BFC;&#x5165;&#x9879;&#x76EE;&#x6587;&#x4EF6;&#x3001;&#x6240;&#x6709;&#x9879;&#x76EE;<br>2&#x3001;&#x6807;&#x7B7E;&#x7BA1;&#x7406;&#xFF1A;&#x7F16;&#x8F91;&#x6807;&#x7B7E;<br>3&#x3001;&#x6210;&#x5458;&#x7BA1;&#x7406;&#xFF1A;&#x6DFB;&#x52A0;&#x6210;&#x5458;&#x3001;&#x6240;&#x6709;&#x6210;&#x5458;</p>
+<p>&#x4E0B;&#x9762;&#x4ECB;&#x7ECD;&#x6BCF;&#x4E2A;&#x529F;&#x80FD;</p>
+<h2 id="&#x6807;&#x7B7E;&#x7BA1;&#x7406;"><a href="#&#x6807;&#x7B7E;&#x7BA1;&#x7406;" class="headerlink" title="&#x6807;&#x7B7E;&#x7BA1;&#x7406;"></a>&#x6807;&#x7B7E;&#x7BA1;&#x7406;</h2><p>&#x53EF;&#x4EE5;&#x5BF9;&#x6807;&#x7B7E;&#x8FDB;&#x884C;&#x7F16;&#x8F91;&#x3001;&#x589E;&#x52A0;&#x548C;&#x5220;&#x9664;&#x3002;<br><img src="/2017/07/31/&#x9879;&#x76EE;&#x7BA1;&#x7406;&#x7F51;&#x7AD9;&#x4ECB;&#x7ECD;/EFF12675-6D8A-4E42-9B96-C11C8A5F7B8D.png" alt=""><br>&#x7F16;&#x8F91;&#x6807;&#x7B7E;&#x53EF;&#x4EE5;&#x6807;&#x8BB0;&#x6807;&#x7B7E;&#x5206;&#x7C7B;&#xFF0C;&#x6807;&#x7B7E;&#x540D;&#x79F0;&#x3001;&#x6807;&#x7B7E;&#x8BF4;&#x660E;&#x4EE5;&#x53CA;&#x9009;&#x62E9;&#x6807;&#x7B7E;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x5E76;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x5355;&#x9009;&#x548C;&#x591A;&#x9879;&#x7684;&#x9879;<br><img src="/2017/07/31/&#x9879;&#x76EE;&#x7BA1;&#x7406;&#x7F51;&#x7AD9;&#x4ECB;&#x7ECD;/24D65B12-474A-4D3F-B970-912E42202693.png" alt=""></p>
+<h2 id="&#x9879;&#x76EE;&#x7BA1;&#x7406;"><a href="#&#x9879;&#x76EE;&#x7BA1;&#x7406;" class="headerlink" title="&#x9879;&#x76EE;&#x7BA1;&#x7406;"></a>&#x9879;&#x76EE;&#x7BA1;&#x7406;</h2><p>&#x7F16;&#x8F91;&#x597D;&#x7684;&#x6807;&#x7B7E;&#x53EF;&#x4F5C;&#x4E3A;&#x521B;&#x5EFA;&#x9879;&#x76EE;&#x7684;&#x6A21;&#x677F;</p>
+<h3 id="1&#x3001;&#x521B;&#x5EFA;&#x9879;&#x76EE;"><a href="#1&#x3001;&#x521B;&#x5EFA;&#x9879;&#x76EE;" class="headerlink" title="1&#x3001;&#x521B;&#x5EFA;&#x9879;&#x76EE;"></a>1&#x3001;&#x521B;&#x5EFA;&#x9879;&#x76EE;</h3><p>&#x4F7F;&#x7528;&#x6A21;&#x677F;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x4E86;&#x8868;&#x5355;&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x8868;&#x5355;&#x7684;&#x7C7B;&#x578B;<br><img src="/2017/07/31/&#x9879;&#x76EE;&#x7BA1;&#x7406;&#x7F51;&#x7AD9;&#x4ECB;&#x7ECD;/D605054E-1B3A-40C6-A69A-838C0FBE97D4.png" alt=""></p>
+<h3 id="excle&#x5BFC;&#x5165;"><a href="#excle&#x5BFC;&#x5165;" class="headerlink" title="excle&#x5BFC;&#x5165;"></a>excle&#x5BFC;&#x5165;</h3><p>&#x53EF;&#x4EE5;&#x4ECE;&#x683C;&#x5F0F;&#x56FA;&#x5B9A;&#x7684;excle&#x4E2D;&#x89E3;&#x6790;&#x6570;&#x636E;&#x5BFC;&#x5165;web&#x7AEF;&#x7684;&#x8868;&#x683C;&#x4E2D;<br><img src="/2017/07/31/&#x9879;&#x76EE;&#x7BA1;&#x7406;&#x7F51;&#x7AD9;&#x4ECB;&#x7ECD;/6E3BE9DF-52C2-497E-BEA5-1935E5F07E18.png" alt=""><br>&#x66F4;&#x52A0;&#x8868;&#x683C;&#x7684;&#x8868;&#x5934;&#xFF0C;&#x540E;&#x53F0;&#x91C7;&#x7528;&#x4E86;PHPEXCEL&#x81EA;&#x52A8;&#x89E3;&#x6790;&#x8868;&#x683C;&#x6570;&#x636E;&#xFF0C;&#x5E76;&#x4F7F;&#x7528;Element-ui&#x7684;&#x8868;&#x683C;&#x7EC4;&#x4EF6;&#x5C06;&#x6570;&#x636E;&#x5C55;&#x73B0;&#x5728;web&#x7AEF;&#x3002;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x5206;&#x7C7B;&#x4FE1;&#x606F;&#xFF0C;&#x5404;&#x4E2A;&#x6570;&#x636E;&#x9879;&#x8FDB;&#x884C;&#x67E5;&#x8BE2;&#x3002;<br><img src="/2017/07/31/&#x9879;&#x76EE;&#x7BA1;&#x7406;&#x7F51;&#x7AD9;&#x4ECB;&#x7ECD;/F06A89B5-1837-4A7C-9A20-5C4891E995FB.png" alt=""><br>&#x53EF;&#x4EE5;&#x5BF9;&#x6BCF;&#x9879;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x7F16;&#x8F91;&#x4FEE;&#x6539;&#xFF0C;&#x5220;&#x9664;&#x3002;<br><img src="/2017/07/31/&#x9879;&#x76EE;&#x7BA1;&#x7406;&#x7F51;&#x7AD9;&#x4ECB;&#x7ECD;/01D8F791-CBDB-47D1-B0A9-6127BE5370F6.png" alt=""></p>
+<p>&#x6700;&#x540E;&#x53EF;&#x4EE5;&#x5C06;&#x4FEE;&#x6539;&#x597D;&#x7684;&#x6570;&#x636E;&#x5168;&#x90E8;&#x5BFC;&#x5165;&#x5230;&#x540E;&#x53F0;&#x7684;mongo&#x6570;&#x636E;&#x5E93;&#x4E2D;</p>
+<h3 id="&#x6240;&#x6709;&#x9879;&#x76EE;"><a href="#&#x6240;&#x6709;&#x9879;&#x76EE;" class="headerlink" title="&#x6240;&#x6709;&#x9879;&#x76EE;"></a>&#x6240;&#x6709;&#x9879;&#x76EE;</h3><p>&#x5F53;&#x7136;&#x4E5F;&#x53EF;&#x4EE5;&#x91C7;&#x53D6;&#x5206;&#x9875;&#x7684;&#x5F62;&#x5F0F;&#x4ECE;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x83B7;&#x53D6;&#x6240;&#x6709;&#x7684;&#x6570;&#x636E;&#x5E76;&#x5C55;&#x793A;&#xFF0C;&#x540C;&#x6837;&#x652F;&#x6301;&#x7F16;&#x8F91;&#xFF0C;&#x5220;&#x9664;&#xFF0C;<br><img src="/2017/07/31/&#x9879;&#x76EE;&#x7BA1;&#x7406;&#x7F51;&#x7AD9;&#x4ECB;&#x7ECD;/CDBECB1C-24B1-4BE0-8B04-7B99211A5D87.png" alt=""><br>&#x81EA;&#x5B9A;&#x4E49;&#x6A21;&#x7CCA;&#x67E5;&#x8BE2;<br><img src="/2017/07/31/&#x9879;&#x76EE;&#x7BA1;&#x7406;&#x7F51;&#x7AD9;&#x4ECB;&#x7ECD;/39345D1B-2767-4965-8FF6-4079472CC905.png" alt=""></p>
+<h2 id="&#x6210;&#x5458;&#x7BA1;&#x7406;"><a href="#&#x6210;&#x5458;&#x7BA1;&#x7406;" class="headerlink" title="&#x6210;&#x5458;&#x7BA1;&#x7406;"></a>&#x6210;&#x5458;&#x7BA1;&#x7406;</h2><p>&#x7BA1;&#x7406;&#x5458;&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;&#xFF0C;&#x67E5;&#x770B;&#x6210;&#x5458;&#xFF0C;&#x5E76;&#x8D4B;&#x4E88;&#x4E00;&#x4E9B;&#x6743;&#x9650;(&#x672A;&#x5B8C;&#x5584;)<br><img src="/2017/07/31/&#x9879;&#x76EE;&#x7BA1;&#x7406;&#x7F51;&#x7AD9;&#x4ECB;&#x7ECD;/79982ACB-B4BB-4C81-8F2B-EBCCD5D36DF7.png" alt=""></p>
+<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>&#x5F97;&#x76CA;&#x4E8E;Vue&#x7684;&#x524D;&#x7AEF;&#x6846;&#x67B6;Element-UI&#xFF0C;&#x6211;&#x624D;&#x80FD;&#x5728;&#x4E0D;&#x7F16;&#x5199;&#x4E00;&#x884C;css&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x505A;&#x51FA;&#x8FD9;&#x4E48;&#x597D;&#x770B;&#x7684;&#x754C;&#x9762;<br>&#x672C;&#x9879;&#x76EE;&#x4E2D;&#x6700;&#x96BE;&#x7684;&#x90E8;&#x5206;&#x5C31;&#x662F;excle&#x6570;&#x636E;&#x7684;&#x89E3;&#x6790;&#xFF0C;&#x6570;&#x636E;&#x7684;&#x4FDD;&#x5B58;&#x548C;&#x6570;&#x636E;&#x7684;&#x524D;&#x7AEF;&#x5C55;&#x793A;&#x3002;&#x901A;&#x8FC7;&#x6DF1;&#x5165;&#x7684;&#x7814;&#x7A76;Element-UI&#x7684;Table&#x7684;&#x8868;&#x683C;&#x5C55;&#x793A;&#x624D;&#x5B8C;&#x6210;&#x4E86;&#x597D;&#x770B;&#x7684;&#x8868;&#x683C;&#xFF0C;&#x5E76;&#x8FDB;&#x884C;&#x4E86;&#x8868;&#x683C;&#x4F18;&#x5316;&#xFF0C;&#x624D;&#x80FD;&#x662F;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x4E2D;&#x5C55;&#x793A;&#x7C7B;&#x578B;excle&#x7684;&#x8868;&#x683C;&#x3002;<br>&#x671F;&#x95F4;&#x5BF9;PHP&#x8BFB;&#x53D6;excle&#x7684;&#x4EE3;&#x7801;&#x8FDB;&#x884C;&#x4E86;&#x5F88;&#x591A;&#x7684;&#x4F18;&#x5316;&#xFF0C;&#x81EA;&#x52A8;&#x7684;&#x89E3;&#x6790;&#x8868;&#x683C;&#x7684;&#x5934;&#x90E8;&#x5B57;&#x6BB5;&#xFF0C;&#x4E3B;&#x4F53;&#x6570;&#x636E;&#x7B49;.</p>
+<p>&#x8FD9;&#x662F;thinkphp5&#x51FA;&#x6765;&#x4E4B;&#x540E;&#xFF0C;&#x6211;&#x9996;&#x6B21;&#x5C1D;&#x8BD5;&#x4F7F;&#x7528;thinkphp5&#x4F5C;&#x4E3A;&#x540E;&#x7AEF;&#x4EE3;&#x7801;&#x3002;thinkphp5&#x76F8;&#x5BF9;&#x4E8E;thinkphp3&#x6539;&#x52A8;&#x7684;&#x592A;&#x591A;&#xFF0C;&#x57FA;&#x672C;&#x4E0A;&#x5168;&#x90E8;&#x63A8;&#x7FFB;&#x91CD;&#x6784;&#xFF0C;&#x5B98;&#x65B9;&#x7684;&#x53E3;&#x53F7;&#x662F;&#x66F4;&#x9002;&#x5408;&#x4E8E;api&#x7684;&#x5FEB;&#x901F;&#x5F00;&#x53D1;&#x3002;&#x53EF;&#x559C;&#x7684;&#x662F;thinkphp5&#x4E0D;&#x65AD;&#x5438;&#x6536;&#x5148;&#x8FDB;&#x7684;&#x5F00;&#x53D1;&#x601D;&#x60F3;&#x5E76;&#x52A0;&#x5165;&#x4E86;composer&#x5305;&#x7BA1;&#x7406;&#xFF0C;&#x53EF;&#x4EE5;&#x8BF4;&#x662F;&#x7EC8;&#x4E8E;&#x8FDB;&#x6B65;&#x4E86;&#x3002;&#x4F46;&#x662F;thinkphp&#x8FD8;&#x662F;&#x4E0D;&#x80FD;&#x5AB2;&#x7F8E;lavaral&#x6846;&#x67B6;&#xFF0C;&#x843D;&#x540E;&#x5B9E;&#x5728;&#x592A;&#x591A;&#x4E86;&#x3002;&#x5982;&#x679C;&#x4E0D;&#x662F;&#x4E3A;&#x4E86;&#x5FEB;&#x901F;&#x7684;&#x5F00;&#x53D1;&#xFF0C;&#x6211;&#x5C31;&#x4F1A;&#x9009;&#x62E9;Lavaral&#x6846;&#x67B6;&#x4E86;&#x5427;&#x3002;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="燕十 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.jpg" alt="燕十 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/30/HBase集群启动流程/" rel="next" title="（二）HBase集群启动流程分析">
+                <i class="fa fa-chevron-left"></i> （二）HBase集群启动流程分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTM1MC81OTE4"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="燕十" />
+          <p class="site-author-name" itemprop="name">燕十</p>
+          <p class="site-description motion-element" itemprop="description">没有现在的苟且，哪有诗和远方</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/bae0010d3ad7" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-jianshu"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://aolong.me/" title="李英豪" target="_blank">李英豪</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#技术框架"><span class="nav-number">1.</span> <span class="nav-text">技术框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#功能概览"><span class="nav-number">2.</span> <span class="nav-text">功能概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标签管理"><span class="nav-number">3.</span> <span class="nav-text">标签管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目管理"><span class="nav-number">4.</span> <span class="nav-text">项目管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、创建项目"><span class="nav-number">4.1.</span> <span class="nav-text">1、创建项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#excle导入"><span class="nav-number">4.2.</span> <span class="nav-text">excle导入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#所有项目"><span class="nav-number">4.3.</span> <span class="nav-text">所有项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#成员管理"><span class="nav-number">5.</span> <span class="nav-text">成员管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">燕十</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("nS56sCOObSDXpwL7elK0Mrzy-gzGzoHsz", "oibCqinbWpGdjKRGRkLj2gMR");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
