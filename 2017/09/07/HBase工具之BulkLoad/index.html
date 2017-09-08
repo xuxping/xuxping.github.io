@@ -1,0 +1,1057 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="HBase," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x4F7F;&amp;#x7528;BulkLoad&amp;#x662F;&amp;#x7531;&amp;#x4E8E;&amp;#x5B9E;&amp;#x9645;&amp;#x4E1A;&amp;#x52A1;&amp;#x7684;&amp;#x9700;&amp;#x8981;&amp;#xFF0C;&amp;#x4E4B;&amp;#x524D;&amp;#x80A1;&amp;#x5E02;&amp;#x7684;&amp;#x5386;&amp;#x53F2;&amp;#x6570;&amp;#x636E;&amp;#x662F;&amp;#x4E00;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="（五）HBase工具之BulkLoad">
+<meta property="og:url" content="https://xuxping.github.io/2017/09/07/HBase工具之BulkLoad/index.html">
+<meta property="og:site_name" content="燕十三">
+<meta property="og:description" content="&amp;#x4F7F;&amp;#x7528;BulkLoad&amp;#x662F;&amp;#x7531;&amp;#x4E8E;&amp;#x5B9E;&amp;#x9645;&amp;#x4E1A;&amp;#x52A1;&amp;#x7684;&amp;#x9700;&amp;#x8981;&amp;#xFF0C;&amp;#x4E4B;&amp;#x524D;&amp;#x80A1;&amp;#x5E02;&amp;#x7684;&amp;#x5386;&amp;#x53F2;&amp;#x6570;&amp;#x636E;&amp;#x662F;&amp;#x4E00;">
+<meta property="og:image" content="https://xuxping.github.io/2017/09/07/HBase工具之BulkLoad/BA9BD3DF-9DF5-4095-98E4-27DCB2F1E5F0.png">
+<meta property="og:updated_time" content="2017-09-08T15:26:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="（五）HBase工具之BulkLoad">
+<meta name="twitter:description" content="&amp;#x4F7F;&amp;#x7528;BulkLoad&amp;#x662F;&amp;#x7531;&amp;#x4E8E;&amp;#x5B9E;&amp;#x9645;&amp;#x4E1A;&amp;#x52A1;&amp;#x7684;&amp;#x9700;&amp;#x8981;&amp;#xFF0C;&amp;#x4E4B;&amp;#x524D;&amp;#x80A1;&amp;#x5E02;&amp;#x7684;&amp;#x5386;&amp;#x53F2;&amp;#x6570;&amp;#x636E;&amp;#x662F;&amp;#x4E00;">
+<meta name="twitter:image" content="https://xuxping.github.io/2017/09/07/HBase工具之BulkLoad/BA9BD3DF-9DF5-4095-98E4-27DCB2F1E5F0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xuxping.github.io/2017/09/07/HBase工具之BulkLoad/"/>
+
+
+
+
+
+  <title> （五）HBase工具之BulkLoad | 燕十三 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?63e9869095b914a79374d0c0eea48145";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">燕十三</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <h1 class="site-subtitle" itemprop="description">一点一滴积累</h1>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/09/07/HBase工具之BulkLoad/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="燕十三">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="燕十三">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="燕十三" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                （五）HBase工具之BulkLoad
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-07T20:20:00+08:00">
+                2017-09-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/入坑HBase系列文章/" itemprop="url" rel="index">
+                    <span itemprop="name">入坑HBase系列文章</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/09/07/HBase工具之BulkLoad/" class="leancloud_visitors" data-flag-title="（五）HBase工具之BulkLoad">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x4F7F;&#x7528;BulkLoad&#x662F;&#x7531;&#x4E8E;&#x5B9E;&#x9645;&#x4E1A;&#x52A1;&#x7684;&#x9700;&#x8981;&#xFF0C;&#x4E4B;&#x524D;&#x80A1;&#x5E02;&#x7684;&#x5386;&#x53F2;&#x6570;&#x636E;&#x662F;&#x4E00;&#x6761;&#x4E00;&#x6761;&#x7684;&#x63D2;&#x5165;&#x5230;HBase&#x4E2D;&#xFF0C;&#x6BCF;&#x4E2A;&#x6708;&#x5E95;&#x90FD;&#x9700;&#x8981;&#x63D2;&#x5165;&#x5927;&#x7EA6;200G&#x7684;&#x6570;&#x636E;&#xFF0C;&#x63A5;&#x8FD1;10&#x4EBF;&#x6761;&#x8BB0;&#x5F55;&#x3002;&#x5728;&#x63D2;&#x5165;&#x8FC7;&#x7A0B;&#x4E2D;&#x9700;&#x8981;&#x5360;&#x7528;&#x5927;&#x91CF;&#x7684;IO&#x8D44;&#x6E90;&#xFF0C;&#x6781;&#x5927;&#x5F71;&#x54CD;&#x4E86;&#x73B0;&#x6709;&#x7684;&#x5B9E;&#x65F6;&#x6570;&#x636E;&#x5165;&#x5E93;&#x4E1A;&#x52A1;&#x7684;&#x6548;&#x7387;&#x3002;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x5BFB;&#x627E;&#x4E00;&#x79CD;&#x66FF;&#x4EE3;&#x7684;&#x65B9;&#x6848;&#x6765;&#x5728;&#x4E0D;&#x5F71;&#x54CD;&#x73B0;&#x6709;&#x4E1A;&#x52A1;&#x7684;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x4E0D;&#x5360;&#x7528;&#x5927;&#x91CF;&#x96C6;&#x7FA4;&#x8D44;&#x6E90;&#xFF0C;&#x5FEB;&#x901F;&#x9AD8;&#x6548;&#x7684;&#x63D2;&#x5165;&#x5927;&#x91CF;&#x7684;&#x6570;&#x636E;&#x3002;&#x672C;&#x6587;&#x4E3B;&#x8981;&#x4ECB;&#x7ECD;&#x4E86;BulkLoad&#x7684;&#x5DE5;&#x4F5C;&#x673A;&#x5236;&#x548C;&#x5E94;&#x7528;&#xFF0C;&#x4EE5;&#x53CA;&#x5728;&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;&#x4E2D;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x6700;&#x540E;&#x7B80;&#x8981;&#x5206;&#x6790;&#x4E86;BulkLoad&#x7684;&#x6E90;&#x7801;&#x6B65;&#x9AA4;&#x3002;<br><a id="more"></a></p>
+<h2 id="BulkLoad&#x7B80;&#x4ECB;"><a href="#BulkLoad&#x7B80;&#x4ECB;" class="headerlink" title="BulkLoad&#x7B80;&#x4ECB;"></a>BulkLoad&#x7B80;&#x4ECB;</h2><p>HBase&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x591A;&#x79CD;&#x65B9;&#x5F0F;&#x5C06;&#x6570;&#x636E;&#x52A0;&#x8F7D;&#x5230;&#x8868;&#x4E2D;&#xFF0C;&#x6700;&#x76F4;&#x63A5;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#x4F7F;&#x7528;MapReduce&#x4F5C;&#x4E1A;&#x4E2D;&#x7684;TableOutputFormat&#x7C7B;&#xFF0C;&#x6216;&#x8005;&#x4F7F;&#x7528;&#x666E;&#x901A;&#x7684;&#x5BA2;&#x6237;&#x7AEF;API&#x3002;&#x4F46;&#x662F;&#x8FD9;&#x4E9B;&#x5E76;&#x4E0D;&#x603B;&#x662F;&#x6700;&#x6709;&#x6548;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x6D89;&#x53CA;&#x5230;&#x7684;flush,split,compaction&#x7B49;&#x64CD;&#x4F5C;&#x90FD;&#x5BB9;&#x6613;&#x9020;&#x6210;&#x8282;&#x70B9;&#x4E0D;&#x7A33;&#x5B9A;&#xFF0C;&#x6570;&#x636E;&#x5BFC;&#x5165;&#x6162;&#xFF0C;&#x8017;&#x8D39;&#x8D44;&#x6E90;&#x7B49;&#x95EE;&#x9898;&#xFF0C;&#x5728;&#x6D77;&#x91CF;&#x6570;&#x636E;&#x7684;&#x5BFC;&#x5165;&#x8FC7;&#x7A0B;&#x6781;&#x5927;&#x7684;&#x6D88;&#x8017;&#x4E86;&#x7CFB;&#x7EDF;&#x6027;&#x80FD;&#x3002;</p>
+<p>BulkLoad&#x529F;&#x80FD;&#x4F7F;&#x7528;MapReduce&#x4F5C;&#x4E1A;&#x76F4;&#x63A5;&#x5728; HDFS &#x4E2D;&#x751F;&#x6210;&#x6301;&#x4E45;&#x5316;&#x7684; HFile &#x6570;&#x636E;&#x683C;&#x5F0F;&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x751F;&#x6210;&#x7684;HFile&#x76F4;&#x63A5;&#x52A0;&#x8F7D;&#x5230;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#x7684;&#x96C6;&#x7FA4;&#x4E2D;&#xFF0C;&#x4ECE;&#x800C;&#x5B8C;&#x6210;&#x5DE8;&#x91CF;&#x6570;&#x636E;&#x5FEB;&#x901F;&#x5165;&#x5E93;&#x7684;&#x64CD;&#x4F5C;&#x3002;&#x914D;&#x5408; MapReduce &#x5B8C;&#x6210;&#x8FD9;&#x6837;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x4E0D;&#x5360;&#x7528; Region &#x8D44;&#x6E90;&#xFF0C;&#x4E0D;&#x4F1A;&#x4EA7;&#x751F;&#x5DE8;&#x91CF;&#x7684;&#x5199;&#x5165; I/O&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x8F83;&#x5C11;&#x7684; CPU &#x548C;&#x7F51;&#x7EDC;&#x8D44;&#x6E90;&#x3002;</p>
+<p>&#x4F46;&#x662F;BulkLoad&#x4E5F;&#x6709;&#x5C40;&#x9650;&#xFF0C;&#x6B63;&#x5E38;&#x7684;&#x5199;&#x5165;&#x662F;&#x5148;&#x5199;WAL&#xFF0C;&#x7136;&#x540E;&#x5728;&#x5199;memstore&#xFF0C;&#x800C;BulkLoad&#x6CA1;&#x6709;&#x5199;WAL&#x8FD9;&#x4E00;&#x6B65;&#xFF0C;&#x56E0;&#x6B64;&#x5728;BulkLoad&#x51FA;&#x73B0;&#x5F02;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;HBase&#x53EF;&#x65E0;&#x6CD5;&#x6062;&#x590D;&#x8FD8;&#x672A;&#x6301;&#x4E45;&#x5316;&#x7684;&#x6570;&#x636E;&#x3002;&#x80A1;&#x5E02;&#x6570;&#x636E;&#x8981;&#x6C42;&#x4E25;&#x683C;&#xFF0C;&#x4E0D;&#x80FD;&#x4E22;&#x4EFB;&#x610F;&#x4E00;&#x6761;&#x8BB0;&#x5F55;&#x3002;&#x56E0;&#x6B64;BulkLoad&#x7684;&#x5C40;&#x9650;&#x5BF9;&#x5176;&#x6709;&#x5F88;&#x5927;&#x7684;&#x5F71;&#x54CD;&#x3002;&#x5982;&#x679C;&#x51FA;&#x73B0;&#x6570;&#x636E;&#x7F3A;&#x5C11;&#x5C31;&#x8981;&#x91C7;&#x7528;&#x5176;&#x5B83;&#x529E;&#x6CD5;&#x4E86;&#x3002;</p>
+<h2 id="BulkLoad&#x7684;&#x539F;&#x7406;&#x548C;&#x6D41;&#x7A0B;"><a href="#BulkLoad&#x7684;&#x539F;&#x7406;&#x548C;&#x6D41;&#x7A0B;" class="headerlink" title="BulkLoad&#x7684;&#x539F;&#x7406;&#x548C;&#x6D41;&#x7A0B;"></a>BulkLoad&#x7684;&#x539F;&#x7406;&#x548C;&#x6D41;&#x7A0B;</h2><p>&#x4F7F;&#x7528;BulkLoad&#x9700;&#x8981;&#x4E24;&#x4E2A;&#x8FC7;&#x7A0B;&#xFF1A;<br>1&#x3001;Transform&#x9636;&#x6BB5;&#xFF1A;&#x4F7F;&#x7528;MapReduce&#x5C06;HDFS&#x4E0A;&#x7684;&#x6570;&#x636E;&#x751F;&#x6210;&#x6210;HBase&#x7684;&#x5E95;&#x5C42;Hfile&#x6570;&#x636E;&#x3002;<br>2&#x3001;Load&#x9636;&#x6BB5;&#xFF1A;&#x6839;&#x636E;&#x751F;&#x6210;&#x7684;&#x76EE;&#x6807;HFile&#xFF0C;&#x5229;&#x7528;HBase&#x63D0;&#x4F9B;&#x7684;BulkLoad&#x5DE5;&#x5177;&#x5C06;HFile Load&#x5230;HBase&#x76EE;&#x5F55;&#x4E0B;&#x9762;&#x3002;<br><img src="/2017/09/07/HBase&#x5DE5;&#x5177;&#x4E4B;BulkLoad/BA9BD3DF-9DF5-4095-98E4-27DCB2F1E5F0.png" alt=""></p>
+<p>&#x4E0B;&#x9762;&#x4F7F;&#x7528;&#x7CBE;&#x7B80;&#x5316;&#x7801;&#x6765;&#x8BF4;&#x660E;&#x6574;&#x4E2A;&#x8FC7;&#x7A0B;&#x3002;</p>
+<h3 id="Transform&#x9636;&#x6BB5;"><a href="#Transform&#x9636;&#x6BB5;" class="headerlink" title="Transform&#x9636;&#x6BB5;"></a>Transform&#x9636;&#x6BB5;</h3><p>&#x7F16;&#x5199;Mapper&#xFF0C;&#x5BF9;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x7B80;&#x5355;&#x7684;&#x5904;&#x7406;&#x751F;&#x6210;rowkey,put&#x8F93;&#x51FA;<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> BulkLoadMapper extends Mapper&lt;LongWritable, Text, ImmutableBytesWritable, Put&gt; {</div><div class="line">        @Override</div><div class="line">        <span class="keyword">protected</span> <span class="keyword">void</span> <span class="built_in">map</span>(LongWritable key, Text value, Context context) throws IOException, InterruptedException {</div><div class="line">            <span class="keyword">String</span> <span class="built_in">line</span> = value.toString();</div><div class="line">            <span class="keyword">String</span>[] items = <span class="built_in">line</span>.split(<span class="string">&quot;,&quot;</span>);</div><div class="line">                <span class="keyword">String</span> code = <span class="keyword">String</span>.join(<span class="string">&quot;&quot;</span>, items[<span class="number">1</span>].split(<span class="string">&quot;\\.&quot;</span>));</div><div class="line">                <span class="keyword">String</span> row = code + items[<span class="number">2</span>] + items[<span class="number">3</span>] + items[<span class="number">4</span>];</div><div class="line">				  <span class="comment">// &#x751F;&#x6210;rowKey</span></div><div class="line">                ImmutableBytesWritable rowKey = <span class="keyword">new</span> ImmutableBytesWritable(row.getBytes());</div><div class="line">                Put <span class="built_in">put</span> = <span class="keyword">new</span> Put(Bytes.toBytes(row));   <span class="comment">//ROWKEY</span></div><div class="line">				  <span class="comment">// &#x6DFB;&#x52A0;&#x6570;&#x636E;</span></div><div class="line">                <span class="built_in">put</span>.addColumn(Bytes.toBytes(<span class="string">&quot;cf&quot;</span>), Bytes.toBytes(<span class="string">&quot;w&quot;</span>),</div><div class="line">                        Bytes.toBytes(<span class="built_in">line</span>));</div><div class="line">                context.<span class="built_in">write</span>(rowKey, <span class="built_in">put</span>);</div><div class="line">        }</div><div class="line">    }</div></pre></td></tr></table></figure></p>
+<h3 id="Load&#x9636;&#x6BB5;"><a href="#Load&#x9636;&#x6BB5;" class="headerlink" title="Load&#x9636;&#x6BB5;"></a>Load&#x9636;&#x6BB5;</h3><p>&#x5C06;MapReduce&#x7684;&#x8F93;&#x51FA;HFile&#x52A0;&#x8F7D;&#x5230;HBase&#xFF0C;<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> loadIncrementalHFileToHBase(<span class="keyword">final</span> Configuration configuration, <span class="keyword">final</span> <span class="keyword">String</span> tableName, <span class="keyword">final</span> <span class="keyword">String</span> descPath) <span class="keyword">throws</span> Exception {</div><div class="line">        LoadIncrementalHFiles loder = <span class="keyword">new</span> LoadIncrementalHFiles(configuration);</div><div class="line">        loder.doBulkLoad(<span class="keyword">new</span> Path(descPath), <span class="keyword">new</span> HTable(configuration, tableName));</div><div class="line">        System.out.<span class="built_in">println</span>(<span class="string">&quot;Bulk Load Completed..&quot;</span>);</div><div class="line">    }</div></pre></td></tr></table></figure></p>
+<p>&#x6700;&#x540E;&#x9700;&#x8981;&#x7F16;&#x5199;Job&#x9A71;&#x52A8;&#x7A0B;&#x5E8F;&#xFF0C;&#x53EF;&#x4EE5;&#x4E0D;&#x7528;&#x8BBE;&#x7F6E;reducer&#xFF0C;&#x4F46;&#x9700;&#x8981;HFileOutputFormat2.class&#x6765;&#x683C;&#x5F0F;&#x5316;&#x8F93;&#x51FA;&#x3002;<br><figure class="highlight cos"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">public static void bulkLoadDriver(final String tableName, final String srcPath, final String descPath)</div><div class="line">            throws Exception {</div><div class="line">        Configuration configuration = HBaseConfiguration.create()<span class="comment">;</span></div><div class="line">        <span class="keyword">Job</span> <span class="keyword">job</span> = <span class="keyword">Job</span>.getInstance(configuration)<span class="comment">;</span></div><div class="line">        <span class="keyword">job</span>.setJarByClass(BulkLoadImport.<span class="keyword">class</span>)<span class="comment">;</span></div><div class="line">        <span class="keyword">job</span>.setMapperClass(BulkLoadMapper.<span class="keyword">class</span>)<span class="comment">;</span></div><div class="line">        <span class="comment">// &#x8F93;&#x51FA;&#x7684;Key-Value&#x683C;&#x5F0F;</span></div><div class="line">        <span class="keyword">job</span>.setMapOutputKeyClass(ImmutableBytesWritable.<span class="keyword">class</span>)<span class="comment">;</span></div><div class="line">        <span class="keyword">job</span>.setMapOutputValueClass(Put.<span class="keyword">class</span>)<span class="comment">;</span></div><div class="line">		 <span class="comment">// &#x4F7F;&#x7528;HFileOutputFormat2.class&#x6765;&#x683C;&#x5F0F;&#x5316;&#x8F93;&#x51FA;</span></div><div class="line">        <span class="keyword">job</span>.setOutputFormatClass(HFileOutputFormat2.<span class="keyword">class</span>)<span class="comment">;</span></div><div class="line">        HTable table = <span class="keyword">new</span> HTable(configuration, tableName)<span class="comment">;</span></div><div class="line">        <span class="comment">// table.getRegionLocator() &#x51B3;&#x5B9A;&#x4E86;Reducer&#x7684;&#x6570;&#x91CF;</span></div><div class="line">        HFileOutputFormat2.configureIncrementalLoad(<span class="keyword">job</span>, table, table.getRegionLocator())<span class="comment">;</span></div><div class="line">        FileInputFormat.addInputPath(<span class="keyword">job</span>, <span class="keyword">new</span> Path(srcPath))<span class="comment">;</span></div><div class="line">        FileOutputFormat.setOutputPath(<span class="keyword">job</span>, <span class="keyword">new</span> Path(descPath))<span class="comment">;</span></div><div class="line">        <span class="comment">// &#x8FD0;&#x884C;mapreduce&#x540E;&#xFF0C;&#x76F4;&#x63A5;load</span></div><div class="line">        <span class="keyword">if</span> (<span class="keyword">job</span>.waitForCompletion(true)) {</div><div class="line">            <span class="comment">// &#x8BA1;&#x7B97;&#x5904;&#x7406;&#x7684;&#x8BB0;&#x5F55;&#x6761;&#x6570;</span></div><div class="line">            Counter counter = <span class="keyword">job</span>.getCounters().findCounter(TaskCounter.MAP_OUTPUT_RECORDS)<span class="comment">;</span></div><div class="line">            LOG.info(<span class="string">&quot;job finished, total &quot;</span> + counter.getValue() + <span class="string">&quot; records!&quot;</span>)<span class="comment">;</span></div><div class="line">            loadIncrementalHFileToHBase(configuration, tableName, descPath)<span class="comment">;</span></div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            System.out.println(<span class="string">&quot;jobs run errors&quot;</span>)<span class="comment">;</span></div><div class="line">        }</div><div class="line">    }</div></pre></td></tr></table></figure></p>
+<p>&#x6CE8;&#x610F;&#x70B9;&#xFF1A;&#x5728;&#x5EFA;&#x8868;&#x65F6;&#xFF0C;&#x6700;&#x597D;&#x8FDB;&#x884C;&#x9884;&#x5206;&#x533A;&#xFF0C;&#x901A;&#x8FC7;HFileOutputFormat2&#x4E2D;&#x4EE3;&#x7801;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;&#x9884;&#x5206;&#x533A;&#x7684;&#x6570;&#x91CF;&#x51B3;&#x5B9A;&#x4E86;job&#x7684;Reducer&#x7684;&#x6570;&#x91CF;&#x3002;&#x56E0;&#x6B64;&#x9884;&#x5206;&#x533A;&#x80FD;&#x591F;&#x63D0;&#x9AD8;Reducer&#x7684;&#x6548;&#x7387;&#x3002;<br><figure class="highlight sqf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">List</span>&lt;ImmutableBytesWritable&gt; startKeys = getRegionStartKeys(regionLocator);</div><div class="line">    <span class="built_in">LOG</span>.info(<span class="string">&quot;Configuring &quot;</span> + startKeys.<span class="built_in">size</span>() + <span class="string">&quot; reduce partitions &quot;</span> +</div><div class="line">        <span class="string">&quot;to match current region count&quot;</span>);</div><div class="line">    job.setNumReduceTasks(startKeys.<span class="built_in">size</span>());</div></pre></td></tr></table></figure></p>
+<h2 id="BulkLoad&#x6E90;&#x7801;&#x8FC7;&#x7A0B;&#x7B80;&#x8FF0;"><a href="#BulkLoad&#x6E90;&#x7801;&#x8FC7;&#x7A0B;&#x7B80;&#x8FF0;" class="headerlink" title="BulkLoad&#x6E90;&#x7801;&#x8FC7;&#x7A0B;&#x7B80;&#x8FF0;"></a>BulkLoad&#x6E90;&#x7801;&#x8FC7;&#x7A0B;&#x7B80;&#x8FF0;</h2><p>&#x7A0B;&#x5E8F;&#x4E2D;&#x8C03;&#x7528;&#x4E86;LoadIncrementalHFiles&#x7684;doBulkLoad&#x65B9;&#x6CD5;&#x8FDB;&#x884C;HFile&#x7684;&#x79FB;&#x52A8;&#x3002;&#x5176;&#x4E3B;&#x8981;&#x6D41;&#x7A0B;&#x5982;&#x4E0B;&#xFF1A;<br>1&#x3001;&#x521D;&#x59CB;&#x5316;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x6C60;&#xFF0C;&#x8BBE;&#x7F6E;&#x7EBF;&#x7A0B;&#x7684;&#x6700;&#x5927;&#x6570;&#x91CF;<br>2&#x3001;&#x6839;&#x636E;&#x53C2;&#x6570;&#x83B7;&#x53D6;&#x662F;&#x5426;&#x5BF9;HFile&#x7684;&#x683C;&#x5F0F;&#x8FDB;&#x884C;&#x9A8C;&#x8BC1;<br>3&#x3001;&#x521D;&#x59CB;&#x5316;&#x4E00;&#x4E2A;queue&#xFF0C;&#x7136;&#x540E;&#x904D;&#x5386;MapReduce&#x8F93;&#x51FA;&#x7684;&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x6240;&#x6709;HFIles&#x6587;&#x4EF6;&#xFF0C;&#x4E3A;&#x6BCF;&#x4E00;&#x4E2A;HFile&#x5305;&#x88C5;&#x4E00;&#x4E2A;LoadQueueItem&#xFF0C;&#x5E76;&#x52A0;&#x5165;&#x5230;queue&#x4E2D;<br>4&#x3001;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x6709;&#x975E;&#x6CD5;&#x7684;&#x5217;&#x7C07;&#x540D;<br>5&#x3001;&#x904D;&#x5386;&#x961F;&#x5217;&#xFF0C;&#x5C1D;&#x8BD5;&#x5C06;HFie&#x52A0;&#x8F7D;&#x5230;&#x4E00;&#x4E2A;region&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x5931;&#x8D25;&#xFF0C;&#x5B83;&#x5C06;&#x8FD4;&#x56DE;&#x9700;&#x8981;&#x91CD;&#x8BD5;&#x7684;HFie&#x5217;&#x8868;&#x3002;&#x5982;&#x679C;&#x6210;&#x529F;&#xFF0C;&#x5B83;&#x5C06;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x7A7A;&#x5217;&#x8868;&#xFF0C;&#x6574;&#x4E2A;&#x8FC7;&#x7A0B;&#x662F;&#x539F;&#x5B50;&#x6027;&#x7684;&#x3002;<br>6&#x3001;&#x4ECE;RegionServer&#x4E2D;&#x83B7;&#x53D6;&#x5230;Region&#x7684;&#x540D;&#x79F0;&#x540E;&#xFF0C;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x5B89;&#x5168;&#x7684;&#x4F7F;&#x7528;BulkLoad&#x3002;&#x5982;&#x679C;&#x4E3A;False&#xFF0C;&#x5219;&#x4F7F;&#x7528;ProtobufUtil&#x7684;bulkLoadHFile&#x3002;&#x5426;&#x5219;&#x5C06;&#x4F7F;&#x7528;SecureBulkLoadClient&#x7684;bulkLoadHFile&#xFF0C;&#x5C06;HFile Load&#x5230;HBase&#x76EE;&#x5F55;&#x4E0B;&#x9762;&#x3002;<br>7&#x3001;&#x5982;&#x679C;HFile&#x7684;BulkLoad&#x5931;&#x8D25;&#x4E86;&#xFF0C;&#x5C06;&#x4F1A;&#x5C1D;&#x8BD5;&#x5C06;&#x5931;&#x8D25;&#x7684;HFile&#x5C06;&#x91CD;&#x65B0;&#x79FB;&#x56DE;&#x539F;&#x6765;&#x7684;&#x4F4D;&#x7F6E;&#x3002;</p>
+<p>&#x5176;&#x4E2D;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x6709;&#xFF1A;<br>1&#x3001;&#x5F53;HFile&#x7684;&#x6570;&#x91CF;&#x6781;&#x5927;&#x65F6;&#xFF0C;&#x68C0;&#x67E5;HFile&#x7684;&#x683C;&#x5F0F;&#x5C06;&#x4F1A;&#x6210;&#x4E3A;&#x6700;&#x8017;&#x65F6;&#x7684;&#x9636;&#x6BB5;&#x3002;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;<code>hbase.loadincremental.validate.hfile</code>&#x6765;&#x51B3;&#x5B9A;&#x662F;&#x5426;&#x5BF9;HFile&#x7684;&#x683C;&#x5F0F;&#x8FDB;&#x884C;&#x68C0;&#x67E5;&#xFF08;&#x53EF;&#x89C1;<a href="https://issues.apache.org/jira/browse/HBASE-13985" target="_blank" rel="external">HBASE-13985</a>&#xFF09;<br>2&#x3001;BulkLoad&#x9636;&#x6BB5;&#x4E2D;&#xFF0C;&#x91C7;&#x7528;Callable&#x548C;Future&#x5B9E;&#x73B0;&#x5E76;&#x53D1;&#xFF0C;&#x4E00;&#x4F46;BulkLoad&#x5931;&#x8D25;&#xFF0C;HFile&#x9700;&#x8981;&#x91CD;&#x65B0;&#x6392;&#x961F;&#xFF0C;&#x7136;&#x540E;&#x91CD;&#x8BD5;&#x3002;&#x91CD;&#x8BD5;&#x6B21;&#x6570;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;<code>hbase.client.retries.number</code>&#x8FDB;&#x884C;&#x8BBE;&#x7F6E;&#xFF0C;HBase1.2.5&#x4E2D;&#x9ED8;&#x8BA4;&#x4E3A;31&#x6B21;&#x3002;<br>3&#x3001;BulkLoad&#x8FC7;&#x7A0B;&#x7ED3;&#x675F;&#x540E;&#xFF0C;&#x4F1A;&#x53D1;&#x73B0;MapReduce&#x8F93;&#x51FA;&#x76EE;&#x5F55;&#x4E0B;&#x7684;HFile&#x6587;&#x4EF6;&#x90FD;&#x88AB;&#x79FB;&#x8D70;&#x4E86;&#xFF0C;&#x8BF4;&#x660E;&#x5168;&#x90E8;&#x7684;HFile&#x90FD;&#x5BFC;&#x5165;&#x6210;&#x529F;&#x3002;&#x5982;&#x679C;&#x60F3;&#x8981;&#x8BD5;&#x9A8C;&#x7684;&#x8BDD;&#xFF0C;&#x53EF;&#x4EE5;&#x5148;&#x5907;&#x4EFD;&#x4E00;&#x4E0B;&#xFF0C;&#x514D;&#x5F97;&#x518D;&#x8DD1;&#x4E00;&#x8FB9;MapReduce&#x3002;</p>
+<h2 id="&#x4F7F;&#x7528;&#x95EE;&#x9898;"><a href="#&#x4F7F;&#x7528;&#x95EE;&#x9898;" class="headerlink" title="&#x4F7F;&#x7528;&#x95EE;&#x9898;"></a>&#x4F7F;&#x7528;&#x95EE;&#x9898;</h2><h3 id="MapReducer&#x9636;&#x6BB5;&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x8FD9;&#x4E48;&#x6162;"><a href="#MapReducer&#x9636;&#x6BB5;&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x8FD9;&#x4E48;&#x6162;" class="headerlink" title="MapReducer&#x9636;&#x6BB5;&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x8FD9;&#x4E48;&#x6162;"></a>MapReducer&#x9636;&#x6BB5;&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x8FD9;&#x4E48;&#x6162;</h3><p>1&#x3001;&#x5EFA;&#x8868;&#x65F6;&#x8BBE;&#x7F6E;&#x9884;&#x5206;&#x533A;&#x7684;&#x4E2A;&#x6570;&#x51B3;&#x5B9A;&#x4E86;Reducer&#x7684;&#x6570;&#x91CF;&#x3002;<br><figure class="highlight sqf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">List</span>&lt;ImmutableBytesWritable&gt; startKeys = getRegionStartKeys(regionLocator);</div><div class="line">    <span class="built_in">LOG</span>.info(<span class="string">&quot;Configuring &quot;</span> + startKeys.<span class="built_in">size</span>() + <span class="string">&quot; reduce partitions &quot;</span> +</div><div class="line">        <span class="string">&quot;to match current region count&quot;</span>);</div><div class="line">job.setNumReduceTasks(startKeys.<span class="built_in">size</span>());</div></pre></td></tr></table></figure></p>
+<p>2&#x3001;&#x6570;&#x636E;&#x8BB0;&#x5F55;&#x6761;&#x6570;&#x8FC7;&#x591A;&#xFF0C;&#x80A1;&#x5E02;&#x7684;trans&#x6570;&#x636E;&#x4E00;&#x4E2A;&#x6708;&#x63A5;&#x8FD1;7&#x4EBF;&#x6761;&#x6570;&#x636E;&#xFF0C;&#x5BF9;&#x96C6;&#x7FA4;&#x7684;&#x5904;&#x7406;&#x80FD;&#x529B;&#x672C;&#x8EAB;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x6781;&#x5927;&#x7684;&#x6311;&#x6218;&#x3002;<br>3&#x3001;JVM&#x53C2;&#x6570;&#x6CA1;&#x6709;&#x8C03;&#x4F18;&#xFF0C;&#x5BFC;&#x81F4;&#x9891;&#x7E41;&#x51FA;&#x73B0;GC&#xFF0C;&#x8FD9;&#x662F;&#x540E;&#x7EED;&#x8C03;&#x4F18;&#x7684;&#x91CD;&#x70B9;&#x5DE5;&#x4F5C;&#x3002;</p>
+<h3 id="Load&#x9636;&#x6BB5;&#x4E3A;&#x4EC0;&#x4E48;&#x8FD9;&#x4E48;&#x6162;"><a href="#Load&#x9636;&#x6BB5;&#x4E3A;&#x4EC0;&#x4E48;&#x8FD9;&#x4E48;&#x6162;" class="headerlink" title="Load&#x9636;&#x6BB5;&#x4E3A;&#x4EC0;&#x4E48;&#x8FD9;&#x4E48;&#x6162;"></a>Load&#x9636;&#x6BB5;&#x4E3A;&#x4EC0;&#x4E48;&#x8FD9;&#x4E48;&#x6162;</h3><p>1&#x3001;&#x5728;Load&#x9636;&#x6BB5;&#x9636;&#x6BB5;&#x4E2D;&#xFF0C;&#x5982;&#x679C;HFile&#x6587;&#x4EF6;&#x8FC7;&#x591A;&#xFF0C;&#x4F1A;&#x89E6;&#x53D1;hBase&#x7684;compact&#x548C;split&#x64CD;&#x4F5C;&#x3002;&#x56E0;&#x6B64;BulkLoad&#x53EA;&#x662F;&#x7ED5;&#x8FC7;&#x4E86;&#x6570;&#x636E;Put&#x5230;Memstore&#x548C;MemStoreFlush&#x8FD9;&#x4E2A;&#x9636;&#x6BB5;&#x3002;<br>2&#x3001;&#x5F53;HFile&#x7684;&#x6570;&#x91CF;&#x6781;&#x5927;&#x65F6;&#xFF0C;&#x68C0;&#x67E5;HFile&#x7684;&#x683C;&#x5F0F;&#x5C06;&#x4F1A;&#x6210;&#x4E3A;&#x6700;&#x8017;&#x65F6;&#x7684;&#x9636;&#x6BB5;&#xFF0C;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x4E0D;&#x68C0;&#x67E5;&#x3002;</p>
+<h3 id="Bulk-load-operation-did-not-find-any-files-to-load-in-directory-xxx"><a href="#Bulk-load-operation-did-not-find-any-files-to-load-in-directory-xxx" class="headerlink" title="Bulk load operation did not find any files to load in directory xxx"></a>Bulk load operation did not find any files to load in directory xxx</h3><p>&#x4E00;&#x822C;&#x662F;&#x7A0B;&#x5E8F;&#x5199;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x51FA;&#x73B0;&#x95EE;&#x9898;&#xFF0C;&#x5BFC;&#x81F4;Mapper&#x9636;&#x6BB5;&#x6CA1;&#x6709;&#x8F93;&#x51FA;&#xFF0C;&#x9700;&#x8981;&#x4ED4;&#x7EC6;&#x68C0;&#x67E5;</p>
+<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>Bulk load&#x7684;&#x4F7F;&#x7528;&#x8FD8;&#x662F;&#x9700;&#x8981;&#x770B;&#x573A;&#x666F;&#xFF0C;&#x5BF9;&#x4E8E;&#x80A1;&#x5E02;&#x6570;&#x636E;&#x6765;&#x8BF4;&#xFF0C;&#x4F7F;&#x7528;Bulk load&#x7684;&#x5BFC;&#x5165;&#x6548;&#x7387;&#x53EF;&#x80FD;&#x6CA1;&#x6709;&#x76F4;&#x63A5;&#x5199;&#x6765;&#x5F97;&#x66F4;&#x5FEB;&#xFF0C;&#x4F46;&#x662F;&#x5176;&#x4E0D;&#x5360;&#x7528; Region &#x8D44;&#x6E90;&#x548C;&#x5927;&#x91CF;&#x7684;IO&#x8D44;&#x6E90;&#xFF0C;&#x57FA;&#x672C;&#x4E0A;&#x4E0D;&#x5F71;&#x54CD;&#x5176;&#x5B83;&#x4E1A;&#x52A1;&#x7684;&#x8FD0;&#x884C;&#xFF0C;&#x8FD8;&#x662F;&#x53EF;&#x4EE5;&#x5FCD;&#x53D7;&#x7684;&#x3002;</p>
+<h2 id="&#x53C2;&#x8003;&#x8D44;&#x6599;"><a href="#&#x53C2;&#x8003;&#x8D44;&#x6599;" class="headerlink" title="&#x53C2;&#x8003;&#x8D44;&#x6599;"></a>&#x53C2;&#x8003;&#x8D44;&#x6599;</h2><p><a href="http://hbase.apache.org/book.html#arch.bulk.load" target="_blank" rel="external">Apache HBase &#x2122; Reference Guide</a><br><a href="http://blog.jrwang.me/2015/import-data-to-hbase-using-bulk-loding/" target="_blank" rel="external">&#x4F7F;&#x7528; Bulk Load &#x5FEB;&#x901F;&#x5411; HBase &#x4E2D;&#x5BFC;&#x5165;&#x6570;&#x636E; | JR&#x2019;s Blog</a><br><a href="https://www.iteblog.com/archives/1889.html#BulkLoad" target="_blank" rel="external">&#x901A;&#x8FC7;BulkLoad&#x5FEB;&#x901F;&#x5C06;&#x6D77;&#x91CF;&#x6570;&#x636E;&#x5BFC;&#x5165;&#x5230;HbaseHadoop&#x7BC7; &#x2013; &#x8FC7;&#x5F80;&#x8BB0;&#x5FC6;</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="燕十三 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.jpg" alt="燕十三 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HBase/" rel="tag"># HBase</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/30/2017年8月读书笔记/" rel="next" title="2017年8月读书笔记">
+                <i class="fa fa-chevron-left"></i> 2017年8月读书笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTM1MC81OTE4"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="燕十三" />
+          <p class="site-author-name" itemprop="name">燕十三</p>
+          <p class="site-description motion-element" itemprop="description">生活不止眼前的苟且 还有诗和远方的田野</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/bae0010d3ad7" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-jianshu"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://aolong.me/" title="李英豪" target="_blank">李英豪</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#BulkLoad简介"><span class="nav-number">1.</span> <span class="nav-text">BulkLoad简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BulkLoad的原理和流程"><span class="nav-number">2.</span> <span class="nav-text">BulkLoad的原理和流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Transform阶段"><span class="nav-number">2.1.</span> <span class="nav-text">Transform阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Load阶段"><span class="nav-number">2.2.</span> <span class="nav-text">Load阶段</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BulkLoad源码过程简述"><span class="nav-number">3.</span> <span class="nav-text">BulkLoad源码过程简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用问题"><span class="nav-number">4.</span> <span class="nav-text">使用问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MapReducer阶段为什么会这么慢"><span class="nav-number">4.1.</span> <span class="nav-text">MapReducer阶段为什么会这么慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Load阶段为什么这么慢"><span class="nav-number">4.2.</span> <span class="nav-text">Load阶段为什么这么慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bulk-load-operation-did-not-find-any-files-to-load-in-directory-xxx"><span class="nav-number">4.3.</span> <span class="nav-text">Bulk load operation did not find any files to load in directory xxx</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">燕十三</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("nS56sCOObSDXpwL7elK0Mrzy-gzGzoHsz", "oibCqinbWpGdjKRGRkLj2gMR");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
