@@ -1,15 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
 
 
 
@@ -27,36 +37,10 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
 
 
 
@@ -65,34 +49,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="blog of xuxiaoping" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
 
 
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
 
 
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
 
 
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
-
-
-
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
 
 
 
-<meta name="description" content="生活不止眼前的苟且 还有诗和远方的田野">
-<meta property="og:type" content="website">
-<meta property="og:title" content="燕十三">
-<meta property="og:url" content="https://xuxping.github.io/page/3/index.html">
-<meta property="og:site_name" content="燕十三">
-<meta property="og:description" content="生活不止眼前的苟且 还有诗和远方的田野">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="燕十三">
-<meta name="twitter:description" content="生活不止眼前的苟且 还有诗和远方的田野">
+
+
+
 
 
 
@@ -100,23 +75,42 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"always"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 'undefined',
-      author: '博主'
-    },
+    scheme: 'Gemini',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
       indexName: '',
-      hits: "",
-      labels: ""
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
+
+
+  
+
+
+
+
+  <meta name="description" content="生活不止眼前的苟且 还有诗和远方的田野">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kavim">
+<meta property="og:url" content="https://xuxping.github.io/page/3/index.html">
+<meta property="og:site_name" content="Kavim">
+<meta property="og:description" content="生活不止眼前的苟且 还有诗和远方的田野">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kavim">
+<meta name="twitter:description" content="生活不止眼前的苟且 还有诗和远方的田野">
+
+
+
 
 
 
@@ -124,66 +118,89 @@
 
 
 
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Kavim</title>
+  
 
 
-  <title> 燕十三 - 生活不止眼前的苟且 还有诗和远方的田野 </title>
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
-
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?63e9869095b914a79374d0c0eea48145";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-
-
-
-
-  
   
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"> 
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">燕十三</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kavim</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一点一滴积累</p>
+      
   </div>
-    
-      <h1 class="site-subtitle" itemprop="description">一点一滴积累</h1>
-    
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -193,104 +210,51 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
-            
-            公益404
-          </a>
-        </li>
-      
+          
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+</li>
 
       
-        <li class="menu-item menu-item-search">
+        
+        
           
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+</li>
+
+      
+
       
     </ul>
   
 
   
-    <div class="site-search">
-      
-  <div class="popup">
- <span class="search-icon fa fa-search"></span>
- <input type="text" id="local-search-input">
- <div id="local-search-result"></div>
- <span class="popup-btn-close">close</span>
-</div>
 
-
-    </div>
   
 </nav>
+
+
+  
 
 
 
  </div>
     </header>
 
+    
+
+
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
+          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
@@ -303,38 +267,33 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/05/17/爬虫入门总结/">
+  
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="燕十三">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/05/19/单机mongo安装和权限问题解决/">
 
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="燕十三">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="燕十三" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kavim">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kavim">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
+          <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/05/17/爬虫入门总结/" itemprop="url">
-                  爬虫入门总结
-                </a>
-              
-            
-          </h2>
+                <a class="post-title-link" href="/2017/05/19/单机mongo安装和权限问题解决/" itemprop="url">单机mongo安装和权限问题解决</a></h1>
         
 
         <div class="post-meta">
@@ -344,13 +303,12 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-17T00:00:00+08:00">
-                2017-05-17
-              </time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-19T00:00:00+08:00">2017-05-19</time>
             
 
+            
             
 
             
@@ -365,14 +323,10 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
 
                 
                 
@@ -385,19 +339,8 @@
           
 
           
+          
 
-          
-          
-             <span id="/2017/05/17/爬虫入门总结/" class="leancloud_visitors" data-flag-title="爬虫入门总结">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
           
 
           
@@ -408,7 +351,155 @@
       </header>
     
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
+      
+      
+
+      
+        
+          <p>&#x672C;&#x6587;&#x8BB0;&#x5F55;&#x4E86;&#x5728;centos7.3&#x4E0A;&#x5B89;&#x88C5;mongodb3.4&#xFF0C;&#x914D;&#x7F6E;&#x4F18;&#x5316;&#xFF0C;&#x8BBE;&#x7F6E;&#x6743;&#x9650;&#xFF0C;&#x5E76;&#x89E3;&#x51B3;&#x4E86;&#x4FEE;&#x6539;&#x6570;&#x636E;&#x76EE;&#x5F55;&#x540E;&#xFF0C;&#x7531;&#x6587;&#x4EF6;&#x6743;&#x9650;&#x5BFC;&#x81F4;&#x7684;mongo&#x542F;&#x52A8;&#x95EE;&#x9898;&#x3002;<br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/19/单机mongo安装和权限问题解决/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/05/17/爬虫入门总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kavim">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kavim">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/17/爬虫入门总结/" itemprop="url">爬虫入门总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-17T00:00:00+08:00">2017-05-17</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -420,7 +511,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/17/爬虫入门总结/#more" rel="contents">
-              阅读全文 &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -428,16 +519,21 @@
       
     </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+    
+    
 
+    
+
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -447,6 +543,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -459,38 +559,33 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/04/29/2017年2-4月阶段总结/">
+  
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="燕十三">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/04/29/2017年2-4月阶段总结/">
 
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="燕十三">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="燕十三" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kavim">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kavim">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
+          <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/29/2017年2-4月阶段总结/" itemprop="url">
-                  2017年2-4月阶段总结
-                </a>
-              
-            
-          </h2>
+                <a class="post-title-link" href="/2017/04/29/2017年2-4月阶段总结/" itemprop="url">2017年2-4月阶段总结</a></h1>
         
 
         <div class="post-meta">
@@ -500,13 +595,12 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-29T21:12:29+08:00">
-                2017-04-29
-              </time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-29T21:12:29+08:00">2017-04-29</time>
             
 
+            
             
 
             
@@ -521,14 +615,10 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/个人笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">个人笔记</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/个人笔记/" itemprop="url" rel="index"><span itemprop="name">个人笔记</span></a></span>
 
                 
                 
@@ -541,19 +631,8 @@
           
 
           
+          
 
-          
-          
-             <span id="/2017/04/29/2017年2-4月阶段总结/" class="leancloud_visitors" data-flag-title="2017年2-4月阶段总结">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
           
 
           
@@ -564,7 +643,9 @@
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -576,7 +657,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/04/29/2017年2-4月阶段总结/#more" rel="contents">
-              阅读全文 &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -584,16 +665,21 @@
       
     </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+    
+    
 
+    
+
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -603,6 +689,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -615,38 +705,33 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/04/29/python写入hbase超时问题分析/">
+  
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="燕十三">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/04/29/ganglia导致的centos异常记录/">
 
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="燕十三">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="燕十三" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kavim">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kavim">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
+          <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/29/python写入hbase超时问题分析/" itemprop="url">
-                  python写入Hbase超时问题分析
-                </a>
-              
-            
-          </h2>
+                <a class="post-title-link" href="/2017/04/29/ganglia导致的centos异常记录/" itemprop="url">ganglia导致的centos异常记录</a></h1>
         
 
         <div class="post-meta">
@@ -656,13 +741,12 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-29T00:00:00+08:00">
-                2017-04-29
-              </time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-29T00:00:00+08:00">2017-04-29</time>
             
 
+            
             
 
             
@@ -677,14 +761,10 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hbase/" itemprop="url" rel="index">
-                    <span itemprop="name">hbase</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ganglia/" itemprop="url" rel="index"><span itemprop="name">ganglia</span></a></span>
 
                 
                 
@@ -697,19 +777,8 @@
           
 
           
+          
 
-          
-          
-             <span id="/2017/04/29/python写入hbase超时问题分析/" class="leancloud_visitors" data-flag-title="python写入Hbase超时问题分析">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
           
 
           
@@ -720,163 +789,9 @@
       </header>
     
 
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Hbase&#x662F;&#x4E00;&#x4E2A;&#x9AD8;&#x53EF;&#x9760;&#x3001;&#x9AD8;&#x6027;&#x80FD;&#x3001;&#x9762;&#x5411;&#x5217;&#x3001;&#x53EF;&#x4F38;&#x7F29;&#x7684;&#x5206;&#x5E03;&#x5F0F;&#x6570;&#x636E;&#x5E93;&#x3002;&#x5176;&#x5E95;&#x5C42;&#x7684;LSM&#x6570;&#x636E;&#x7ED3;&#x6784;&#x548C;RowKey&#x6709;&#x5E8F;&#x6392;&#x5217;&#x7B49;&#x67B6;&#x6784;&#x4E0A;&#x7684;&#x72EC;&#x7279;&#x8BBE;&#x8BA1;&#xFF0C;&#x4F7F;&#x5F97;hbase&#x5177;&#x6709;&#x975E;&#x5E38;&#x9AD8;&#x7684;&#x5199;&#x5165;&#x6027;&#x80FD;&#x3002;&#x4F46;&#x662F;&#x5728;&#x5B9E;&#x9645;&#x4F7F;&#x7528;&#x4E2D;&#xFF0C;&#x7531;&#x4E8E;&#x5BF9;hbase&#x7684;&#x5199;&#x5165;&#x65B9;&#x9762;&#x7684;&#x673A;&#x5236;&#x6CA1;&#x6709;&#x6DF1;&#x5165;&#x7684;&#x4E86;&#x89E3;&#xFF0C;&#x65E0;&#x6CD5;&#x6709;&#x6548;&#x53D1;&#x6325;&#x51FA;hbase&#x7684;&#x5199;&#x5165;&#x6027;&#x80FD;&#x3002;&#x672C;&#x6587;&#x4E3B;&#x8981;&#x8BB0;&#x5F55;&#x4E86;&#x5728;&#x521A;&#x5F00;&#x59CB;&#x4F7F;&#x7528;hbase&#x65F6;&#xFF0C;&#x5BF9;hbase&#x6CA1;&#x6709;&#x592A;&#x591A;&#x7684;&#x4E86;&#x89E3;&#x7684;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x5728;&#x5199;&#x5165;&#x65B9;&#x9762;&#x9047;&#x5230;&#x7684;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#x548C;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x3002;<br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/29/python写入hbase超时问题分析/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/04/29/ganglia导致的centos异常记录/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="燕十三">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="燕十三">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="燕十三" src="">
-    </span>
-  </span>
-
     
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/29/ganglia导致的centos异常记录/" itemprop="url">
-                  ganglia导致的centos异常记录
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-29T00:00:00+08:00">
-                2017-04-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ganglia/" itemprop="url" rel="index">
-                    <span itemprop="name">ganglia</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-             <span id="/2017/04/29/ganglia导致的centos异常记录/" class="leancloud_visitors" data-flag-title="ganglia导致的centos异常记录">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
     
-
-
     <div class="post-body" itemprop="articleBody">
 
       
@@ -889,7 +804,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/04/29/ganglia导致的centos异常记录/#more" rel="contents">
-              阅读全文 &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -897,16 +812,21 @@
       
     </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+    
+    
 
+    
+
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -916,6 +836,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -928,38 +852,33 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/04/04/Hadoop集群检查/">
+  
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="燕十三">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/04/29/python写入hbase超时问题分析/">
 
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="燕十三">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="燕十三" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kavim">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kavim">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
+          <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/04/Hadoop集群检查/" itemprop="url">
-                  Hadoop集群检查
-                </a>
-              
-            
-          </h2>
+                <a class="post-title-link" href="/2017/04/29/python写入hbase超时问题分析/" itemprop="url">python写入Hbase超时问题分析</a></h1>
         
 
         <div class="post-meta">
@@ -969,13 +888,12 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-04T23:00:00+08:00">
-                2017-04-04
-              </time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-29T00:00:00+08:00">2017-04-29</time>
             
 
+            
             
 
             
@@ -990,14 +908,10 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hadoop/" itemprop="url" rel="index">
-                    <span itemprop="name">hadoop</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/hbase/" itemprop="url" rel="index"><span itemprop="name">hbase</span></a></span>
 
                 
                 
@@ -1010,19 +924,8 @@
           
 
           
+          
 
-          
-          
-             <span id="/2017/04/04/Hadoop集群检查/" class="leancloud_visitors" data-flag-title="Hadoop集群检查">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
           
 
           
@@ -1033,7 +936,155 @@
       </header>
     
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
+      
+      
+
+      
+        
+          <p>Hbase&#x662F;&#x4E00;&#x4E2A;&#x9AD8;&#x53EF;&#x9760;&#x3001;&#x9AD8;&#x6027;&#x80FD;&#x3001;&#x9762;&#x5411;&#x5217;&#x3001;&#x53EF;&#x4F38;&#x7F29;&#x7684;&#x5206;&#x5E03;&#x5F0F;&#x6570;&#x636E;&#x5E93;&#x3002;&#x5176;&#x5E95;&#x5C42;&#x7684;LSM&#x6570;&#x636E;&#x7ED3;&#x6784;&#x548C;RowKey&#x6709;&#x5E8F;&#x6392;&#x5217;&#x7B49;&#x67B6;&#x6784;&#x4E0A;&#x7684;&#x72EC;&#x7279;&#x8BBE;&#x8BA1;&#xFF0C;&#x4F7F;&#x5F97;hbase&#x5177;&#x6709;&#x975E;&#x5E38;&#x9AD8;&#x7684;&#x5199;&#x5165;&#x6027;&#x80FD;&#x3002;&#x4F46;&#x662F;&#x5728;&#x5B9E;&#x9645;&#x4F7F;&#x7528;&#x4E2D;&#xFF0C;&#x7531;&#x4E8E;&#x5BF9;hbase&#x7684;&#x5199;&#x5165;&#x65B9;&#x9762;&#x7684;&#x673A;&#x5236;&#x6CA1;&#x6709;&#x6DF1;&#x5165;&#x7684;&#x4E86;&#x89E3;&#xFF0C;&#x65E0;&#x6CD5;&#x6709;&#x6548;&#x53D1;&#x6325;&#x51FA;hbase&#x7684;&#x5199;&#x5165;&#x6027;&#x80FD;&#x3002;&#x672C;&#x6587;&#x4E3B;&#x8981;&#x8BB0;&#x5F55;&#x4E86;&#x5728;&#x521A;&#x5F00;&#x59CB;&#x4F7F;&#x7528;hbase&#x65F6;&#xFF0C;&#x5BF9;hbase&#x6CA1;&#x6709;&#x592A;&#x591A;&#x7684;&#x4E86;&#x89E3;&#x7684;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x5728;&#x5199;&#x5165;&#x65B9;&#x9762;&#x9047;&#x5230;&#x7684;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#x548C;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x3002;<br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/29/python写入hbase超时问题分析/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/04/04/Hadoop集群检查/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kavim">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kavim">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/04/Hadoop集群检查/" itemprop="url">Hadoop集群检查</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-04T23:00:00+08:00">2017-04-04</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1046,7 +1097,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/04/04/Hadoop集群检查/#more" rel="contents">
-              阅读全文 &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1054,16 +1105,21 @@
       
     </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+    
+    
 
+    
+
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -1073,6 +1129,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1085,38 +1145,33 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/04/04/hadoop集群搭建过程问题汇总/">
+  
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="燕十三">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/04/04/hadoop集群搭建过程问题汇总/">
 
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="燕十三">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="燕十三" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kavim">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kavim">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
+          <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/04/hadoop集群搭建过程问题汇总/" itemprop="url">
-                  hadoop集群搭建过程问题汇总
-                </a>
-              
-            
-          </h2>
+                <a class="post-title-link" href="/2017/04/04/hadoop集群搭建过程问题汇总/" itemprop="url">hadoop集群搭建过程问题汇总</a></h1>
         
 
         <div class="post-meta">
@@ -1126,13 +1181,12 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-04T00:00:00+08:00">
-                2017-04-04
-              </time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-04T00:00:00+08:00">2017-04-04</time>
             
 
+            
             
 
             
@@ -1147,14 +1201,10 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hadoop/" itemprop="url" rel="index">
-                    <span itemprop="name">hadoop</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a></span>
 
                 
                 
@@ -1167,19 +1217,8 @@
           
 
           
+          
 
-          
-          
-             <span id="/2017/04/04/hadoop集群搭建过程问题汇总/" class="leancloud_visitors" data-flag-title="hadoop集群搭建过程问题汇总">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
           
 
           
@@ -1190,7 +1229,9 @@
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1202,7 +1243,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/04/04/hadoop集群搭建过程问题汇总/#more" rel="contents">
-              阅读全文 &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1210,16 +1251,21 @@
       
     </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+    
+    
 
+    
+
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -1229,6 +1275,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1241,38 +1291,33 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/03/25/Hive介绍和安装/">
+  
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="燕十三">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/03/25/Hive介绍和安装/">
 
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="燕十三">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="燕十三" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kavim">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kavim">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
+          <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/25/Hive介绍和安装/" itemprop="url">
-                  Hive介绍和安装
-                </a>
-              
-            
-          </h2>
+                <a class="post-title-link" href="/2017/03/25/Hive介绍和安装/" itemprop="url">Hive介绍和安装</a></h1>
         
 
         <div class="post-meta">
@@ -1282,13 +1327,12 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-25T00:00:00+08:00">
-                2017-03-25
-              </time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-25T00:00:00+08:00">2017-03-25</time>
             
 
+            
             
 
             
@@ -1303,14 +1347,10 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hadoop/" itemprop="url" rel="index">
-                    <span itemprop="name">hadoop</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a></span>
 
                 
                 
@@ -1323,19 +1363,8 @@
           
 
           
+          
 
-          
-          
-             <span id="/2017/03/25/Hive介绍和安装/" class="leancloud_visitors" data-flag-title="Hive介绍和安装">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
           
 
           
@@ -1346,7 +1375,9 @@
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1359,7 +1390,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/25/Hive介绍和安装/#more" rel="contents">
-              阅读全文 &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1367,16 +1398,21 @@
       
     </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+    
+    
 
+    
+
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -1386,6 +1422,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1398,38 +1438,33 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/03/25/university-memoirs-1/">
+  
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="燕十三">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/03/25/university-memoirs-1/">
 
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="燕十三">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="燕十三" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kavim">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kavim">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
+          <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/25/university-memoirs-1/" itemprop="url">
-                  我的大学回忆录（一）
-                </a>
-              
-            
-          </h2>
+                <a class="post-title-link" href="/2017/03/25/university-memoirs-1/" itemprop="url">我的大学回忆录（一）</a></h1>
         
 
         <div class="post-meta">
@@ -1439,13 +1474,12 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-25T00:00:00+08:00">
-                2017-03-25
-              </time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-25T00:00:00+08:00">2017-03-25</time>
             
 
+            
             
 
             
@@ -1460,14 +1494,10 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/我的大学/" itemprop="url" rel="index">
-                    <span itemprop="name">我的大学</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/我的大学/" itemprop="url" rel="index"><span itemprop="name">我的大学</span></a></span>
 
                 
                 
@@ -1480,19 +1510,8 @@
           
 
           
+          
 
-          
-          
-             <span id="/2017/03/25/university-memoirs-1/" class="leancloud_visitors" data-flag-title="我的大学回忆录（一）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
           
 
           
@@ -1503,7 +1522,9 @@
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1515,7 +1536,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/25/university-memoirs-1/#more" rel="contents">
-              阅读全文 &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1523,16 +1544,21 @@
       
     </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+    
+    
 
+    
+
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -1542,6 +1568,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1554,38 +1584,33 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/03/24/我的大学回忆录/">
+  
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="燕十三">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/03/24/我的大学回忆录/">
 
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="燕十三">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="燕十三" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kavim">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kavim">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
+          <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/24/我的大学回忆录/" itemprop="url">
-                  我的大学回忆录
-                </a>
-              
-            
-          </h2>
+                <a class="post-title-link" href="/2017/03/24/我的大学回忆录/" itemprop="url">我的大学回忆录</a></h1>
         
 
         <div class="post-meta">
@@ -1595,13 +1620,12 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-24T00:00:00+08:00">
-                2017-03-24
-              </time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-24T00:00:00+08:00">2017-03-24</time>
             
 
+            
             
 
             
@@ -1616,14 +1640,10 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/我的大学/" itemprop="url" rel="index">
-                    <span itemprop="name">我的大学</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/我的大学/" itemprop="url" rel="index"><span itemprop="name">我的大学</span></a></span>
 
                 
                 
@@ -1636,19 +1656,8 @@
           
 
           
+          
 
-          
-          
-             <span id="/2017/03/24/我的大学回忆录/" class="leancloud_visitors" data-flag-title="我的大学回忆录">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
           
 
           
@@ -1659,7 +1668,9 @@
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1672,7 +1683,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/24/我的大学回忆录/#more" rel="contents">
-              阅读全文 &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1680,16 +1691,21 @@
       
     </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+    
+    
 
+    
+
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -1699,166 +1715,10 @@
         <div class="post-eof"></div>
       
     </footer>
-  </article>
-
-
-    
-      
-
-  
-
+  </div>
   
   
   
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/03/23/tornado实时服务设计/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="燕十三">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="燕十三">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="燕十三" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/23/tornado实时服务设计/" itemprop="url">
-                  tornado 实时服务架构设计
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-23T00:00:00+08:00">
-                2017-03-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/架构设计/" itemprop="url" rel="index">
-                    <span itemprop="name">架构设计</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-             <span id="/2017/03/23/tornado实时服务设计/" class="leancloud_visitors" data-flag-title="tornado 实时服务架构设计">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          &#x80CC;&#x666F;&#x4ECB;&#x7ECD;&#x8FD9;&#x662F;&#x5728;&#x516C;&#x53F8;&#x8BAD;&#x7EC3;&#x7684;&#x4E00;&#x4E2A;&#x5C0F;&#x9879;&#x76EE;&#x3002;&#x6BCF;&#x5206;&#x949F;&#x9700;&#x8981;&#x4ECE;tushare&#x7684;&#x63A5;&#x53E3;&#x4E2D;&#x83B7;&#x53D6;&#x5230;&#x5B9E;&#x65F6;&#x7684;&#x80A1;&#x4EF7;&#x6570;&#x636E;&#xFF0C;&#x5B58;&#x50A8;&#x5230;&#x6587;&#x4EF6;&#x4E2D;&#x548C;mongodb&#x4E2D;&#xFF0C;&#x7136;&#x540E;&#x5BF9;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x5904;&#x7406;&#xFF0C;&#x5305;&#x62EC;&#x6570;&#x636E;&#x68C0;&#x67E5;&#xFF0C;&#x5206;&#x949F;&#x7EBF;&#x7684;&#x8865;&#x9F50;&#x7B49;&#x3002;&#x7ECF;&#x8FC7;&#x4EE5;&#x4E0A;&#x7684;&#x5904;&#x7406;&#x540E;&#xFF0C;&#x7A0B;&#x5E8F;&#x9700;&#x8981;&#x5BF9;&#x5916;&#x63D0;&#x4F9B;API&#xFF0C;&#x5171;web&#xFF0C;app&#x7B49;&#x7EC8;&#x7AEF;&#x4F7F;&#x7528;&#x3002;
-&#x80A1;&#x4EF7;&#x6570;&#x636E;&#x6BCF;&#x5206;&#x949F;&#x90FD;&#x5728;&#x6539;&#x53D8;&#xFF0C;api&#x7684;&#x8C03;&#x7528;&#x6B21;&#x6570;&#x548C;&#x9891;&#x7387;&#x975E;&#x5E38;&#x9AD8;&#xFF0C;&#x56E0;&#x6B64;&#x670D;&#x52A1;&#x67B6;&#x6784;&#x5728;&#x8BBE;&#x8BA1;&#x7684;&#x65F6;&#x5019;&#x9700;&#x8981;&#x6EE1;&#x8DB3;&#x4EE5;&#x4E0B;&#x51E0;&#x70B9;&#xFF1A;
-1&#x3001;&#x5BB9;&#x9519;&#x6027;&#x80FD;&#x597D;&#xFF1A;&#x81F3;&#x5C11;&#x8981;&#x4FDD;&#x8BC1;&#x5728;&#x5F00;&#x76D8;&#x9636;&#x6BB5;&#x4E0D;&#x51FA;&#x95EE;&#x9898;&#xFF0C;&#x7531;&#x4E8E;tushare&#x7684;&#x63A5;&#x53E3;&#x53EF;&#x80FD;&#x8FD4;&#x56DE;&#x4E0D;&#x4E86;&#x6570;&#x636E;&#x6216;&#x7740;&#x8BF7;&#x6C42;
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/23/tornado实时服务设计/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </article>
 
 
@@ -1867,15 +1727,12 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
-          
+
           </div>
-          
-
-
           
 
         </div>
@@ -1891,92 +1748,155 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.png"
-               alt="燕十三" />
-          <p class="site-author-name" itemprop="name">燕十三</p>
-          <p class="site-description motion-element" itemprop="description">生活不止眼前的苟且 还有诗和远方的田野</p>
-        </div>
-        <nav class="site-state motion-element">
-        
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">41</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">19</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">18</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <span class="links-of-author-item">
-                <a href="http://www.jianshu.com/u/bae0010d3ad7" target="_blank" title="简书">
-                  
-                    <i class="fa fa-fw fa-jianshu"></i>
-                  
-                  简书
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://aolong.me/" title="李英豪" target="_blank">李英豪</a>
-                </li>
-              
-            </ul>
+              <p class="site-author-name" itemprop="name">Kavim</p>
+              <p class="site-description motion-element" itemprop="description">生活不止眼前的苟且 还有诗和远方的田野</p>
           </div>
-        
 
-        
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
 
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
       </section>
+
+      
 
       
 
@@ -1990,38 +1910,55 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate"> 
+    <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">燕十三</span>
+  <span class="author" itemprop="copyrightHolder">Kavim</span>
+
+  
+
+  
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.1.0</div>
+
+
 
 
         
+
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
   </div>
 
   
@@ -2040,62 +1977,68 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
 
   
 
 
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
 
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
 
 
 
   
   
 
-  
 
-  
+  <script type="text/javascript" src="/js/src/affix.js?v=6.1.0"></script>
 
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.1.0"></script>
 
 
 
   
 
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
 
 
   
-
 
 
 
@@ -2113,150 +2056,19 @@
 
   
 
-  
 
 
 
 
-  
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
-  
+
+
+
 
 
   
-  
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length == 0) {
-      search_path = "search.xml";
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
 
-    function proceedsearch() {
-      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
-      $('.popup').toggle();
-    }
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-      $.ajax({
-        url: path,
-        dataType: "xml",
-        async: true,
-        success: function( xmlResponse ) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = $( "entry", xmlResponse ).map(function() {
-            return {
-              title: $( "title", this ).text(),
-              content: $("content",this).text(),
-              url: $( "url" , this).text()
-            };
-          }).get();
-          var $input = document.getElementById(search_id);
-          var $resultContent = document.getElementById(content_id);
-          $input.addEventListener('input', function(){
-            var matchcounts = 0;
-            var str='<ul class=\"search-result-list\">';
-            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-            $resultContent.innerHTML = "";
-            if (this.value.trim().length > 1) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var content_index = [];
-                var data_title = data.title.trim().toLowerCase();
-                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                var data_url = decodeURIComponent(data.url);
-                var index_title = -1;
-                var index_content = -1;
-                var first_occur = -1;
-                // only match artiles with not empty titles and contents
-                if(data_title != '') {
-                  keywords.forEach(function(keyword, i) {
-                    index_title = data_title.indexOf(keyword);
-                    index_content = data_content.indexOf(keyword);
-                    if( index_title >= 0 || index_content >= 0 ){
-                      isMatch = true;
-                      if (i == 0) {
-                        first_occur = index_content;
-                      }
-                    }
 
-                  });
-                }
-                // show search results
-                if (isMatch) {
-                  matchcounts += 1;
-                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                  var content = data.content.trim().replace(/<[^>]+>/g,"");
-                  if (first_occur >= 0) {
-                    // cut out 100 characters
-                    var start = first_occur - 20;
-                    var end = first_occur + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if(start == 0){
-                      end = 50;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    var match_content = content.substring(start, end);
-                    // highlight all keywords
-                    keywords.forEach(function(keyword){
-                      var regS = new RegExp(keyword, "gi");
-                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                    });
 
-                    str += "<p class=\"search-result\">" + match_content +"...</p>"
-                  }
-                  str += "</li>";
-                }
-              })};
-            str += "</ul>";
-            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-            $resultContent.innerHTML = str;
-          });
-          proceedsearch();
-        }
-      });}
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched == false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".popoverlay").remove();
-      $('body').css('overflow', '');
-    });
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-  </script>
 
 
   
@@ -2264,116 +2076,19 @@
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("nS56sCOObSDXpwL7elK0Mrzy-gzGzoHsz", "oibCqinbWpGdjKRGRkLj2gMR");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
 
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
+  
 
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+  
+  
 
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
+  
 
   
 
   
 
+  
 
 </body>
 </html>
