@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="&amp;#x57FA;&amp;#x672C;&amp;#x4F7F;&amp;#x7528;1&amp;#x3001;&amp;#x5C06;trans&amp;#x6570;&amp;#x636E;&amp;#x5BFC;&amp;#x5165;hdfs12hadoop fs -mkdir trans-201702hadoop fs -put trans-201702.txt trans-201702
+2&amp;#x3001;shell&amp;#x4E2D;&amp;#x4F7F;&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hive基本使用">
+<meta property="og:url" content="https://xuxping.github.io/2017/04/25/Hive基本使用/index.html">
+<meta property="og:site_name" content="Kavim">
+<meta property="og:description" content="&amp;#x57FA;&amp;#x672C;&amp;#x4F7F;&amp;#x7528;1&amp;#x3001;&amp;#x5C06;trans&amp;#x6570;&amp;#x636E;&amp;#x5BFC;&amp;#x5165;hdfs12hadoop fs -mkdir trans-201702hadoop fs -put trans-201702.txt trans-201702
+2&amp;#x3001;shell&amp;#x4E2D;&amp;#x4F7F;&amp;#x">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/25/Hive基本使用/E54422E5-45A7-485B-A8FA-79A616409162.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/25/Hive基本使用/13E46072-D637-4F0C-B9B5-71CFB10204F8.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/25/Hive基本使用/78045612-41E8-4F90-A2FC-DBAA1CFE2821.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/25/Hive基本使用/6A2DC9CE-EAEC-44CC-A0C0-42A37AAE5F1C.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/25/Hive基本使用/5FC10AA7-C90F-4796-A883-923B8FA75A1F.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/25/Hive基本使用/E7C12BF3-9DCC-45CA-84C6-B5547F234A38.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/25/Hive基本使用/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-03-16%20%E4%B8%8B%E5%8D%882.49.41.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/25/Hive基本使用/88F204C6-3539-4C6F-B5C2-AA3C43E1C02C.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/25/Hive基本使用/296833E1-195E-4296-8E6A-FA1E8E61384B.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/25/Hive基本使用/21D91C07-4F52-404D-A593-B14096373FCB.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/25/Hive基本使用/ADF2A6AC-E91B-4AB9-8087-FF9ED2A4A279.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/25/Hive基本使用/B63DC334-E4C8-4CC7-B1F0-873443CB472E.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/25/Hive基本使用/28F43841-CDC3-4542-B8A2-51747722AABD.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/04/25/Hive基本使用/53C71365-BD3C-4605-8F80-5622E201E31A.png">
+<meta property="og:updated_time" content="2018-08-08T03:16:25.289Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hive基本使用">
+<meta name="twitter:description" content="&amp;#x57FA;&amp;#x672C;&amp;#x4F7F;&amp;#x7528;1&amp;#x3001;&amp;#x5C06;trans&amp;#x6570;&amp;#x636E;&amp;#x5BFC;&amp;#x5165;hdfs12hadoop fs -mkdir trans-201702hadoop fs -put trans-201702.txt trans-201702
+2&amp;#x3001;shell&amp;#x4E2D;&amp;#x4F7F;&amp;#x">
+<meta name="twitter:image" content="https://xuxping.github.io/2017/04/25/Hive基本使用/E54422E5-45A7-485B-A8FA-79A616409162.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://xuxping.github.io/2017/04/25/Hive基本使用/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Hive基本使用 | Kavim</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kavim</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一点一滴积累</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/04/25/Hive基本使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kavim">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kavim">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Hive基本使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-25T15:20:00+08:00">2017-04-25</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hive/" itemprop="url" rel="index"><span itemprop="name">Hive</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <a id="more"></a>
+<h2 id="&#x57FA;&#x672C;&#x4F7F;&#x7528;"><a href="#&#x57FA;&#x672C;&#x4F7F;&#x7528;" class="headerlink" title="&#x57FA;&#x672C;&#x4F7F;&#x7528;"></a>&#x57FA;&#x672C;&#x4F7F;&#x7528;</h2><p>1&#x3001;&#x5C06;trans&#x6570;&#x636E;&#x5BFC;&#x5165;hdfs<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop <span class="built_in">fs</span> -<span class="built_in">mkdir</span> trans-<span class="number">201702</span></div><div class="line">hadoop <span class="built_in">fs</span> -put trans-<span class="number">201702</span>.txt trans-<span class="number">201702</span></div></pre></td></tr></table></figure></p>
+<p>2&#x3001;shell&#x4E2D;&#x4F7F;&#x7528;hive<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">database</span> trans;</div><div class="line"><span class="keyword">show</span> <span class="keyword">databases</span>;</div></pre></td></tr></table></figure></p>
+<p>&#x5E93;&#x540D;&#x4E0D;&#x80FD;&#x7528;-&#x7B26;&#x53F7;<br><img src="/2017/04/25/Hive&#x57FA;&#x672C;&#x4F7F;&#x7528;/E54422E5-45A7-485B-A8FA-79A616409162.png" alt=""></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> trans.trans201612  (line <span class="keyword">STRING</span>);</div></pre></td></tr></table></figure>
+<p>&#x8868;&#x540D;&#x4E0D;&#x80FD;&#x7528;&#x6570;&#x5B57;&#x5F00;&#x5934;<br><img src="/2017/04/25/Hive&#x57FA;&#x672C;&#x4F7F;&#x7528;/13E46072-D637-4F0C-B9B5-71CFB10204F8.png" alt=""></p>
+<p>&#x52A0;&#x8F7D;&#x6570;&#x636E;&#x8FDB;&#x8868;<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">load</span> <span class="keyword">data</span> inpath <span class="string">&apos;trans-201702/trans-201702.txt&apos;</span> overwrite</div><div class="line">  <span class="keyword">into</span> <span class="keyword">table</span> trans.trans201612;</div></pre></td></tr></table></figure></p>
+<p>&#x7EDF;&#x8BA1;&#x4E00;&#x4E0B;&#x603B;&#x5171;&#x6709;&#x591A;&#x5C11;&#x884C;&#x6570;&#x636E;<br><figure class="highlight q"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="built_in">count</span>(line) <span class="keyword">from</span> trans.trans201612</div></pre></td></tr></table></figure></p>
+<p><img src="/2017/04/25/Hive&#x57FA;&#x672C;&#x4F7F;&#x7528;/78045612-41E8-4F90-A2FC-DBAA1CFE2821.png" alt=""><br>&#x7136;&#x540E;&#x7528;<code>wc -l</code>&#x7EDF;&#x8BA1;&#x4E00;&#x4E0B;&#x539F;&#x59CB;&#x6587;&#x4EF6;&#x4E3A;472755103&#xFF0C;&#x53D1;&#x73B0;&#x5C11;&#x4E86;&#x4E00;&#x884C;&#xFF0C;<br><code>wc -l</code>&#x662F;&#x6309;\n&#x4F5C;&#x4E3A;&#x884C;&#x7ED3;&#x675F;&#x7B26;&#x7EDF;&#x8BA1;&#x884C;&#x6570;&#xFF0C;&#x6240;&#x4EE5;&#x6700;&#x540E;&#x4E00;&#x884C;&#x5982;&#x679C;&#x6CA1;&#x6709;\n&#x7684;&#x8BDD;&#x4F1A;&#x7EDF;&#x8BA1;&#x4E22;&#x5931;&#xFF0C;&#x4E00;&#x6B21;&#x5C11;&#x4E86;&#x4E00;&#x884C;<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> word_count <span class="keyword">as</span> <span class="keyword">select</span> word,<span class="keyword">count</span>(<span class="number">1</span>) <span class="keyword">as</span> <span class="keyword">count</span> <span class="keyword">from</span> (<span class="keyword">select</span> explode(<span class="keyword">split</span>(line,&#x2019;\s&#x2019;)) <span class="keyword">as</span> word <span class="keyword">from</span> trans.trans201612) w <span class="keyword">group</span> <span class="keyword">by</span> word <span class="keyword">group</span> <span class="keyword">by</span> word;</div></pre></td></tr></table></figure></p>
+<h2 id="&#x5BFC;&#x5165;Trans&#x6570;&#x636E;"><a href="#&#x5BFC;&#x5165;Trans&#x6570;&#x636E;" class="headerlink" title="&#x5BFC;&#x5165;Trans&#x6570;&#x636E;"></a>&#x5BFC;&#x5165;Trans&#x6570;&#x636E;</h2><p>&#x8981;&#x5BFC;&#x5165;&#x6570;&#x636E;&#xFF0C;&#x9996;&#x5148;&#x9700;&#x8981;&#x5728;hive&#x4E2D;&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;&#x8868;&#xFF0C;&#x7528;&#x4E8E;&#x5B58;&#x50A8;&#x6570;&#x636E;&#x7684;&#x4E00;&#x4E9B;&#x5143;&#x4FE1;&#x606F;&#xFF0C;&#x4FBF;&#x4E8E;&#x67E5;&#x8BE2;&#x3002;<br>&#x6570;&#x636E;&#x683C;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[Trans],<span class="number">600000.</span>SH,<span class="number">20170203</span>,<span class="number">101358480</span>,<span class="number">977</span>,<span class="number">272352</span>,,,S,<span class="number">16.7300</span>,<span class="number">400</span>,<span class="number">540050</span>,<span class="number">538028</span>,</div></pre></td></tr></table></figure></p>
+<p>1&#x3001;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x8868;trans.trans201702<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span>  <span class="keyword">table</span> trans.test201702(</div><div class="line"><span class="keyword">type</span> <span class="keyword">STRING</span>,</div><div class="line">code <span class="keyword">STRING</span>,</div><div class="line">trans_date <span class="keyword">STRING</span>,</div><div class="line">trans_time <span class="keyword">STRING</span>,</div><div class="line">seq <span class="keyword">STRING</span>,</div><div class="line">trans_number <span class="keyword">STRING</span>,</div><div class="line">func <span class="keyword">STRING</span>,</div><div class="line">trans_order <span class="keyword">STRING</span>,</div><div class="line">bs <span class="keyword">STRING</span>,</div><div class="line">price <span class="built_in">float</span>,</div><div class="line">volume <span class="keyword">STRING</span>,</div><div class="line">ask <span class="keyword">STRING</span>,</div><div class="line">bid <span class="keyword">STRING</span>)</div><div class="line"><span class="keyword">ROW</span> <span class="keyword">FORMAT</span> <span class="keyword">DELIMITED</span>  </div><div class="line"><span class="keyword">FIELDS</span> <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">&apos;,&apos;</span>;</div></pre></td></tr></table></figure></p>
+<p>2&#x3001;&#x4FEE;&#x6539;&#x5B57;&#x6BB5;&#x540D;&#xFF1A;<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">alter</span> <span class="keyword">table</span> trans.trans201702 <span class="keyword">change</span> <span class="keyword">column</span> tyep <span class="keyword">type</span> <span class="keyword">STRING</span>;</div></pre></td></tr></table></figure></p>
+<p>3&#x3001;&#x5BFC;&#x5165;&#x6570;&#x636E;&#x5230;trans.test201702<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">load</span> <span class="keyword">data</span> inpath <span class="string">&apos;trans-201702/trans-201702.txt&apos;</span> overwrite <span class="keyword">into</span> <span class="keyword">table</span> trans.test201702;</div></pre></td></tr></table></figure></p>
+<p>4&#x3001;&#x5220;&#x9664;&#x8868;&#xFF1A;<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">drop</span> <span class="selector-tag">database</span><span class="selector-class">.table_name</span></div></pre></td></tr></table></figure></p>
+<h2 id="&#x67E5;&#x8BE2;&#x64CD;&#x4F5C;"><a href="#&#x67E5;&#x8BE2;&#x64CD;&#x4F5C;" class="headerlink" title="&#x67E5;&#x8BE2;&#x64CD;&#x4F5C;"></a>&#x67E5;&#x8BE2;&#x64CD;&#x4F5C;</h2><p>Hive&#x7684;sql&#x8BED;&#x53E5;&#x4E0E;sql&#x7C7B;&#x4F3C;&#xFF0C;&#x53EA;&#x8981;&#x719F;&#x6089;sql&#x8BED;&#x53E5;&#xFF0C;&#x57FA;&#x672C;&#x4E0A;&#x5C31;&#x80FD;&#x4F7F;&#x7528;Hive&#x5C31;&#x80FD;&#x67E5;&#x8BE2;&#x51FA;&#x60F3;&#x8981;&#x7684;&#x6570;&#x636E;&#x3002;<br>1&#x3001;&#x67E5;&#x8BE2;&#x80A1;&#x7968;&#x4EE3;&#x7801;<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> wcode <span class="keyword">from</span> trans.trans201702 <span class="keyword">group</span> <span class="keyword">by</span> wcode;</div></pre></td></tr></table></figure></p>
+<p><img src="/2017/04/25/Hive&#x57FA;&#x672C;&#x4F7F;&#x7528;/6A2DC9CE-EAEC-44CC-A0C0-42A37AAE5F1C.png" alt=""><br><img src="/2017/04/25/Hive&#x57FA;&#x672C;&#x4F7F;&#x7528;/5FC10AA7-C90F-4796-A883-923B8FA75A1F.png" alt=""></p>
+<p>2&#x3001;&#x5C06;&#x67E5;&#x8BE2;&#x7684;&#x6570;&#x636E;&#x5BFC;&#x51FA;<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">insert</span> overwrite <span class="keyword">local</span> <span class="keyword">file</span> <span class="string">&apos;/tmp/code_list.txt&apos;</span> <span class="keyword">select</span> code  <span class="keyword">from</span> trans.trans201702 <span class="keyword">group</span> <span class="keyword">by</span> code;</div></pre></td></tr></table></figure></p>
+<p>&#x751F;&#x6210;&#x7684;&#x6587;&#x4EF6;&#x6570; &#x548C;redurcer&#x7684;&#x6570;&#x76EE;&#x7684;&#x4E00;&#x6837;&#x7684;&#x3002;<br><img src="/2017/04/25/Hive&#x57FA;&#x672C;&#x4F7F;&#x7528;/E7C12BF3-9DCC-45CA-84C6-B5547F234A38.png" alt=""><br>&#x4E0A;&#x9762;&#x7684;&#x6587;&#x4EF6;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x5408;&#x5E76;&#x624D;&#x80FD;&#x770B;&#xFF0C;&#x4E0D;&#x65B9;&#x4FBF;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x76F4;&#x63A5;&#x5BFC;&#x51FA;&#x67E5;&#x8BE2;&#x7ED3;&#x679C;&#x5230;&#x672C;&#x5730;<br><figure class="highlight q"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/hive -e &apos;<span class="keyword">select</span> code  <span class="keyword">from</span> trans.trans201702 <span class="built_in">group</span> <span class="keyword">by</span> code;&apos; &gt; ~/data/code_list</div></pre></td></tr></table></figure></p>
+<p>3&#x3001;Python &#x5F02;&#x6B65;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/bin/python</span></div><div class="line"><span class="keyword">from</span> pyhive <span class="keyword">import</span> hive</div><div class="line"><span class="keyword">from</span> TCLIService.ttypes <span class="keyword">import</span> TOperationState</div><div class="line">cursor = hive.connect(<span class="string">&apos;localhost&apos;</span>).cursor()</div><div class="line">cursor.execute(<span class="string">&apos;select code from trans.trans201702 group by code&apos;</span>, <span class="keyword">async</span>=<span class="keyword">True</span>)</div><div class="line">status = cursor.poll().operationState</div><div class="line"><span class="keyword">while</span> status <span class="keyword">in</span> (TOperationState.INITIALIZED_STATE, TOperationState.RUNNING_STATE):</div><div class="line">    status = cursor.poll().operationState</div><div class="line">    <span class="comment"># If needed, an asynchronous query can be cancelled at any time with:</span></div><div class="line">    <span class="comment"># cursor.cancel()</span></div><div class="line"><span class="comment"># &#x83B7;&#x53D6;&#x6570;&#x636E;</span></div><div class="line"><span class="keyword">try</span>:</div><div class="line">    rows = cursor.fetchall()</div><div class="line"><span class="keyword">except</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">&apos;null&apos;</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> rows:</div><div class="line">        <span class="keyword">print</span> row</div></pre></td></tr></table></figure></p>
+<p><img src="/2017/04/25/Hive&#x57FA;&#x672C;&#x4F7F;&#x7528;/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-03-16%20%E4%B8%8B%E5%8D%882.49.41.png" alt=""></p>
+<h2 id="hive-streaming"><a href="#hive-streaming" class="headerlink" title="hive streaming"></a>hive streaming</h2><p>Hive streaming&#x63D0;&#x4F9B;&#x4E86;&#x7C7B;&#x4F3C;unix&#x7BA1;&#x9053;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x5C06;&#x67E5;&#x8BE2;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x76F4;&#x63A5;&#x4F20;&#x7ED9;&#x5176;&#x5B83;&#x7684;&#x811A;&#x672C;&#x5904;&#x7406;&#xFF0C;&#x5E76;&#x4E14;&#x652F;&#x6301;&#x591A;&#x79CD;&#x8BED;&#x8A00;&#x5982;python,java<br>&#x7F16;&#x8F91;streaming.py<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env  python  </span></div><div class="line"><span class="comment">#-*- coding:utf-8 -*-  </span></div><div class="line"><span class="comment"># hive streaming test</span></div><div class="line">import sys</div><div class="line"></div><div class="line"><span class="keyword">lines</span> = []</div><div class="line"><span class="keyword">for</span> <span class="built_in">line</span> <span class="keyword">in</span> sys.<span class="keyword">stdin</span>:</div><div class="line">    <span class="keyword">lines</span>.append(<span class="built_in">line</span>)</div><div class="line">    print <span class="keyword">lines</span></div></pre></td></tr></table></figure></p>
+<p>&#x5728;hive&#x4E2D;&#x6267;&#x884C;&#xFF0C;&#x52A0;&#x5165;&#x81EA;&#x5DF1;&#x5B9A;&#x4E49;&#x7684;&#x811A;&#x672C;<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">add <span class="keyword">file</span> <span class="regexp">/home/</span>wodehp<span class="regexp">/code/</span>streaming.py;</div></pre></td></tr></table></figure></p>
+<p>&#x7136;&#x540E;&#x6267;&#x884C;&#xFF1A;<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> transform(bs) <span class="keyword">using</span> <span class="string">&apos;python streaming.py&apos;</span> <span class="keyword">as</span> bs <span class="keyword">from</span> trans.trans201702  <span class="keyword">where</span> trans_date=<span class="string">&apos;20170203&apos;</span> <span class="keyword">limit</span> <span class="number">10</span>;</div></pre></td></tr></table></figure></p>
+<p>&#x8F93;&#x51FA;<br><img src="/2017/04/25/Hive&#x57FA;&#x672C;&#x4F7F;&#x7528;/88F204C6-3539-4C6F-B5C2-AA3C43E1C02C.png" alt=""></p>
+<h2 id="Python&#x4F7F;&#x7528;hive"><a href="#Python&#x4F7F;&#x7528;hive" class="headerlink" title="Python&#x4F7F;&#x7528;hive"></a>Python&#x4F7F;&#x7528;hive</h2><p>Hive&#x57FA;&#x4E8E;thirft&#x6846;&#x67B6;&#xFF0C;&#x63D0;&#x4F9B;&#x4E00;&#x5957;&#x5916;&#x90E8;&#x8C03;&#x7528;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x652F;&#x6301;java&#xFF0C;python&#x7B49;&#x7A0B;&#x5E8F;&#x8C03;&#x7528;&#x3002;&#x9996;&#x5148;&#x542F;&#x52A8;HiveServer2&#x670D;&#x52A1;<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">nohup</span> hiveserver2 &amp;</div></pre></td></tr></table></figure></p>
+<p>&#x53EF;&#x7528;&#x7684;python&#x5305;<br><a href="https://github.com/BradRuderman/pyhs2" target="_blank" rel="external">pyhs2</a><br><a href="https://github.com/dropbox/PyHive" target="_blank" rel="external">PyHive</a><br><a href="https://github.com/cloudera/impyla" target="_blank" rel="external">impyla</a></p>
+<h3 id="&#x73AF;&#x5883;&#x51C6;&#x5907;"><a href="#&#x73AF;&#x5883;&#x51C6;&#x5907;" class="headerlink" title="&#x73AF;&#x5883;&#x51C6;&#x5907;"></a>&#x73AF;&#x5883;&#x51C6;&#x5907;</h3><p>&#x9700;&#x8981;&#x5B89;&#x88C5;&#x7684;&#x5305;&#x4E3A;thrift_sasl,sasl&#xFF0C;pythive&#xFF0C;impyle<br>&#x5B89;&#x88C5;sasl<br><img src="/2017/04/25/Hive&#x57FA;&#x672C;&#x4F7F;&#x7528;/296833E1-195E-4296-8E6A-FA1E8E61384B.png" alt=""><br>&#x5C06;&#x4E0B;&#x9762;&#x7684;&#x5305;&#x5168;&#x88C5;&#x4E0A;<br><img src="/2017/04/25/Hive&#x57FA;&#x672C;&#x4F7F;&#x7528;/21D91C07-4F52-404D-A593-B14096373FCB.png" alt=""></p>
+<h3 id="PyHive&#x4F7F;&#x7528;"><a href="#PyHive&#x4F7F;&#x7528;" class="headerlink" title="PyHive&#x4F7F;&#x7528;"></a>PyHive&#x4F7F;&#x7528;</h3><p>pyhive&#x662F;dropbox&#x5F00;&#x6E90;&#x7684;python&#x8FDE;&#x63A5;hive&#x7684;&#x5E93;&#xFF0C;&#x5E76;&#x4E14;&#x652F;&#x6301;&#x5F02;&#x6B65;&#x3002;<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/bin/python</span></div><div class="line"><span class="keyword">from</span> pyhive <span class="keyword">import</span> hive</div><div class="line"><span class="keyword">from</span> TCLIService.ttypes <span class="keyword">import</span> TOperationState</div><div class="line">]</div><div class="line"><span class="comment"># &#x8FDE;&#x63A5;</span></div><div class="line">cursor = hive.connect(&#x2018;localhost&#x2019;).cursor()</div><div class="line"><span class="comment"># &#x6267;&#x884C;&#x67E5;&#x8BE2;</span></div><div class="line">cursor.execute(&#x2018;SELECT * FROM trans.trans201612 limit <span class="number">10</span>&#x2019;, <span class="keyword">async</span>=<span class="keyword">True</span>)</div><div class="line">status = cursor.poll().operationState</div><div class="line"><span class="keyword">while</span> status <span class="keyword">in</span> (TOperationState.INITIALIZED_STATE, TOperationState.RUNNING_STATE):</div><div class="line">	<span class="comment"># &#x67E5;&#x8BE2;&#x72B6;&#x6001;</span></div><div class="line">    logs = cursor.fetch_logs()</div><div class="line">    <span class="keyword">for</span> message <span class="keyword">in</span> logs:</div><div class="line">        <span class="keyword">print</span> message</div><div class="line">    <span class="comment"># If needed, an asynchronous query can be cancelled at any time with:</span></div><div class="line">    <span class="comment"># cursor.cancel()</span></div><div class="line"><span class="comment">#print cursor.fetchall()</span></div><div class="line"><span class="keyword">for</span> row <span class="keyword">in</span> cursor.fetchall():</div><div class="line">        <span class="keyword">print</span> row</div></pre></td></tr></table></figure></p>
+<p><img src="/2017/04/25/Hive&#x57FA;&#x672C;&#x4F7F;&#x7528;/ADF2A6AC-E91B-4AB9-8087-FF9ED2A4A279.png" alt=""></p>
+<h3 id="pyhs2&#x4F7F;&#x7528;"><a href="#pyhs2&#x4F7F;&#x7528;" class="headerlink" title="pyhs2&#x4F7F;&#x7528;"></a>pyhs2&#x4F7F;&#x7528;</h3><p> &#x51FA;&#x73B0;&#x6B64;&#x95EE;&#x9898;&#x65F6;&#x7531;&#x4E8E;&#x7528;&#x6237;&#x5BC6;&#x7801;&#x8BBE;&#x7F6E;&#x4E0D;&#x5BF9;<br><img src="/2017/04/25/Hive&#x57FA;&#x672C;&#x4F7F;&#x7528;/B63DC334-E4C8-4CC7-B1F0-873443CB472E.png" alt=""><br>HiveServer2&#x9ED8;&#x8BA4;&#x6743;&#x9650;&#x6CA1;&#x6709;&#x5F00;&#x8D77;<br>authMechanism&#x8BBE;&#x7F6E;&#x4E3A;NOSASL<br><img src="/2017/04/25/Hive&#x57FA;&#x672C;&#x4F7F;&#x7528;/28F43841-CDC3-4542-B8A2-51747722AABD.png" alt=""></p>
+<p>&#x4E4B;&#x540E;&#x53C8;&#x7206;&#x51FA;&#x4EE5;&#x4E0B;&#x95EE;&#x9898;&#xFF0C;&#x6682;&#x65F6;&#x95EE;&#x9898;&#x4E0D;&#x660E;<br><img src="/2017/04/25/Hive&#x57FA;&#x672C;&#x4F7F;&#x7528;/53C71365-BD3C-4605-8F80-5622E201E31A.png" alt=""><br>pyhs2&#x5DF2;&#x7ECF;&#x4E8E;2016&#x5E74;1&#x6708;&#x4EFD;&#x505C;&#x6B62;&#x66F4;&#x65B0;&#xFF0C;bug&#x8F83;&#x591A;</p>
+<h3 id="impyla"><a href="#impyla" class="headerlink" title="impyla"></a>impyla</h3><p>cloudera&#x7684;impyla&#xFF0C;bug&#x591A;&#xFF0C;&#x6CA1;&#x6709;&#x8BD5;&#x6210;&#x529F;<br>`</p>
+<h2 id="hive&#x7248;&#x672C;&#x5207;&#x6362;"><a href="#hive&#x7248;&#x672C;&#x5207;&#x6362;" class="headerlink" title="hive&#x7248;&#x672C;&#x5207;&#x6362;"></a>hive&#x7248;&#x672C;&#x5207;&#x6362;</h2><p>&#x7531;&#x4E8E;&#x5B89;&#x88C5;&#x7684;hive&#x7248;&#x672C;&#x504F;&#x9AD8;&#xFF0C;&#x5728;&#x4F7F;&#x7528;&#x7684;&#x65F6;&#x5019;&#x5B58;&#x5728;python&#x8FDE;&#x63A5;&#x7684;&#x8BB8;&#x591A;&#x95EE;&#x9898;&#xFF0C;&#x73B0;&#x5207;&#x6362;&#x6210;hive1.2&#x7248;&#xFF0C;&#x5B89;&#x88C5;&#x548C;hive2.1&#x4E00;&#x6837;&#xFF0C;&#x914D;&#x7F6E;&#x4E5F;&#x4E00;&#x6837;&#x4E0D;&#x9700;&#x8981;&#x66F4;&#x6539;&#x3002;</p>
+<p>Hive2&#x867D;&#x7136;&#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#x7A33;&#x5B9A;&#x7684;&#x7248;&#x672C;(2016&#x5E74;12&#x53D1;&#x5E03;)&#xFF0C;&#x4F46;&#x662F;&#x5176;&#x521A;&#x51FA;&#x6765;&#x4E0D;&#x4E45;&#xFF0C;&#x8BB8;&#x591A;&#x7684;&#x914D;&#x5957;&#x7684;&#x5E93;&#x5E76;&#x6CA1;&#x6709;&#x53CA;&#x65F6;&#x7684;&#x66F4;&#x65B0;&#x7528;&#x6765;&#x652F;&#x6301;&#xFF0C;&#x4F8B;&#x5982;pyhs2&#x5728;2016&#x5E74;1&#x6708;&#x505C;&#x6B62;&#x66F4;&#x65B0;&#xFF0C;impyla&#x4E5F;&#x505C;&#x6B62;&#x66F4;&#x65B0;&#x63A5;&#x8FD1;1&#x5E74;&#x7B49;&#xFF0C;&#x51FA;&#x73B0;&#x7684;&#x95EE;&#x9898;&#x5F88;&#x96BE;&#x627E;&#x5230;&#x7B54;&#x6848;&#x3002;&#x4F46;&#x662F;&#x5728;&#x7248;&#x672C;&#x7684;&#x9009;&#x62E9;&#x4E0A;&#x8FD8;&#x662F;&#x9700;&#x8981;&#x5C1D;&#x8BD5;&#xFF0C;&#x77E5;&#x9053;&#x5B58;&#x5728;&#x7684;&#x95EE;&#x9898;&#x3002;&#x540E;&#x7EED;&#x5C06;&#x91C7;&#x7528;PyHive&#x6765;&#x4F5C;&#x4E3A;Python&#x8FDE;&#x63A5;Hive&#x7684;&#x5305;&#x3002;</p>
+<h2 id="&#x53C2;&#x8003;&#x6587;&#x7AE0;"><a href="#&#x53C2;&#x8003;&#x6587;&#x7AE0;" class="headerlink" title="&#x53C2;&#x8003;&#x6587;&#x7AE0;"></a>&#x53C2;&#x8003;&#x6587;&#x7AE0;</h2><p><a href="http://blog.fens.me/hadoop-hive-10g/" target="_blank" rel="external">Hive&#x5BFC;&#x5165;10G&#x6570;&#x636E;&#x7684;&#x6D4B;&#x8BD5;</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hive/" rel="tag"># Hive</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/04/Hadoop集群检查/" rel="next" title="Hadoop集群检查">
+                <i class="fa fa-chevron-left"></i> Hadoop集群检查
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/29/ganglia导致的centos异常记录/" rel="prev" title="ganglia导致的centos异常记录">
+                ganglia导致的centos异常记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Kavim</p>
+              <p class="site-description motion-element" itemprop="description">生活不止眼前的苟且 还有诗和远方的田野</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本使用"><span class="nav-number">1.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#导入Trans数据"><span class="nav-number">2.</span> <span class="nav-text">导入Trans数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询操作"><span class="nav-number">3.</span> <span class="nav-text">查询操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hive-streaming"><span class="nav-number">4.</span> <span class="nav-text">hive streaming</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python使用hive"><span class="nav-number">5.</span> <span class="nav-text">Python使用hive</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境准备"><span class="nav-number">5.1.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PyHive使用"><span class="nav-number">5.2.</span> <span class="nav-text">PyHive使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pyhs2使用"><span class="nav-number">5.3.</span> <span class="nav-text">pyhs2使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#impyla"><span class="nav-number">5.4.</span> <span class="nav-text">impyla</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hive版本切换"><span class="nav-number">6.</span> <span class="nav-text">hive版本切换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">7.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate"> 
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kavim</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="&amp;#x5BF9;&amp;#x5927;&amp;#x91CF;&amp;#x6570;&amp;#x636E;&amp;#x8FDB;&amp;#x884C;&amp;#x67E5;&amp;#x8BE2;&amp;#x65F6;&amp;#xFF0C;Hive&amp;#x5728;&amp;#x67E5;&amp;#x8BE2;&amp;#x65F6;&amp;#xFF0C;&amp;#x4F1A;&amp;#x8F6C;&amp;#x6362;&amp;#x6210;mapreduce&amp;#x4EFB;&amp;#x52A1;&amp;#x8FD0;&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hive分区测试">
+<meta property="og:url" content="https://xuxping.github.io/2017/06/25/Hive分区测试/index.html">
+<meta property="og:site_name" content="Kavim">
+<meta property="og:description" content="&amp;#x5BF9;&amp;#x5927;&amp;#x91CF;&amp;#x6570;&amp;#x636E;&amp;#x8FDB;&amp;#x884C;&amp;#x67E5;&amp;#x8BE2;&amp;#x65F6;&amp;#xFF0C;Hive&amp;#x5728;&amp;#x67E5;&amp;#x8BE2;&amp;#x65F6;&amp;#xFF0C;&amp;#x4F1A;&amp;#x8F6C;&amp;#x6362;&amp;#x6210;mapreduce&amp;#x4EFB;&amp;#x52A1;&amp;#x8FD0;&amp;#x">
+<meta property="og:image" content="https://xuxping.github.io/2017/06/25/Hive分区测试/155C141C-3C88-4D8D-8F17-2B9F4C08E31C.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/06/25/Hive分区测试/EE32B9BA-7067-4DBC-AB06-616696CF67B9.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/06/25/Hive分区测试/B74BC237-30B4-4065-BA88-4D229E1DE2AB.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/06/25/Hive分区测试/D26EAEF9-6DFD-4385-AC81-970B9D451B38.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/06/25/Hive分区测试/5F8768D9-B32D-4012-AA7F-25626D637539.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/06/25/Hive分区测试/95282B57-CE69-4194-8190-290409273433.png">
+<meta property="og:image" content="https://xuxping.github.io/2017/06/25/Hive分区测试/62287DDB-E4AB-4A50-B6A6-030BAF10EF70.png">
+<meta property="og:updated_time" content="2018-08-08T03:21:09.528Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hive分区测试">
+<meta name="twitter:description" content="&amp;#x5BF9;&amp;#x5927;&amp;#x91CF;&amp;#x6570;&amp;#x636E;&amp;#x8FDB;&amp;#x884C;&amp;#x67E5;&amp;#x8BE2;&amp;#x65F6;&amp;#xFF0C;Hive&amp;#x5728;&amp;#x67E5;&amp;#x8BE2;&amp;#x65F6;&amp;#xFF0C;&amp;#x4F1A;&amp;#x8F6C;&amp;#x6362;&amp;#x6210;mapreduce&amp;#x4EFB;&amp;#x52A1;&amp;#x8FD0;&amp;#x">
+<meta name="twitter:image" content="https://xuxping.github.io/2017/06/25/Hive分区测试/155C141C-3C88-4D8D-8F17-2B9F4C08E31C.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://xuxping.github.io/2017/06/25/Hive分区测试/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Hive分区测试 | Kavim</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kavim</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一点一滴积累</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/06/25/Hive分区测试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kavim">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kavim">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Hive分区测试</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-25T15:20:00+08:00">2017-06-25</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hive/" itemprop="url" rel="index"><span itemprop="name">Hive</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x5BF9;&#x5927;&#x91CF;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x67E5;&#x8BE2;&#x65F6;&#xFF0C;Hive&#x5728;&#x67E5;&#x8BE2;&#x65F6;&#xFF0C;&#x4F1A;&#x8F6C;&#x6362;&#x6210;mapreduce&#x4EFB;&#x52A1;&#x8FD0;&#x884C;&#xFF0C;&#x4F1A;&#x663E;&#x5F97;&#x6BD4;&#x8F83;&#x6162;&#x3002;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5206;&#x533A;&#x6765;&#x8FDB;&#x884C;&#x901F;&#x5EA6;&#x4E0A;&#x7684;&#x4F18;&#x5316;&#x3002;<br><a id="more"></a></p>
+<h2 id="&#x5206;&#x533A;&#x8868;&#x5EFA;&#x7ACB;"><a href="#&#x5206;&#x533A;&#x8868;&#x5EFA;&#x7ACB;" class="headerlink" title="&#x5206;&#x533A;&#x8868;&#x5EFA;&#x7ACB;"></a>&#x5206;&#x533A;&#x8868;&#x5EFA;&#x7ACB;</h2><p>&#x65B0;&#x5EFA;&#x5206;&#x533A;&#x8868;trans.trans201702<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> trans.trans201702   (</div><div class="line"><span class="keyword">type</span> <span class="keyword">STRING</span>,</div><div class="line">trans_time <span class="keyword">STRING</span>,</div><div class="line">seq <span class="keyword">STRING</span>,</div><div class="line">trans_number <span class="keyword">STRING</span>,</div><div class="line">func <span class="keyword">STRING</span>,</div><div class="line">trans_order <span class="keyword">STRING</span>,</div><div class="line">bs <span class="keyword">STRING</span>,</div><div class="line">price <span class="built_in">float</span>,</div><div class="line">volume <span class="keyword">STRING</span>,</div><div class="line">ask <span class="keyword">STRING</span>,</div><div class="line">bid <span class="keyword">STRING</span>) </div><div class="line">PARTITIONED <span class="keyword">BY</span> (wcode <span class="keyword">STRING</span>,trans_date <span class="keyword">STRING</span>)</div><div class="line"><span class="keyword">ROW</span> <span class="keyword">FORMAT</span> <span class="keyword">DELIMITED</span>  </div><div class="line"><span class="keyword">FIELDS</span> <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">&apos;,&apos;</span>;</div></pre></td></tr></table></figure></p>
+<p>&#x4ECE;trans.test201702&#x67E5;&#x8BE2;&#x51FA;wcode=&#x2019;000002.SZ&#x2019;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x7136;&#x540E;&#x63D2;&#x5165;trans.trans201702&#x3002;<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">insert overwrite <span class="keyword">table</span> trans.trans201702  partition (wcode=&apos;000002.SZ&apos;,trans_date=&apos;20170203&apos;)</div><div class="line">select <span class="keyword">se</span>.<span class="keyword">type</span>,<span class="keyword">se</span>.trans_time,<span class="keyword">se</span>.seq,<span class="keyword">se</span>.trans_number,<span class="keyword">se</span>.func,<span class="keyword">se</span>.trans_order,<span class="keyword">se</span>.<span class="keyword">bs</span>,<span class="keyword">se</span>.price,<span class="keyword">se</span>.volume,<span class="keyword">se</span>.ask,<span class="keyword">se</span>.bid from  trans.test201702 <span class="keyword">se</span> </div><div class="line">where <span class="keyword">se</span>.wcode=&apos;000002.SZ&apos; and <span class="keyword">se</span>.trans_date=&apos;20170203&apos;;</div><div class="line"></div><div class="line">insert overwrite <span class="keyword">table</span> trans.trans201702  partition (wcode=&apos;600208.<span class="keyword">SH</span>&apos;,trans_date=&apos;20170203&apos;)</div><div class="line">select <span class="keyword">se</span>.<span class="keyword">type</span>,<span class="keyword">se</span>.trans_time,<span class="keyword">se</span>.seq,<span class="keyword">se</span>.trans_number,<span class="keyword">se</span>.func,<span class="keyword">se</span>.trans_order,<span class="keyword">se</span>.<span class="keyword">bs</span>,<span class="keyword">se</span>.price,<span class="keyword">se</span>.volume,<span class="keyword">se</span>.ask,<span class="keyword">se</span>.bid from  trans.test201702 <span class="keyword">se</span> </div><div class="line">where <span class="keyword">se</span>.wcode=&apos;600208.<span class="keyword">SH</span>&apos; and <span class="keyword">se</span>.trans_date=&apos;20170203&apos;;</div><div class="line"></div><div class="line">insert overwrite <span class="keyword">table</span> trans.trans201702  partition (wcode=&apos;000005.SZ&apos;,trans_date=&apos;20170203&apos;)</div><div class="line">select <span class="keyword">se</span>.<span class="keyword">type</span>,<span class="keyword">se</span>.trans_time,<span class="keyword">se</span>.seq,<span class="keyword">se</span>.trans_number,<span class="keyword">se</span>.func,<span class="keyword">se</span>.trans_order,<span class="keyword">se</span>.<span class="keyword">bs</span>,<span class="keyword">se</span>.price,<span class="keyword">se</span>.volume,<span class="keyword">se</span>.ask,<span class="keyword">se</span>.bid from  trans.test201702 <span class="keyword">se</span> </div><div class="line">where <span class="keyword">se</span>.wcode=&apos;000005.SZ&apos; and <span class="keyword">se</span>.trans_date=&apos;20170203&apos;;</div></pre></td></tr></table></figure></p>
+<p>&#x5728;&#x521B;&#x5EFA;&#x5206;&#x533A;&#x65F6;&#xFF0C;hive&#x4F1A;&#x8FDB;&#x884C;mapreduce&#x4EFB;&#x52A1;&#x3002;<br><img src="/2017/06/25/Hive&#x5206;&#x533A;&#x6D4B;&#x8BD5;/155C141C-3C88-4D8D-8F17-2B9F4C08E31C.png" alt=""></p>
+<p>&#x67E5;&#x770B;&#x5206;&#x533A;&#x8868;<br><img src="/2017/06/25/Hive&#x5206;&#x533A;&#x6D4B;&#x8BD5;/EE32B9BA-7067-4DBC-AB06-616696CF67B9.png" alt=""><br>&#x5220;&#x9664;&#x9519;&#x8BEF;&#x7684;&#x5206;&#x533A;&#xFF1A;<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">alter</span> <span class="keyword">table</span> trans201702 <span class="keyword">drop</span> <span class="keyword">partition</span>(wcode=<span class="string">&apos;600208.SZ&apos;</span>,trans_date=<span class="number">20170203</span>);</div></pre></td></tr></table></figure></p>
+<h2 id="&#x67E5;&#x8BE2;&#x6027;&#x80FD;&#x6BD4;&#x8F83;"><a href="#&#x67E5;&#x8BE2;&#x6027;&#x80FD;&#x6BD4;&#x8F83;" class="headerlink" title="&#x67E5;&#x8BE2;&#x6027;&#x80FD;&#x6BD4;&#x8F83;"></a>&#x67E5;&#x8BE2;&#x6027;&#x80FD;&#x6BD4;&#x8F83;</h2><p>&#x539F;&#x59CB;&#x67E5;&#x8BE2;&#xFF1A;<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> trans.test201702 <span class="keyword">where</span> wcode=<span class="string">&apos;000002.SZ&apos;</span>;</div><div class="line">Time taken: 76.164 seconds, Fetched: 668098 row(s)</div></pre></td></tr></table></figure></p>
+<p>&#x4F1A;&#x8FDB;&#x884C;mapreduce&#x4EFB;&#x52A1;<br><img src="/2017/06/25/Hive&#x5206;&#x533A;&#x6D4B;&#x8BD5;/B74BC237-30B4-4065-BA88-4D229E1DE2AB.png" alt=""></p>
+<p>&#x5206;&#x533A;&#x540E;&#xFF1A;<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> trans.trans201702 <span class="keyword">where</span> wcode=<span class="string">&apos;000002.SZ&apos;</span>;</div><div class="line">Time taken: 0.15 seconds, Fetched: 20567 row(s)</div><div class="line"></div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> trans.trans201702 <span class="keyword">where</span> trans_date=<span class="string">&apos;20170203&apos;</span>;</div><div class="line">Time taken: 0.176 seconds, Fetched: 20567 row(s)</div><div class="line"></div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> trans.trans201702 <span class="keyword">where</span> wcode=<span class="string">&apos;600208.SH&apos;</span>;</div><div class="line">Time taken: 0.145 seconds, Fetched: 3158 row(s)</div><div class="line"></div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> trans.trans201702 <span class="keyword">where</span> trans_date=<span class="string">&apos;20170203&apos;</span>;</div><div class="line">Time taken: 0.157 seconds, Fetched: 26516 row(s)</div></pre></td></tr></table></figure></p>
+<p><img src="/2017/06/25/Hive&#x5206;&#x533A;&#x6D4B;&#x8BD5;/D26EAEF9-6DFD-4385-AC81-970B9D451B38.png" alt=""><br>&#x67E5;&#x8BE2;&#x65F6;&#x95F4;&#x76F8;&#x6BD4;&#x6CA1;&#x6709;&#x521B;&#x5EFA;&#x5206;&#x533A;&#x524D;&#x5927;&#x5E45;&#x7F29;&#x77ED;&#x3002;</p>
+<p>&#x5206;&#x533A;&#x4E4B;&#x540E;&#x57FA;&#x672C;&#x89E3;&#x51B3;&#x4E86;&#x80A1;&#x7968;&#x7684;&#x67E5;&#x8BE2;&#x901F;&#x5EA6;&#x7F13;&#x6162;&#x7684;&#x95EE;&#x9898;<br><img src="/2017/06/25/Hive&#x5206;&#x533A;&#x6D4B;&#x8BD5;/5F8768D9-B32D-4012-AA7F-25626D637539.png" alt=""></p>
+<h2 id="&#x5EFA;&#x8BAE;"><a href="#&#x5EFA;&#x8BAE;" class="headerlink" title="&#x5EFA;&#x8BAE;"></a>&#x5EFA;&#x8BAE;</h2><p>Hive&#x5206;&#x533A;&#x64CD;&#x4F5C;&#x5C31;&#x662F;&#x5B9E;&#x9645;&#x4E0A;&#x5C31;&#x662F;&#x5206;&#x76EE;&#x5F55;&#xFF0C;&#x628A;&#x4E00;&#x4E2A;&#x5927;&#x7684;&#x6570;&#x636E;&#x96C6;&#x6839;&#x636E;&#x4E1A;&#x52A1;&#x9700;&#x8981;&#x5206;&#x5272;&#x6210;&#x66F4;&#x5C0F;&#x7684;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x5728;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x4E2D;&#x4F1A;&#x521B;&#x5EFA;&#x5F88;&#x591A;&#x5206;&#x533A;&#x7684;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x5982;&#x679C;&#x5206;&#x533A;&#x8FC7;&#x591A;&#xFF0C;&#x6587;&#x4EF6;&#x5939;&#x53C8;&#x592A;&#x5C0F;&#xFF0C;&#x4E0D;&#x5229;&#x4E8E;&#x53D1;&#x6325;hadoop&#x7684;&#x4F18;&#x52BF;&#xFF0C;&#x53EF;&#x80FD;&#x9020;&#x6210;&#x6027;&#x80FD;&#x7684;&#x635F;&#x8017;&#x3002;&#x5EFA;&#x8BAE;&#x5C06;trans&#x6570;&#x636E;&#x6309;&#x7167;&#x80A1;&#x7968;&#x4EE3;&#x7801;&#x8FDB;&#x884C;&#x5206;&#x533A;&#x3002;<br><img src="/2017/06/25/Hive&#x5206;&#x533A;&#x6D4B;&#x8BD5;/95282B57-CE69-4194-8190-290409273433.png" alt=""></p>
+<p>&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4FEE;&#x6539;&#x52A8;&#x6001;&#x5206;&#x533A;&#x5927;&#x5C0F;&#x6570;&#x76EE;&#x548C;&#x6587;&#x4EF6;&#x6765;&#x8C03;&#x6574;hive&#x652F;&#x6301;&#x7684;&#x5206;&#x533A;&#x6570;&#x91CF;&#x3002;<br><img src="/2017/06/25/Hive&#x5206;&#x533A;&#x6D4B;&#x8BD5;/62287DDB-E4AB-4A50-B6A6-030BAF10EF70.png" alt=""></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hive/" rel="tag"># Hive</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/19/单机mongo安装和权限问题解决/" rel="next" title="单机mongo安装和权限问题解决">
+                <i class="fa fa-chevron-left"></i> 单机mongo安装和权限问题解决
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/03/租房数据爬取工作汇总/" rel="prev" title="租房数据爬取工作汇总">
+                租房数据爬取工作汇总 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Kavim</p>
+              <p class="site-description motion-element" itemprop="description">生活不止眼前的苟且 还有诗和远方的田野</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#分区表建立"><span class="nav-number">1.</span> <span class="nav-text">分区表建立</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询性能比较"><span class="nav-number">2.</span> <span class="nav-text">查询性能比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建议"><span class="nav-number">3.</span> <span class="nav-text">建议</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate"> 
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kavim</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

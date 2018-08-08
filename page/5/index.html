@@ -274,6 +274,347 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2016/12/11/js对象的拷贝问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kavim">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kavim">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/12/11/js对象的拷贝问题/" itemprop="url">js对象的拷贝问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-11T11:18:20+08:00">2016-12-11</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&#x95EE;&#x9898;&#x5982;&#x4E0B;<br>&#x70B9;&#x51FB;+&#x4E4B;&#x540E;&#xFF0C;&#x65B0;&#x5EFA;&#x4E00;&#x884C;&#xFF0C;&#x5E76;&#x8D4B;&#x4E88;&#x521D;&#x59CB;&#xFF0C;&#x4ECE;&#x539F;&#x59CB;&#x7684;&#x6570;&#x7EC4;&#x4E2D;&#x76F4;&#x63A5;&#x590D;&#x5236;&#x7B2C;&#x4E00;&#x4E2A;&#xFF0C;&#x7136;&#x540E;&#x5728;push&#x5230;&#x6570;&#x7EC4;&#x4E2D;&#xFF0C;&#x7ED3;&#x679C;&#x6539;&#x53D8;&#x8F93;&#x5165;&#x6846;&#x540E;&#xFF0C;&#x5176;&#x5B83;&#x7684;&#x503C;&#x4E5F;&#x6539;&#x53D8;&#xFF0C;&#x5B9E;&#x9645;&#x60C5;&#x51B5;&#xFF0C;&#x53EA;&#x662F;&#x60F3;&#x8981;&#x62F7;&#x8D1D;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E2A;&#x503C;&#x3002;<br><img src="/2016/12/11/js&#x5BF9;&#x8C61;&#x7684;&#x62F7;&#x8D1D;&#x95EE;&#x9898;/js-copy.gif" alt="&#x56FE;&#x7247;">   </p>
+<p>&#x4EE3;&#x7801;&#x5982;&#x4E0B;:</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let <span class="keyword">new</span><span class="type">Obj</span> = <span class="built_in">this</span>.submenu.optionals[<span class="number">0</span>];</div><div class="line"><span class="built_in">this</span>.submenu.optionals.push(<span class="keyword">new</span><span class="type">Obj</span>);</div></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x6837;&#x76F4;&#x63A5;&#x5C06;&#x5BF9;&#x8C61;&#x8D4B;&#x503C;&#x7ED9;newObj&#xFF0C;&#x65B0;&#x63D2;&#x5165;&#x7684;&#x9879;&#x4E0E;&#x7B2C;&#x4E00;&#x9879;&#x5F15;&#x7528;&#x7684;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x5730;&#x5740;&#xFF0C;&#x56E0;&#x6B64;&#x4F1A;&#x9020;&#x6210;&#x4FEE;&#x6539;&#x7684;&#x540C;&#x65F6;&#x53D1;&#x751F;&#x3002;<br><img src="/2016/12/11/js&#x5BF9;&#x8C61;&#x7684;&#x62F7;&#x8D1D;&#x95EE;&#x9898;/js-obj-referer.png" alt="&#x56FE;&#x7247;"></p>
+<p>&#x8FD9;&#x79CD;&#x76F4;&#x63A5;&#x5C06;&#x5BF9;&#x8C61;&#x590D;&#x5236;&#x7ED9;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x662F;js&#x4E2D;&#x7684;&#x6D45;&#x62F7;&#x8D1D;&#x3002;   </p>
+<p>&#x5BF9;&#x8C61;&#x7684;&#x6DF1;&#x62F7;&#x8D1D;&#x662F;&#x53EA;&#x590D;&#x5236;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x548C;&#x503C;&#xFF0C;&#x4E0D;&#x662F;&#x5F15;&#x7528;&#x5BF9;&#x8C61;&#x3002;<br>&#x91C7;&#x53D6;&#x7684;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#xFF1A;&#x628A;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x904D;&#x5386;&#x4E00;&#x904D;&#xFF0C;&#x8D4B;&#x7ED9;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5BF9;&#x8C61;&#x3002;</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> deepCopy= <span class="function"><span class="keyword">function</span></span>(obj) { </div><div class="line">	<span class="keyword">var</span> <span class="keyword">new</span><span class="type">Obj</span>={};</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> obj) {</div><div class="line">			<span class="comment">//&#x9700;&#x8981;&#x5224;&#x65AD;&#x4E00;&#x4E9B;&#x5C5E;&#x6027;&#x662F;&#x5426;&#x662F;&#x5BF9;&#x8C61;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x5C31;&#x9012;&#x5F52;</span></div><div class="line">	      <span class="keyword">new</span><span class="type">Obj</span>[key] = typeof obj[key]===&#x2019;object&#x2019;?   </div><div class="line">	      					deepCoyp(obj[key]): <span class="type"></span></div><div class="line">	      					obj[key];</div><div class="line">	} </div><div class="line">   	<span class="keyword">return</span> <span class="keyword">new</span><span class="type">Obj</span>; </div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x53EF;&#x4EE5;<a href="http://lodashjs.com/docs/" target="_blank" rel="external">lodash</a>&#x7684;api&#xFF0C;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let <span class="keyword">new</span><span class="type">Obj</span> = <span class="literal">_</span>.clone(obj);</div></pre></td></tr></table></figure>
+<p>&#x5F88;&#x65B9;&#x4FBF;&#x3002;</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2016/12/05/lnmp-install/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kavim">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kavim">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/12/05/lnmp-install/" itemprop="url">nginx ，php，MySQL 版本选择和安装</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-05T00:00:00+08:00">2016-12-05</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/服务器/" itemprop="url" rel="index"><span itemprop="name">服务器</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p> &#x642D;&#x5EFA;web&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x6211;&#x4E00;&#x76F4;&#x9009;&#x62E9;&#x7684;LNMP&#x73AF;&#x5883;&#xFF1A;  </p>
+<ul>
+<li>centos7.2</li>
+<li>Nginx</li>
+<li>Mysql</li>
+<li>PHP</li>
+</ul>
+<p>Centos&#x5C31;&#x4E0D;&#x7528;&#x53D9;&#x8FF0;&#x4E86;&#xFF0C;&#x4EE5;&#x4E0B;&#x4E3B;&#x8981;&#x4ECE;Nginx,Mysql ,PHP&#x7684;&#x7684;&#x7248;&#x672C;&#x9009;&#x62E9;&#xFF0C;&#x4E0D;&#x540C;&#x7248;&#x4E4B;&#x95F4;&#x7684;&#x5DEE;&#x5F02;&#xFF0C;&#x5B89;&#x88C5;&#xFF0C;&#x4EE5;&#x53CA;&#x5B89;&#x88C5;&#x6240;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;&#x8FDB;&#x884C;&#x6C47;&#x603B;&#x3002;</p>
+<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><h3 id="&#x7248;&#x672C;"><a href="#&#x7248;&#x672C;" class="headerlink" title="&#x7248;&#x672C;"></a>&#x7248;&#x672C;</h3><p><img src="/2016/12/05/lnmp-install/nginx-ver.png" alt="nginx"></p>
+<p>nginx &#x4E3B;&#x8981;&#x5206;&#x4E3A;mainline&#x548C;stable&#x4E24;&#x79CD;version,&#x540E;&#x8005;&#x662F;&#x7A33;&#x5B9A;&#x7248;&#x672C;&#xFF0C;&#x4E00;&#x822C;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E2D;&#x91C7;&#x7528;&#x7A33;&#x5B9A;&#x7248;&#x672C;&#x3002;&#x73B0;&#x5728;&#x6700;&#x65B0;&#x7684;&#x7A33;&#x5B9A;&#x7248;&#x672C;&#x662F;1.10.2&#x3002;</p>
+<h3 id="&#x5B89;&#x88C5;"><a href="#&#x5B89;&#x88C5;" class="headerlink" title="&#x5B89;&#x88C5;"></a>&#x5B89;&#x88C5;</h3><p>&#x5B89;&#x88C5;&#x65B9;&#x5F0F;&#x6709;&#x4E24;&#x79CD;&#xFF0C;&#x4E00;&#x79CD;&#x662F;&#x76F4;&#x63A5;yum&#x5B89;&#x88C5;&#xFF0C;&#x4E00;&#x79CD;&#x662F;&#x6E90;&#x7801;&#x5B89;&#x88C5;&#x3002;&#x63A8;&#x8350;&#x540E;&#x8005;&#xFF0C;&#x5B89;&#x88C5;&#x8FC7;&#x7A0B;&#x548C;&#x914D;&#x7F6E;&#x53EF;&#x63A7;</p>
+<p>1&#x3001;yum&#x5B89;&#x88C5;<br>&#x8981;&#x60F3;&#x5FEB;&#xFF0C;&#x76F4;&#x63A5;yum&#xFF0C;&#x9996;&#x5148;&#x5B89;&#x88C5;epel&#xFF0C;epel&#x662F;centos&#x7B49;&#x884D;&#x751F;&#x53D1;&#x884C;&#x7248;&#xFF0C;&#x7528;&#x6765;&#x5F25;&#x8865;centos&#x5185;&#x5BB9;&#x66F4;&#x65B0;&#x6709;&#x65F6;&#x6BD4;&#x8F83;&#x6EDE;&#x540E;&#x6216;&#x662F;&#x4E00;&#x4E9B;&#x6269;&#x5C55;&#x7684;&#x6E90;&#x6CA1;&#x6709;&#x3002;</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">yum <span class="keyword">install</span> epel-<span class="keyword">release</span></div><div class="line">yum <span class="keyword">install</span> nginx    (&#x574F;&#x5904;&#x662F;&#x65E0;&#x6CD5;&#x63A7;&#x5236;&#x5B89;&#x88C5;&#x7248;&#x672C;(&#x4E00;&#x822C;&#x662F;&#x6700;&#x65B0;&#x7248;)&#x548C;&#x81EA;&#x5B9A;&#x4E49;&#x914D;&#x7F6E;&#x6A21;&#x5757;)</div><div class="line">systemctl <span class="keyword">enable</span> nginx.service &#x52A0;&#x5165;&#x5230;&#x81EA;&#x52A8;&#x542F;&#x52A8;</div><div class="line">systemctl <span class="keyword">start</span> nginx.service &#x542F;&#x52A8;&#x670D;&#x52A1;</div><div class="line"></div><div class="line">rpm -qa | grep nginx//&#x53EF;&#x67E5;&#x770B;&#x5B89;&#x88C5;&#x4E86;nginx&#x54EA;&#x4E9B;&#x5305;</div><div class="line">nginx -V   &#x67E5;&#x770B;&#x7F16;&#x8BD1;&#x9009;&#x9879;</div></pre></td></tr></table></figure>
+<p>2&#x3001;<a href="https://pinghu1.github.io/2016/11/23/install-nginx-with-soure/" target="_blank" rel="external">nginx&#x6E90;&#x7801;&#x5B89;&#x88C5;</a>    </p>
+<h2 id="PHP&#x5B89;&#x88C5;"><a href="#PHP&#x5B89;&#x88C5;" class="headerlink" title="PHP&#x5B89;&#x88C5;"></a>PHP&#x5B89;&#x88C5;</h2><h3 id="&#x7248;&#x672C;&#x9009;&#x62E9;"><a href="#&#x7248;&#x672C;&#x9009;&#x62E9;" class="headerlink" title="&#x7248;&#x672C;&#x9009;&#x62E9;"></a>&#x7248;&#x672C;&#x9009;&#x62E9;</h3><p>Composer &#x4F5C;&#x8005; Jordi Boggiano &#x5BF9; packagist.org &#x4ECA;&#x5E74; 5 &#x6708;&#x4EFD;&#x7684; composer install &#x548C; require &#x7684;&#x6570;&#x636E;&#x505A;&#x4E86;&#x7EDF;&#x8BA1;&#xFF0C;&#x53D1;&#x73B0; PHP &#x5F00;&#x53D1;&#x8005;&#xFF0C;&#x81F3;&#x5C11;&#x4F7F;&#x7528; Composer &#x7684; PHP &#x5F00;&#x53D1;&#x8005;&#x5BF9; PHP 7 &#x7684;&#x63A5;&#x53D7;&#x5EA6;&#x86EE;&#x9AD8;&#x7684;&#x3002;</p>
+<p>Composer &#x5728;&#x670D;&#x52A1;&#x5668;&#x901A;&#x8BAF;&#x8FC7;&#x7A0B;&#x4E2D;&#x628A; PHP &#x7248;&#x672C;&#x53F7;&#x901A;&#x8FC7; User-Agent &#x4E00;&#x5E76;&#x53D1;&#x9001;&#xFF0C;&#x901A;&#x8FC7;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#xFF0C;&#x5F97;&#x51FA;&#x4EE5;&#x4E0B;&#xFF1A;<br><img src="/2016/12/05/lnmp-install/2015-11.png" alt="2015&#x5E74;11&#x6708;"><br><img src="/2016/12/05/lnmp-install/2016-05.png" alt="2016&#x5E74;5&#x6708;"><br><img src="/2016/12/05/lnmp-install/php-version-compare.png" alt="&#x5360;&#x6BD4;&#x5BF9;&#x6BD4;"></p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x51FA;php5.5,5.6,7.0&#x9010;&#x6E10;&#x5360;&#x636E;&#x5F88;&#x5927;&#x90E8;&#x5206;&#x7684;&#x5E02;&#x573A;&#x4EFD;&#x989D;&#xFF0C;&#x5176;&#x4E2D;&#x6700;&#x65B0;&#x51FA;&#x6765;&#x7684;php7.0&#x53D1;&#x5C55;&#x8FC5;&#x901F;&#xFF0C;&#x5176;&#x4ED6;&#x7248;&#x672C;&#x9010;&#x6E10;&#x88AB;&#x6DD8;&#x6C70;&#x3002;<br>&#x7531;&#x4E8E;&#x8FD8;&#x6CA1;&#x6709;&#x8DDF;&#x4E0A;php&#x53D1;&#x5C55;&#x7684;&#x901F;&#x5EA6;&#xFF0C;&#x6211;&#x8FD9;&#x91CC;&#x9009;&#x62E9;php5.6&#x7248;&#x672C;&#x3002;</p>
+<h3 id="php&#x5B89;&#x88C5;"><a href="#php&#x5B89;&#x88C5;" class="headerlink" title="php&#x5B89;&#x88C5;"></a>php&#x5B89;&#x88C5;</h3><p>1&#x3001;&#x68C0;&#x67E5;&#x5F53;&#x524D;&#x5B89;&#x88C5;&#x7684;PHP&#x5305;  </p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum <span class="keyword">list</span> installed | <span class="keyword">grep</span> php</div><div class="line">&#x5982;&#x679C;&#x6709;&#x5B89;&#x88C5;&#x7684;PHP&#x5305;&#xFF0C;&#x5148;&#x5220;&#x9664;&#x4ED6;&#x4EEC;</div><div class="line">yum <span class="built_in">remove</span> ...</div></pre></td></tr></table></figure>
+<p>2&#x3001;&#x5B89;&#x88C5;php&#x7684;&#x4E00;&#x4E2A;&#x5B89;&#x88C5;&#x6E90;</p>
+<p>centos&#x7684;&#x8F6F;&#x4EF6;&#x5B89;&#x88C5;&#x6E90;&#x66F4;&#x65B0;&#x7684;&#x6709;&#x70B9;&#x6162;&#xFF0C;&#x5982;&#x679C;&#x76F4;&#x63A5;&#x7528;yum&#x5B89;&#x88C5;&#xFF0C;&#x4F1A;&#x5BFC;&#x81F4;&#x5B89;&#x88C5;&#x7684;php&#x7248;&#x672C;&#x8FC7;&#x4F4E;&#xFF0C;&#x53EF;&#x80FD;&#x662F;5.4&#x7248;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x5B89;&#x88C5;php&#x7684;&#x4E00;&#x4E2A;&#x5B89;&#x88C5;&#x6E90;&#x3002;</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">CentOs <span class="number">7</span>.X</div><div class="line">rpm -Uvh <span class="symbol">https:</span>/<span class="regexp">/mirror.webtatic.com/yum</span><span class="regexp">/el7/epel</span>-release.rpm</div><div class="line">rpm -Uvh <span class="symbol">https:</span>/<span class="regexp">/mirror.webtatic.com/yum</span><span class="regexp">/el7/webtatic</span>-release.rpm</div></pre></td></tr></table></figure>
+<p>3&#x3001;&#x5B89;&#x88C5;php5.6&#x7248;</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">yum -y install php56w php56w-fpm php-opcode</div><div class="line">&#x4F1A;&#x81EA;&#x52A8;&#x7684;&#x5B89;&#x88C5;php56w-common&#xFF0C;php56w-cli</div><div class="line">&#x5B89;&#x88C5;&#x4E00;&#x4E9B;php&#x6269;&#x5C55;&#x5305;</div><div class="line">yum -y install php56w-mysql php56w-mcrypt php56w-mbstring php56w-gd php56w-devel php56w-pdo php56w-soap</div><div class="line"><span class="keyword"></span></div><div class="line">systemctl enable php-fpm.service   &#x5F00;&#x673A;&#x542F;&#x52A8;<span class="keyword"></span></div><div class="line">systemctl start php-fpm.service  &#x542F;&#x52A8;&#x670D;&#x52A1;</div><div class="line">rpm -qa | grep php//&#x53EF;&#x67E5;&#x770B;&#x5B89;&#x88C5;&#x4E86;php&#x54EA;&#x4E9B;&#x5305;</div></pre></td></tr></table></figure>
+<p><a href="https://webtatic.com/packages/php56/" target="_blank" rel="external">&#x5B89;&#x88C5;&#x6307;&#x5357;</a><br>php&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x6E90;&#x7801;&#x5B89;&#x88C5;&#x548C;&#x7F16;&#x8BD1;&#xFF0C;&#x4F46;&#x662F;&#x6BD4;&#x8F83;&#x8D39;&#x65F6;&#x548C;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x672A;&#x77E5;&#x7684;&#x9519;&#x8BEF;&#xFF0C;&#x56E0;&#x6B64;&#x5148;&#x91C7;&#x7528;yum&#x5B89;&#x88C5;&#xFF0C;&#x540E;&#x7EED;&#x6709;&#x65F6;&#x95F4;&#x518D;&#x8BD5;&#x4E0B;&#x6E90;&#x7801;&#x7F16;&#x8BD1;&#x5B89;&#x88C5;&#x3002;<br>&#x5982;&#x679C;&#x8981;&#x5347;&#x7EA7;php&#x7248;&#x672C;&#xFF0C;&#x6700;&#x540E;&#x5148;&#x5378;&#x8F7D;&#x4E4B;&#x524D;&#x7684;&#x7136;&#x540E;&#x91CD;&#x65B0;&#x88C5;&#xFF0C;&#x7701;&#x53BB;&#x5F88;&#x591A;&#x9EBB;&#x70E6;</p>
+<h2 id="MySql"><a href="#MySql" class="headerlink" title="MySql"></a>MySql</h2><h3 id="&#x7248;&#x672C;&#x9009;&#x62E9;-1"><a href="#&#x7248;&#x672C;&#x9009;&#x62E9;-1" class="headerlink" title="&#x7248;&#x672C;&#x9009;&#x62E9;"></a>&#x7248;&#x672C;&#x9009;&#x62E9;</h3><p>&#x81EA;&#x4ECE;mysql&#x5F52;&#x4E8E;oracle&#x4E4B;&#x540E;&#xFF0C;&#x5C31;&#x8981;&#x95ED;&#x6E90;&#x7684;&#x503E;&#x5411;&#x3002;&#x5B83;&#x7684;&#x5F00;&#x53D1;&#x8005;&#x5728;mysql&#x7684;&#x57FA;&#x7840;&#x4E0A;&#x53C8;&#x521B;&#x5EFA;&#x4E86;mariadb&#x8FD9;&#x4E2A;&#x548C;mysql&#x7EDD;&#x5927;&#x591A;&#x6570;&#x517C;&#x5BB9;&#x7684;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x73B0;&#x5728;centos&#x4E0A;&#x9ED8;&#x8BA4;&#x5B89;&#x88C5;&#x7684;&#x662F;mariadb&#xFF0C;&#x4E0D;&#x662F;mysql&#x3002;&#x6211;&#x8FD9;&#x91CC;&#x8FD8;&#x662F;&#x9009;&#x62E9;&#x5B89;&#x88C5;mysql,&#x4E4B;&#x524D;&#x5B66;&#x4E60;&#x7684;&#x5C31;&#x662F;&#x8FD9;&#x4E2A;&#x3002;  </p>
+<p>mysql&#x4E3B;&#x8981;&#x7684;&#x7248;&#x672C;&#x6709;&#xFF1A;  </p>
+<ol>
+<li>MySQL Community Server &#x793E;&#x533A;&#x7248;&#x672C;&#xFF0C;&#x5F00;&#x6E90;&#x514D;&#x8D39;&#xFF0C;&#x4F46;&#x4E0D;&#x63D0;&#x4F9B;&#x5B98;&#x65B9;&#x6280;&#x672F;&#x652F;&#x6301;&#x3002;</li>
+<li>MySQL Enterprise Edition &#x4F01;&#x4E1A;&#x7248;&#x672C;&#xFF0C;&#x9700;&#x4ED8;&#x8D39;&#xFF0C;&#x53EF;&#x4EE5;&#x8BD5;&#x7528;30&#x5929;&#x3002;</li>
+<li>MySQL Cluster &#x96C6;&#x7FA4;&#x7248;&#xFF0C;&#x5F00;&#x6E90;&#x514D;&#x8D39;&#x3002;&#x53EF;&#x5C06;&#x51E0;&#x4E2A;MySQL Server&#x5C01;&#x88C5;&#x6210;&#x4E00;&#x4E2A;Server&#x3002;</li>
+<li>MySQL Cluster CGE &#x9AD8;&#x7EA7;&#x96C6;&#x7FA4;&#x7248;&#xFF0C;&#x9700;&#x4ED8;&#x8D39;&#x3002;</li>
+<li>MySQL Workbench&#xFF08;GUI TOOL&#xFF09;&#x4E00;&#x6B3E;&#x4E13;&#x4E3A;MySQL&#x8BBE;&#x8BA1;&#x7684;ER/&#x6570;&#x636E;&#x5E93;&#x5EFA;&#x6A21;&#x5DE5;&#x5177;&#x3002;&#x5B83;&#x662F;&#x8457;&#x540D;&#x7684;&#x6570;&#x636E;&#x5E93;&#x8BBE;&#x8BA1;&#x5DE5;&#x5177;DBDesigner4&#x7684;&#x7EE7;&#x4EFB;&#x8005;&#x3002;MySQL Workbench&#x53C8;&#x5206;&#x4E3A;&#x4E24;&#x4E2A;&#x7248;&#x672C;&#xFF0C;&#x5206;&#x522B;&#x662F;&#x793E;&#x533A;&#x7248;&#xFF08;MySQL Workbench OSS&#xFF09;&#x3001;&#x5546;&#x7528;&#x7248;&#xFF08;MySQL Workbench SE&#xFF09;</li>
+</ol>
+<p>&#x8FD9;&#x91CC;&#x9009;&#x62E9;&#x5B89;&#x88C5;mysql&#x7684;&#x793E;&#x533A;&#x7248;&#x672C;&#x3002;</p>
+<h3 id="mysql&#x5B89;&#x88C5;"><a href="#mysql&#x5B89;&#x88C5;" class="headerlink" title="mysql&#x5B89;&#x88C5;"></a>mysql&#x5B89;&#x88C5;</h3><p>1&#x3001;&#x5B89;&#x88C5;mysql&#x7684;repo&#x6E90;</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#x5982;&#x679C;&#x5B58;&#x5728;mariadb&#x3002;&#x5C31;&#x5148;&#x5378;&#x8F7D;</div><div class="line">yum remove mariadb</div><div class="line">&#x4E0B;&#x8F7D;mysql&#x6E90;</div><div class="line">wget http:<span class="comment">//repo.mysql.com/mysql-community-release-el7-5.noarch.rpm</span></div><div class="line">&#x5B89;&#x88C5;</div><div class="line">rpm -ivh mysql-community-release-el7-<span class="number">5</span><span class="selector-class">.noarch</span><span class="selector-class">.rpm</span></div><div class="line">&#x5B89;&#x88C5;&#x8FD9;&#x4E2A;&#x5305;&#x540E;&#xFF0C;&#x4F1A;&#x83B7;&#x5F97;&#x4E24;&#x4E2A;mysql&#x7684;yum repo&#x6E90;&#xFF1A;/etc/yum<span class="selector-class">.repos</span><span class="selector-class">.d</span>/mysql-community.repo&#xFF0C;/etc/yum<span class="selector-class">.repos</span><span class="selector-class">.d</span>/mysql-community-source<span class="selector-class">.repo</span> </div><div class="line">yum install mysql-server</div><div class="line"></div><div class="line">&#x5B89;&#x88C5;&#x5B8C;&#x540E;&#x542F;&#x52A8;</div><div class="line">systemctl start mysql.service</div></pre></td></tr></table></figure>
+<p>2&#x3001;&#x5B89;&#x5168;&#x8BBE;&#x7F6E;  </p>
+<p>&#x8FD9;&#x662F;&#x5FC5;&#x9700;&#x7684;&#xFF0C;&#x4E0D;&#x7136;&#x8C01;&#x90FD;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x4F60;&#x7684;mysql</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql_secure_installation</div></pre></td></tr></table></figure>
+<p>&#x7136;&#x540E;&#x4E00;&#x8DEF;Y&#x4E0B;&#x53BB;</p>
+<p>3&#x3001;&#x9519;&#x8BEF;&#x89E3;&#x51B3;<br>&#x5B89;&#x88C5;mysql&#x4E4B;&#x540E;&#x4E00;&#x822C;&#x6709;&#x70B9;&#x5C0F;&#x9EBB;&#x70E6;&#x3002;&#x3002;&#x3002;&#x8FD9;&#x4E9B;&#x57FA;&#x672C;&#x4E0A;&#x90FD;&#x662F;&#x6743;&#x9650;&#x4E0D;&#x5BF9;&#x9020;&#x6210;&#x7684;&#x3002;</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ERROR <span class="number">2002</span> (HY000): Can<span class="string">&apos;t connect to local MySQL server through socket &apos;</span>/var/<span class="class"><span class="keyword">lib</span>/<span class="title">mysql</span>/<span class="title">mysql</span>.<span class="title">sock</span>&apos; (2)</span></div></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x662F;mysql&#x7684;&#x7528;&#x6237;&#x548C;&#x7528;&#x6237;&#x7EC4;&#x4E0D;&#x5BF9;<br>&#x89E3;&#x51B3;&#x65B9;&#x6CD5;</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chown -R <span class="symbol">root:</span>root /var/<span class="class"><span class="keyword">lib</span>/<span class="title">mysql</span></span></div></pre></td></tr></table></figure>
+<h2 id="&#x9632;&#x706B;&#x5899;&#x914D;&#x7F6E;"><a href="#&#x9632;&#x706B;&#x5899;&#x914D;&#x7F6E;" class="headerlink" title="&#x9632;&#x706B;&#x5899;&#x914D;&#x7F6E;"></a>&#x9632;&#x706B;&#x5899;&#x914D;&#x7F6E;</h2><p>&#x5B89;&#x88C5;&#x5B8C;&#x4E4B;&#x540E;&#xFF0C;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x6D4B;&#x8BD5;&#x4E00;&#x4E0B;&#x662F;&#x5426;&#x641E;&#x5B9A;&#x4E86;&#x3002;&#x4E4B;&#x524D;&#x8FD8;&#x9700;&#x6C42;&#x8FDB;&#x884C;&#x9632;&#x706B;&#x5899;&#x7684;&#x914D;&#x7F6E;</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">firewall-<span class="keyword">cmd</span><span class="bash"> --list-all //&#x67E5;&#x770B;&#x5F00;&#x542F;&#x7684;&#x7AEF;&#x53E3;</span></div><div class="line">//&#x6253;&#x5F00;<span class="number">80</span>&#x7AEF;&#x53E3;</div><div class="line">firewall-<span class="keyword">cmd</span><span class="bash"> --zone=public --add-port=80/tcp --permanent</span></div><div class="line">//&#x91CD;&#x542F;&#x4E00;&#x4E0B;&#x9632;&#x706B;&#x5899;&#xFF0C;&#x751F;&#x6548;</div><div class="line">firewall-<span class="keyword">cmd</span><span class="bash"> --reload</span></div></pre></td></tr></table></figure>
+<p>&#x6B64;&#x65F6;&#x8BBF;&#x95EE;&#x5C31;&#x80FD;&#x770B;&#x7684;nginx&#x7684;&#x6B22;&#x8FCE;&#x9875;&#x9762;&#x4E86;&#x3002;</p>
+<p>&#x540E;&#x7EED;&#x76EE;&#x6807;&#xFF1A;<br>&#x6BCF;&#x6B21;&#x90FD;&#x8FD9;&#x4E48;&#x914D;&#x7F6E;&#xFF0C;&#x5F88;&#x7D2F;&#xFF0C;&#x4E0B;&#x4E00;&#x6B65;&#x5C31;&#x5199;&#x4E2A;shell&#x811A;&#x672C;&#x81EA;&#x52A8;&#x89E3;&#x51B3;&#x3002;</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2016/11/23/install-nginx-with-soure/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1003,7 +1344,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-count">46</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1054,7 +1395,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">19</span>
+                      
+                    
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -1066,6 +1409,8 @@
                 <div class="site-state-item site-state-tags">
                   <a href="/tags/index.html">
                     
+                    
+                      
                     
                       
                     
