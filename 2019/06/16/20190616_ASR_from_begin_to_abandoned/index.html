@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="&amp;#x8BED;&amp;#x97F3;&amp;#x8BC6;&amp;#x522B;&amp;#x662F;&amp;#x5C06;&amp;#x8BED;&amp;#x97F3;&amp;#x4FE1;&amp;#x53F7;&amp;#x8F6C;&amp;#x6362;&amp;#x4E3A;&amp;#x6587;&amp;#x5B57;&amp;#x3002;&amp;#x8BED;&amp;#x97F3;&amp;#x8BC6;&amp;#x522B;&amp;#x5E94;&amp;#x7528;&amp;#x5E7F;&amp;#x6CDB;&amp;#xFF0C;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="语音识别从入门到放弃">
+<meta property="og:url" content="https://xuxping.github.io/2019/06/16/20190616_ASR_from_begin_to_abandoned/index.html">
+<meta property="og:site_name" content="Kavim">
+<meta property="og:description" content="&amp;#x8BED;&amp;#x97F3;&amp;#x8BC6;&amp;#x522B;&amp;#x662F;&amp;#x5C06;&amp;#x8BED;&amp;#x97F3;&amp;#x4FE1;&amp;#x53F7;&amp;#x8F6C;&amp;#x6362;&amp;#x4E3A;&amp;#x6587;&amp;#x5B57;&amp;#x3002;&amp;#x8BED;&amp;#x97F3;&amp;#x8BC6;&amp;#x522B;&amp;#x5E94;&amp;#x7528;&amp;#x5E7F;&amp;#x6CDB;&amp;#xFF0C;">
+<meta property="og:image" content="https://xuxping.github.io/2019/06/16/20190616_ASR_from_begin_to_abandoned/C959D670-F598-419B-AB2D-B8C7CC234107.png">
+<meta property="og:image" content="https://xuxping.github.io/2019/06/16/20190616_ASR_from_begin_to_abandoned/v2-bedbc1fceaeab88133f1b9294c224ef4_r.jpg">
+<meta property="og:image" content="https://xuxping.github.io/2019/06/16/20190616_ASR_from_begin_to_abandoned/0951CBDE-22A6-44FF-A645-C62DBC85BF14.png">
+<meta property="og:image" content="https://xuxping.github.io/2019/06/16/20190616_ASR_from_begin_to_abandoned/1F8520F2-F108-4874-BD31-F7DFBDD586AE.png">
+<meta property="og:image" content="https://xuxping.github.io/2019/06/16/20190616_ASR_from_begin_to_abandoned/v2-c28d72e908d34e94c31289a9445eb77e_r.jpg">
+<meta property="og:image" content="https://xuxping.github.io/2019/06/16/20190616_ASR_from_begin_to_abandoned/v2-1f3b55b94a5dfe01cf55290c53a49d3f_r.jpg">
+<meta property="og:image" content="https://xuxping.github.io/2019/06/16/20190616_ASR_from_begin_to_abandoned/v2-d875d58274be1d05a9bbc1638e1867bd_r.jpg">
+<meta property="og:image" content="https://xuxping.github.io/2019/06/16/20190616_ASR_from_begin_to_abandoned/95373E78-A2DD-446C-8B1B-517E01BCB20A.png">
+<meta property="og:image" content="https://xuxping.github.io/2019/06/16/20190616_ASR_from_begin_to_abandoned/794A1BC5-E63F-483F-ACD9-0AF4322272B3.png">
+<meta property="og:image" content="https://xuxping.github.io/2019/06/16/20190616_ASR_from_begin_to_abandoned/DF782B4A-4B05-4311-953A-F6F1B9927C32.png">
+<meta property="og:image" content="https://xuxping.github.io/2019/06/16/20190616_ASR_from_begin_to_abandoned/57141966-E711-412E-B70F-4124CC3B4DF7.png">
+<meta property="og:image" content="https://xuxping.github.io/2019/06/16/20190616_ASR_from_begin_to_abandoned/4CE875EC-A3AE-4DBF-8F48-2DFD117B7475.png">
+<meta property="og:image" content="https://xuxping.github.io/2019/06/16/20190616_ASR_from_begin_to_abandoned/01B773E6-0E2A-4DB2-B523-2C017DBC1D7D.png">
+<meta property="og:image" content="https://xuxping.github.io/2019/06/16/20190616_ASR_from_begin_to_abandoned/98FF2C98-E717-4D88-BF5E-720B7538706E.png">
+<meta property="og:image" content="https://xuxping.github.io/2019/06/16/20190616_ASR_from_begin_to_abandoned/491BAE97-2657-4217-9B1D-BC41B22734BE.png">
+<meta property="og:image" content="https://xuxping.github.io/2019/06/16/20190616_ASR_from_begin_to_abandoned/39CD292C-86FC-4CB7-8E2D-49EDF8437E19.png">
+<meta property="og:image" content="https://xuxping.github.io/2019/06/16/20190616_ASR_from_begin_to_abandoned/2C632BF4-4D66-4FA5-AB81-9A81A7501BE3.png">
+<meta property="og:image" content="https://xuxping.github.io/2019/06/16/20190616_ASR_from_begin_to_abandoned/AB604857-18E2-44B9-B29D-659B23B88AF7.png">
+<meta property="og:updated_time" content="2019-06-16T13:23:23.172Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="语音识别从入门到放弃">
+<meta name="twitter:description" content="&amp;#x8BED;&amp;#x97F3;&amp;#x8BC6;&amp;#x522B;&amp;#x662F;&amp;#x5C06;&amp;#x8BED;&amp;#x97F3;&amp;#x4FE1;&amp;#x53F7;&amp;#x8F6C;&amp;#x6362;&amp;#x4E3A;&amp;#x6587;&amp;#x5B57;&amp;#x3002;&amp;#x8BED;&amp;#x97F3;&amp;#x8BC6;&amp;#x522B;&amp;#x5E94;&amp;#x7528;&amp;#x5E7F;&amp;#x6CDB;&amp;#xFF0C;">
+<meta name="twitter:image" content="https://xuxping.github.io/2019/06/16/20190616_ASR_from_begin_to_abandoned/C959D670-F598-419B-AB2D-B8C7CC234107.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://xuxping.github.io/2019/06/16/20190616_ASR_from_begin_to_abandoned/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>语音识别从入门到放弃 | Kavim</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kavim</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">一点一滴积累</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2019/06/16/20190616_ASR_from_begin_to_abandoned/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kavim"/>
+      <meta itemprop="description" content="生活不止眼前的苟且 还有诗和远方的田野"/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kavim"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">语音识别从入门到放弃
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-16 00:00:00 / 修改时间：21:23:23" itemprop="dateCreated datePublished" datetime="2019-06-16T00:00:00+08:00">2019-06-16</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#x662F;&#x5C06;&#x8BED;&#x97F3;&#x4FE1;&#x53F7;&#x8F6C;&#x6362;&#x4E3A;&#x6587;&#x5B57;&#x3002;&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#x5E94;&#x7528;&#x5E7F;&#x6CDB;&#xFF0C;&#x5982;&#x667A;&#x80FD;&#x97F3;&#x7BB1;&#xFF0C;&#x8BED;&#x97F3;&#x641C;&#x7D22;&#xFF0C;&#x8BED;&#x97F3;&#x4EA4;&#x4E92;&#x7B49;&#x3002;&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#x6280;&#x672F;&#x7684;&#x7814;&#x7A76;&#x5DF2;&#x7ECF;&#x8D85;&#x8FC7;&#x534A;&#x4E2A;&#x4E16;&#x7EAA;&#xFF0C;&#x4ECE;&#x7B80;&#x5355;&#x7684;&#x8BED;&#x97F3;&#x7247;&#x6BB5;&#x5339;&#x914D;&#xFF0C;&#x5B64;&#x7ACB;&#x8BCD;&#x7684;&#x8BC6;&#x522B;&#x5230;&#x57FA;&#x4E8E;&#x7EDF;&#x8BA1;&#x6A21;&#x578B;&#x548C;&#x6982;&#x7387;&#x7684;HMM-GMM&#x4EE5;&#x53CA;&#x8FDE;&#x7EED;&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#xFF0C;&#x76EE;&#x524D;&#x5DF2;&#x7ECF;&#x53D1;&#x5C55;&#x5230;&#x4E86;&#x7528;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x6784;&#x5EFA;&#x7AEF;&#x5230;&#x7AEF;&#x7684;&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#x7CFB;&#x7EDF;&#x3002;</p>
+<blockquote>
+<p>&#x672C;&#x6587;&#x53EA;&#x662F;&#x5BF9;&#x4F7F;&#x7528;Kaldi&#x505A;&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#x7684;&#x4F5C;&#x4E1A;&#x8FDB;&#x884C;&#x4E00;&#x4E2A;&#x603B;&#x7ED3;&#xFF0C;&#x5E76;&#x4E0D;&#x4F1A;&#x6D89;&#x53CA;&#x592A;&#x591A;&#x539F;&#x7406;&#x7684;&#xFF08;&#x6211;&#x4E5F;&#x4E0D;&#x61C2;&#xFF09;&#x3002;&#x672C;&#x6587;&#x5F88;&#x591A;&#x5185;&#x5BB9;&#x76F4;&#x63A5;&#x53C2;&#x8003;&#x6216;&#x501F;&#x9274;&#x4E86;&#x5F88;&#x591A;&#x7F51;&#x4E0A;&#x7684;&#x8D44;&#x6599;&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;&#x505A;&#x4E86;&#x4E00;&#x4E2A;&#x6574;&#x5408;&#xFF0C;&#x6700;&#x540E;&#x7ED3;&#x5408;&#x4E00;&#x4E2A;kaldi&#x5B9E;&#x8DF5;&#x4F8B;&#x5B50;&#x3002;  </p>
+</blockquote>
+<a id="more"></a>
+<p>&#x8BED;&#x8A00;&#x7531;&#x5355;&#x8BCD;word&#x7EC4;&#x6210;&#xFF0C;&#x5355;&#x8BCD;&#x7531;&#x97F3;&#x7D20;phone&#x7EC4;&#x6210; &#x3002;&#x8BED;&#x97F3;&#x53D8;&#x6210;&#x6587;&#x5B57;&#x7684;&#x5927;&#x81F4;&#x6D41;&#x7A0B;&#x4E3A;&#xFF1A;&#x5C06;&#x4E00;&#x6BB5;&#x8BED;&#x97F3;&#x7684;&#x58F0;&#x6CE2;<strong>&#x6309;&#x5E27;&#x5207;&#x5F00;</strong>&#xFF0C;<strong>&#x7528;&#x5E27;&#x7EC4;&#x6210;&#x72B6;&#x6001;</strong>&#xFF0C;<strong>&#x7528;&#x72B6;&#x6001;&#x7EC4;&#x6210;&#x97F3;&#x7D20;</strong>&#xFF0C;<strong>&#x518D;&#x5C06;&#x97F3;&#x7D20;&#x5408;&#x6210;&#x5355;&#x8BCD;</strong>&#xFF0C;&#x8BED;&#x97F3;&#x5C31;&#x53D8;&#x6210;&#x4E86;&#x6587;&#x5B57; &#x3002;<br><img src="/2019/06/16/20190616_ASR_from_begin_to_abandoned/C959D670-F598-419B-AB2D-B8C7CC234107.png" alt=""></p>
+<h1 id="&#x5178;&#x578B;&#x7684;&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#x7CFB;&#x7EDF;&#x7EC4;&#x6210;"><a href="#&#x5178;&#x578B;&#x7684;&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#x7CFB;&#x7EDF;&#x7EC4;&#x6210;" class="headerlink" title="&#x5178;&#x578B;&#x7684;&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#x7CFB;&#x7EDF;&#x7EC4;&#x6210;"></a>&#x5178;&#x578B;&#x7684;&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#x7CFB;&#x7EDF;&#x7EC4;&#x6210;</h1><p>&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF0C;&#x505A;&#x4E00;&#x4E2A;&#x5B8C;&#x6574;&#x7684;&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#x7CFB;&#x7EDF;&#x4E00;&#x822C;&#x7531;&#x524D;&#x540E;&#x7AEF;&#x4E24;&#x5927;&#x6A21;&#x5757;&#x7EC4;&#x6210;&#x3002;<br><img src="/2019/06/16/20190616_ASR_from_begin_to_abandoned/v2-bedbc1fceaeab88133f1b9294c224ef4_r.jpg" alt=""></p>
+<ul>
+<li>&#x7279;&#x5F81;&#x63D0;&#x53D6;&#x8D1F;&#x8D23;&#x5C06;&#x4ECE;&#x8BED;&#x97F3;&#x4FE1;&#x53F7;&#x4E2D;&#x63D0;&#x53D6;&#x7279;&#x5F81;&#xFF0C;&#x7528;&#x4E8E;&#x5EFA;&#x7ACB;&#x8BC6;&#x522B;&#x6A21;&#x578B;</li>
+<li>&#x58F0;&#x5B66;&#x6A21;&#x578B;&#x8D1F;&#x8D23;&#x5728;&#x8BED;&#x97F3;&#x7279;&#x5F81;&#x548C;&#x97F3;&#x7D20;&#x4E4B;&#x95F4;&#x5EFA;&#x7ACB;&#x6620;&#x5C04;&#xFF0C;&#x5C06;&#x8BED;&#x97F3;&#x8F6C;&#x5316;&#x4E3A;&#x97F3;&#x7D20;</li>
+<li>&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x7528;&#x4E8E;&#x5224;&#x65AD;&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x53E5;&#x5B50;&#x300C;&#x50CF;&#x8BDD;&#x300D;&#xFF0C;&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x53E5;&#x5B50;&#x300C;&#x4E0D;&#x50CF;&#x8BDD;&#x300D;</li>
+<li>&#x89E3;&#x7801;&#x5668;&#x7528;&#x4E8E;&#x5728;&#x6D77;&#x91CF;&#x7684;&#x53E5;&#x5B50;&#x4E2D;&#x5FEB;&#x901F;&#x627E;&#x5230;&#x6BD4;&#x8F83;&#x597D;&#x7684;&#x8BC6;&#x522B;&#x7ED3;&#x679C;</li>
+</ul>
+<p>&#x53C2;&#x8003;&#x8D44;&#x6599;&#xFF1A;<a href="https://www.zhihu.com/question/24342192/answer/225984574" target="_blank" rel="external">&#x5982;&#x4F55;&#x5165;&#x95E8;&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#xFF1F; - &#x77E5;&#x4E4E;</a></p>
+<p>&#x4E0B;&#x9762;&#x90E8;&#x5206;&#x5C06;&#x5BF9;&#x6BCF;&#x4E2A;&#x6A21;&#x5757;&#x8FDB;&#x884C;&#x4ECB;&#x7ECD;&#x3002;</p>
+<h2 id="&#x8BED;&#x97F3;&#x7279;&#x5F81;&#x63D0;&#x53D6;"><a href="#&#x8BED;&#x97F3;&#x7279;&#x5F81;&#x63D0;&#x53D6;" class="headerlink" title="&#x8BED;&#x97F3;&#x7279;&#x5F81;&#x63D0;&#x53D6;"></a>&#x8BED;&#x97F3;&#x7279;&#x5F81;&#x63D0;&#x53D6;</h2><p>&#x8BED;&#x97F3;&#x4FE1;&#x53F7;&#x662F;&#x8FDE;&#x7EED;&#x4E0D;&#x65AD;&#x7684;&#x503C;&#xFF0C;&#x65E0;&#x6CD5;&#x76F4;&#x63A5;&#x7528;&#x4E8E;&#x5EFA;&#x6A21;&#xFF0C;&#x5F53;&#x7136;&#x73B0;&#x5728;&#x706B;&#x70ED;&#x7684;DNN&#x6A21;&#x578B;&#x5DF2;&#x7ECF;&#x4E0D;&#x9700;&#x8981;&#x63D0;&#x53D6;&#x7279;&#x5F81;&#x5565;&#x7684;&#x3002;MFCC&#x7279;&#x5F81;&#xFF08;&#x6885;&#x5C14;&#x9891;&#x7387;&#x5012;&#x8C31;&#x7CFB;&#x6570;&#xFF09;&#x662F;&#x4E00;&#x79CD;&#x5728;&#x81EA;&#x52A8;&#x8BED;&#x97F3;&#x548C;&#x8BF4;&#x8BDD;&#x4EBA;&#x8BC6;&#x522B;&#x4E2D;&#x5E7F;&#x6CDB;&#x4F7F;&#x7528;&#x7684;&#x7279;&#x5F81;&#x3002;&#x4E3B;&#x8981;&#x63D0;&#x53D6;&#x6D41;&#x7A0B;&#x5982;&#x4E0B;&#xFF1A;<br><img src="/2019/06/16/20190616_ASR_from_begin_to_abandoned/0951CBDE-22A6-44FF-A645-C62DBC85BF14.png" alt="">  </p>
+<ol>
+<li>&#x5BF9;&#x8BED;&#x97F3;&#x8FDB;&#x884C;&#x9884;&#x52A0;&#x91CD;&#x3001;&#x5206;&#x5E27;&#x548C;&#x52A0;&#x7A97;&#xFF1B;&#xFF08;&#x52A0;&#x5F3A;&#x8BED;&#x97F3;&#x4FE1;&#x53F7;&#x6027;&#x80FD;&#xFF08;&#x4FE1;&#x566A;&#x6BD4;&#xFF0C;&#x5904;&#x7406;&#x7CBE;&#x5EA6;&#x7B49;&#xFF09;&#x7684;&#x4E00;&#x4E9B;&#x9884;&#x5904;&#x7406;&#xFF09;</li>
+<li>&#x5BF9;&#x6BCF;&#x4E00;&#x4E2A;&#x77ED;&#x65F6;&#x5206;&#x6790;&#x7A97;&#xFF0C;&#x901A;&#x8FC7;&#x5FEB;&#x901F;&#x5085;&#x91CC;&#x53F6;&#x53D8;&#x5316;FFT&#x5F97;&#x5230;&#x5BF9;&#x5E94;&#x7684;&#x9891;&#x8C31;&#xFF1B;&#xFF08;&#x83B7;&#x5F97;&#x5206;&#x5E03;&#x5728;&#x65F6;&#x95F4;&#x8F74;&#x4E0A;&#x4E0D;&#x540C;&#x65F6;&#x95F4;&#x7A97;&#x5185;&#x7684;&#x9891;&#x8C31;&#xFF09;</li>
+<li>&#x5C06;&#x4E0A;&#x9762;&#x7684;&#x9891;&#x8C31;&#x901A;&#x8FC7;Mel&#x6EE4;&#x6CE2;&#x5668;&#x7EC4;&#x5F97;&#x5230;Mel&#x9891;&#x8C31;&#xFF1B;&#xFF08;&#x901A;&#x8FC7;Mel&#x9891;&#x8C31;&#xFF0C;&#x5C06;&#x7EBF;&#x5F62;&#x7684;&#x81EA;&#x7136;&#x9891;&#x8C31;&#x8F6C;&#x6362;&#x4E3A;&#x4F53;&#x73B0;&#x4EBA;&#x7C7B;&#x542C;&#x89C9;&#x7279;&#x6027;&#x7684;Mel&#x9891;&#x8C31;&#xFF09;</li>
+<li>&#x5728;Mel&#x9891;&#x8C31;&#x4E0A;&#x9762;&#x8FDB;&#x884C;&#x5012;&#x8C31;&#x5206;&#x6790;&#xFF08;&#x53D6;&#x5BF9;&#x6570;&#xFF0C;&#x505A;&#x9006;&#x53D8;&#x6362;&#xFF0C;&#x5B9E;&#x9645;&#x9006;&#x53D8;&#x6362;&#x4E00;&#x822C;&#x662F;&#x901A;&#x8FC7;DCT&#x79BB;&#x6563;&#x4F59;&#x5F26;&#x53D8;&#x6362;&#x6765;&#x5B9E;&#x73B0;&#xFF0C;&#x53D6;DCT&#x540E;&#x7684;&#x7B2C;2&#x4E2A;&#x5230;&#x7B2C;13&#x4E2A;&#x7CFB;&#x6570;&#x4F5C;&#x4E3A;MFCC&#x7CFB;&#x6570;&#xFF09;&#xFF0C;&#x83B7;&#x5F97;Mel&#x9891;&#x7387;&#x5012;&#x8C31;&#x7CFB;&#x6570;MFCC&#xFF0C;&#x8FD9;&#x4E2A;MFCC&#x5C31;&#x662F;&#x8FD9;&#x5E27;&#x8BED;&#x97F3;&#x7684;&#x7279;&#x5F81;&#xFF1B;&#xFF08;&#x5012;&#x8C31;&#x5206;&#x6790;&#xFF0C;&#x83B7;&#x5F97;MFCC&#x4F5C;&#x4E3A;&#x8BED;&#x97F3;&#x7279;&#x5F81;&#xFF09;</li>
+</ol>
+<p>&#x6700;&#x7EC8;&#x8BED;&#x97F3;&#x5C31;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E00;&#x7CFB;&#x5217;&#x7684;&#x5012;&#x8C31;&#x5411;&#x91CF;&#x6765;&#x63CF;&#x8FF0;&#x4E86;&#xFF0C;&#x6BCF;&#x4E2A;&#x5411;&#x91CF;&#x5C31;&#x662F;&#x6BCF;&#x5E27;&#x7684;MFCC&#x7279;&#x5F81;&#x5411;&#x91CF;&#x3002;&#x5F53;&#x65E5;&#x8FD8;&#x6709;FilterBank(fbank)&#x4E5F;&#x662F;&#x4E00;&#x79CD;&#x63D0;&#x53D6;&#x7279;&#x5F81;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x6CA1;&#x6709;&#x505A;&#x8FC7;log&#x548C;DCT&#x7684;&#x5C31;&#x662F;fbank&#x7279;&#x5F81;&#x3002;<br><img src="/2019/06/16/20190616_ASR_from_begin_to_abandoned/1F8520F2-F108-4874-BD31-F7DFBDD586AE.png" alt=""></p>
+<p><strong>&#x53C2;&#x8003;&#x8D44;&#x6599;</strong><br><a href="https://www.cnblogs.com/BaroC/p/4283380.html" target="_blank" rel="external">&#x6885;&#x5C14;&#x9891;&#x7387;&#x5012;&#x8C31;&#x7CFB;&#x6570;&#xFF08;MFCC&#xFF09; &#x5B66;&#x4E60;&#x7B14;&#x8BB0; - BaroC - &#x535A;&#x5BA2;&#x56ED;</a><br>MFCC Guide <a href="http://www.practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/" target="_blank" rel="external">Practical Cryptography</a><br>MFCC Python&#x5B9E;&#x73B0;  <a href="https://github.com/jameslyons/python_speech_features" target="_blank" rel="external">https://github.com/jameslyons/python_speech_features</a> </p>
+<h2 id="HMM-GMM"><a href="#HMM-GMM" class="headerlink" title="HMM-GMM"></a>HMM-GMM</h2><p>&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#x4E2D;&#xFF0C;&#x6807;&#x6CE8;&#x53EA;&#x662F;&#x9488;&#x5BF9;&#x6574;&#x6BB5;&#x97F3;&#x9891;&#x7684;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x9488;&#x5BF9;&#x6BCF;&#x4E00;&#x5E27;&#xFF1B;&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#x662F;&#x9488;&#x5BF9;&#x6BCF;&#x4E2A;&#x97F3;&#x7D20;&#x90FD;&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;HMM&#x6A21;&#x578B;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x6240;&#x6709;&#x97F3;&#x7D20;&#x7528;&#x4E00;&#x4E2A;HMM&#x6A21;&#x578B;&#x63CF;&#x8FF0;&#x3002;</p>
+<ul>
+<li>&#x5B57;&#x7EA7;&#x522B;&#x7684;&#x6807;&#x6CE8;</li>
+<li>&#x97F3;&#x7D20;&#x7EA7;&#x522B;&#x7684;&#x6807;&#x6CE8;&#xFF0C;&#x97F3;&#x7D20;&#x7EA7;&#x522B;&#x7684;&#x6807;&#x6CE8;&#x5DE5;&#x4F5C;&#x91CF;&#x5F88;&#x5927;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x53D1;&#x97F3;&#x8BCD;&#x5178;&#xFF0C;&#x5C06;&#x5B57;&#x7EA7;&#x522B;&#x7684;&#x6807;&#x6CE8;&#x8F6C;&#x6362;&#x6210;&#x97F3;&#x7D20;&#x7EA7;&#x522B;&#x7684;&#x6807;&#x6CE8;&#xFF0C;&#x8FD9;&#x79CD;&#x8F6C;&#x6362;&#x6CA1;&#x529E;&#x6CD5;&#x6D88;&#x9664;&#x591A;&#x97F3;&#x5B57;&#x7684;&#x5F71;&#x54CD;&#xFF0C;&#x4F46;&#x5B9E;&#x9645;&#x4E0A;&#x4E0D;&#x4F1A;&#x5BF9;&#x7ED3;&#x679C;&#x4EA7;&#x751F;&#x592A;&#x5927;&#x5F71;&#x54CD;<br>&#x4EE5;&#x201C;&#x4F60;&#x597D;&#xFF0C;ni hao&#x201D;&#x4E3A;&#x4F8B;<br><img src="/2019/06/16/20190616_ASR_from_begin_to_abandoned/v2-c28d72e908d34e94c31289a9445eb77e_r.jpg" alt=""><br><strong>&#x5BF9;&#x201D;n&#x201C;&#x3001;&#x201D;i2&#x201C;&#x3001;&#x201D;h&#x201C;&#x3001;&#x201D;ao3&#x201C;&#x5BF9;&#x5E94;&#x7684;HMM-GMM&#x6A21;&#x578B;&#x8FDB;&#x884C;&#x8BAD;&#x7EC3;&#xFF0C;&#x5F97;&#x5230;&#x6A21;&#x578B;&#x53C2;&#x6570;</strong>&#xFF0C;<strong>&#x81EA;&#x73AF;</strong>&#x53EF;&#x4EE5;&#x5BF9;&#x4EFB;&#x610F;&#x957F;&#x7684;&#x97F3;&#x9891;&#x5EFA;&#x6A21;&#xFF0C;&#x8FD9;&#x4E5F;&#x662F;&#x8FDE;&#x7EED;&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#x7684;&#x57FA;&#x7840;&#x3002;</li>
+<li>HMM-GMM&#x6A21;&#x578B;&#x7684;&#x53C2;&#x6570;(&#x8F6C;&#x79FB;&#x6982;&#x7387;&#x3001;&#x9AD8;&#x65AF;&#x5206;&#x5E03;&#x7684;&#x5747;&#x503C;&#x3001;&#x65B9;&#x5DEE;)<ol>
+<li>&#x8F6C;&#x79FB;&#x6982;&#x7387;</li>
+<li>&#x53D1;&#x5C04;&#x6982;&#x7387;&#xFF1A;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x4F7F;&#x7528;GMM&#x5BF9;&#x53D1;&#x5C04;&#x6982;&#x7387;&#x5EFA;&#x6A21;&#xFF0C;&#x6240;&#x4EE5;<strong>&#x5B9E;&#x9645;&#x53C2;&#x6570;&#x5C31;&#x662F;&#x9AD8;&#x65AF;&#x5206;&#x5E03;&#x4E2D;&#x7684;&#x5747;&#x503C;&#x548C;&#x65B9;&#x5DEE;</strong></li>
+</ol>
+</li>
+<li>&#x6A21;&#x578B;&#x7684;&#x8F93;&#x5165;&#xFF1A; &#x6BCF;&#x5E27;&#x4FE1;&#x53F7;&#x7684;MFCC&#x7279;&#x5F81;(&#x4E5F;&#x53EF;&#x4EE5;&#x662F;fbank&#xFF0C;plp&#x7B49;)&#xFF0C;&#x901A;&#x5E38;&#x53D6;39&#x7EF4;&#x7684;MFCC&#x7279;&#x5F81;</li>
+<li>&#x6A21;&#x578B;&#x7684;&#x8F93;&#x51FA;&#xFF1A;&#x6BCF;&#x4E00;&#x5E27;&#x5C5E;&#x4E8E;&#x201D;n&#x201D;&#x3001;&#x201D;i2&#x201D;&#x3001;&#x201D;h&#x201D;&#x3001;&#x201D;ao3&#x201D;&#x4E2D;&#x7684;&#x67D0;&#x4E00;&#x4E2A;&#x72B6;&#x6001;</li>
+</ul>
+<p><strong>HMM-GMM&#x6A21;&#x578B;&#x7684;&#x5B66;&#x4E60;&#x8FC7;&#x7A0B;&#x5E76;&#x4E0D;&#x662F;&#x201D;&#x6709;&#x76D1;&#x7763;&#x7684;&#x201C;</strong>&#xFF0C;&#x97F3;&#x9891;&#x53EA;&#x544A;&#x8BC9;&#x6211;&#x4EEC;&#x5BF9;&#x5E94;&#x7684;&#x6807;&#x6CE8;&#x662F;&#x201D;n&#x201D;&#x3001;&#x201D;i2&#x201D;&#x3001;&#x201D;h&#x201D;&#x3001;&#x201D;ao3&#x201D;&#xFF0C;&#x5E76;&#x6CA1;&#x6709;&#x544A;&#x8BC9;&#x6211;&#x4EEC;&#x6BCF;&#x4E00;&#x5E27;(&#x5373;&#x6BCF;&#x4E00;&#x4E2A;&#x8F93;&#x5165;)&#x5BF9;&#x5E94;&#x7684;label&#x662F;&#x5565;&#x3002;&#x5BF9;&#x4E8E;&#x8FD9;&#x79CD;&#x65E0;&#x76D1;&#x7763;&#x7684;&#x4EFB;&#x52A1;&#xFF0C;&#x6211;&#x4EEC;EM&#x7B97;&#x6CD5;&#x6765;&#x8FDB;&#x884C;&#x8BAD;&#x7EC3;&#x3002;<br>&#x8BAD;&#x7EC3;&#x6B65;&#x9AA4;&#xFF1A;</p>
+<ol>
+<li>&#x521D;&#x59CB;&#x5316;&#x5BF9;&#x9F50;&#x3002;&#x4EE5;&#x4E0A;&#x9762;&#x7684;20&#x79D2;&#x97F3;&#x9891;&#x4E3A;&#x4F8B;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x4E0D;&#x77E5;&#x9053;&#x6BCF;&#x4E00;&#x5E27;&#x5BF9;&#x5E94;&#x54EA;&#x4E2A;&#x58F0;&#x97F5;&#x6BCD;&#x7684;&#x67D0;&#x4E2A;&#x72B6;&#x6001;&#xFF0C;&#x6240;&#x4EE5;&#x5C31;&#x5747;&#x5206;&#x3002;&#x4EE5;&#x4E0A;&#x9762;&#x7684;20&#x79D2;&#x97F3;&#x9891;&#x4E3A;&#x4F8B;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x4E0D;&#x77E5;&#x9053;&#x6BCF;&#x4E00;&#x5E27;&#x5BF9;&#x5E94;&#x54EA;&#x4E2A;&#x58F0;&#x97F5;&#x6BCD;&#x7684;&#x67D0;&#x4E2A;&#x72B6;&#x6001;&#xFF0C;&#x6240;&#x4EE5;&#x5C31;&#x5747;&#x5206;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;1-5&#x5E27;&#x5BF9;&#x5E94;&#x201D;n&#x201D;&#xFF0C;6-10&#x5E27;&#x5BF9;&#x5E94;&#x201D;i2&#x201D;&#xFF0C;11-15&#x5E27;&#x5BF9;&#x5E94;&#x201D;h&#x201D;&#xFF0C;16-20&#x5E27;&#x5BF9;&#x5E94;&#x201D;ao3&#x201D;&#x3002;&#x540C;&#x65F6;&#x201D;n&#x201D;&#x53C8;&#x6709;&#x4E09;&#x4E2A;&#x72B6;&#x6001;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x628A;1-2&#x5E27;&#x5206;&#x7ED9;&#x72B6;&#x6001;&#x2460;&#xFF0C;3-4&#x5E27;&#x5206;&#x7ED9;&#x72B6;&#x6001;&#x2461;&#xFF0C;&#x7B2C;5&#x5E27;&#x5206;&#x7ED9;&#x72B6;&#x6001;&#x2462;&#x3002;&#x201D;i2&#x201D;&#x3001;&#x201D;h&#x201D;&#x3001;&#x201D;ao3&#x201D;&#x4EA6;&#x5982;&#x6B64;&#x3002;<img src="/2019/06/16/20190616_ASR_from_begin_to_abandoned/v2-1f3b55b94a5dfe01cf55290c53a49d3f_r.jpg" alt=""></li>
+<li>&#x66F4;&#x65B0;&#x6A21;&#x578B;&#x53C2;&#x6570;<ol>
+<li>&#x8F6C;&#x79FB;&#x6982;&#x7387;&#xFF1A;&#x901A;&#x8FC7;&#x4E0A;&#x56FE;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x2460;-&gt;&#x2460;&#x7684;&#x8F6C;&#x79FB;&#x6B21;&#x6570;&#xFF0C;&#x2460;-&gt;&#x2461;&#x7684;&#x8F6C;&#x79FB;&#x6B21;&#x6570;&#x7B49;&#x7B49;&#x3002;&#x7136;&#x540E;&#x9664;&#x4EE5;&#x603B;&#x7684;&#x8F6C;&#x79FB;&#x6B21;&#x6570;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x6BCF;&#x79CD;&#x8F6C;&#x79FB;&#x7684;&#x6982;&#x7387;&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x7EDF;&#x8BA1;&#x7684;&#x8FC7;&#x7A0B;</li>
+<li>&#x53D1;&#x5C04;&#x6982;&#x7387;&#xFF1A;&#x5373;&#x5747;&#x503C;&#x548C;&#x65B9;&#x5DEE;&#x3002;&#x4EE5;&#x72B6;&#x6001;&#x2460;&#x7684;&#x5747;&#x503C;&#x548C;&#x65B9;&#x5DEE;&#x4E3A;&#x4F8B;&#xFF0C;&#x7531;&#x4E0A;&#x56FE;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x77E5;&#x9053;&#x7B2C;1&#x5E27;&#x548C;&#x7B2C;2&#x5E27;&#x5BF9;&#x5E94;&#x72B6;&#x6001;&#x2460;&#x3002;&#x5047;&#x8BBE;&#x7B2C;1&#x5E27;&#x7684;MFCC&#x7279;&#x5F81;&#x662F;(4,3)&#xFF0C;&#x7B2C;2&#x5E27;&#x7684;MFCC&#x7279;&#x5F81;&#x7684;MFCC&#x7279;&#x5F81;&#x662F;(4,7)&#x3002;&#x90A3;&#x4E48;&#x72B6;&#x6001;&#x2460;&#x7684;&#x5747;&#x503C;&#x5C31;&#x662F;(4,5)&#xFF0C;&#x65B9;&#x5DEE;&#x662F;(0,8)</li>
+<li>step3&#xFF1A;&#x91CD;&#x65B0;&#x5BF9;&#x9F50;&#x3002;&#x6839;&#x636E;step2&#x5F97;&#x5230;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x91CD;&#x65B0;&#x5BF9;&#x97F3;&#x9891;&#x8FDB;&#x884C;&#x72B6;&#x6001;&#x7EA7;&#x522B;&#x7684;&#x5BF9;&#x9F50;&#x3002;&#x8FD9;&#x4E00;&#x6B65;&#x533A;&#x522B;&#x4E8E;step1&#x7684;&#x521D;&#x59CB;&#x5316;&#xFF0C;step1&#x7684;&#x521D;&#x59CB;&#x5316;&#x6211;&#x4EEC;&#x662F;&#x91C7;&#x7528;&#x7C97;&#x66B4;&#x7684;&#x5747;&#x5300;&#x5BF9;&#x9F50;&#xFF0C;&#x800C;&#x8FD9;&#x4E00;&#x6B65;&#x7684;&#x5BF9;&#x9F50;&#x662F;&#x6839;&#x636E;step2&#x7684;&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x5BF9;&#x9F50;&#x7684;&#x3002;&#x8FD9;&#x91CC;&#x7684;&#x5BF9;&#x9F50;&#x65B9;&#x6CD5;&#x6709;&#x4E24;&#x79CD;&#xFF1A;a&#x3001;&#x786C;&#x5BF9;&#x9F50;&#xFF1A;&#x91C7;&#x7528;&#x7EF4;&#x7279;&#x6BD4;&#x7B97;&#x6CD5;&#xFF1B;b&#x3001;&#x8F6F;&#x5BF9;&#x9F50;&#xFF1A;&#x91C7;&#x7528;&#x524D;&#x540E;&#x5411;&#x7B97;&#x6CD5;<img src="/2019/06/16/20190616_ASR_from_begin_to_abandoned/v2-d875d58274be1d05a9bbc1638e1867bd_r.jpg" alt=""></li>
+<li>&#x91CD;&#x590D;step2&#x548C;step3&#x591A;&#x6B21;&#xFF0C;&#x76F4;&#x5230;&#x6536;&#x655B;&#x3002;</li>
+</ol>
+</li>
+</ol>
+<p>&#x53C2;&#x8003;&#x6750;&#x6599;&#xFF1A;<a href="https://zhuanlan.zhihu.com/p/63753017" target="_blank" rel="external">&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#x4E2D;&#x7684;HMM-GMM&#x6A21;&#x578B;&#xFF1A;&#x4ECE;&#x4E00;&#x6BB5;&#x8BED;&#x97F3;&#x8BF4;&#x8D77; - &#x77E5;&#x4E4E;</a></p>
+<h2 id="&#x5982;&#x4F55;&#x8BC4;&#x4F30;&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#x7684;&#x51C6;&#x786E;&#x7387;"><a href="#&#x5982;&#x4F55;&#x8BC4;&#x4F30;&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#x7684;&#x51C6;&#x786E;&#x7387;" class="headerlink" title="&#x5982;&#x4F55;&#x8BC4;&#x4F30;&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#x7684;&#x51C6;&#x786E;&#x7387;"></a>&#x5982;&#x4F55;&#x8BC4;&#x4F30;&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#x7684;&#x51C6;&#x786E;&#x7387;</h2><p>&#x5B57;&#x9519;&#x8BEF;&#x7387;WER(WordError Rate)&#xFF0C;<code>WER=(I+D+S)/N</code>&#xFF0C;&#x5176;&#x4E2D;I&#x4EE3;&#x8868;&#x88AB;&#x63D2;&#x5165;&#x7684;&#x5355;&#x8BCD;&#x4E2A;&#x6570;&#xFF0C;D&#x4EE3;&#x8868;&#x88AB;&#x5220;&#x9664;&#x7684;&#x5355;&#x8BCD;&#x4E2A;&#x6570;&#xFF0C;S&#x4EE3;&#x8868;&#x88AB;&#x66FF;&#x6362;&#x7684;&#x5355;&#x8BCD;&#x4E2A;&#x6570;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x628A;&#x8BC6;&#x522B;&#x51FA;&#x6765;&#x7684;&#x7ED3;&#x679C;&#x4E2D;&#xFF0C;&#x591A;&#x8BA4;&#x7684;&#xFF0C;&#x5C11;&#x8BA4;&#x7684;&#xFF0C;&#x8BA4;&#x9519;&#x7684;&#x5168;&#x90FD;&#x52A0;&#x8D77;&#x6765;&#xFF0C;&#x9664;&#x4EE5;&#x603B;&#x5355;&#x8BCD;&#x6570;&#x3002;<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">%WER <span class="number">0.00</span> [ <span class="number">0</span> / <span class="number">232</span>, <span class="number">0</span> ins, <span class="number">0</span> del, <span class="number">0</span> sub ]</div></pre></td></tr></table></figure></p>
+<p><img src="/2019/06/16/20190616_ASR_from_begin_to_abandoned/95373E78-A2DD-446C-8B1B-517E01BCB20A.png" alt=""></p>
+<p>&#x6709;&#x4E86;&#x524D;&#x9762;&#x7684;&#x4E00;&#x4E9B;&#x57FA;&#x7840;&#x77E5;&#x8BC6;&#x5C31;&#x53EF;&#x4EE5;&#x8FDB;&#x5165;&#x5B9E;&#x8DF5;&#x8E29;&#x5751;&#x73AF;&#x8282;&#x3002;</p>
+<h1 id="&#x4F7F;&#x7528;kaldi-thchs30&#x8FDB;&#x884C;&#x5B9E;&#x8DF5;"><a href="#&#x4F7F;&#x7528;kaldi-thchs30&#x8FDB;&#x884C;&#x5B9E;&#x8DF5;" class="headerlink" title="&#x4F7F;&#x7528;kaldi+thchs30&#x8FDB;&#x884C;&#x5B9E;&#x8DF5;"></a>&#x4F7F;&#x7528;kaldi+thchs30&#x8FDB;&#x884C;&#x5B9E;&#x8DF5;</h1><p><a href="http://kaldi-asr.org/" target="_blank" rel="external">Kaldi ASR</a>&#x662F;&#x4E00;&#x4E2A;&#x4F7F;&#x7528;&#x5E7F;&#x6CDB;&#x7684;&#x8BED;&#x8A00;&#x8BC6;&#x522B;&#x5DE5;&#x5177;&#xFF0C;&#x80FD;&#x591F;&#x5FEB;&#x901F;&#x5E2E;&#x52A9;&#x521D;&#x5B66;&#x8005;&#x5EFA;&#x7ACB;&#x8D77;&#x4E00;&#x4E2A;&#x53EF;&#x7528;&#x7684;&#x8BED;&#x8A00;&#x8BC6;&#x522B;&#x7CFB;&#x7EDF;&#x3002;&#x5165;&#x95E8;&#x96BE;&#x5EA6;&#x8FD8;&#x662F;&#x633A;&#x5927;&#xFF0C;&#x8BBE;&#x8BA1;&#x5230;shell&#xFF0C;C++&#xFF0C;Python&#xFF0C;Perl&#x4EE5;&#x53CA;&#x4F17;&#x591A;&#x7684;&#x8BA9;&#x4EBA;&#x773C;&#x82B1;&#x7F2D;&#x4E71;&#x7684;&#x811A;&#x672C;&#xFF0C;&#x5F88;&#x5BB9;&#x6613;&#x8BA9;&#x4EBA;&#x653E;&#x5F03;&#xFF0C;&#x505A;&#x5B8C;&#x8FD9;&#x4E2A;&#x4F5C;&#x4E1A;&#x6211;&#x5C31;&#x6253;&#x7B97;&#x653E;&#x5F03;&#x4E86;&#x3002;&#x5982;&#x4F55;&#x5B89;&#x88C5;&#x7F16;&#x8BD1;kaldi&#x53C2;&#x8003;&#x6E90;&#x7801;&#x76EE;&#x5F55;&#x4E0B;&#x7684;<code>INSTALL</code>&#x6587;&#x4EF6;&#xFF0C;&#x6211;&#x5728;ubuntu18.04&#x4E0A;&#x5B89;&#x88C5;&#x7684;&#xFF0C;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;&#x57FA;&#x672C;&#x90FD;&#x662F;&#x7CFB;&#x7EDF;&#x5E93;&#x6CA1;&#x6709;&#x3002;</p>
+<p>THCHS30 <a href="http://www.openslr.org/18/" target="_blank" rel="external">http://www.openslr.org/18/</a> &#xFF0C; &#x6E05;&#x534E;&#x5927;&#x5B66;&#x5F00;&#x6E90;&#x7684;&#x514D;&#x8D39;&#x7684;&#x4E2D;&#x6587;&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#x6570;&#x636E;&#xFF0C;&#x6570;&#x636E;&#x96C6;&#x5212;&#x5206;&#x5982;&#x4E0B;&#xFF1A;<br><img src="/2019/06/16/20190616_ASR_from_begin_to_abandoned/794A1BC5-E63F-483F-ACD9-0AF4322272B3.png" alt=""></p>
+<p>&#x4E0B;&#x9762;&#x5148;&#x5BF9;kaldi&#x7684;egs&#x76EE;&#x5F55;&#x4E0B;&#x7684;thchs30&#x4E2D;&#x7684;&#x811A;&#x672C;&#x8FDB;&#x884C;&#x719F;&#x6089;&#xFF0C;&#x7136;&#x540E;&#x624D;&#x80FD;&#x5F00;&#x59CB;&#x5E72;&#x6D3B;&#x3002;</p>
+<h2 id="thchs30&#x5904;&#x7406;&#x811A;&#x672C;&#x89E3;&#x6790;"><a href="#thchs30&#x5904;&#x7406;&#x811A;&#x672C;&#x89E3;&#x6790;" class="headerlink" title="thchs30&#x5904;&#x7406;&#x811A;&#x672C;&#x89E3;&#x6790;"></a>thchs30&#x5904;&#x7406;&#x811A;&#x672C;&#x89E3;&#x6790;</h2><p>&#x7528;kaldi&#x505A;&#x6A21;&#x578B;&#x57FA;&#x672C;&#x90FD;&#x9075;&#x5FAA;&#x540C;&#x6837;&#x7684;&#x5957;&#x8DEF;&#xFF0C;<code>run.sh</code>&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x5305;&#x542B;&#x4E86;&#x6570;&#x636E;&#x9884;&#x5904;&#x7406;&#xFF0C;&#x7279;&#x5F81;&#x63D0;&#x53D6;&#xFF0C;&#x6A21;&#x578B;&#x5EFA;&#x7ACB;&#x7684;&#x6D41;&#x7A0B;&#xFF0C;&#x7406;&#x89E3;&#x4E86;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x540E;&#x9762;&#x5C31;&#x597D;&#x529E;&#x4E86;&#xFF0C;&#x4E0B;&#x9762;&#x4E3B;&#x8981;&#x5BF9;&#x5176;&#x4E2D;&#x7684;&#x5173;&#x952E;&#x90E8;&#x5206;&#x8FDB;&#x884C;&#x8BF4;&#x660E;&#x3002;</p>
+<h3 id="&#x6570;&#x636E;&#x9884;&#x5904;&#x7406;"><a href="#&#x6570;&#x636E;&#x9884;&#x5904;&#x7406;" class="headerlink" title="&#x6570;&#x636E;&#x9884;&#x5904;&#x7406;"></a>&#x6570;&#x636E;&#x9884;&#x5904;&#x7406;</h3><p>&#x751F;&#x6210;word.txt&#xFF08;&#x8BCD;&#x5E8F;&#x5217;&#xFF09;&#xFF0C;phone.txt&#xFF08;&#x97F3;&#x7D20;&#x5E8F;&#x5217;&#xFF09;&#xFF0C;text&#xFF08;&#x4E0E;word.txt&#x76F8;&#x540C;&#xFF09;&#xFF0C;wav.scp&#xFF08;&#x8BED;&#x97F3;&#xFF09;&#xFF0C;utt2pk&#xFF08;&#x53E5;&#x5B50;&#x4E0E;&#x8BF4;&#x8BDD;&#x4EBA;&#x7684;&#x6620;&#x5C04;&#xFF09;&#xFF0C;spk2utt&#xFF08;&#x8BF4;&#x8BDD;&#x4EBA;&#x4E0E;&#x53E5;&#x5B50;&#x7684;&#x6620;&#x5C04;&#xFF09;<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">local<span class="regexp">/thchs-30_data_prep.sh $H $thchs/</span>data_thchs30 || <span class="keyword">exit</span> <span class="number">1</span>;</div></pre></td></tr></table></figure></p>
+<p><img src="/2019/06/16/20190616_ASR_from_begin_to_abandoned/DF782B4A-4B05-4311-953A-F6F1B9927C32.png" alt=""></p>
+<ul>
+<li>word.txt&#xFF1A;&#x97F3;&#x9891;&#x6807;&#x6CE8;&#x7684;&#x6587;&#x672C;<img src="/2019/06/16/20190616_ASR_from_begin_to_abandoned/57141966-E711-412E-B70F-4124CC3B4DF7.png" alt=""></li>
+<li>wav.scp&#xFF1A;&#x5BF9;&#x5E94;&#x8BF4;&#x8BDD;&#x4EBA;&#x548C;&#x97F3;&#x9891;&#x7684;&#x5730;&#x5740;<img src="/2019/06/16/20190616_ASR_from_begin_to_abandoned/4CE875EC-A3AE-4DBF-8F48-2DFD117B7475.png" alt=""></li>
+<li>phone.txt&#xFF1A;&#x5BF9;&#x5E94;&#x6807;&#x6CE8;&#x7684;&#x97F3;&#x7D20;&#x5E8F;&#x5217;<br><img src="/2019/06/16/20190616_ASR_from_begin_to_abandoned/01B773E6-0E2A-4DB2-B523-2C017DBC1D7D.png" alt=""></li>
+<li>spk2utt&#xFF1A;&#x8BF4;&#x8BDD;&#x4EBA;&#x548C;&#x5176;&#x97F3;&#x9891;&#x5BF9;&#x5E94;&#x5173;&#x7CFB;&#xFF0C;&#x5982;C32&#x8FD9;&#x4E2A;&#x4EBA;&#xFF0C;&#x540E;&#x9762;&#x662F;&#x4ED6;&#x58F0;&#x97F3;&#x7684;&#x97F3;&#x9891; , utt2spk&#x5219;&#x662F;&#x97F3;&#x9891;&#x548C;&#x8BF4;&#x8BDD;&#x4EBA;&#x7684;&#x5BF9;&#x5E94;<br><img src="/2019/06/16/20190616_ASR_from_begin_to_abandoned/98FF2C98-E717-4D88-BF5E-720B7538706E.png" alt=""></li>
+</ul>
+<h3 id="&#x7279;&#x5F81;&#x63D0;&#x53D6;"><a href="#&#x7279;&#x5F81;&#x63D0;&#x53D6;" class="headerlink" title="&#x7279;&#x5F81;&#x63D0;&#x53D6;"></a>&#x7279;&#x5F81;&#x63D0;&#x53D6;</h3><ol>
+<li>&#x91CD;&#x5EFA;data/mfcc&#x76EE;&#x5F55;&#xFF0C;&#x7136;&#x540E;&#x5C06;train,dev,test,test_phone&#x62F7;&#x8D1D;&#x5230;&#x8BE5;&#x76EE;&#x5F55;&#x4E0B;</li>
+<li>&#x5206;&#x522B;&#x63D0;&#x53D6; train dev test &#x7684;MFCC&#x7279;&#x5F81;&#xFF0C;&#x5E76;&#x8FDB;&#x884C;&#x5747;&#x503C;&#x548C;&#x5F52;&#x4E00;&#x5316;cmvn(&#x4E0D;&#x662F;&#x5FC5;&#x987B;)<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#produce MFCC features</span></div><div class="line">rm -rf data<span class="regexp">/mfcc &amp;&amp; mkdir -p data/m</span>fcc &amp;&amp;  cp -R data<span class="regexp">/{train,dev,test,test_phone} data/m</span>fcc || <span class="keyword">exit</span> <span class="number">1</span>;</div><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> train dev test; <span class="keyword">do</span></div><div class="line">   <span class="comment">#make  mfcc</span></div><div class="line">	<span class="comment"># data/mfcc/$x exp/make_mfcc/$x mfcc/$x &#x5206;&#x522B;&#x8868;&#x793A;&#x6570;&#x636E;&#x76EE;&#x5F55;&#xFF0C;&#x65E5;&#x5FD7;&#x76EE;&#x5F55;&#xFF0C;&#x6700;&#x7EC8;&#x63D0;&#x53D6;&#x7684;&#x7279;&#x5F81;&#x76EE;&#x5F55;</span></div><div class="line">   steps<span class="regexp">/make_mfcc.sh --nj $n --cmd &quot;$train_cmd&quot; data/m</span>fcc<span class="regexp">/$x exp/m</span>ake_mfcc<span class="regexp">/$x mfcc/</span><span class="variable">$x</span> || <span class="keyword">exit</span> <span class="number">1</span>;</div><div class="line">   <span class="comment">#compute cmvn</span></div><div class="line">   steps<span class="regexp">/compute_cmvn_stats.sh data/m</span>fcc<span class="regexp">/$x exp/m</span>fcc_cmvn<span class="regexp">/$x mfcc/</span><span class="variable">$x</span> || <span class="keyword">exit</span> <span class="number">1</span>;</div><div class="line">done</div><div class="line"><span class="comment">#copy feats and cmvn to test.ph, avoid duplicated mfcc &amp; cmvn</span></div><div class="line">cp data<span class="regexp">/mfcc/</span>test<span class="regexp">/feats.scp data/m</span>fcc<span class="regexp">/test_phone &amp;&amp; cp data/m</span>fcc<span class="regexp">/test/</span>cmvn.scp data<span class="regexp">/mfcc/</span>test_phone || <span class="keyword">exit</span> <span class="number">1</span>;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="&#x8BCD;&#x5178;&#x6784;&#x5EFA;"><a href="#&#x8BCD;&#x5178;&#x6784;&#x5EFA;" class="headerlink" title="&#x8BCD;&#x5178;&#x6784;&#x5EFA;"></a>&#x8BCD;&#x5178;&#x6784;&#x5EFA;</h3><p>&#x8FD9;&#x4E00;&#x5757;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x548C;&#x8BED;&#x97F3;&#x89E3;&#x7801;&#xFF0C;thchs30&#x6570;&#x636E;&#x5DF2;&#x7ECF;&#x63D0;&#x53D6;&#x5EFA;&#x597D;&#xFF0C;&#x4E3B;&#x8981;&#x5305;&#x62EC;3-gram&#x7684;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#xFF0C;&#x548C;word-id&#x4E4B;&#x95F4;&#x7684;&#x6620;&#x5C04;&#x3002;</p>
+<ul>
+<li><p>&#x8BCD;&#x8BED;&#x8A00;&#x6A21;&#x578B;</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#prepare language stuff</div><div class="line">#build a large lexicon that invovles words <span class="keyword">in</span> both the training <span class="literal">and</span> decoding.</div><div class="line">(</div><div class="line">  echo <span class="string">&quot;make word graph ...&quot;</span></div><div class="line">  cd $H; mkdir <span class="params">-p</span> <span class="built_in">data</span>/{dict,lang,graph} &amp;&amp; \</div><div class="line">  cp $thchs/resource/dict/{extra_questions.txt,nonsilence_phones.txt,optional_silence.txt,silence_phones.txt} <span class="built_in">data</span>/dict &amp;&amp; \</div><div class="line">  cat $thchs/resource/dict/lexicon.txt $thchs/data_thchs30/lm_word/lexicon.txt | \</div><div class="line">  grep <span class="params">-v</span> <span class="string">&apos;&lt;s&gt;&apos;</span> | grep <span class="params">-v</span> <span class="string">&apos;&lt;/s&gt;&apos;</span> | sort <span class="params">-u</span> &gt; <span class="built_in">data</span>/dict/lexicon.txt || exit <span class="number">1</span>;</div><div class="line">  utils/prepare_lang.sh -<span class="params">-position_dependent_phones</span> <span class="literal">false</span> <span class="built_in">data</span>/dict <span class="string">&quot;&lt;SPOKEN_NOISE&gt;&quot;</span> <span class="built_in">data</span>/<span class="built_in">local</span>/lang <span class="built_in">data</span>/lang || exit <span class="number">1</span>;</div><div class="line">  gzip <span class="params">-c</span> $thchs/data_thchs30/lm_word/word<span class="number">.3</span>gram.lm &gt; <span class="built_in">data</span>/graph/word<span class="number">.3</span>gram.lm.gz || exit <span class="number">1</span>;</div><div class="line">  utils/format_lm.sh <span class="built_in">data</span>/lang <span class="built_in">data</span>/graph/word<span class="number">.3</span>gram.lm.gz $thchs/data_thchs30/lm_word/lexicon.txt <span class="built_in">data</span>/graph/lang || exit <span class="number">1</span>;</div><div class="line">)</div></pre></td></tr></table></figure>
+</li>
+<li><p>&#x97F3;&#x7D20;&#x8BED;&#x8A00;&#x6A21;&#x578B;</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#make_phone_graph</span></div><div class="line">(</div><div class="line">  echo <span class="string">&quot;make phone graph ...&quot;</span></div><div class="line">  cd <span class="variable">$H</span>; mkdir -p <span class="keyword">data</span>/{dict_phone,graph_phone,lang_phone} &amp;&amp; \</div><div class="line">  cp <span class="variable">$thchs</span>/resource/dict/{extra_questions.txt,nonsilence_phones.txt,optional_silence.txt,silence_phones.txt} <span class="keyword">data</span>/dict_phone  &amp;&amp; \</div><div class="line">  cat <span class="variable">$thchs</span>/data_thchs30/lm_phone/lexicon.txt | grep -v <span class="string">&apos;&lt;eps&gt;&apos;</span> | sort -u &gt; <span class="keyword">data</span>/dict_phone/lexicon.txt  &amp;&amp; \</div><div class="line">  echo <span class="string">&quot;&lt;SPOKEN_NOISE&gt; sil &quot;</span> &gt;&gt; <span class="keyword">data</span>/dict_phone/lexicon.txt  || <span class="keyword">exit</span> <span class="number">1</span>;</div><div class="line">  utils/prepare_lang.sh --position_dependent_phones false <span class="keyword">data</span>/dict_phone <span class="string">&quot;&lt;SPOKEN_NOISE&gt;&quot;</span> <span class="keyword">data</span>/local/lang_phone <span class="keyword">data</span>/lang_phone || <span class="keyword">exit</span> <span class="number">1</span>;</div><div class="line">  gzip -c <span class="variable">$thchs</span>/data_thchs30/lm_phone/phone.<span class="number">3</span>gram.lm &gt; <span class="keyword">data</span>/graph_phone/phone.<span class="number">3</span>gram.lm.gz  || <span class="keyword">exit</span> <span class="number">1</span>;</div><div class="line">  utils/format_lm.sh <span class="keyword">data</span>/lang_phone <span class="keyword">data</span>/graph_phone/phone.<span class="number">3</span>gram.lm.gz <span class="variable">$thchs</span>/data_thchs30/lm_phone/lexicon.txt \</div><div class="line">    <span class="keyword">data</span>/graph_phone/lang  || <span class="keyword">exit</span> <span class="number">1</span>;</div><div class="line">)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="&#x6A21;&#x578B;&#x8BAD;&#x7EC3;-&#x5355;&#x56E0;&#x7D20;-monophone-gt-&#x4E09;&#x97F3;&#x7D20;-tri-gt-LDA-MLLT-gt-SAT-gt-NN"><a href="#&#x6A21;&#x578B;&#x8BAD;&#x7EC3;-&#x5355;&#x56E0;&#x7D20;-monophone-gt-&#x4E09;&#x97F3;&#x7D20;-tri-gt-LDA-MLLT-gt-SAT-gt-NN" class="headerlink" title="&#x6A21;&#x578B;&#x8BAD;&#x7EC3;(&#x5355;&#x56E0;&#x7D20;(monophone)-&gt;&#x4E09;&#x97F3;&#x7D20;(tri)-&gt;LDA/MLLT-&gt;SAT-&gt;NN)"></a>&#x6A21;&#x578B;&#x8BAD;&#x7EC3;(&#x5355;&#x56E0;&#x7D20;(monophone)-&gt;&#x4E09;&#x97F3;&#x7D20;(tri)-&gt;LDA/MLLT-&gt;SAT-&gt;NN)</h3><p>&#x6211;&#x8FD9;&#x53EA;&#x4E3E;monophone&#x4F8B;&#x5B50;&#xFF0C;&#x540E;&#x9762;&#x90FD;&#x662F;&#x4E00;&#x6837;&#xFF0C;&#x5EFA;&#x8BAE;&#x4E0D;&#x8981;&#x6539;&#x52A8;&#x6A21;&#x578B;&#x8BAD;&#x7EC3;&#x7684;&#x987A;&#x5E8F;&#xFF0C;&#x524D;&#x540E;&#x6709;&#x4F9D;&#x8D56;&#x3002;&#x8FD0;&#x884C;&#x4E00;&#x6B21;&#xFF0C;&#x5168;&#x90E8;&#x8BAD;&#x7EC3;&#x5B8C;&#x5C31;&#x884C;&#x3002;<br>monophone&#x7528;&#x6765;&#x8BAD;&#x7EC3;&#x5355;&#x97F3;&#x5B50;&#x9690;&#x9A6C;&#x5C14;&#x79D1;&#x592B;&#x6A21;&#x578B;&#xFF0C;&#x4E00;&#x5171;&#x8FDB;&#x884C;40&#x6B21;&#x8FED;&#x4EE3;&#xFF0C;&#x6BCF;&#x4E24;&#x6B21;&#x8FED;&#x4EE3;&#x8FDB;&#x884C;&#x4E00;&#x6B21;&#x5BF9;&#x9F50;&#x64CD;&#x4F5C;<br><figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">steps/train_mono.sh --boost-silence <span class="number">1.25</span> --nj $n --cmd <span class="string">&quot;$train_cmd&quot;</span> data/mfcc/train data/lang <span class="keyword">exp</span>/mono || <span class="keyword">exit</span> <span class="number">1</span>;</div><div class="line"><span class="comment">#test monophone model</span></div><div class="line"><span class="keyword">local</span>/thchs-<span class="number">30_</span>decode.sh --mono true --nj $n <span class="string">&quot;steps/decode.sh&quot;</span> <span class="keyword">exp</span>/mono data/mfcc &amp;</div><div class="line"></div><div class="line"><span class="comment">#monophone_ali</span></div><div class="line">steps/align_si.sh --boost-silence <span class="number">1.25</span> --nj $n --cmd <span class="string">&quot;$train_cmd&quot;</span> data/mfcc/train data/lang <span class="keyword">exp</span>/mono <span class="keyword">exp</span>/mono_ali || <span class="keyword">exit</span> <span class="number">1</span>;</div></pre></td></tr></table></figure></p>
+<p>&#x8BAD;&#x7EC3;&#x4E4B;&#x540E;&#x4F1A;&#x6709;&#x6D4B;&#x8BD5;&#xFF0C;&#x7ED9;&#x51FA;&#x6A21;&#x578B;&#x7684;&#x5B57;&#x9519;&#x8BEF;&#x7387;WER&#x3002;&#x76F4;&#x63A5;<code>run.sh</code>&#x5C31;&#x53EF;&#x4EE5;&#x53BB;&#x7761;&#x89C9;&#x4E86;&#xFF0C;&#x7B49;&#x5F85;&#x811A;&#x672C;&#x8FD0;&#x884C;&#x5B8C;&#x6210;&#x3002;<br>&#x5982;&#x4F55;&#x67E5;&#x770B;&#x6A21;&#x578B;&#x7684;WER&#x9519;&#x8BEF;&#x7387;&#xFF0C;&#x53EF;&#x4EE5;&#x5230;&#x6A21;&#x578B;&#x7684;&#x76EE;&#x5F55;&#x4E0B;&#x6BD4;&#x5982;<code>exp/mono/decode_test_phone/scoring_kaldi</code>&#x6709;&#x4E2A;best_wer&#x6587;&#x4EF6;&#xFF0C;&#x91CC;&#x9762;&#x8BB0;&#x5F55;&#x4E86;<code>%WER 32.49 [ 117586 / 361864, 16304 ins, 28325 del, 72957 sub ] exp/mono/decode_test_phone/wer_7_1.0</code></p>
+<h2 id="&#x8BAD;&#x7EC3;&#x540E;&#x7684;&#x6A21;&#x578B;&#x5982;&#x4F55;&#x4F7F;&#x7528;"><a href="#&#x8BAD;&#x7EC3;&#x540E;&#x7684;&#x6A21;&#x578B;&#x5982;&#x4F55;&#x4F7F;&#x7528;" class="headerlink" title="&#x8BAD;&#x7EC3;&#x540E;&#x7684;&#x6A21;&#x578B;&#x5982;&#x4F55;&#x4F7F;&#x7528;"></a>&#x8BAD;&#x7EC3;&#x540E;&#x7684;&#x6A21;&#x578B;&#x5982;&#x4F55;&#x4F7F;&#x7528;</h2><p>&#x8FD9;&#x91CC;&#x53C2;&#x8003;<a href="https://hesay.me/posts/kaldi_experience_2/" target="_blank" rel="external">Kaldi&#x521D;&#x4F53;&#x9A8C;&#xFF08;&#x4E8C;&#xFF09;&#xFF1A;thchs30&#x8FD0;&#x884C; - &#x4ED6;&#x8BF4;</a></p>
+<ul>
+<li>&#x4ECE; <code>egs/voxforge</code> &#x628A;online_demo&#x6587;&#x4EF6;&#x5939;&#x62F7;&#x8D1D;&#x5230; thchs30 &#x4E0B;&#xFF0C;&#x548C;s5&#x540C;&#x7EA7;</li>
+<li>&#x5728;online_demo&#x5EFA;online-data&#x548C;work&#x4E24;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#x3002;online-data&#x4E0B;&#x5EFA;audio&#x548C;models&#xFF0C;models&#x5EFA;tri1&#xFF0C;audio&#x653E;&#x8981;&#x8BC6;&#x522B;&#x7684;wav&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x653E;&#x51E0;&#x4E2A;wav&#x97F3;&#x9891;&#x6587;&#x4EF6;&#x8FDB;&#x53BB;&#x3002;</li>
+<li>&#x5C06;s5&#x4E0B;<code>exp/tri1</code>&#x4E0B;&#x7684;final.mdl&#x548C;35.mdl&#x62F7;&#x8D1D;&#x5230;models&#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x628A;s5&#x7684;<code>exp/tri1/graph_word</code>&#x91CC;&#x9762;&#x7684;words.txt&#x548C;HCLG.fst&#x4E5F;&#x62F7;&#x8FC7;&#x53BB;&#x3002;&#x5176;&#x4E2D;&#xFF0C;final.mdl&#x662F;&#x8BAD;&#x7EC3;&#x51FA;&#x6765;&#x7684;&#x6A21;&#x578B;&#xFF0C;words.txt&#x662F;&#x5B57;&#x5178;&#xFF0C;&#x548C;HCLG.fst&#x662F;&#x6709;&#x9650;&#x72B6;&#x6001;&#x673A;&#x3002;</li>
+<li>&#x5C06;<code>online-data/run.sh</code>&#x4E2D;&#x7684;<code>ac_model_type=tri2b_mmi</code>&#x6539;&#x4E3A;<code>ac_model_type=tri1</code></li>
+<li>&#x518D;&#x505A;&#x5982;&#x4E0B;&#x4FEE;&#x6539;&#xFF0C;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x5C06;<code>$ac_model/final.mdl</code>&#x6539;&#x6210;&#x4E86;<code>$ac_model/final.mdl</code></li>
+</ul>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">online-wav-gmm-decode-faster --verbose=<span class="number">1</span> --rt-<span class="keyword">min</span>=<span class="number">0.8</span> --rt-<span class="keyword">max</span>=<span class="number">0.85</span>\</div><div class="line">           --<span class="keyword">max</span>-active=<span class="number">4000</span> --beam=<span class="number">12.0</span> --acoustic-<span class="keyword">scale</span>=<span class="number">0.0769</span> \</div><div class="line">           scp:$decode_dir/input.scp $ac_model/model $ac_model/HCLG.fst \</div><div class="line">           $ac_model/words.txt <span class="string">&apos;1:2:3:4:5&apos;</span> ark,t:$decode_dir/trans.txt \</div><div class="line">           ark,t:$decode_dir/ali.txt $trans_matrix;;</div><div class="line">&#x6539;&#x4E3A;</div><div class="line">online-wav-gmm-decode-faster --verbose=<span class="number">1</span> --rt-<span class="keyword">min</span>=<span class="number">0.8</span> --rt-<span class="keyword">max</span>=<span class="number">0.85</span>\</div><div class="line">               --<span class="keyword">max</span>-active=<span class="number">4000</span> --beam=<span class="number">12.0</span> --acoustic-<span class="keyword">scale</span>=<span class="number">0.0769</span> \</div><div class="line">               scp:$decode_dir/input.scp $ac_model/final.mdl $ac_model/HCLG.fst \</div><div class="line">               $ac_model/words.txt <span class="string">&apos;1:2:3:4:5&apos;</span> ark,t:$decode_dir/trans.txt \</div><div class="line">               ark,t:$decode_dir/ali.txt $trans_matrix;;</div></pre></td></tr></table></figure>
+<p>&#x4E4B;&#x540E;&#x76F4;&#x63A5;&#x8FD0;&#x884C;<code>run.sh</code>&#x5C31;&#x884C;&#xFF0C;&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#x3002;&#x6682;&#x65F6;&#x4E0D;&#x77E5;&#x9053;WER&#x548B;&#x4F1A;&#x51FA;&#x73B0;&#x8BA1;&#x7B97;&#x9519;&#x8BEF;&#x7684;&#x95EE;&#x9898;&#x3002;<br><img src="/2019/06/16/20190616_ASR_from_begin_to_abandoned/491BAE97-2657-4217-9B1D-BC41B22734BE.png" alt=""></p>
+<p>&#x5BF9;&#x4E8E;&#x5176;&#x4ED6;&#x7684;&#x6A21;&#x578B;&#x4F7F;&#x7528;&#x5927;&#x540C;&#x5C0F;&#x5F02;&#xFF0C;&#x6BD4;&#x5982;&#x5BF9;&#x4E8E;tri2b&#x6A21;&#x578B;&#xFF0C;&#x9664;&#x4E86;&#x4E0A;&#x9762;&#x90A3;&#x4E9B;&#x6587;&#x4EF6;&#x5916;&#xFF0C;&#x8FD8;&#x9700;&#x8981;&#x62F7;&#x8D1D;<code>12.mat</code>&#x8FC7;&#x53BB;&#xFF0C;&#x7136;&#x540E;&#x4FEE;&#x6539;&#x4E24;&#x5904;&#x5730;&#x65B9;&#x3002;&#x8FD9;&#x91CC;&#x53C2;&#x8003;<a href="https://blog.csdn.net/AMDS123/article/details/70313744" target="_blank" rel="external">&#x57FA;&#x4E8E;kaldi&#x7684;&#x5728;&#x7EBF;&#x4E2D;&#x6587;&#x8BC6;&#x522B;&#xFF0C;online&#x7684;&#x64CD;&#x4F5C;&#x4ECB;&#x7ECD; - &#x4EBA;&#x5DE5;&#x667A;&#x80FD; - CSDN&#x535A;&#x5BA2;</a><br><figure class="highlight mel"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#<span class="keyword">if</span> [ -s $ac_model/<span class="keyword">matrix</span> ]; then</div><div class="line">#    #trans_matrix=$ac_model/<span class="keyword">matrix</span></div><div class="line">#    trans_matrix=$ac_model/<span class="number">12.</span>mat</div><div class="line">#fi</div><div class="line">trans_matrix=$ac_model/<span class="number">12.</span>mat</div><div class="line"></div><div class="line">online-wav-gmm-decode-faster --verbose=<span class="number">1</span> --rt-<span class="keyword">min</span>=<span class="number">0.8</span> --rt-<span class="keyword">max</span>=<span class="number">0.85</span>\</div><div class="line">            --<span class="keyword">max</span>-active=<span class="number">4000</span> --beam=<span class="number">12.0</span> --acoustic-<span class="keyword">scale</span>=<span class="number">0.0769</span> \</div><div class="line">            --left-context=<span class="number">3</span> --right-context=<span class="number">3</span> \</div><div class="line">            scp:$decode_dir/input.scp $ac_model/final.mdl $ac_model/HCLG.fst \</div><div class="line">            $ac_model/words.txt <span class="string">&apos;1:2:3:4:5&apos;</span> ark,t:$decode_dir/trans.txt \</div><div class="line">            ark,t:$decode_dir/ali.txt $trans_matrix;;</div></pre></td></tr></table></figure></p>
+<p>&#x8BC6;&#x522B;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;<br><img src="/2019/06/16/20190616_ASR_from_begin_to_abandoned/39CD292C-86FC-4CB7-8E2D-49EDF8437E19.png" alt=""><br>&#x8BC6;&#x522B;&#x7684;&#x51C6;&#x786E;&#x7387;&#x8FD8;&#x662F;&#x633A;&#x4E0D;&#x9AD8;&#x7684;&#xFF0C;&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#x6280;&#x672F;&#x8FD8;&#x662F;&#x4EFB;&#x91CD;&#x800C;&#x9053;&#x8FDC;&#xFF0C;&#x6211;&#x5C31;&#x4E0D;&#x63BA;&#x548C;&#x4E86;&#x3002;</p>
+<p>&#x9057;&#x7559;&#x95EE;&#x9898;&#xFF1A;&#x5982;&#x4F55;&#x4F7F;&#x7528;&#x8BAD;&#x7EC3;&#x51FA;&#x6765;DNN&#x6A21;&#x578B;&#xFF1F;<br>&#x6682;&#x65F6;&#x6CA1;&#x6709;&#x89E3;&#x51B3;&#xFF0C;Kaldi&#x7684;&#x5DE5;&#x5177;&#x5B9E;&#x5728;&#x662F;&#x592A;&#x591A;&#x4E86;&#xFF0C;&#x590D;&#x6742;&#x800C;&#x4E0D;&#x597D;&#x7528;&#x3002;</p>
+<h2 id="&#x5982;&#x4F55;&#x5728;&#x7EBF;&#x89E3;&#x7801;&#xFF08;online&#xFF09;"><a href="#&#x5982;&#x4F55;&#x5728;&#x7EBF;&#x89E3;&#x7801;&#xFF08;online&#xFF09;" class="headerlink" title="&#x5982;&#x4F55;&#x5728;&#x7EBF;&#x89E3;&#x7801;&#xFF08;online&#xFF09;"></a>&#x5982;&#x4F55;&#x5728;&#x7EBF;&#x89E3;&#x7801;&#xFF08;online&#xFF09;</h2><p>online&#x867D;&#x5DF2;&#x7ECF;&#x5E9F;&#x5F03;&#xFF0C;&#x4F46;&#x5B9E;&#x5728;&#x597D;&#x7528;&#xFF0C;&#x56E0;&#x6B64;&#x8FD8;&#x662F;&#x9009;&#x62E9;&#x4F7F;&#x7528;online&#x6A21;&#x5757;&#x8FDB;&#x884C;&#x5728;&#x7EBF;&#x89E3;&#x7801;&#x3002;&#x8FD9;&#x91CC;&#x53C2;&#x8003;<a href="https://www.twblogs.net/a/5b817aaa2b71772165acca52" target="_blank" rel="external">kaldi - Online Audio Server&#xFF08;&#x670D;&#x52D9;&#x5668;&#x5BA2;&#x6236;&#x7AEF;&#x5EFA;&#x7ACB;&#x65B9;&#x6CD5;-&#x820A;&#x7248;&#x5728;&#x7DDA;&#x89E3;&#x78BC;&#xFF09; - &#x53F0;&#x90E8;&#x843D;</a><br>&#x8FD9;&#x91CC;&#x4E3B;&#x8981;&#x91C7;&#x7528;online-audio-server-decode-faster&#x8FDB;&#x884C;&#x5728;&#x7EBF;&#x89E3;&#x7801;&#xFF0C;</p>
+<p>server&#x7AEF;&#xFF1A;&#x521B;&#x5EFA;<code>run_server.sh</code>&#xFF0C;&#x7136;&#x540E;copy&#x4E0B;&#x9762;&#x4EE3;&#x7801;&#x8FDB;&#x53BB;&#xFF0C;&#x7136;&#x540E;&#x8FD0;&#x884C;&#x8D77;&#x6765;&#x3002;<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">KALDI_ROOT=`pwd`/../../..</div><div class="line">echo <span class="variable">$KALDI_ROOT</span></div><div class="line">export PATH=<span class="variable">$PWD</span>/../s5/utils/:<span class="variable">$KALDI_ROOT</span>/src/onlinebin:<span class="variable">$KALDI_ROOT</span>/src/bin:<span class="variable">$PATH</span></div><div class="line"></div><div class="line">data_file=<span class="string">&quot;online-data&quot;</span></div><div class="line">ac_model_type=tri1</div><div class="line">ac_model=${data_file}/models/<span class="variable">$ac_model_type</span></div><div class="line"></div><div class="line">online-audio-server-decode-faster --verbose=<span class="number">1</span> --rt-min=<span class="number">0.5</span> --rt-max=<span class="number">3.0</span> \</div><div class="line">        --max-active=<span class="number">6000</span> --beam=<span class="number">72.0</span> --acoustic-scale=<span class="number">0.0769</span> \</div><div class="line">        <span class="variable">$ac_model</span>/final<span class="selector-class">.mdl</span> <span class="variable">$ac_model</span>/HCLG<span class="selector-class">.fst</span> \</div><div class="line">        <span class="variable">$ac_model</span>/words<span class="selector-class">.txt</span> <span class="string">&apos;1:2:3:4:5&apos;</span> <span class="variable">$ac_model</span>/word_boundary<span class="selector-class">.int</span> <span class="number">5010</span></div></pre></td></tr></table></figure></p>
+<p><strong>&#x6CE8;&#x610F;</strong>&#xFF1A;&#x8FD9;&#x91CC;&#x6709;&#x4E2A;<code>word_boundary.int</code>&#x6587;&#x4EF6;&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x751F;&#x6210;&#x3002;&#x5C06;<code>run.sh</code>&#x4E2D;&#x7684;&#x4E0B;&#x9762;&#x4E00;&#x884C;&#x6539;&#x4E00;&#x4E0B;&#xFF0C;&#x7136;&#x540E;&#x5355;&#x72EC;&#x8FD0;&#x884C;&#x4E00;&#x4E0B;&#x8FD9;&#x4E2A;&#x547D;&#x4EE4;&#x5C31;&#x884C;&#x3002;<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#&#x539F;&#x6307;&#x4EE4;&#xFF1A;</span></div><div class="line"><span class="title">utils</span>/prepare_lang.sh <span class="comment">--position-dependent-phones false data/local/dict &quot;&lt;SPOKEN_NOISE&gt;&quot; \</span></div><div class="line"><span class="class"><span class="keyword">data</span>/local/lang <span class="keyword">data</span>/lang</span></div><div class="line"><span class="meta">#&#x6539;&#x7232;&#xFF1A;</span></div><div class="line"><span class="title">utils</span>/prepare_lang.sh <span class="class"><span class="keyword">data</span>/local/dict &quot;&lt;<span class="type">SPOKEN_NOISE</span>&gt;&quot; <span class="keyword">data</span>/local/lang <span class="keyword">data</span>/lang</span></div></pre></td></tr></table></figure></p>
+<p>client&#x7AEF;&#xFF1A;&#x521B;&#x5EFA;<code>run_client.sh</code>&#xFF0C;&#x7136;&#x540E;copy&#x4E0B;&#x9762;&#x4EE3;&#x7801;&#x8FDB;&#x53BB;&#xFF0C;&#x8DEF;&#x5F84;&#x5565;&#x7684;&#x81EA;&#x5DF1;&#x89E3;&#x51B3;&#x3002;<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">KALDI_ROOT=`pwd`<span class="regexp">/../</span>../..</div><div class="line">echo $KALDI_ROOT</div><div class="line">export PATH=$PWD<span class="regexp">/../</span>s5<span class="regexp">/utils/</span>:$KALDI_ROOT<span class="regexp">/src/</span><span class="string">onlinebin:</span>$KALDI_ROOT<span class="regexp">/src/</span><span class="string">bin:</span>$PATH</div><div class="line"></div><div class="line">data_file=<span class="string">&quot;online-data&quot;</span></div><div class="line">ac_model_type=tri1</div><div class="line">ac_model=${data_file}<span class="regexp">/models/</span>$ac_model_type</div><div class="line"></div><div class="line">online-audio-client  --htk --vtt localhost <span class="number">5010</span> <span class="string">scp:</span><span class="regexp">/home/</span>demo1<span class="regexp">/asr/</span>kaldi<span class="regexp">/egs/</span>thchs30<span class="regexp">/s5/</span>data<span class="regexp">/test/</span>example.scp</div></pre></td></tr></table></figure></p>
+<p>&#x8FD9;&#x91CC;&#x9762;&#x7684;example.scp&#x662F;&#x81EA;&#x5DF1;&#x9020;&#x7684;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x6D4B;&#x8BD5;&#x96C6;&#x4E0A;cp&#x4E00;&#x4E9B;&#x6570;&#x636E;&#x8FC7;&#x6765;&#xFF0C;&#x683C;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">D32_990 <span class="regexp">/home/</span>demo1<span class="regexp">/asr/</span>kaldi<span class="regexp">/egs/</span>thchs30<span class="regexp">/data/</span>data_thchs30<span class="regexp">/test/</span>D32_990.wav</div><div class="line">D32_991 <span class="regexp">/home/</span>demo1<span class="regexp">/asr/</span>kaldi<span class="regexp">/egs/</span>thchs30<span class="regexp">/data/</span>data_thchs30<span class="regexp">/test/</span>D32_991.wav</div><div class="line">D32_992 <span class="regexp">/home/</span>demo1<span class="regexp">/asr/</span>kaldi<span class="regexp">/egs/</span>thchs30<span class="regexp">/data/</span>data_thchs30<span class="regexp">/test/</span>D32_992.wav</div><div class="line">D32_993 <span class="regexp">/home/</span>demo1<span class="regexp">/asr/</span>kaldi<span class="regexp">/egs/</span>thchs30<span class="regexp">/data/</span>data_thchs30<span class="regexp">/test/</span>D32_993.wav</div></pre></td></tr></table></figure></p>
+<p>&#x8FD0;&#x884C;<code>run_client.sh</code>&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x89C1;&#x5B9E;&#x65F6;&#x89E3;&#x7801;&#x7684;&#x8F93;&#x51FA;&#x4E86;&#x3002;<br><img src="/2019/06/16/20190616_ASR_from_begin_to_abandoned/2C632BF4-4D66-4FA5-AB81-9A81A7501BE3.png" alt=""></p>
+<p>&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF1A;&#x5982;&#x4F55;&#x5229;&#x7528;Kaldi&#x6784;&#x5EFA;&#x53EF;&#x4EE5;&#x4F9B;&#x5916;&#x90E8;&#x8C03;&#x7528;&#x7684;API&#x63A5;&#x53E3;?<br>&#x8FD9;&#x662F;&#x4E2A;&#x9EBB;&#x70E6;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x6211;&#x76EE;&#x524D;&#x6CA1;&#x6709;&#x89E3;&#x51B3;&#xFF0C;&#x60F3;&#x5230;&#x7684;&#x4E00;&#x4E2A;&#x597D;&#x7684;&#x529E;&#x6CD5;&#x5C31;&#x662F;&#x91CD;&#x5199;&#x4E00;&#x4E0B;client&#x7AEF;&#xFF0C;&#x4F7F;&#x5176;&#x652F;&#x6301;&#x8FDC;&#x7A0B;&#x8C03;&#x7528;&#x3002;&#x8FD8;&#x662F;&#x5F97;&#x5410;&#x69FD;kaldi&#x7684;&#x96BE;&#x7528;&#xFF0C;&#x4E0D;&#x5982;&#x81EA;&#x5DF1;&#x4ECE;&#x5934;&#x7528;Python&#x5199;&#x4E00;&#x4E2A;&#x3002;</p>
+<h3 id="&#x5176;&#x5B83;&#x77E5;&#x8BC6;&#xFF1A;openfst"><a href="#&#x5176;&#x5B83;&#x77E5;&#x8BC6;&#xFF1A;openfst" class="headerlink" title="&#x5176;&#x5B83;&#x77E5;&#x8BC6;&#xFF1A;openfst"></a>&#x5176;&#x5B83;&#x77E5;&#x8BC6;&#xFF1A;openfst</h3><p><a href="https://blog.csdn.net/u013569304/article/details/81560521" target="_blank" rel="external">&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#x5B66;&#x4E60;&#x8BB0;&#x5F55; kaldi&#x4E2D;&#x7684;openfst - emmmmmm - CSDN&#x535A;&#x5BA2;</a><br><img src="/2019/06/16/20190616_ASR_from_begin_to_abandoned/AB604857-18E2-44B9-B29D-659B23B88AF7.png" alt=""></p>
+<h1 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h1><p>&#x4EE3;&#x7801;&#x8E29;&#x5751;&#x7684;&#x95EE;&#x9898;&#x5C31;&#x4E0D;&#x603B;&#x7ED3;&#x4E86;&#xFF0C;&#x4E3B;&#x8981;&#x603B;&#x7ED3;&#x4E00;&#x4E0B;&#x6211;&#x5728;&#x63A2;&#x7D22;kaldi&#x65F6;&#x9047;&#x5230;&#x7684;&#x4E00;&#x4E9B;&#x65B9;&#x6CD5;&#x8BBA;&#x4E0A;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+<ol>
+<li>&#x5BF9;&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#x8C03;&#x7814;&#x4E0D;&#x5145;&#x5206;&#xFF0C;&#x6CA1;&#x6709;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x5168;&#x5C40;&#x7684;&#x8BA4;&#x8BC6;&#x5C31;&#x5F00;&#x59CB;&#x641E;kaldi&#xFF0C;&#x641E;&#x4E86;&#x4E00;&#x5468;&#x540E;&#x5C31;&#x61F5;&#x903C;&#x4E86;&#x3002;&#x7136;&#x540E;&#x624D;&#x82B1;&#x4E86;&#x4E00;&#x4E9B;&#x65F6;&#x95F4;&#x6765;&#x91CD;&#x65B0;&#x8BA4;&#x8BC6;&#x8BED;&#x97F3;&#x8BC6;&#x522B;&#xFF0C;&#x4E86;&#x89E3;&#x5927;&#x81F4;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x7528;&#x5230;&#x7684;&#x6280;&#x672F;&#x7B49;&#xFF0C;&#x8FD9;&#x6837;&#x624D;&#x907F;&#x514D;&#x4E86;&#x88AB;kaldi&#x90A3;&#x7E41;&#x591A;&#x7684;&#x811A;&#x672C;&#x548C;&#x751F;&#x6210;&#x7684;&#x6587;&#x4EF6;&#x641E;&#x4E71;&#x3002;&#x505A;&#x4E8B;&#x7684;&#x987A;&#x5E8F;&#x4E0D;&#x80FD;&#x98A0;&#x5012;&#x4E86;&#xFF0C;&#x65B9;&#x6CD5;&#x4E0D;&#x80FD;&#x9519;&#x8BEF;&#x3002;&#x8FDB;&#x5165;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x9886;&#x57DF;&#xFF0C;&#x6CA1;&#x6709;&#x6B63;&#x786E;&#x7684;&#x5B66;&#x4E60;&#x65B9;&#x6CD5;&#x4F1A;&#x7ED5;&#x5F88;&#x591A;&#x8DEF;&#x3002;</li>
+<li>&#x76EE;&#x6807;&#x4E0D;&#x660E;&#x786E;&#xFF0C;&#x5BFC;&#x81F4;&#x591A;&#x8D70;&#x5F2F;&#x8DEF;&#xFF0C;&#x8FC7;&#x5206;&#x6C89;&#x8FF7;&#x4E8E;&#x6D4B;&#x8BD5;&#x4E0D;&#x540C;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x60F3;&#x627E;&#x5230;&#x9002;&#x5408;&#x7684;&#x90A3;&#x4E2A;&#xFF0C;&#x5374;&#x5FD8;&#x4E86;&#x4EC0;&#x4E48;&#x624D;&#x662F;&#x9002;&#x5408;&#x3002;&#x8FD9;&#x5C31;&#x50CF;&#x662F;&#x8D70;&#x5230;&#x4E86;&#x591A;&#x4E2A;&#x5C94;&#x8DEF;&#x53E3;&#xFF0C;&#x6BCF;&#x4E2A;&#x90FD;&#x53BB;&#x8BD5;&#x4E0B;&#xFF0C;&#x5374;&#x5FD8;&#x8BB0;&#x770B;&#x5C94;&#x8DEF;&#x53E3;&#x4E0A;&#x7684;&#x6807;&#x5FD7;&#x3002;</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/26/20190426_my-understand-of-AI/" rel="next" title="谈谈我对AI的理解">
+                <i class="fa fa-chevron-left"></i> 谈谈我对AI的理解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Kavim</p>
+              <div class="site-description motion-element" itemprop="description">生活不止眼前的苟且 还有诗和远方的田野</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#典型的语音识别系统组成"><span class="nav-number">1.</span> <span class="nav-text">典型的语音识别系统组成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#语音特征提取"><span class="nav-number">1.1.</span> <span class="nav-text">语音特征提取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HMM-GMM"><span class="nav-number">1.2.</span> <span class="nav-text">HMM-GMM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何评估语音识别的准确率"><span class="nav-number">1.3.</span> <span class="nav-text">如何评估语音识别的准确率</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用kaldi-thchs30进行实践"><span class="nav-number">2.</span> <span class="nav-text">使用kaldi+thchs30进行实践</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#thchs30处理脚本解析"><span class="nav-number">2.1.</span> <span class="nav-text">thchs30处理脚本解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据预处理"><span class="nav-number">2.1.1.</span> <span class="nav-text">数据预处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征提取"><span class="nav-number">2.1.2.</span> <span class="nav-text">特征提取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#词典构建"><span class="nav-number">2.1.3.</span> <span class="nav-text">词典构建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型训练-单因素-monophone-gt-三音素-tri-gt-LDA-MLLT-gt-SAT-gt-NN"><span class="nav-number">2.1.4.</span> <span class="nav-text">模型训练(单因素(monophone)->三音素(tri)->LDA/MLLT->SAT->NN)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#训练后的模型如何使用"><span class="nav-number">2.2.</span> <span class="nav-text">训练后的模型如何使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在线解码（online）"><span class="nav-number">2.3.</span> <span class="nav-text">如何在线解码（online）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#其它知识：openfst"><span class="nav-number">2.3.1.</span> <span class="nav-text">其它知识：openfst</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kavim</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.2.2</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
