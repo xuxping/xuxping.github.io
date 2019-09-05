@@ -384,6 +384,210 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2016/09/28/firewall使用总结/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kavim"/>
+      <meta itemprop="description" content="生活不止眼前的苟且 还有诗和远方的田野"/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kavim"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/09/28/firewall使用总结/" class="post-title-link" itemprop="url">firewalld使用总结</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-09-28 14:11:41" itemprop="dateCreated datePublished" datetime="2016-09-28T14:11:41+08:00">2016-09-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2016-12-10 17:54:36" itemprop="dateModified" datetime="2016-12-10T17:54:36+08:00">2016-12-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2016/09/28/firewall使用总结/" class="leancloud_visitors" data-flag-title="firewalld使用总结">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>firewalld(firewall daemon)&#x662F;&#x65B0;&#x4E00; Linux &#x4EE3;&#x9632;&#x706B;&#x5899;&#x5DE5;&#x5177;&#xFF0C;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x652F;&#x6301;&#x7F51;&#x7EDC; / &#x9632;&#x706B;&#x5899;&#x533A;&#x57DF; (zone) &#x5B9A;&#x4E49;&#x7F51;&#x7EDC;&#x94FE;&#x63A5;&#x4EE5;&#x53CA;&#x63A5;&#x53E3;&#x5B89;&#x5168;&#x7B49;&#x7EA7;&#x7684;&#x52A8;&#x6001;&#x9632;&#x706B;&#x5899;&#x7BA1;&#x7406;&#x5DE5;&#x5177;,&#x5E76;&#x4E14;&#x62E5;&#x6709;&#x8FD0;&#x884C;&#x65F6;&#x914D;&#x7F6E;&#x548C;&#x6C38;&#x4E45;&#x914D;&#x7F6E;&#x9009;&#x9879;&#x3002;&#x5B83;&#x4E5F;&#x652F;&#x6301;&#x5141;&#x8BB8;&#x670D;&#x52A1;&#x6216;&#x8005;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x76F4;&#x63A5;&#x6DFB;&#x52A0;&#x9632;&#x706B;&#x5899;&#x89C4;&#x5219;&#x7684;&#x63A5;&#x53E3;&#x3002;</p>
+<p>Firewall &#x80FD;&#x5C06;&#x4E0D;&#x540C;&#x7684;&#x7F51;&#x7EDC;&#x8FDE;&#x63A5;&#x5F52;&#x7C7B;&#x5230;&#x4E0D;&#x540C;&#x7684;&#x4FE1;&#x4EFB;&#x7EA7;&#x522B;&#xFF0C;Zone(&#x57DF;)&#x4F9B;&#x4E86;&#x4EE5;&#x4E0B;&#x51E0;&#x4E2A;&#x7EA7;&#x522B;:</p>
+<blockquote>
+<p>drop(&#x4E22;&#x5F03;)&#xFF1A; &#x4EFB;&#x4F55;&#x63A5;&#x6536;&#x7684;&#x7F51;&#x7EDC;&#x6570;&#x636E;&#x5305;&#x90FD;&#x88AB;&#x4E22;&#x5F03;&#xFF0C;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x56DE;&#x590D;&#x3002;&#x4EC5;&#x80FD;&#x6709;&#x53D1;&#x9001;&#x51FA;&#x53BB;&#x7684;&#x7F51;&#x7EDC;&#x8FDE;&#x63A5;</p>
+<p>block(&#x9650;&#x5236;)&#xFF1A; &#x62D2;&#x7EDD;&#x6240;&#x6709;&#x5916;&#x90E8;&#x53D1;&#x8D77;&#x7684;&#x8FDE;&#x63A5;&#xFF0C;&#x5141;&#x8BB8;&#x5185;&#x90E8;&#x53D1;&#x8D77;&#x7684;&#x8FDE;&#x63A5;<br>public(&#x516C;&#x5171;): &#x5728;&#x516C;&#x5171;&#x533A;&#x57DF;&#x5185;&#x4F7F;&#x7528;&#xFF0C;&#x4E0D;&#x80FD;&#x76F8;&#x4FE1;&#x7F51;&#x7EDC;&#x5185;&#x7684;&#x5176;&#x4ED6;&#x8BA1;&#x7B97;&#x673A;&#x4E0D;&#x4F1A;&#x5BF9;&#x60A8;&#x7684;&#x8BA1;&#x7B97;&#x673A;&#x9020;&#x6210;&#x5371;&#x5BB3;&#xFF0C;&#x53EA;&#x80FD;&#x63A5;&#x6536;&#x7ECF;&#x8FC7;&#x9009;&#x53D6;&#x7684;&#x8FDE;&#x63A5;&#x3002;</p>
+<p>external(&#x5916;&#x90E8;): &#x7279;&#x522B;&#x662F;&#x4E3A;&#x8DEF;&#x7531;&#x5668;&#x542F;&#x7528;&#x4E86;&#x4F2A;&#x88C5;&#x529F;&#x80FD;&#x7684;&#x5916;&#x90E8;&#x7F51;&#x3002;&#x60A8;&#x4E0D;&#x80FD;&#x4FE1;&#x4EFB;&#x6765;&#x81EA;&#x7F51;&#x7EDC;&#x7684;&#x5176;&#x4ED6;&#x8BA1;&#x7B97;&#xFF0C;&#x4E0D;&#x80FD;&#x76F8;&#x4FE1;&#x5B83;&#x4EEC;&#x4E0D;&#x4F1A;&#x5BF9;&#x60A8;&#x7684;&#x8BA1;&#x7B97;&#x673A;&#x9020;&#x6210;&#x5371;&#x5BB3;&#xFF0C;&#x53EA;&#x80FD;&#x63A5;&#x6536;&#x7ECF;&#x8FC7;&#x9009;&#x62E9;&#x7684;&#x8FDE;&#x63A5;&#x3002;</p>
+<p>dmz(&#x975E;&#x519B;&#x4E8B;&#x533A;)&#xFF1A; &#x7528;&#x4E8E;&#x60A8;&#x7684;&#x975E;&#x519B;&#x4E8B;&#x533A;&#x5185;&#x7684;&#x7535;&#x8111;&#xFF0C;&#x6B64;&#x533A;&#x57DF;&#x5185;&#x53EF;&#x516C;&#x5F00;&#x8BBF;&#x95EE;&#xFF0C;&#x53EF;&#x4EE5;&#x6709;&#x9650;&#x5730;&#x8FDB;&#x5165;&#x60A8;&#x7684;&#x5185;&#x90E8;&#x7F51;&#x7EDC;&#xFF0C;&#x4EC5;&#x4EC5;&#x63A5;&#x6536;&#x7ECF;&#x8FC7;&#x9009;&#x62E9;&#x7684;&#x8FDE;&#x63A5;&#x3002;</p>
+<p>work(&#x5DE5;&#x4F5C;&#x533A;)&#xFF1A; &#x7528;&#x4E8E;&#x5DE5;&#x4F5C;&#x533A;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x57FA;&#x672C;&#x76F8;&#x4FE1;&#x7F51;&#x7EDC;&#x5185;&#x7684;&#x5176;&#x4ED6;&#x7535;&#x8111;&#x4E0D;&#x4F1A;&#x5371;&#x5BB3;&#x60A8;&#x7684;&#x7535;&#x8111;&#x3002;&#x4EC5;&#x4EC5;&#x63A5;&#x6536;&#x7ECF;&#x8FC7;&#x9009;&#x62E9;&#x7684;&#x8FDE;&#x63A5;&#x3002;</p>
+<p>home(&#x5BB6;&#x5EAD;)&#xFF1A;&#x7528;&#x4E8E;&#x5BB6;&#x5EAD;&#x7F51;&#x7EDC;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x57FA;&#x672C;&#x4FE1;&#x4EFB;&#x7F51;&#x7EDC;&#x5185;&#x7684;&#x5176;&#x4ED6;&#x8BA1;&#x7B97;&#x673A;&#x4E0D;&#x4F1A;&#x5371;&#x5BB3;&#x60A8;&#x7684;&#x8BA1;&#x7B97;&#x673A;&#x3002;&#x4EC5;&#x4EC5;&#x63A5;&#x6536;&#x7ECF;&#x8FC7;&#x9009;&#x62E9;&#x7684;&#x8FDE;&#x63A5;&#x3002;</p>
+<p>internal(&#x5185;&#x90E8;)&#xFF1A;&#x7528;&#x4E8E;&#x5185;&#x90E8;&#x7F51;&#x7EDC;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x57FA;&#x672C;&#x4E0A;&#x4FE1;&#x4EFB;&#x7F51;&#x7EDC;&#x5185;&#x7684;&#x5176;&#x4ED6;&#x8BA1;&#x7B97;&#x673A;&#x4E0D;&#x4F1A;&#x5A01;&#x80C1;&#x60A8;&#x7684;&#x8BA1;&#x7B97;&#x673A;&#x3002;&#x4EC5;&#x4EC5;&#x63A5;&#x53D7;&#x7ECF;&#x8FC7;&#x9009;&#x62E9;&#x7684;&#x8FDE;&#x63A5;&#x3002;</p>
+<p>trusted(&#x4FE1;&#x4EFB;): &#x53EF;&#x63A5;&#x53D7;&#x6240;&#x6709;&#x7684;&#x7F51;&#x7EDC;&#x8FDE;&#x63A5;&#x3002;</p>
+</blockquote>
+<h3 id="&#x670D;&#x52A1;&#x7BA1;&#x7406;&#x547D;&#x4EE4;"><a href="#&#x670D;&#x52A1;&#x7BA1;&#x7406;&#x547D;&#x4EE4;" class="headerlink" title="&#x670D;&#x52A1;&#x7BA1;&#x7406;&#x547D;&#x4EE4;"></a>&#x670D;&#x52A1;&#x7BA1;&#x7406;&#x547D;&#x4EE4;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">systemctl start firewalld         &#x542F;&#x52A8;,</div><div class="line">systemctl <span class="built_in">enable</span> firewalld        &#x5F00;&#x673A;&#x542F;&#x52A8;</div><div class="line">systemctl stop firewalld          &#x5173;&#x95ED;</div><div class="line">systemctl restart firewalld          &#x91CD;&#x542F;</div><div class="line">systemctl <span class="built_in">disable</span> firewalld       &#x53D6;&#x6D88;&#x5F00;&#x673A;&#x542F;&#x52A8;</div><div class="line">systemctl status firewalld  &#x67E5;&#x770B;&#x8FD0;&#x884C;&#x72B6;&#x6001;</div></pre></td></tr></table></figure>
+<h3 id="&#x5E38;&#x7528;&#x72B6;&#x6001;&#x547D;&#x4EE4;"><a href="#&#x5E38;&#x7528;&#x72B6;&#x6001;&#x547D;&#x4EE4;" class="headerlink" title="&#x5E38;&#x7528;&#x72B6;&#x6001;&#x547D;&#x4EE4;"></a>&#x5E38;&#x7528;&#x72B6;&#x6001;&#x547D;&#x4EE4;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --state &#x67E5;&#x770B;&#x8FD0;&#x884C;&#x72B6;&#x6001;</div><div class="line">firewall-cmd --get-actvie-zones &#x67E5;&#x770B;&#x5DF2;&#x88AB;&#x6FC0;&#x6D3B;&#x7684; Zone &#x4FE1;&#x606F;</div><div class="line">firewall-cmd --get-zone-of-interface=eth0 &#x67E5;&#x770B;&#x6307;&#x5B9A;&#x63A5;&#x53E3;&#x7684; Zone &#x4FE1;&#x606F;</div><div class="line">firewall-cmd --zone=public --list-interfaces&#x67E5;&#x770B;&#x6307;&#x5B9A;&#x7EA7;&#x522B;&#x7684;&#x63A5;&#x53E3;</div><div class="line">firewall-cmd --zone=public --list-all &#x67E5;&#x770B;&#x6307;&#x5B9A;&#x7EA7;&#x522B;&#x7684;&#x5F00;&#x653E;&#x7684;&#x63A5;&#x53E3;</div><div class="line">firewall-cmd --get-service &#x67E5;&#x770B;&#x6240;&#x6709;&#x7EA7;&#x522B;&#x88AB;&#x5141;&#x8BB8;&#x7684;&#x4FE1;&#x606F;</div><div class="line">firewall-cmd --get-service --permanent &#x67E5;&#x770B;&#x91CD;&#x542F;&#x540E;&#x6240;&#x6709; Zones &#x7EA7;&#x522B;&#x4E2D;&#x88AB;&#x5141;&#x8BB8;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x5373;&#x6C38;&#x4E45;&#x653E;&#x884C;&#x7684;&#x670D;&#x52A1;</div><div class="line">cat /etc/services &#x67E5;&#x770B;&#x6240;&#x6709;&#x5F00;&#x653E;&#x7684;&#x63A5;&#x53E3;</div></pre></td></tr></table></figure>
+<h3 id="&#x7BA1;&#x7406;&#x89C4;&#x5219;"><a href="#&#x7BA1;&#x7406;&#x89C4;&#x5219;" class="headerlink" title="&#x7BA1;&#x7406;&#x89C4;&#x5219;"></a>&#x7BA1;&#x7406;&#x89C4;&#x5219;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --panic-on           &#x4E22;&#x5F03;</div><div class="line">firewall-cmd --panic-off          &#x53D6;&#x6D88;&#x4E22;&#x5F03;</div><div class="line">firewall-cmd --query-panic        &#x67E5;&#x770B;&#x4E22;&#x5F03;&#x72B6;&#x6001;</div><div class="line">firewall-cmd --reload             &#x66F4;&#x65B0;&#x89C4;&#x5219;&#xFF0C;&#x4E0D;&#x91CD;&#x542F;&#x670D;&#x52A1;</div><div class="line">firewall-cmd --complete-reload    &#x66F4;&#x65B0;&#x89C4;&#x5219;&#xFF0C;&#x91CD;&#x542F;&#x670D;&#x52A1;</div><div class="line"></div><div class="line">&#x6DFB;&#x52A0;&#x67D0;&#x63A5;&#x53E3;&#x81F3;&#x67D0;&#x4FE1;&#x4EFB;&#x7B49;&#x7EA7;&#xFF0C;&#x8B6C;&#x5982;&#x6DFB;&#x52A0; eth0 &#x81F3; public&#xFF0C;&#x518D;&#x6C38;&#x4E45;&#x751F;&#x6548;</div><div class="line">irewall-cmd --zone=public --add-interface=eth0 --permanent</div><div class="line">&#x8BBE;&#x7F6E; public &#x4E3A;&#x9ED8;&#x8BA4;&#x7684;&#x4FE1;&#x4EFB;&#x7EA7;&#x522B;</div><div class="line"> firewall-cmd --set-default-zone=public</div></pre></td></tr></table></figure>
+<h3 id="&#x7AEF;&#x53E3;&#x7BA1;&#x7406;"><a href="#&#x7AEF;&#x53E3;&#x7BA1;&#x7406;" class="headerlink" title="&#x7AEF;&#x53E3;&#x7BA1;&#x7406;"></a>&#x7AEF;&#x53E3;&#x7BA1;&#x7406;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#x5217;&#x51FA; public &#x7EA7;&#x522B;&#x7684;&#x88AB;&#x5141;&#x8BB8;&#x7684;&#x8FDB;&#x5165;&#x7AEF;&#x53E3;</div><div class="line">firewall-cmd --zome=public --list-ports</div><div class="line">&#x6DFB;&#x52A0;8080&#x7AEF;&#x53E3;&#x5230;public&#x7EA7;&#x522B;(&#x5E26; --permanent&#x4E3A;&#x6C38;&#x4E45;&#x751F;&#x6548;)</div><div class="line">firewall-cmd --zone=public --add-port=8080/tcp [ --permanent]</div><div class="line">&#x6DFB;&#x52A0;&#x89C4;&#x5219;&#x4E4B;&#x540E;&#x9700;&#x8981;&#x66F4;&#x65B0;&#x89C4;&#x5219;&#xFF0C;&#x4E0D;&#x91CD;&#x542F;&#x670D;&#x52A1;</div></pre></td></tr></table></figure>
+<h3 id="&#x7BA1;&#x7406;&#x670D;&#x52A1;"><a href="#&#x7BA1;&#x7406;&#x670D;&#x52A1;" class="headerlink" title="&#x7BA1;&#x7406;&#x670D;&#x52A1;"></a>&#x7BA1;&#x7406;&#x670D;&#x52A1;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#x6DFB;&#x52A0; smtp &#x670D;&#x52A1;&#x81F3; work Zone</div><div class="line">firewall-cmd --zone=work --add-service=smtp</div><div class="line">&#x79FB;&#x9664; work zone &#x4E2D;&#x7684; smtp &#x670D;&#x52A1;</div><div class="line">firewall-cmd --zone=work --remove-service=smtp</div></pre></td></tr></table></figure>
+<h3 id="&#x914D;&#x7F6E;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;&#xFF0C;&#xFF08;20&#x2013;-gt-3573&#xFF09;"><a href="#&#x914D;&#x7F6E;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;&#xFF0C;&#xFF08;20&#x2013;-gt-3573&#xFF09;" class="headerlink" title="&#x914D;&#x7F6E;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;&#xFF0C;&#xFF08;20&#x2013;&gt;3573&#xFF09;"></a>&#x914D;&#x7F6E;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;&#xFF0C;&#xFF08;20&#x2013;&gt;3573&#xFF09;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#x8981;&#x6253;&#x5F00;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x5148;</div><div class="line">firewall-cmd --zone=external --add-masquerade</div><div class="line"></div><div class="line">&#x7136;&#x540E;&#x8F6C;&#x53D1; tcp 22 &#x7AEF;&#x53E3;&#x81F3; 3753</div><div class="line">firewall-cmd --zone=external --add-forward-port=port=22:proto=tcp:toport=3753</div><div class="line"></div><div class="line">&#x8F6C;&#x53D1; 22 &#x7AEF;&#x53E3;&#x6570;&#x636E;&#x81F3;&#x53E6;&#x4E00;&#x4E2A; ip &#x7684;&#x76F8;&#x540C;&#x7AEF;&#x53E3;&#x4E0A;</div><div class="line">firewall-cmd --zone=external --add-forward-port=port=22:proto=tcp:toaddr=192.168.1.100</div><div class="line"></div><div class="line">&#x8F6C;&#x53D1; 22 &#x7AEF;&#x53E3;&#x6570;&#x636E;&#x81F3;&#x53E6;&#x4E00; ip &#x7684; 2055 &#x7AEF;&#x53E3;&#x4E0A;</div><div class="line">firewall-cmd --zone=external --add-forward-port=port=22:proto=tcp:toport=2055:toaddr=192.168.1.100</div></pre></td></tr></table></figure>
+<h2 id="&#x53C2;&#x8003;&#x8D44;&#x6599;"><a href="#&#x53C2;&#x8003;&#x8D44;&#x6599;" class="headerlink" title="&#x53C2;&#x8003;&#x8D44;&#x6599;"></a>&#x53C2;&#x8003;&#x8D44;&#x6599;</h2><blockquote>
+<p><a href="https://fedoraproject.org/wiki/FirewallD/zh-cn#.E4.BD.BF.E7.94.A8_FirewallD_.E6.9E.84.E5.BB.BA.E5.8A.A8.E6.80.81.E9.98.B2.E7.81.AB.E5.A2.99" target="_blank" rel="external">https://fedoraproject.org/wiki/FirewallD/zh-cn#.E4.BD.BF.E7.94.A8_FirewallD_.E6.9E.84.E5.BB.BA.E5.8A.A8.E6.80.81.E9.98.B2.E7.81.AB.E5.A2.99</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2016/07/21/blog-install/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -605,7 +809,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">51</span>
+                    <span class="site-state-item-count">52</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
