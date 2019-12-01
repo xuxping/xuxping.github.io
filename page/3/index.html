@@ -384,6 +384,196 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/08/05/HBase的KeyValue分析/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kavim"/>
+      <meta itemprop="description" content="生活不止眼前的苟且 还有诗和远方的田野"/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kavim"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/08/05/HBase的KeyValue分析/" class="post-title-link" itemprop="url">（四）HBase的KeyValue分析</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-08-05 20:20:00" itemprop="dateCreated datePublished" datetime="2017-08-05T20:20:00+08:00">2017-08-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-04-04 13:11:42" itemprop="dateModified" datetime="2018-04-04T13:11:42+08:00">2018-04-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/HBase系列/" itemprop="url" rel="index"><span itemprop="name">HBase系列</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2017/08/05/HBase的KeyValue分析/" class="leancloud_visitors" data-flag-title="（四）HBase的KeyValue分析">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>&#x5728;HBase&#x5199;&#x5165;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x4F1A;&#x68C0;&#x67E5;Put&#x4E2D;&#x6BCF;&#x4E2A;&#x5355;&#x5143;&#x683C;Cell&#x7684;KeyValue&#x5927;&#x5C0F;&#x662F;&#x5426;&#x5927;&#x4E8E;&#x8BBE;&#x7F6E;&#x7684;maxKeyValueSize&#x3002;&#x8981;&#x8BA1;&#x7B97;KeyValue&#x7684;&#x5927;&#x5C0F;&#x5C31;&#x9700;&#x8981;&#x4E86;&#x89E3;KeyValue&#x7684;&#x7684;&#x683C;&#x5F0F;&#x4EE5;&#x53CA;&#x5360;&#x7528;&#x7A7A;&#x95F4;&#x7684;&#x8BA1;&#x7B97;&#x65B9;&#x5F0F;&#x3002;&#x672C;&#x6587;&#x7ED3;&#x5408;&#x5B98;&#x65B9;&#x6587;&#x6863;&#x548C;&#x6E90;&#x7801;&#x5BF9;KeyValue&#x7684;&#x683C;&#x5F0F;&#x548C;&#x7A7A;&#x95F4;&#x8BA1;&#x7B97;&#x8FDB;&#x884C;&#x5206;&#x6790;&#x548C;&#x603B;&#x7ED3;&#xFF0C;&#x4FBF;&#x4E8E;&#x540E;&#x7EED;&#x7EE7;&#x7EED;&#x5206;&#x6790;HBase&#x5199;&#x5165;&#x8FC7;&#x7A0B;&#x3002;<br></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/08/05/HBase的KeyValue分析/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/07/31/项目管理网站介绍/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2055,196 +2245,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xuxping.github.io/2017/06/25/Hive分区测试/"/>
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kavim"/>
-      <meta itemprop="description" content="生活不止眼前的苟且 还有诗和远方的田野"/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kavim"/>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/06/25/Hive分区测试/" class="post-title-link" itemprop="url">Hive分区测试</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-06-25 15:20:00" itemprop="dateCreated datePublished" datetime="2017-06-25T15:20:00+08:00">2017-06-25</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-08 11:21:09" itemprop="dateModified" datetime="2018-08-08T11:21:09+08:00">2018-08-08</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hive/" itemprop="url" rel="index"><span itemprop="name">Hive</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2017/06/25/Hive分区测试/" class="leancloud_visitors" data-flag-title="Hive分区测试">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>&#x5BF9;&#x5927;&#x91CF;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x67E5;&#x8BE2;&#x65F6;&#xFF0C;Hive&#x5728;&#x67E5;&#x8BE2;&#x65F6;&#xFF0C;&#x4F1A;&#x8F6C;&#x6362;&#x6210;mapreduce&#x4EFB;&#x52A1;&#x8FD0;&#x884C;&#xFF0C;&#x4F1A;&#x663E;&#x5F97;&#x6BD4;&#x8F83;&#x6162;&#x3002;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5206;&#x533A;&#x6765;&#x8FDB;&#x884C;&#x901F;&#x5EA6;&#x4E0A;&#x7684;&#x4F18;&#x5316;&#x3002;<br></p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2017/06/25/Hive分区测试/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2291,7 +2291,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-count">54</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2354,7 +2354,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">23</span>
+                      
+                    
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
