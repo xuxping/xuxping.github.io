@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>文本分类的一些总结 | xuxping</title><link rel="stylesheet" type="text/css" href="../../../../css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="../../../../favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="../../../../favicon.ico"><link rel="apple-touch-icon" href="../../../../apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="../../../../apple-touch-icon.png"><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">文本分类的一些总结</h1><a id="logo" href="../../../../.">xuxping</a><p class="description">一点一滴积累</p></div><div id="nav-menu"><a class="current" href="../../../../."><i class="fa fa-home"> 首页</i></a><a href="../../../../archives/"><i class="fa fa-archive"> 归档</i></a><a href="../../../../about/"><i class="fa fa-user"> 关于</i></a><a href="../../../../atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">文本分类的一些总结</h1><div class="post-meta">2019-12-01<span> | </span><span class="category"><a href="../../../../categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/">自然语言处理</a></span></div><div class="post-content"><p><img src="/2019/12/01/20191201/image-20191115200124500.png"></p>
+<p>目前从事的自然语言任务基本上都是属于分类性质的，到目前为止做的分类模型累计有10余个，本文主要总结从以下几个方面进行总结：</p>
+<ol>
+<li>数据收集和清洗</li>
+<li>数据标注</li>
+<li>模型选择、调优和评估</li>
+<li>模型上线和持续的跟踪</li>
+<li>常见问题汇总<span id="more"></span></li>
+</ol>
+<h2 id="数据收集和清洗"><a href="#数据收集和清洗" class="headerlink" title="数据收集和清洗"></a>数据收集和清洗</h2><p>建模数据一般会来自爬虫，业务数据，如果是打比赛，一般会提供数据，也可以按照一定规则生成一部分数据。面对不同的任务和数据，数据收集和清洗也会不同。常见注意点如下：</p>
+<ol>
+<li>数据收集<ul>
+<li>你的数据要与任务定义相匹配，比如做联系方式建模，结果收集的数据全是没有联系方式的，这没法建模。</li>
+<li>数据采样最好保持数据分布的一致性，不同数据源抽取的数据最好与该数据源的总量相关。</li>
+<li>对不同类别的数据要注意均衡性，可一定程度上缓解建模过程中的不平衡问题。</li>
+</ul>
+</li>
+<li>数据去重<ul>
+<li>过多重复的数据对标注，建模和评估都会造成影响。重复数据导致无效标注量增加，评估时指标不可信。</li>
+<li>去重最好放在文本清理之后来做，防止因小的噪声（如繁体和简体字，大小写，全角半角等）导致两个一样的文本被判断成不一样。可以采用hash来去重</li>
+</ul>
+</li>
+<li>数据筛选<ul>
+<li>干净的文本更有利于模型的学习</li>
+<li>筛选主要去重一些明显的异常文本，如文本过长过短，缺乏明显特征，非中文文本等</li>
+<li>可以采用关键字筛查，随机抽检，正则匹配等</li>
+</ul>
+</li>
+<li>注意数据清洗阶段，对数据的处理与最终使用模型的数据的处理过程要<strong>保持一致</strong>。</li>
+</ol>
+<h2 id="数据标注"><a href="#数据标注" class="headerlink" title="数据标注"></a>数据标注</h2><p>模型最终能达到多好的性能，就得看数据标注的质量了。通过参与几次的标注管理，主要有以下注意点：</p>
+<ol>
+<li>制定的类别之间需要互斥，不能互为包含。类别越少越好</li>
+<li>标注规则制定：清晰，全面、无理解歧义，主要是对一些难以判断的句子的定义</li>
+<li>对于特定的任务，需要了解适当的业务背景知识</li>
+<li>多轮标注：对于有理解歧义的任务，如文本情绪，建议多标几轮，每个人对情绪的理解都不一样，之前出现两轮标注只有30%的文本是一致的。</li>
+<li>人工抽检：适当的抽检是有必要的，防止标了很久后才发现标注的有问题</li>
+<li>根据标注的分布，适当调整样本，避免严重的不平衡问题</li>
+<li>积累一定量后，可以训练模型，然后让模型产生一些标注，进行人工判断，进入迭代循环过程</li>
+</ol>
+<h2 id="模型选择、调优和评估"><a href="#模型选择、调优和评估" class="headerlink" title="模型选择、调优和评估"></a>模型选择、调优和评估</h2><p>建立模型的过程其实在整个算法流程中占比的时间较短，更多的是在数据清理上面。但是建立好的模型是很有调整性的。</p>
+<p>注意以下几点：</p>
+<ol>
+<li>模型设计<ul>
+<li><strong>微创新：</strong>避免成为一个只会拿现有模型(如LSTM，TextCNN)进行调参的算法人员。好的模型能够充分的学习到数据的分布特征，因此建模需要根据业务和数据特点，选择合适的模型，或者对现有模型进行改造，才能事半功倍。</li>
+<li><strong>baseline:</strong> 选择一个成熟的模型作为baseline，然后进行升级迭代。</li>
+<li><strong>增强特征：</strong>如果采用深度学习，通常是人工选择特征的，但是为模型增加一部分有用特征，能起到较好的作用，比如低俗检测，可以收集一些低俗的关键词，融入到模型，比让模型自己去学更加可靠点，效果也更好。</li>
+<li><strong>容量匹配：</strong> 模型的容量与数据量的比例不能相差太大，比如只有5w的样本数据，设计了个500w参数量的模型，明显不合理，会出现严重的过拟合或者是线上效果太差。我的经验：模型参数&#x2F;样本量 在0.5-5之间要好点，可以保证模型得到充分的训练。</li>
+<li><strong>NLP范式：</strong> pretrain + finetune，在海量数据量上进行预训练，然后在具体任务上用小样本进行微调。Bert出来后，这种范式效果都非常不错，值得尝试。但是效果与自己设计的模型差不多，还是选择小的模型较好</li>
+</ul>
+</li>
+<li>调优和评估<ul>
+<li><strong>问题判断：</strong>调优的基础是要知道存在哪些问题，是过拟合、不收敛、偏差方差太大等等，先定位问题，不要这调调，那调调</li>
+<li><strong>可视化：</strong> 在模型训练过程中，将参数和各项指标可视化，可以方便查看和判断。</li>
+<li><strong>系统化:</strong>  掌握系统的调优理论</li>
+<li><strong>建立标准的测试集：</strong>建议是建立两个测试集，一个是用于模型训练后评估，一个是真实环境的数据集，用于验证模型真实的泛化能力。</li>
+<li><strong>要准确还是要召回：</strong> 一般根据运营的需求，通过阈值的设定来控制。一般倾向于要准确率，准确率高之后才考虑优化召回</li>
+<li><strong>检查数据：</strong> 测试完数据后，需要对测试的数据进行分析，看看哪些是错标，漏召的。有时候模型并不是错判，而是人工错判，多检查一下对改进数据质量很有帮助。</li>
+</ul>
+</li>
+<li>其它：<ul>
+<li><strong>数据记录：</strong>对每次的模型改进，指标进行记录，这非常重要</li>
+<li>构建持续迭代的体系，加快生产速度</li>
+<li>注重模型结果的<strong>可复现</strong>，可以采用固定随机种子等改善措施</li>
+</ul>
+</li>
+</ol>
+<h2 id="模型上线和持续的跟踪"><a href="#模型上线和持续的跟踪" class="headerlink" title="模型上线和持续的跟踪"></a>模型上线和持续的跟踪</h2><p>模型开发好了，并不一定能够上线，或者效果并没有评估的那么好。</p>
+<ol>
+<li><strong>收集反馈：</strong> 及时主动去收集线上的反馈信息</li>
+<li><strong>定期进行评估</strong>：数据分布可能发生了变化，模型不再试用，需要定期评估模型的性能，以确实是否需要升级。特别是涉及到一些抗黑产的模型，需要不断的进行优化才行</li>
+</ol>
+<img src="/2019/12/01/20191201/image-20191126094131858.png" alt="image-20191126094131858" style="zoom:50%;">
+<!-- ![](20190922/image-20191115200124500.png) -->
+
+<p>持续更新中。。。</p>
+<h2 id="常见问题汇总"><a href="#常见问题汇总" class="headerlink" title="常见问题汇总"></a>常见问题汇总</h2><ol>
+<li><p>模型输入的长度如何设置?</p>
+<p>一般先统计样本的长度分布，选择能够覆盖95%以上的长度即可</p>
+</li>
+<li><p>embedding size大小如何设置？</p>
+<p>对于想利用embedding来计算两个token的相似度的任务，一般embedding size越大会越好，300，600， 1024都可以。对于分类任务来说，embedding size 大于128后也不会带来明显的提升。在NLP中embedding参数一般会占模型总参数90%以上，如果训练的数据量太少，embedding size 设置小点，如32、50等，可以防止过拟合，数据量大的话，可以设置稍微大点。</p>
+</li>
+<li><p>分词还是不分词？</p>
+<p>一般来看，在中文中，词语具有丰富的语义信息，在建模过程中融入这些信息，一般会对模型提升有一定帮助。但也要结合具体的任务来看，比如情绪分类任务，情绪与词语有很大关系，因此做分词效果会好一点。对于与词语语义信息无关的任务，如识别文本中的联系方式，就没必要分词，之间使用char级别的效果也不会差，而且还能大幅降低参数量。</p>
+<p>如果只采用char，模型可能需要另外学习到一些word级别的信息才行，对数据量的要求也会大点。</p>
+</li>
+<li><p>如何减少unk词？</p>
+<p>可以采用wordpiece、char或者char + word作为词表。</p>
+</li>
+<li><p>用CNN还是RNN?</p>
+<p>根据我的使用情况，RNN虽然慢点，但是线上整体的效果要好于CNN。具体使用谁还是得根据数据的特点，选择合适得模型。</p>
+</li>
+<li><p>padding采用pre还是post方式？</p>
+<p>对于RNN的模型，采用pre padding的方式较好，性能会比post padding高的，这样RNN的模型特点有关，keras默认也是采用的这种。对于CNN和Attention相关的模型，两种方式都差不多。</p>
+</li>
+<li><p>模型收敛后，几个epoch的指标都差不多，应该选择哪一个？</p>
+<p>先去除明显过拟合的epoch，一般dev的准确率比train的准确率低0-2%较好。在测试集上评估一下，选择效果最好的那个。</p>
+</li>
+<li><p>停用词要不要去？</p>
+<p>如果采用的是深度学习模型，模型是自己去选择特征，去不去都无影响。如果采用机器学习模型，最好还是去掉，减少无关特征。</p>
+</li>
+</ol>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://developers.google.cn/machine-learning/guides/text-classification/">Introduction  |  ML Universal Guides       |  Google Developers</a></p>
+</div><div class="tags"></div><div class="post-nav"><a class="pre" href="../../../../2022/09/18/fuse/">fuse</a><a class="next" href="../../../09/22/20190922/">第一次跳槽面试总结</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://example.com"/></form></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>To be a better man.</p><a class="info-icon" href="https://twitter.com/username" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:admin@domain.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/username" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/AI/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/HBase/">HBase</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/Hive/">Hive</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/Nginx/">Nginx</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/Spark%E7%B3%BB%E5%88%97/">Spark系列</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/ganglia/">ganglia</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/project/">project</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/tools/">tools</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/">个人笔记</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0/">数据分析学习</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">架构设计</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/%E7%A7%9F%E6%88%BF%E7%B3%BB%E7%BB%9F/">租房系统</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/">自然语言处理</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="../../../../tags/HBase/" style="font-size: 15px;">HBase</a> <a href="../../../../tags/Hadoop/" style="font-size: 15px;">Hadoop</a> <a href="../../../../tags/Hive/" style="font-size: 15px;">Hive</a> <a href="../../../../tags/Spark/" style="font-size: 15px;">Spark</a> <a href="../../../../tags/Nginx/" style="font-size: 15px;">Nginx</a> <a href="../../../../tags/tools/" style="font-size: 15px;">tools</a> <a href="../../../../tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="../../../../tags/node/" style="font-size: 15px;">node</a> <a href="../../../../tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="../../../../tags/tornado/" style="font-size: 15px;">tornado</a> <a href="../../../../tags/%E5%A4%96%E5%8C%85/" style="font-size: 15px;">外包</a> <a href="../../../../tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="../../../../tags/%E7%A7%9F%E6%88%BF%E7%B3%BB%E7%BB%9F/" style="font-size: 15px;">租房系统</a> <a href="../../../../tags/%E7%88%AC%E8%99%AB/" style="font-size: 15px;">爬虫</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="../../../../2022/09/18/fuse/">fuse</a></li><li class="post-list-item"><a class="post-list-link" href="">文本分类的一些总结</a></li><li class="post-list-item"><a class="post-list-link" href="../../../09/22/20190922/">第一次跳槽面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="../../../09/05/20190905/">哲学家都干了些什么</a></li><li class="post-list-item"><a class="post-list-link" href="../../../09/01/20190901/">我准备离职了</a></li><li class="post-list-item"><a class="post-list-link" href="../../../08/26/20190826/">做AI，搞NLP，才有qian途</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/16/20190616_ASR_from_begin_to_abandoned/">语音识别从入门到放弃</a></li><li class="post-list-item"><a class="post-list-link" href="../../../04/26/20190426_my-understand-of-AI/">谈谈我对AI的理解</a></li><li class="post-list-item"><a class="post-list-link" href="../../../../2018/08/06/SMP2018%E5%8F%82%E4%BC%9A%E8%A7%81%E9%97%BB/">SMP2018参会见闻</a></li><li class="post-list-item"><a class="post-list-link" href="../../../../2018/07/11/%E8%B8%8F%E5%85%A5%E7%A4%BE%E4%BC%9A%E8%BF%99%E4%B8%80%E5%B9%B4%E2%80%94%E2%80%94%E7%84%A6%E8%99%91%E7%9B%B8%E4%BC%B4/">踏入社会这一年——焦虑相伴</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="../../../../." rel="nofollow">xuxping.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="../../../../js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="../../../../js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><script type="text/javascript" src="../../../../js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="../../../../css/copycode.css?v=1.0.0"><script type="text/javascript" src="../../../../js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="../../../../js/smartresize.js?v=1.0.0"></script></div></body></html>
